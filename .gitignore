@@ -94,6 +94,9 @@ dist
 # Serverless directories
 .serverless/
 
+# Mac System directory
+.DS_Store
+
 # FuseBox cache
 .fusebox/
 
