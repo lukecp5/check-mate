@@ -38,7 +38,7 @@ export default function ButtonAppBar(theme) {
           {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Home
           </Typography> */}
-          <img src={Logo} width="200"/>  
+          <img src={Logo} alt="checkmate logo" width="200"/>  
           <NavBtn color="inherit">Login</NavBtn>
           <NavBtn edge="end" color="inherit">Sign Up!</NavBtn>
         </MyToolbar>
