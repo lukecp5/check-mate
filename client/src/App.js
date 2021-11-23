@@ -5,16 +5,13 @@ import SearchGames from "./pages/SearchGames";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme/Theme";
 import SubmitBtn from "./components/SubmitBtn";
-
+import PieChartDemo from "./pages/PieChartDemo";
 // import {
 //   ApolloClient,
 //   InMemoryCache,
 //   ApolloProvider,
 //   createHttpLink,
 // } from '@apollo/client';
-
-import SearchGames from "./pages/SearchGames";
-import PieChartDemo from "./pages/PieChartDemo";
 
 // Construct our main GraphQL API endpoint
 // const httpLink = createHttpLink({
