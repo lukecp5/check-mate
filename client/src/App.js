@@ -12,6 +12,7 @@ import React from 'react';
 
 
 import SearchGames from './pages/SearchGames';
+import PieChartDemo from './pages/PieChartDemo';
 
 // Construct our main GraphQL API endpoint
 // const httpLink = createHttpLink({
@@ -35,7 +36,7 @@ function App() {
           Learn React
         </a>
       </header>
-
+      <PieChartDemo />
       <SearchGames />
     </div>
   );
