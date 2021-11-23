@@ -1,5 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+
+
+// import {
+//   ApolloClient,
+//   InMemoryCache,
+//   ApolloProvider,
+//   createHttpLink,
+// } from '@apollo/client';
+
+
+import SearchGames from './pages/SearchGames';
+
+// Construct our main GraphQL API endpoint
+// const httpLink = createHttpLink({
+//   uri: '/graphql',
+// });
 
 function App() {
   return (
@@ -18,6 +35,8 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <SearchGames />
     </div>
   );
 }
