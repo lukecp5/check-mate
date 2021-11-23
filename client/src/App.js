@@ -1,9 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
-import Navbar from 'components/Navbar'; 
-import Footer from 'components/Footer'; 
+import Navbar from './components/Navbar'; 
+import Footer from './components/Footer'; 
 import SearchGames from './pages/SearchGames';
+import { ThemeProvider } from '@mui/material/styles'; 
+import theme from './Theme/Theme';
+import SubmitBtn from './components/SubmitBtn';
 
 // import {
 //   ApolloClient,
@@ -20,9 +21,12 @@ import SearchGames from './pages/SearchGames';
 function App() {
   return (
     <div className="App">
+    <ThemeProvider theme={theme}>
       <Navbar /> 
+      <SubmitBtn /> 
       <SearchGames />
-      <Footer /> 
+      <Footer />
+    </ThemeProvider>
     </div>
   );
 }
