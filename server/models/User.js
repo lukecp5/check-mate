@@ -1,10 +1,10 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // import schema from Book.js
-const Match = require("./Match");
-const Team = require("./Team");
-const Game = require("./Game");
+const Match = require('./Match');
+const Team = require('./Team');
+const Game = require('./Game');
 
 const userSchema = new Schema(
 	{
@@ -17,18 +17,41 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 			unique: true,
-			match: [/.+@.+\..+/, "Must use a valid email address"],
+			match: [/.+@.+\..+/, 'Must use a valid email address'],
 		},
 		password: {
 			type: String,
 			required: true,
 		},
-		matches: [Match.schema],
-		teams: [Team.schema],
-		games: [Game.schema],
+		matches: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Match',
+			},
+		],
+		teams: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Team',
+			},
+		],
+		games: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Game',
+			},
+		],
+		wins: {
+			type: Number,
+			default: 0,
+		},
+		losses: {
+			type: Number,
+			default: 0,
+		},
 		avatar: {
 			type: String,
-			default: "https://i.imgur.com/X2JhY8J.png",
+			default: 'https://i.imgur.com/X2JhY8J.png',
 		},
 	},
 	// set this to use virtual below
@@ -40,8 +63,8 @@ const userSchema = new Schema(
 );
 
 // hash user password
-userSchema.pre("save", async function (next) {
-	if (this.isNew || this.isModified("password")) {
+userSchema.pre('save', async function (next) {
+	if (this.isNew || this.isModified('password')) {
 		const saltRounds = 10;
 		this.password = await bcrypt.hash(this.password, saltRounds);
 	}
@@ -59,6 +82,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 // 	return this.savedBooks.length;
 // });
 
-const User = model("User", userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
