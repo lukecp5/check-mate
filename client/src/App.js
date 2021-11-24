@@ -1,7 +1,9 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Homepage from "./components/Homepage";
 import SearchGames from "./pages/SearchGames";
+import GameSearch from "./components/GameSearch";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme/Theme";
 import SubmitBtn from "./components/SubmitBtn";
@@ -25,10 +27,12 @@ function App() {
 		<div className="App">
 			<ThemeProvider theme={theme}>
 				<Navbar />
-				<SubmitBtn />
 				<FunFact />
+				<Homepage/>
 				<PieChartDemo />
 				<SearchGames />
+				<GameSearch/>
+				<SubmitBtn />
 				<Footer />
 			</ThemeProvider>
 		</div>
