@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -74,14 +76,16 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Login</MenuItem>
+                <MenuItem onClick={handleClose}><Link to='/login'>Login</Link></MenuItem>
                 <MenuItem onClick={handleClose}>Register</MenuItem>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>How To Play</MenuItem>
                 <MenuItem onClick={handleClose}>Start A Game</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
-          <MyLogo src={Logo} /> 
+          <Link to='/'>
+            <MyLogo src={Logo} /> 
+          </Link>
           {auth && (
             <div>
               <Avatar sx={{backgroundColor: "primary.main"}}>AM</Avatar>
