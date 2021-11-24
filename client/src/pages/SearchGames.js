@@ -37,7 +37,7 @@ const SearchGames = () => {
       }
 
       const data  = await response.json();
-      //console.log( data );
+      console.log( data );
       const returnedGameData = data.games;
 
       //console.log("gameData: ", gameData);
@@ -73,7 +73,7 @@ const SearchGames = () => {
         // image: game.imageLinks?.thumbnail || '',
       }));
 
-      console.log("gameData: ", gameData)
+      //console.log("gameData: ", gameData)
 
       setSearchedGames(gameData);
       setSearchInput('');
