@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![logo](.client/public/src/Images/Checkmatelogofinalcolor.png)
+![logo](./client/public/src/Images/Checkmatelogofinalcolor.png)
 
 Welcome to Check Mate!
 
@@ -59,7 +59,7 @@ The wireframe and decision flow chart developed by the team prior to coding to g
 
 ![Wireframe Home Page]()
 
-![Decision flow chart](https://lucid.app/lucidchart/de7946a0-8639-4d26-8d44-f184f338f276/edit?invitationId=inv_3960a10b-fd03-4360-b988-9731fd16fd70&page=0_0#)
+[Lucid Flow Chart](https://lucid.app/lucidchart/de7946a0-8639-4d26-8d44-f184f338f276/edit?invitationId=inv_3960a10b-fd03-4360-b988-9731fd16fd70&page=0_0#)
 
 ## <a id="screenshot"></a>Screenshot
 
