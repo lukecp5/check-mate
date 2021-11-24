@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
 import { Container } from '@mui/material';
 import funFactArray from "../utils/factarray";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 
 const FunFact = () => {
@@ -21,12 +23,13 @@ const FunFact = () => {
 
     return (
         <>
-            <div>
-                <Container>
-                    <h1>Fun Facts</h1>
-                    <p> { randomFact }</p>
-                </Container>
-            </div>
+        <Card sx={{ color: "#ffffff", mt: '10px', padding: '10px', textAlign:'center', background: `linear-gradient(to left, #113F8C, #01A4A4)` }}>
+      <CardContent>
+        <Typography>
+            { randomFact }
+        </Typography>
+      </CardContent>
+    </Card>
         </>
     );
 };
