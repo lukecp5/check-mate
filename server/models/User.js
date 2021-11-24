@@ -24,6 +24,8 @@ const userSchema = new Schema(
 			required: true,
 		},
 		matches: [Match.schema],
+		teams: [Team.schema],
+		games: [Game.schema],
 	},
 	// set this to use virtual below
 	{
