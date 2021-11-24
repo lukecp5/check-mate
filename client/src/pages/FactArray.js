@@ -25,7 +25,7 @@ const FunFact = () => {
 
     return (
         <>
-        <Card sx={{ color: "#ffffff", background: `linear-gradient(to left, #113F8C, #01A4A4)` }}>
+        <Card sx={{ color: "#ffffff", mt: '10px', textAlign:'center', background: `linear-gradient(to left, #113F8C, #01A4A4)` }}>
       <CardContent>
         <Typography>
             { randomFact }
