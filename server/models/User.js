@@ -26,6 +26,10 @@ const userSchema = new Schema(
 		matches: [Match.schema],
 		teams: [Team.schema],
 		games: [Game.schema],
+		avatar: {
+			type: String,
+			default: "https://i.imgur.com/X2JhY8J.png",
+		},
 	},
 	// set this to use virtual below
 	{
