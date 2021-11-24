@@ -11,16 +11,15 @@ import tm from '../Images/terraformingmars.png'
 import  { Grid }  from '@mui/material';
 
 //This changes the colors of the backgrounds of each of the cards
-// window.onload = () => {
-//     var colors = [];
-//     var randomColor = () => {
-//         return colors[Math.floor(Math.random()* colors.length)];
-//   };
-// var elements = document.getElementsByClassName();
-//     for (var i=0; i<elements.length; i++) {
-//         elements[i].style.backgroundColor = randomColor();
-//   };
-// };
+    // Theme colors added to array
+var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+var randomColor = () => {
+    return colors[Math.floor(Math.random()* colors.length)];
+};
+var elements = document.getElementsByClassName(Card);
+    for (var i=0; i<elements.length; i++) {
+    elements[i].style.backgroundColor = randomColor();
+};
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
     color: '#616161',
@@ -37,7 +36,7 @@ export default function BasicCard() {
     <Grid container spacing={1}>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
-        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: `linear-gradient(to right, #D70060, #F18D05)`, }}>
+        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: randomColor, }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= {tm} alt="surface of Mars" width='100%'/>
             <Typography>
@@ -57,7 +56,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: `linear-gradient(to right, #D0D102,#32742C)`, }}>
+        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: randomColor }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254186140-51iNoyxoamL.jpg" alt="team of CDC experts" width='100%'/>
             <Typography>
@@ -77,7 +76,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: `linear-gradient(to right, #01A4A4,#113F8C)`, }}>
+        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: randomColor }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1541531739549" alt="stable of unstable unicorns" width='100%'/>
             <Typography>
@@ -97,7 +96,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: `linear-gradient(to right, #D70060, #F18D05)`, }}>
+        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: randomColor }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1629324738308.jpg" alt="trains and a conductor" width='100%'/>
             <Typography>
@@ -117,7 +116,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: `linear-gradient(to right, #D0D102,#32742C)`, }}>
+        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: randomColor }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254847937-51zyVWbt8aL.jpg" alt="Napoleon on horseback" width='100%'/>
             <Typography>
@@ -137,7 +136,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: `linear-gradient(to right, #01A4A4,#113F8C)`, }}>
+        <Card sx={{ maxWidth: 300, margin:"30px", color: "#ffffff", background: randomColor }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shopify.com/s/files/1/0505/8019/3473/products/NM-Azul-Box-EN-Z_540x.jpg?v=1611288614" alt="stable of unstable unicorns" width='100%'/>
             <Typography>
