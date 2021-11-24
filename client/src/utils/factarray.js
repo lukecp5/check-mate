@@ -10,6 +10,7 @@ const funFactArray = [
     "Amanada acheived three Yahtzees in a single game, Chris is still mad.",
     "The longest game of Monopoly on record lasted 70 days.",
     "The most expensive Monopoly set in the world was created by San Francisco jeweler, Sidney Mobell. It cost $2 million.",
+    "At age 12 Luke played a 12 hour game of monopoly against his cousin.  The game ended in a tie and out of anger, the two have never spoken since.",
     "Risk was invented in 1957 by Albert Lamorisse, a French filmmaker, and it became one of the most popular board games in history.",
     "Risk was inducted into Games magazine's Hall of Fame in 1984.",
     "Deep Blue was a chess-playing supercomputer developed by IBM. It was the first computer to win both a chess game and a chess match against a reigning world champion under regular time controls.",

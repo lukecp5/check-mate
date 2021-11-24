@@ -3,8 +3,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Container } from '@mui/material';
 import funFactArray from "../utils/factarray";
 
-console.log (funFactArray);
-
 
 const FunFact = () => {
 
