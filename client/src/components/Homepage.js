@@ -8,16 +8,16 @@ import Typography from '@mui/material/Typography';
 import tm from '../Images/terraformingmars.png'
 
 //This changes the colors of the backgrounds of each of the buttons
-window.onload = () => {
-    var colors = [];
-  var randomColor = () => {
-    return colors[Math.floor(Math.random()* colors.length)];
-  };
-  var elements = document.getElementsByClassName();
-  for (var i=0; i<elements.length; i++) {
-    elements[i].style.backgroundColor = randomColor();
-  };
-};
+// window.onload = () => {
+//     var colors = [];
+//     var randomColor = () => {
+//         return colors[Math.floor(Math.random()* colors.length)];
+//   };
+// var elements = document.getElementsByClassName();
+//     for (var i=0; i<elements.length; i++) {
+//         elements[i].style.backgroundColor = randomColor();
+//   };
+// };
 
 export default function BasicCard() {
   return (
@@ -28,7 +28,7 @@ export default function BasicCard() {
             <h2> Terraforming Mars </h2>
         </Typography>
         <Typography>
-        Corporations are competing to transform Mars into a habitable planet by spending vast resources and using innovative technology to raise the temperature, create a breathable atmosphere, and make oceans of water. As terraforming progresses, more and more people will immigrate from Earth to live on the Red Planet.
+            Corporations are competing to transform Mars into a habitable planet by spending vast resources and using innovative technology to raise the temperature, create a breathable atmosphere, and make oceans of water. As terraforming progresses, more and more people will immigrate from Earth to live on the Red Planet.
         </Typography>
         <Typography>
             {/* <EmojiEventsIcon/> */}
@@ -38,7 +38,7 @@ export default function BasicCard() {
         <Button size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</Button>
       </CardActions>
     </Card>
-
-
+    
   );
 }
+
