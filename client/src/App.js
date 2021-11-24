@@ -1,11 +1,11 @@
-import React from 'react';
-import Navbar from './components/Navbar'; 
-import Footer from './components/Footer'; 
-import SearchGames from './pages/SearchGames';
-import { ThemeProvider } from '@mui/material/styles'; 
-import theme from './Theme/Theme';
-import SubmitBtn from './components/SubmitBtn';
-
+import React from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import SearchGames from "./pages/SearchGames";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./Theme/Theme";
+import SubmitBtn from "./components/SubmitBtn";
+import PieChartDemo from "./pages/PieChartDemo";
 // import {
 //   ApolloClient,
 //   InMemoryCache,
@@ -19,16 +19,17 @@ import SubmitBtn from './components/SubmitBtn';
 // });
 
 function App() {
-  return (
-    <div className="App">
-    <ThemeProvider theme={theme}>
-      <Navbar /> 
-      <SubmitBtn /> 
-      <SearchGames />
-      <Footer />
-    </ThemeProvider>
-    </div>
-  );
+	return (
+		<div className="App">
+			<ThemeProvider theme={theme}>
+				<Navbar />
+				<SubmitBtn />
+				<PieChartDemo />
+				<SearchGames />
+				<Footer />
+			</ThemeProvider>
+		</div>
+	);
 }
 
 export default App;
