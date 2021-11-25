@@ -31,7 +31,18 @@ const funFactArray = [
     "Next time your family complains that Monopoly takes too long, hit 'em with this fact: It's possible to win the game in just over 20 seconds. That means snapping up Park Place and Boardwalk almost immediately, building houses on them, and praying your opponent draws a Chance card that sends them to Boardwalk so you can bleed them dry. (Just don't mention that the chances of this actually happening are roughly 1 in 254 trillion.)",
     "Though it had plenty of ardent fans in Cuba, Monopoly fell victim to a ban in 1959 when Fidel Castro seized power. A game so blatantly driven by capitalist ideals had no place in the socialist nation, so all versions, including a Cuban knockoff called 'Capitolio' that features the streets of Havana, were ordered destroyed.",
     "Caterpillar Inc. used five of its construction vehicles to play a super-sized game of Jenga in 2015. The solid pine blocks were 8 feet long, 32 times the length of a standard Jenga block, and weighed a whopping 600 pounds each. The 28-hour game lasted until the 14th level, when the tower collapsed.",
-    'The original version of Clue challenges players to determine which character committed a brutal murder, and there have been several spin-offs, from "Star Wars" to "The Office" to "Harry Potter."'
+    'The original version of Clue challenges players to determine which character committed a brutal murder, and there have been several spin-offs, from "Star Wars" to "The Office" to "Harry Potter."',
+    'Battleship was one of the first games to be made into a computer game in 1979.',
+    'In order to prevent Boggle players from using a certain swear word, the letters F and K only appear once on the same cube, making it impossible for them to both be played at the same time.',
+    'The player who goes first in Connect Four can win 100% of the time.',
+    'Cranium was the first non-coffee product to be sold at Starbucks.',
+    'A Life tile awarding the player $100,000 for winning a Nobel Prize was replaced with a new tile providing the same amount for appearing on a reality TV show.',
+    'Parker Brothers once sent a group of players who had run out of money during a 161-hour marathon game extra cash by plane and an armored car.',
+    "The prize money for winning the Monopoly World Championship is $20,580 — the same amount of money there is in the game's bank.",
+    'One in three American households has a Scrabble set.',
+    'Scrabble is an official sport in several African countries, including Senegal and Mali.',
+    "The first 5,000 copies of Settlers of Catan sold out so fast that inventor Klaus Teuber doesn't have a copy of the first edition.",
+    'Two journalists invented Trivial Pursuit in 45 minutes after being shocked at the price of a Scrabble set.',    
 ];
 
 module.exports = funFactArray;
