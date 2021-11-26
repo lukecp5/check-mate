@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
-import { Container } from '@mui/material';
+import { Container, Grid, Typography, TextField } from '@mui/material';
 
 const SearchGames = () => {
   // create state for holding returned google api data
@@ -19,7 +19,7 @@ const SearchGames = () => {
   //   return () => saveGameIds(savedGameIds);
   // });
 
-  // create method to search for books and set state on form submit
+  // create method to search for games and set state on form submit
   const handleGameSearchFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -84,28 +84,33 @@ const SearchGames = () => {
 
   return (
     <>
-      <div>
-        <Container>
-          <h1>Search for Games!</h1>
-          <form onSubmit={handleGameSearchFormSubmit}>
-              <div>
-                <input
+        <Grid container>
+          <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
+            <Typography variant="h4" align="center" gutterBottom>
+                Find Your Game!
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sx={{ mb:2, ml:5, textAlign: 'center'}}>
+            <form onSubmit={handleGameSearchFormSubmit}>
+            <Grid item xs={12} sx={{ mb:2, ml:5, textAlign: 'center'}}>
+                <TextField
                   name="searchInput"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
                   placeholder="Enter name of Game"
-                />
-              </div>
-              <div>
-                <Button type="submit" variant="success" size="lg">
-                  Submit Search
-                </Button>
-              </div>
-          </form>
-        </Container>
-      </div>
+                 />
+              </Grid>
+                <div>
+                 <Button type="submit" variant="contained">
+                  Click to Find
+                 </Button>
+                </div>
+            </form>
+          </Grid>
+        </Grid>
 
       <Container>
         <h1> the data lacks formrtting at the moment, but it shows everything we are currently capturing.  There is also a console log of all the returned data if you want to look and see if there is something else you think we should capture.</h1>
