@@ -159,14 +159,14 @@ const SearchGames = () => {
       </Grid> */}
 
 
-      <Grid item xs={12} sx={{ m:3 }}>
+      {/* <Grid item xs={12} sx={{ m:3 }}>
             <Typography variant="h5" align="left" gutterBottom>
             {searchedGames.length
             ? `Viewing ${searchedGames.length} results:`
             : ''
             }
             </Typography>
-      </Grid>
+      </Grid> */}
 
           {searchedGames.map((game) => {
             return (
