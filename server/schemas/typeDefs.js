@@ -72,9 +72,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
-    addTeam(name: String!): Team
-    # saveBook(bookData: BookInput!): User
-    removeBook(bookId: ID!): User
+    addGame(name: String, description: String, game_id: String): Game
+    addTeam(name: String): Team
   }
 `;
 
