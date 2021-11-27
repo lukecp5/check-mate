@@ -78,6 +78,8 @@ const typeDefs = gql`
     updateTeam(teamId: ID!, name: String): Team
     deleteMatch(matchId: ID!): Match
     deleteTeam(teamId: ID!): Team
+    deleteUser(userId: ID!): User
+    deleteGame(gameId: ID!): Game
   }
 `;
 
