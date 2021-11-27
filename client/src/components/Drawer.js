@@ -14,8 +14,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const useStyles = makeStyles(()=>({
     link:{
+        fontFamily: 'Quicksand',
+        fontWeight: 500,
         textDecoration:"none",
-        color: "blue",
+        color: "#616161",
         fontSize: "20px",
     },
     icon:{
@@ -41,19 +43,24 @@ function DrawerComponent() {
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/about" className={classes.link}>About</Link>
+              <Link to="/start" className={classes.link}>Start a Match</Link>
             </ListItemText>
           </ListItem>
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/contact" className={classes.link}>Contact</Link>
+              <Link to="/searchGames" className={classes.link}>Search Games</Link>
             </ListItemText>
           </ListItem>
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/about" className={classes.link}>Faq</Link>
+              <Link to="/friends" className={classes.link}>Add Friends</Link>
+            </ListItemText>
+          </ListItem>
+          <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/login" className={classes.link}>Login/Sign Up</Link>
             </ListItemText>
           </ListItem>
           <Divider/>

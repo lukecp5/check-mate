@@ -18,9 +18,13 @@ const MyLogo = styled("img")(() => ({
 })); 
 
 const useStyles = makeStyles((theme) => ({
+  abRoot: {
+    backgroundColor: '#616161',
+  },
   navlinks: {
     marginLeft: theme.spacing(5),
     display: "flex",
+    // padding: '5px',
   },
   logo: {
     flexGrow: "1",
@@ -30,10 +34,14 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    fontFamily: 'Quicksand',
+    fontWeight: 600,
+    // padding: '5px',
+    marginRight: theme.spacing(10),
     "&:hover": {
-      color: "yellow",
-      borderBottom: "1px solid white",
+      color: "#61AE24",
+      // background: 'transparent',
+      // borderBottom: "2px solid white",
     },
   },
 }));
@@ -44,7 +52,7 @@ function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
       <Toolbar>
         <MyLogo src={Logo} /> 
@@ -55,14 +63,17 @@ function Navbar() {
             <Link to="/" className={classes.link}>
               Home
             </Link>
-            <Link to="/about" className={classes.link}>
-              About
+            <Link to="/start" className={classes.link}>
+              Start a Match
             </Link>
-            <Link to="/contact" className={classes.link}>
-              Contact
+            <Link to="/searchGames" className={classes.link}>
+              Search Games
             </Link>
-            <Link to="/faq" className={classes.link}>
-              FAQ
+            <Link to="/friends" className={classes.link}>
+              Add Friends
+            </Link>
+            <Link to="/login" className={classes.link}>
+              Login/Sign Up
             </Link>
           </div>
         )}
