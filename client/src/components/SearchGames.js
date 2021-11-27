@@ -162,7 +162,8 @@ const SearchGames = () => {
             <Typography variant="h5" align="left" gutterBottom>
             {searchedGames.length
             ? `Viewing ${searchedGames.length} results:`
-            : 'Search for a game to begin'}
+            : ''
+            }
             </Typography>
       </Grid>
 
