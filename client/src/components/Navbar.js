@@ -1,33 +1,37 @@
+// Import React
 import React, { useState, useEffect } from 'react';
+// Import React Router
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/system';
 import Logo from '../Images/Checkmatelogofinal.png'; 
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+// import Divider from '@mui/material/Divider';
+// import Drawer from '@mui/material/Drawer';
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
+// import Switch from '@mui/material/Switch';
+// import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
 
 
 const MyLogo = styled("img")(() => ({
   width: 300,  
 })); 
 
-const NavBtn = styled(Button)(({ theme }) => ({ 
-  '&:hover': {
-      background: theme.palette.grey.dark, 
-  } 
-})); 
+// const NavBtn = styled(Button)(({ theme }) => ({ 
+//   '&:hover': {
+//       background: theme.palette.grey.dark, 
+//   } 
+// })); 
 
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
@@ -60,7 +64,7 @@ export default function MenuAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Menu
+          {/* <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -81,7 +85,7 @@ export default function MenuAppBar() {
                 <MenuItem onClick={handleClose}>How To Play</MenuItem>
                 <MenuItem onClick={handleClose}>Start A Game</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
-              </Menu>
+              </Menu> */}
           <MyLogo src={Logo} /> 
           {auth && (
             <div>

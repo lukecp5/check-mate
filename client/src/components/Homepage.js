@@ -38,7 +38,7 @@ export default function BasicCard() {
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
         <Card sx={{ maxWidth: 300, minHeight: 800, margin:"30px", color: "#ffffff", background: randomColor, }}>
           <CardContent sx={{ textAlign: 'center'}}>
-              <img src= {tm} alt="surface of Mars" width='100%'/>
+              <img src= "https://cdn.shoplightspeed.com/shops/636957/files/24072452/terraforming-mars.jpg" alt="surface of Mars" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
                 Terraforming Mars
             </Typography>
@@ -77,7 +77,7 @@ export default function BasicCard() {
                 Unstable Unicorns
             </Typography>
             <Typography>
-            A strategic card game that will destroy your friendships...but in a good way. One of Kickstarter’s Top 50 Most Backed Projects of all time! Build a Unicorn Army. Betray your friends. Unicorns are your friends now.
+            A strategic card game that will destroy your friendships...but in a good way. Build a Unicorn Army. Betray your friends. Unicorns are your friends now. Throw surprising curveballs at your friends with your very own Unicorn army. The Unstable Unicorns Card Game is a strategic game that will keep players on their toes. Build a unicorn army unleash the power of unicorns to have oodles of fun. Card games have never been this exciting.
             </Typography>
           </CardContent>
           <CardActions>
