@@ -192,7 +192,7 @@ const SearchGames = () => {
               // </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
-      <Card sx={{ maxWidth: 300, minHeight: 800, maxHeight: 1000, margin:"30px", color: "#ffffff", background: randomColor, }}>
+      <Card sx={{ maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
         <CardContent sx={{ textAlign: 'center'}}>
         <CardMedia
             component="img"
