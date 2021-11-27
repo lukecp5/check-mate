@@ -5,6 +5,7 @@ import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
 import { styled } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -107,7 +108,7 @@ const SearchGames = () => {
 
   return (
     <>
-    <Grid container sx={{ justifyContent:'center', padding: '50px', color: '#ffffff' }}>
+    <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff' }}>
          
       <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to right, #D0D102, #32742C)`, padding: '10px', borderRadius: 3}}>
         
@@ -148,7 +149,7 @@ const SearchGames = () => {
     </Grid>
 
     
-    <Grid container sx={{ justifyContent:'center', padding: '20px' }}>
+    <Grid container sx={{ justifyContent:'center' }}>
 {/* 
       <Grid item xs={12} sx={{ m:3 }}>
           <Typography variant="body1" align="center" gutterBottom>
@@ -157,13 +158,13 @@ const SearchGames = () => {
       </Grid> */}
 
 
-      {/* <Grid item xs={12} sx={{ m:3 }}>
-            <Typography variant="h4" align="center" gutterBottom>
+      <Grid item xs={12} sx={{ m:3 }}>
+            <Typography variant="h5" align="left" gutterBottom>
             {searchedGames.length
             ? `Viewing ${searchedGames.length} results:`
             : 'Search for a game to begin'}
             </Typography>
-      </Grid> */}
+      </Grid>
 
           {searchedGames.map((game) => {
             return (
@@ -203,9 +204,20 @@ const SearchGames = () => {
           <Typography variant="h4" gutterBottom component="div">
               {game.gameName}
           </Typography>
-          <Typography>
+          {/* <Typography sx={{
+              textOverflow: 'ellipsis',
+              my: 2,
+              overflow: 'hidden'}}>
             {game.gameDescription}
-          </Typography>
+          </Typography> */}
+            <Box
+              component="div"
+              sx={{ overflow: 'hidden', textOverflow: 'ellipsis', my: 2 }}
+              >
+                <Typography>
+                  {game.gameDescription}
+                </Typography>
+              </Box>
         </CardContent>
         <CardActions>
           <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
