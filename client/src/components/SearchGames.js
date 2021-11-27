@@ -84,12 +84,12 @@ const SearchGames = () => {
 
   return (
     <>
-    <Grid container sx={{ justifyContent:'center'}}>
+    <Grid container sx={{ justifyContent:'center', padding: '50px'}}>
          
-      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center', borderRadius: 16, maxWidth: 1000}}>
+      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center', borderRadius: 3, maxWidth: 1000, background: `linear-gradient(to right, #F18D05, #D70060)`, color: '#ffffff' }}>
         
         <Grid container>
-          <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
+          <Grid item xs={12} sx={{ m:3, ml:4, mr:4}}>
             <Typography variant="h4" align="center" gutterBottom>
               Find Your Game!
             </Typography>
@@ -105,12 +105,17 @@ const SearchGames = () => {
                     type="text"
                     size="lg"
                     placeholder="Enter name of Game"
+                    sx= {{background: '#ffffff', color: '#616161', borderRadius: 2, textAlign: 'center'}}
                 />
               </Grid>
 
               <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
-                <Button type="submit" variant="contained">
-                  Click to Find
+                <Button type="submit" variant="contained" sx= {{background: '#ffffff', color: '#616161', "&:hover": {
+                      color: '#ffffff',
+                      background: 'transparent',
+                      border: "2px solid white",
+                  }}}>
+                  Search
                 </Button>
               </Grid>
             </form>
@@ -120,22 +125,22 @@ const SearchGames = () => {
     </Grid>
 
     
-    <Grid container sx={{ justifyContent:'center' }}>
-
+    <Grid container sx={{ justifyContent:'center', padding: '20px' }}>
+{/* 
       <Grid item xs={12} sx={{ m:3 }}>
           <Typography variant="body1" align="center" gutterBottom>
             Developer Note: check the console for a console.log of the complete data return from the API.
           </Typography>
-      </Grid>
+      </Grid> */}
 
 
-      <Grid item xs={12} sx={{ m:3 }}>
+      {/* <Grid item xs={12} sx={{ m:3 }}>
             <Typography variant="h4" align="center" gutterBottom>
             {searchedGames.length
             ? `Viewing ${searchedGames.length} results:`
             : 'Search for a game to begin'}
             </Typography>
-      </Grid>
+      </Grid> */}
 
           {searchedGames.map((game) => {
             return (
