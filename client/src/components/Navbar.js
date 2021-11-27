@@ -70,10 +70,10 @@ function Navbar() {
               <Link to="/" className={classes.link}>
                 Home
               </Link>
-              <Link to="/start" className={classes.link}>
+              <Link to="/startmatch" className={classes.link}>
                 Start a Match
               </Link>
-              <Link to="/searchGames" className={classes.link}>
+              <Link to="/searchgames" className={classes.link}>
                 Search Games
               </Link>
               <Link to="/friends" className={classes.link}>
