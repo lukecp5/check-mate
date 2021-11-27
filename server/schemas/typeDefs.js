@@ -76,6 +76,8 @@ const typeDefs = gql`
     addTeam(name: String): Team
     updateUser(userId: ID!, username: String, email: String, password: String, avatar: String): User
     updateTeam(teamId: ID!, name: String): Team
+    deleteMatch(matchId: ID!): Match
+    deleteTeam(teamId: ID!): Team
   }
 `;
 
