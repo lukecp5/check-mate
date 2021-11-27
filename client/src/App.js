@@ -11,7 +11,7 @@ import theme from "./Theme/Theme";
 // import SubmitBtn from "./components/SubmitBtn";
 // import PieChartDemo from "./pages/PieChartDemo";
 import FunFact from "./pages/FactArray";
-// import AltRules from "./pages/AltRules";
+import AltRules from "./pages/AltRules";
 // import { withRouter } from 'react-router-dom';
 
 // import {
@@ -36,10 +36,12 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Homepage/>}/>
 							<Route path="/searchgames" element={<SearchGames/>}/>
+							
 							{/* <Route path="/friends" element={<Friends/>}/>
 							<Route path="/login" element={<Login/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
 						</Routes>
+						<AltRules/>
 					<Footer />
 				</ThemeProvider>
 			</div>

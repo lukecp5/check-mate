@@ -74,9 +74,9 @@ function Navbar() {
               <Link to="/" className={classes.link}>
                 Home
               </Link>
-              <Link to="/startmatch" className={classes.link}>
+              {/* <Link to="/startmatch" className={classes.link}>
                 Start a Match
-              </Link>
+              </Link> */}
               <Link to="/searchgames" className={classes.link}>
                 Search Games
               </Link>
