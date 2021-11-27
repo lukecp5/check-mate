@@ -43,13 +43,13 @@ function DrawerComponent() {
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/start" className={classes.link}>Start a Match</Link>
+              <Link to="/startmatch" className={classes.link}>Start a Match</Link>
             </ListItemText>
           </ListItem>
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/searchGames" className={classes.link}>Search Games</Link>
+              <Link to="/searchgames" className={classes.link}>Search Games</Link>
             </ListItemText>
           </ListItem>
           <Divider/>
