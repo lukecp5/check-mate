@@ -6,6 +6,7 @@ import { styled } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
+// import games from '../Images/games.png';
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -53,7 +54,7 @@ const SearchGames = () => {
 
     try {
       const response = await fetch(
-        `https://api.boardgameatlas.com/api/search?name=${searchInput}&limit=10&client_id=${process.env.REACT_APP_CLIENT_ID}`
+        `https://api.boardgameatlas.com/api/search?name=${searchInput}&limit=6&client_id=${process.env.REACT_APP_CLIENT_ID}`
       );
 
       if (!response.ok) {
@@ -110,7 +111,7 @@ const SearchGames = () => {
     <>
     <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff' }}>
          
-      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to right, #D0D102, #32742C)`, padding: '10px', borderRadius: 3}}>
+      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to right, #D0D102, #32742C )`, padding: '10px', borderRadius: 3}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4}}>

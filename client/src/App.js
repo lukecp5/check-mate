@@ -11,7 +11,7 @@ import theme from "./Theme/Theme";
 // import SubmitBtn from "./components/SubmitBtn";
 // import PieChartDemo from "./pages/PieChartDemo";
 import FunFact from "./pages/FactArray";
-import AltRules from "./pages/AltRules";
+// import AltRules from "./pages/AltRules";
 // import { withRouter } from 'react-router-dom';
 
 // import {
@@ -41,7 +41,7 @@ function App() {
 							<Route path="/login" element={<Login/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
 						</Routes>
-						<AltRules/>
+						{/* <AltRules/> */}
 					<Footer />
 				</ThemeProvider>
 			</div>
