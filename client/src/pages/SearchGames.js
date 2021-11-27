@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
-import { Container, Grid, Typography, TextField } from '@mui/material';
+import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
 
 const SearchGames = () => {
   // create state for holding returned google api data
@@ -84,83 +84,87 @@ const SearchGames = () => {
 
   return (
     <>
+    <Grid container sx={{ justifyContent:'center'}}>
+         
+      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center', borderRadius: 16, maxWidth: 1000}}>
+        
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
             <Typography variant="h4" align="center" gutterBottom>
-                Find Your Game!
+              Find Your Game!
             </Typography>
           </Grid>
 
-          <Grid item xs={12} sx={{ mb:2, ml:5, textAlign: 'center'}}>
+          <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
             <form onSubmit={handleGameSearchFormSubmit}>
-            <Grid item xs={12} sx={{ mb:2, ml:5, textAlign: 'center'}}>
+              <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
                 <TextField
                   name="searchInput"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type="text"
-                  size="lg"
-                  placeholder="Enter name of Game"
-                 />
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    type="text"
+                    size="lg"
+                    placeholder="Enter name of Game"
+                />
               </Grid>
-                <div>
-                 <Button type="submit" variant="contained">
+
+              <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
+                <Button type="submit" variant="contained">
                   Click to Find
-                 </Button>
-                </div>
+                </Button>
+              </Grid>
             </form>
           </Grid>
-        </Grid>
+        </Grid>  
+      </Grid>       
+    </Grid>
 
-      <Container>
-        <h1> the data lacks formrtting at the moment, but it shows everything we are currently capturing.  There is also a console log of all the returned data if you want to look and see if there is something else you think we should capture.</h1>
-        <h2>
-          {searchedGames.length
+    
+    <Grid container sx={{ justifyContent:'center' }}>
+
+      <Grid item xs={12} sx={{ m:3 }}>
+          <Typography variant="body1" align="center" gutterBottom>
+            Developer Note: check the console for a console.log of the complete data return from the API.
+          </Typography>
+      </Grid>
+
+
+      <Grid item xs={12} sx={{ m:3 }}>
+            <Typography variant="h4" align="center" gutterBottom>
+            {searchedGames.length
             ? `Viewing ${searchedGames.length} results:`
             : 'Search for a game to begin'}
-        </h2>
-        <div>
+            </Typography>
+      </Grid>
+
           {searchedGames.map((game) => {
             return (
-              <div key={game.gameId}>
-                <h2>{game.gameName}</h2>
-                <h4>Game ID: {game.gameId}</h4>
-                <h4>gameDescription: {game.gameDescription}</h4>
-                {game.minPLayers ? ( 
-                <h4>minPlayers: {game.minPlayers}</h4>
-                ) : null}
-                {game.maxPlayers ? (
-                <h4>maxPlayers: {game.maxPlayers}</h4>
-                ) : null}
-                {game.minAge ? (
-                  <h4>minAge: {game.minAge}</h4>
-                ): null}
-                {game.officialUrl ? (
-                <h4>officialUrl: {game.officialUrl}</h4>
-                ) : null}
-                {game.rulesUrl ? (
-                <h4>rulesUrl: {game.rulesUrl}</h4>
-                ) : null}
+              <Grid item xs={12} sm ={8} md={4} lg={2} sx={{border:2, borderRadius:12, m:5, textAlign: "center" }} key={game.gameId}>
+                <Typography variant="h5" align="center" sx={{mt:3, m:2, minHeight: 100}} gutterBottom>
+                  {game.gameName}
+                </Typography>
 
-                {game.image_thumb ? (
-                  <h4>image_thumb</h4>
-                ) : null}
-                {game.image_thumb ? (
-                  <img src={game.image_thumb} alt="box cover of boardgame"></img>
-                ) : null}
+                <Card>
+                  <CardMedia
+                    component="img"
+                    // width={80%}
+                    image={game.image_url}
+                    alt="Board game box cover"
+                  />
+                </Card>
 
-                {game.image_url ? (
-                  <h4>image_url</h4>
-                ) : null}
-                {game.image_url ? (
-                  <img src={game.image_url} alt="box cover of boardgame"></img>
-                ) : null}
+                <Typography variant="body1" align="center" gutterBottom sx={{m:2}}>
+                  {game.gameDescription}
+                </Typography>
 
-              </div>
+                <Button type="submit" variant="contained" sx={{mb:4}}>
+                  Click for Some Reason
+                </Button>
+
+              </Grid>
             );
           })}
-        </div>
-      </Container>
+    </Grid>
     </>
   );
 };
