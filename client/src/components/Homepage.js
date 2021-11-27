@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 // import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import tm from '../Images/terraformingmars.png'
+// import tm from '../Images/terraformingmars.png'
 // import { Container } from '@mui/material';
 import  { Grid }  from '@mui/material';
 
@@ -25,8 +25,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
     color: '#616161',
     "&:hover": {
         color: '#ffffff',
-        // TO DO: Would like to add transparent background on hover and simple white border, 1-2px
-        background: `#616161`,
+        background: 'transparent',
+        border: "2px solid white",
     }
 })); 
 

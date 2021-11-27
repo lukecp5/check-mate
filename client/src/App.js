@@ -1,4 +1,6 @@
 import React from "react";
+// Import React Router
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Homepage from "./components/Homepage";
@@ -25,19 +27,21 @@ import AltRules from "./pages/AltRules";
 
 function App() {
 	return (
-		<div className="App">
-			<ThemeProvider theme={theme}>
-				<Navbar />
-				<FunFact />
-				<Homepage/>
-				<AltRules />
-				<PieChartDemo />
-				<SearchGames />
-				<GameSearch/>
-				<SubmitBtn />
-				<Footer />
-			</ThemeProvider>
-		</div>
+		<Router>
+			<div className="App">
+				<ThemeProvider theme={theme}>
+					<Navbar />
+					<FunFact />
+					<Homepage/>
+					<AltRules />
+					<PieChartDemo />
+					<SearchGames />
+					<GameSearch/>
+					<SubmitBtn />
+					<Footer />
+				</ThemeProvider>
+			</div>
+		</Router>
 	);
 }
 
