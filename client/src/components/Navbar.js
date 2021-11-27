@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import { styled } from '@mui/system';
 import Logo from '../Images/Checkmatelogofinal.png'; 
+import  { Grid }  from '@mui/material';
 
 const MyLogo = styled("img")(() => ({
   width: 300,  
@@ -20,6 +21,9 @@ const MyLogo = styled("img")(() => ({
 const useStyles = makeStyles((theme) => ({
   abRoot: {
     backgroundColor: '#616161',
+  },
+  right: {
+    marginLeft: 'auto'
   },
   navlinks: {
     marginLeft: theme.spacing(5),
@@ -36,10 +40,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     fontFamily: 'Quicksand',
     fontWeight: 600,
+    align: 'right',
     // padding: '5px',
     marginRight: theme.spacing(10),
     "&:hover": {
       color: "#61AE24",
+      // TO DO: Link Hover Effects
       // background: 'transparent',
       // borderBottom: "2px solid white",
     },
@@ -59,23 +65,25 @@ function Navbar() {
         {isMobile ? (
           <DrawerComponent />
         ) : (
-          <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-            <Link to="/start" className={classes.link}>
-              Start a Match
-            </Link>
-            <Link to="/searchGames" className={classes.link}>
-              Search Games
-            </Link>
-            <Link to="/friends" className={classes.link}>
-              Add Friends
-            </Link>
-            <Link to="/login" className={classes.link}>
-              Login/Sign Up
-            </Link>
-          </div>
+          <Grid className={classes.right}>
+            <div className={classes.navlinks}>
+              <Link to="/" className={classes.link}>
+                Home
+              </Link>
+              <Link to="/start" className={classes.link}>
+                Start a Match
+              </Link>
+              <Link to="/searchGames" className={classes.link}>
+                Search Games
+              </Link>
+              <Link to="/friends" className={classes.link}>
+                Add Friends
+              </Link>
+              <Link to="/login" className={classes.link}>
+                Login/Sign Up
+              </Link>
+            </div>
+          </Grid>
         )}
       </Toolbar>
     </AppBar>
