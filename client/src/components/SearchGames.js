@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
 import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
+import { styled } from '@mui/system';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+
+const StyledButton = styled(Button)(({ theme }) => ({ 
+  color: '#616161',
+  "&:hover": {
+      color: '#ffffff',
+      background: 'transparent',
+      border: "2px solid white",
+  }
+})); 
 
 const SearchGames = () => {
   // create state for holding returned google api data
@@ -18,6 +30,17 @@ const SearchGames = () => {
   // useEffect(() => {
   //   return () => saveGameIds(savedGameIds);
   // });
+
+  //This changes the colors of the backgrounds of each of the cards
+    // Theme colors added to array
+      var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+      var randomColor = () => {
+          return colors[Math.floor(Math.random()* colors.length)];
+      };
+      var elements = document.getElementsByClassName(Card);
+          for (var i=0; i<elements.length; i++) {
+          elements[i].style.backgroundColor = randomColor();
+      };
 
   // create method to search for games and set state on form submit
   const handleGameSearchFormSubmit = async (event) => {
@@ -84,9 +107,9 @@ const SearchGames = () => {
 
   return (
     <>
-    <Grid container sx={{ justifyContent:'center', padding: '50px'}}>
+    <Grid container sx={{ justifyContent:'center', padding: '50px', color: '#ffffff' }}>
          
-      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center', borderRadius: 3, maxWidth: 1000, background: `linear-gradient(to right, #F18D05, #D70060)`, color: '#ffffff' }}>
+      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to right, #D0D102, #32742C)`, padding: '10px', borderRadius: 3}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4}}>
@@ -144,29 +167,51 @@ const SearchGames = () => {
 
           {searchedGames.map((game) => {
             return (
-              <Grid item xs={12} sm ={8} md={4} lg={2} sx={{border:2, borderRadius:12, m:5, textAlign: "center" }} key={game.gameId}>
-                <Typography variant="h5" align="center" sx={{mt:3, m:2, minHeight: 100}} gutterBottom>
-                  {game.gameName}
-                </Typography>
+              // <Grid item xs={12} sm ={8} md={4} lg={2} sx={{border:2, borderRadius: 3, m:5, textAlign: "center" }} key={game.gameId}>
+              //   <Typography variant="h5" align="center" sx={{mt:3, m:2, minHeight: 100}} gutterBottom>
+              //     {game.gameName}
+              //   </Typography>
 
-                <Card>
-                  <CardMedia
-                    component="img"
-                    // width={80%}
-                    image={game.image_url}
-                    alt="Board game box cover"
-                  />
-                </Card>
+              //   <Card>
+              //     <CardMedia
+              //       component="img"
+              //       // width={80%}
+              //       image={game.image_url}
+              //       alt="Board game box cover"
+              //     />
+              //   </Card>
 
-                <Typography variant="body1" align="center" gutterBottom sx={{m:2}}>
-                  {game.gameDescription}
-                </Typography>
+              //   <Typography variant="body1" align="center" gutterBottom sx={{m:2}}>
+              //     {game.gameDescription}
+              //   </Typography>
 
-                <Button type="submit" variant="contained" sx={{mb:4}}>
-                  Click for Some Reason
-                </Button>
+              //   <Button type="submit" variant="contained" sx={{mb:4}}>
+              //     Click for Some Reason
+              //   </Button>
 
-              </Grid>
+              // </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
+      <Card sx={{ maxWidth: 300, minHeight: 800, maxHeight: 1000, margin:"30px", color: "#ffffff", background: randomColor, }}>
+        <CardContent sx={{ textAlign: 'center'}}>
+        <CardMedia
+            component="img"
+            // width={80%}
+            image={game.image_url}
+            alt="Board game box cover"
+            />
+          <Typography variant="h4" gutterBottom component="div">
+              {game.gameName}
+          </Typography>
+          <Typography>
+            {game.gameDescription}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+        </CardActions>
+      </Card>
+      </Grid>
             );
           })}
     </Grid>
