@@ -111,7 +111,7 @@ const SearchGames = () => {
     <>
     <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff' }}>
          
-      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to right, #D0D102, #32742C )`, padding: '10px', borderRadius: 3}}>
+      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to bottom, #D0D102, #32742C )`, padding: '10px', borderRadius: 3}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4}}>
