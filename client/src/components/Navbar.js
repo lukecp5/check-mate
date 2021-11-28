@@ -65,18 +65,21 @@ function Navbar() {
     <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
       <Toolbar>
-        <MyLogo src={Logo} /> 
+          <Link to='/'>
+            <MyLogo src={Logo} /> 
+          </Link>
+        {/* <MyLogo src={Logo} />  */}
         {isMobile ? (
           <DrawerComponent />
         ) : (
           <Grid className={classes.right}>
             <div className={classes.navlinks}>
-              <Link to="/" className={classes.link}>
+              {/* <Link to="/" className={classes.link}>
                 Home
-              </Link>
-              <Link to="/startmatch" className={classes.link}>
+              </Link> */}
+              {/* <Link to="/startmatch" className={classes.link}>
                 Start a Match
-              </Link>
+              </Link> */}
               <Link to="/searchgames" className={classes.link}>
                 Search Games
               </Link>

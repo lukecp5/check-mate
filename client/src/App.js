@@ -36,10 +36,12 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Homepage/>}/>
 							<Route path="/searchgames" element={<SearchGames/>}/>
+							
 							{/* <Route path="/friends" element={<Friends/>}/>
 							<Route path="/login" element={<Login/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
 						</Routes>
+						{/* <AltRules/> */}
 					<Footer />
 				</ThemeProvider>
 			</div>
