@@ -81,11 +81,19 @@ const SearchGames = () => {
       // console.log ("rules_url: ", data.games[0].rules_url)
       // console.log ("official_url: ", data.games[0].official_url);
 
-
+      //This truncates the length of the description displayed in the card, it does affect the variable stored in state, if this is a problme for s subsequent page we can simply make another variable, easy fix
+      const setLength = (description) => {
+        if(description.length > 320){
+              return (description.slice(0,320) + "...");
+        } else {
+              return description;
+        }
+            };
+      
       const gameData = returnedGameData.map((game) => ({
         gameId: game.id,
         gameName: game.name,
-        gameDescription: game.description_preview,
+        gameDescription: setLength(game.description_preview),
         image_url: game.image_url,
         image_thumb: game.images.thumb,
         minPlayers: game.min_players,
@@ -203,7 +211,7 @@ const SearchGames = () => {
             image={game.image_url}
             alt="Board game box cover"
             />
-          <Typography variant="h4" gutterBottom component="div">
+          <Typography variant="h5" gutterBottom component="div">
               {game.gameName}
           </Typography>
           {/* <Typography sx={{
