@@ -48,6 +48,7 @@ const userSchema = new Schema(
 				ref: 'Game',
 			},
 		],
+		// + Change wins to be array of objects containing game and number of wins
 		wins: {
 			type: Number,
 			default: 0,
@@ -56,10 +57,14 @@ const userSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
+		ties: {
+			type: Number,
+			default: 0
+		},
 		avatar: {
 			type: String,
 			default: 'https://i.imgur.com/X2JhY8J.png',
-		},
+		}
 	},
 	// set this to use virtual below
 	{
