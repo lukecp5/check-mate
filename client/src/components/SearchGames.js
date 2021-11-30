@@ -27,6 +27,9 @@ const SearchGames = () => {
   // create state for holding search field data
   const [searchInput, setSearchInput] = useState('');
 
+  // create a state to hold the value of the selected game to be used once learn more is clicked
+  const [selectedGame, setSelectedGame] = useState('');
+
   // create state to hold saved gameId values
   // const [savedGameIds, setSavedGameIds] = useState(getSavedGameIds());
 
@@ -84,7 +87,6 @@ const SearchGames = () => {
       // console.log ("rules_url: ", data.games[0].rules_url)
       // console.log ("official_url: ", data.games[0].official_url);
 
-      //This truncates the length of the description displayed in the card, it does affect the variable stored in state, if this is a problme for s subsequent page we can simply make another variable, easy fix
       const setLength = (description) => {
         if(description.length > 450){
               return (description.slice(0,450) + "...");
@@ -97,6 +99,7 @@ const SearchGames = () => {
         gameId: game.id,
         gameName: game.name,
         gameDescription: setLength(game.description_preview),
+        fullGameDescription: game.description_preview,
         image_url: game.image_url,
         image_thumb: game.images.thumb,
         minPlayers: game.min_players,
@@ -108,8 +111,6 @@ const SearchGames = () => {
         // game: game.designer || ['No designer to display'],
         // image: game.imageLinks?.thumbnail || '',
       }));
-
-      //console.log("gameData: ", gameData)
 
       setSearchedGames(gameData);
       setSearchInput('');
@@ -162,66 +163,24 @@ const SearchGames = () => {
     </Grid>
 
     
-    <Grid container sx={{ justifyContent:'center' }}>
-{/* 
-      <Grid item xs={12} sx={{ m:3 }}>
-          <Typography variant="body1" align="center" gutterBottom>
-            Developer Note: check the console for a console.log of the complete data return from the API.
-          </Typography>
-      </Grid> */}
-
-
-      {/* <Grid item xs={12} sx={{ m:3 }}>
-            <Typography variant="h5" align="left" gutterBottom>
-            {searchedGames.length
-            ? `Viewing ${searchedGames.length} results:`
-            : ''
-            }
-            </Typography>
-      </Grid> */}
-
-          {searchedGames.map((game) => {
-            return (
-              // <Grid item xs={12} sm ={8} md={4} lg={2} sx={{border:2, borderRadius: 3, m:5, textAlign: "center" }} key={game.gameId}>
-              //   <Typography variant="h5" align="center" sx={{mt:3, m:2, minHeight: 100}} gutterBottom>
-              //     {game.gameName}
-              //   </Typography>
-
-              //   <Card>
-              //     <CardMedia
-              //       component="img"
-              //       // width={80%}
-              //       image={game.image_url}
-              //       alt="Board game box cover"
-              //     />
-              //   </Card>
-
-              //   <Typography variant="body1" align="center" gutterBottom sx={{m:2}}>
-              //     {game.gameDescription}
-              //   </Typography>
-
-              //   <Button type="submit" variant="contained" sx={{mb:4}}>
-              //     Click for Some Reason
-              //   </Button>
-
-              // </Grid>
-
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
-      <Card sx={{ maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
-        <CardContent sx={{ textAlign: 'center'}}>
-        <CardMedia
-            component="img"
-            // width={80%}
-            image={game.image_url}
-            alt="Board game box cover"
-            />
-          <Typography variant="h5" gutterBottom component="div">
-              {game.gameName}
-          </Typography>
-          <Typography>
-            {game.gameDescription}
-          </Typography>
-        </CardContent>
+  <Grid container sx={{ justifyContent:'center' }}>
+    {searchedGames.map((game) => {
+      return (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
+          <Card sx={{ maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+            <CardContent sx={{ textAlign: 'center'}}>
+              <CardMedia
+                component="img"            
+                image={game.image_url}
+                alt="Board game box cover"
+              />
+              <Typography variant="h5" gutterBottom component="div">
+                {game.gameName}
+              </Typography>
+              <Typography>
+                {game.gameDescription}
+              </Typography>
+            </CardContent>
         <CardActions>
           <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
         </CardActions>
@@ -229,6 +188,49 @@ const SearchGames = () => {
       </Grid>
             );
           })}
+    </Grid>
+
+    <Grid container align="center" sx={{ justifyContent:'center', padding: '20px' }}>
+      <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Selected game title
+        </Typography>
+
+        <Card align='center' sx={{ m:2, maxWidth: 345, justifyContent:'center' }}>
+          <CardMedia
+            component="img"
+            image="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1629324032557.jpg"
+            alt="Board game box cover"
+            />
+        </Card>
+
+        <Typography variant="h5">
+            Game description
+        </Typography>
+
+        <Grid container justifyContent="center" spacing="5" sx={{ m:2}}>
+          <Grid item sx={{ minWidth: 200}}>
+            <Typography>
+              Minimum Players: Min#
+            </Typography>
+          </Grid>
+
+          <Grid item sx={{ minWidth: 200}}>
+            <Typography>
+              Max Players: Max #
+            </Typography>
+          </Grid>
+
+          <Grid item sx={{ minWidth: 200}}>
+            <Typography>
+              Minimum Age: Min Age
+            </Typography>
+          </Grid>
+
+        </Grid>
+
+        <Button href= "http://www.fryxgames.se/TerraformingMars/TMRULESFINAL.pdf" variant="contained">Official Rules</Button>
+      </Grid>
     </Grid>
     </>
   );
