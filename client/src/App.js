@@ -10,16 +10,21 @@ import { setContext } from '@apollo/client/link/context';
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
 // import SearchGames from "./pages/SearchGames";
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+
+import Homepage from "./components/Homepage";
+import SearchGames from "./components/SearchGames";
+// import GameSearch from "./components/GameSearch";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme/Theme";
-import SubmitBtn from "./components/SubmitBtn";
+// import SubmitBtn from "./components/SubmitBtn";
 // import PieChartDemo from "./pages/PieChartDemo";
-
+import FunFact from "./pages/FactArray";
+// import AltRules from "./pages/AltRules";
+// import { withRouter } from 'react-router-dom';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -44,23 +49,24 @@ const client = new ApolloClient({
 function App() {
 	return (
 		<ApolloProvider client={client}>
+		<Router>
 			<div className="App">
 				<ThemeProvider theme={theme}>
-					<Router>
-						<Navbar />
-						<SubmitBtn />
-						{/* <PieChartDemo />
-						<SearchGames /> */}
-						<Switch>
-							<Route exact path="/" component={Home} />
-							<Route exact path="/login" component={Login} />
-							<Route exact path="/signup" component={Signup} />
-							<Route component={NoMatch} />
-						</Switch>
-						<Footer />
-					</Router>
-				</ThemeProvider>			
+					<Navbar />
+					<FunFact />
+						<Routes>
+							<Route path="/" element={<Homepage/>}/>
+							<Route path="/searchgames" element={<SearchGames/>}/>
+							<Route path="/login" element={<Login/>} />
+							<Route path="/signup" element={<Signup/>} />
+							{/* <Route path="/friends" element={<Friends/>}/>
+							<Route path="/login" element={<Login/>}/>
+							<Route path="/startmatch" element={<StartMatch/>}/> */}
+						</Routes>
+					<Footer />
+				</ThemeProvider>
 			</div>
+		</Router>
 		</ApolloProvider>
 	);
 }
