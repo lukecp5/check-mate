@@ -83,8 +83,8 @@ const SearchGames = () => {
 
       //This truncates the length of the description displayed in the card, it does affect the variable stored in state, if this is a problme for s subsequent page we can simply make another variable, easy fix
       const setLength = (description) => {
-        if(description.length > 320){
-              return (description.slice(0,320) + "...");
+        if(description.length > 450){
+              return (description.slice(0,450) + "...");
         } else {
               return description;
         }
