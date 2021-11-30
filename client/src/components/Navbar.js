@@ -89,6 +89,9 @@ function Navbar() {
               <Link to="/login" className={classes.link}>
                 Login/Sign Up
               </Link>
+              <Link to='/profile' className={classes.link}>
+                Profile
+              </Link>
               {/* IF LOGGED in Avatar Button & REMOVE 'LOGIN/SIGN Up Link */}
               {/* <Stack direction="row" spacing={2}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

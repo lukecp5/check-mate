@@ -13,6 +13,7 @@ import theme from "./Theme/Theme";
 import FunFact from "./pages/FactArray";
 // import AltRules from "./pages/AltRules";
 // import { withRouter } from 'react-router-dom';
+import Profile from "./components/Profile"
 
 // import {
 //   ApolloClient,
@@ -36,7 +37,7 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Homepage/>}/>
 							<Route path="/searchgames" element={<SearchGames/>}/>
-							
+							<Route path="/profile" element={<Profile/>}/>
 							{/* <Route path="/friends" element={<Friends/>}/>
 							<Route path="/login" element={<Login/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
