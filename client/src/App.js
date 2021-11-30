@@ -16,15 +16,28 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 import Homepage from "./components/Homepage";
+
 import SearchGames from "./components/SearchGames";
 // import GameSearch from "./components/GameSearch";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme/Theme";
 // import SubmitBtn from "./components/SubmitBtn";
 // import PieChartDemo from "./pages/PieChartDemo";
+
 import FunFact from "./pages/FactArray";
 // import AltRules from "./pages/AltRules";
 // import { withRouter } from 'react-router-dom';
+import Profile from "./components/Profile"
+
+import { setContext } from '@apollo/client/link/context';
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -33,12 +46,14 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
 	const token = localStorage.getItem('id_token');
+
 	return {
 	  headers: {
 		...headers,
 		authorization: token ? `Bearer ${token}` : '',
 	  },
 	};
+
 });
 
 const client = new ApolloClient({
@@ -59,15 +74,19 @@ function App() {
 							<Route path="/searchgames" element={<SearchGames/>}/>
 							<Route path="/login" element={<Login/>} />
 							<Route path="/signup" element={<Signup/>} />
+							<Route path="/profile" element={<Profile/>}/>
 							{/* <Route path="/friends" element={<Friends/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
 							<Route path="*" element={<NotFound/>}/>
 						</Routes>
+						{/* <AltRules/> */}
 					<Footer />
 				</ThemeProvider>
 			</div>
 		</Router>
-		</ApolloProvider>
+</ApolloProvider>
+
+
 	);
 }
 

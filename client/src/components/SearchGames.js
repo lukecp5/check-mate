@@ -5,7 +5,9 @@ import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
 import { styled } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
+import Image from '../Images/gamebackgroundimage.png';
+import Find from '../Images/findyourgame2.png';
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -15,6 +17,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
       border: "2px solid white",
   }
 })); 
+
+
 
 const SearchGames = () => {
   // create state for holding returned google api data
@@ -53,7 +57,7 @@ const SearchGames = () => {
 
     try {
       const response = await fetch(
-        `https://api.boardgameatlas.com/api/search?name=${searchInput}&limit=10&client_id=${process.env.REACT_APP_CLIENT_ID}`
+        `https://api.boardgameatlas.com/api/search?name=${searchInput}&limit=6&client_id=${process.env.REACT_APP_CLIENT_ID}`
       );
 
       if (!response.ok) {
@@ -80,11 +84,19 @@ const SearchGames = () => {
       // console.log ("rules_url: ", data.games[0].rules_url)
       // console.log ("official_url: ", data.games[0].official_url);
 
-
+      //This truncates the length of the description displayed in the card, it does affect the variable stored in state, if this is a problme for s subsequent page we can simply make another variable, easy fix
+      const setLength = (description) => {
+        if(description.length > 450){
+              return (description.slice(0,450) + "...");
+        } else {
+              return description;
+        }
+            };
+      
       const gameData = returnedGameData.map((game) => ({
         gameId: game.id,
         gameName: game.name,
-        gameDescription: game.description_preview,
+        gameDescription: setLength(game.description_preview),
         image_url: game.image_url,
         image_thumb: game.images.thumb,
         minPlayers: game.min_players,
@@ -110,13 +122,14 @@ const SearchGames = () => {
     <>
     <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff' }}>
          
-      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  background: `linear-gradient(to right, #D0D102, #32742C)`, padding: '10px', borderRadius: 3}}>
+      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
         
         <Grid container>
-          <Grid item xs={12} sx={{ m:3, ml:4, mr:4}}>
-            <Typography variant="h4" align="center" gutterBottom>
+          <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
+            {/* <Typography variant="h4" align="center" sx={{ color: '#D70060', background: 'rgb(255,255,255,0.80)', maxWidth: '400px', textAlign: 'center'}} gutterBottom>
               Find Your Game!
-            </Typography>
+            </Typography> */}
+            <img src= {Find}/>
           </Grid>
 
           <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
@@ -136,8 +149,8 @@ const SearchGames = () => {
               <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
                 <Button type="submit" variant="contained" sx= {{background: '#ffffff', color: '#616161', "&:hover": {
                       color: '#ffffff',
-                      background: 'transparent',
-                      border: "2px solid white",
+                      background: '#D70060',
+                      // border: "2px solid white",
                   }}}>
                   Search
                 </Button>
@@ -158,14 +171,14 @@ const SearchGames = () => {
       </Grid> */}
 
 
-      <Grid item xs={12} sx={{ m:3 }}>
+      {/* <Grid item xs={12} sx={{ m:3 }}>
             <Typography variant="h5" align="left" gutterBottom>
             {searchedGames.length
             ? `Viewing ${searchedGames.length} results:`
             : ''
             }
             </Typography>
-      </Grid>
+      </Grid> */}
 
           {searchedGames.map((game) => {
             return (
@@ -202,23 +215,12 @@ const SearchGames = () => {
             image={game.image_url}
             alt="Board game box cover"
             />
-          <Typography variant="h4" gutterBottom component="div">
+          <Typography variant="h5" gutterBottom component="div">
               {game.gameName}
           </Typography>
-          {/* <Typography sx={{
-              textOverflow: 'ellipsis',
-              my: 2,
-              overflow: 'hidden'}}>
+          <Typography>
             {game.gameDescription}
-          </Typography> */}
-            <Box
-              component="div"
-              sx={{ overflow: 'hidden', textOverflow: 'ellipsis', my: 2 }}
-              >
-                <Typography>
-                  {game.gameDescription}
-                </Typography>
-              </Box>
+          </Typography>
         </CardContent>
         <CardActions>
           <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>

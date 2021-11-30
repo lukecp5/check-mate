@@ -73,12 +73,12 @@ function Navbar() {
         ) : (
           <Grid className={classes.right}>
             <div className={classes.navlinks}>
-              <Link to="/" className={classes.link}>
+              {/* <Link to="/" className={classes.link}>
                 Home
-              </Link>
-              <Link to="/startmatch" className={classes.link}>
+              </Link> */}
+              {/* <Link to="/startmatch" className={classes.link}>
                 Start a Match
-              </Link>
+              </Link> */}
               <Link to="/searchgames" className={classes.link}>
                 Search Games
               </Link>
@@ -87,6 +87,9 @@ function Navbar() {
               </Link>
               <Link to="/login" className={classes.link}>
                 Login/Sign Up
+              </Link>
+              <Link to='/profile' className={classes.link}>
+                Profile
               </Link>
               {/* IF LOGGED in Avatar Button & REMOVE 'LOGIN/SIGN Up Link */}
               {/* <Stack direction="row" spacing={2}>
