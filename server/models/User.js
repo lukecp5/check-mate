@@ -32,15 +32,16 @@ const userSchema = new Schema(
 		friends: [
 			{
 				type: Schema.Types.ObjectId,
-				ref: 'Match',
+				ref: 'User',
 			},
 		],
-		teams: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Team',
-			},
-		],
+		// teams: [
+		// 	{
+		// 		type: Schema.Types.ObjectId,
+		// 		ref: 'Team',
+		// 	},
+		// ],
+		// +  Only track the last 5 games played, set after a match is submitted
 		games: [
 			{
 				type: Schema.Types.ObjectId,
