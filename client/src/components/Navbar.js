@@ -65,10 +65,9 @@ function Navbar() {
     <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
       <Toolbar>
-          <Link to='/'>
-            <MyLogo src={Logo} /> 
-          </Link>
-        {/* <MyLogo src={Logo} />  */}
+        <Link to='/'>
+        <MyLogo src={Logo} />
+        </Link> 
         {isMobile ? (
           <DrawerComponent />
         ) : (
