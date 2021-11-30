@@ -13,6 +13,15 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    getFriends: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.find({ _id: context.user._id }).select('-__v -password');
+
+        return userData.friends;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    }
   },
 
   Mutation: {
