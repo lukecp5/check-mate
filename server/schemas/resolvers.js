@@ -22,6 +22,12 @@ const resolvers = {
 
       return { token, user };
     },
+    addMatch: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id });
+      const game_id = args.game_id;
+// ! Fix addMatch to use the new match model
+      
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
