@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {
 	ApolloClient,
 	InMemoryCache,
@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 // import SearchGames from "./pages/SearchGames";
-import NoMatch from './pages/NoMatch';
+import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
@@ -28,7 +28,7 @@ import FunFact from "./pages/FactArray";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -60,8 +60,8 @@ function App() {
 							<Route path="/login" element={<Login/>} />
 							<Route path="/signup" element={<Signup/>} />
 							{/* <Route path="/friends" element={<Friends/>}/>
-							<Route path="/login" element={<Login/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
+							<Route path="*" element={<NotFound/>}/>
 						</Routes>
 					<Footer />
 				</ThemeProvider>

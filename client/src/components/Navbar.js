@@ -62,58 +62,12 @@ function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-<<<<<<< HEAD
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar 
-        position="static" 
-        sx={{ backgroundColor: 'grey.main'}}
-      >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}><Link to='/login'>Login</Link></MenuItem>
-                <MenuItem onClick={handleClose}>Register</MenuItem>
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>How To Play</MenuItem>
-                <MenuItem onClick={handleClose}>Start A Game</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-              </Menu>
-          <Link to='/'>
-            <MyLogo src={Logo} /> 
-          </Link>
-          {auth && (
-            <div>
-              <Avatar sx={{backgroundColor: "primary.main"}}>AM</Avatar>
-=======
     <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
       <Toolbar>
-        <MyLogo src={Logo} /> 
+        <Link to='/'>
+        <MyLogo src={Logo} />
+        </Link> 
         {isMobile ? (
           <DrawerComponent />
         ) : (
@@ -138,7 +92,6 @@ function Navbar() {
               {/* <Stack direction="row" spacing={2}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
               </Stack> */}
->>>>>>> main
             </div>
           </Grid>
         )}
