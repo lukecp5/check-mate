@@ -6,20 +6,20 @@ const matchSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	teams: [
+	players: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'Team',
+			ref: 'User',
 		},
 	],
-	winner: {
+	winners: [{
 		type: Schema.Types.ObjectId,
-		ref: 'Team',
-	},
-	loser: {
+		ref: 'Player',
+	}],
+	losers: [{
 		type: Schema.Types.ObjectId,
-		ref: 'Team',
-	},
+		ref: 'Player',
+	}],
 	date: {
 		type: Date,
 		required: true,
