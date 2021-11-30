@@ -37,13 +37,13 @@ export default function Profile() {
     <Grid>
         <Grid sx={{}}>
             <Card sx={{ color: "#ffffff", mt: '10px', padding: '10px', textAlign:'center', background: `linear-gradient(to right, #D70060, #F18D05)`, marginBottom: '20px', textAlign: 'left'}}>
-                <CardContent>
+                <CardContent >
                     <Stack direction="row" spacing={2}>
                         <Avatar alt="User" src="/static/images/avatar/1.jpg" />
+                        <Typography variant="h4">
+                            Welcome back, User!
+                        </Typography>
                     </Stack>
-                    <Typography variant="h4">
-                        Welcome back, User!
-                    </Typography>
                 </CardContent>
             </Card>
         </Grid>
