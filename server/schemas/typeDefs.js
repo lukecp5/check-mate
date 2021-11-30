@@ -3,7 +3,8 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID!
-    username: String!
+    firstName: String
+    lastName: String
     email: String
     password: String
     bookCount: Int
@@ -45,6 +46,14 @@ const typeDefs = gql`
     teams: [Team]
   }
 
+  type Altrules {
+    _id: ID!
+    game_id: String!
+    user: String!
+    description: String!
+    rule_set_name: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -68,20 +77,17 @@ const typeDefs = gql`
     team(_id: ID!): Team
     match(_id: ID!): Match
     matches: [Match]
+    findaltrules(game_id: String!): [Altrules]  
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
-    # addGame(name: String, description: String, game_id: String): Game
-    # addTeam(name: String): Team
-    # updateUser(userId: ID!, username: String, email: String, password: String, avatar: String): User
-    # updateTeam(teamId: ID!, name: String): Team
-    # deleteMatch(matchId: ID!): Match
-    # deleteTeam(teamId: ID!): Team
-    # deleteUser(userId: ID!): User
-    # deleteGame(gameId: ID!): Game
+    addTeam(name: String!): Team
+    # saveBook(bookData: BookInput!): User
+    removeBook(bookId: ID!): User
+    addAltrules(game_id: String!, user: String!, description: String!,rule_set_name: String! ): Altrules
   }
 `;
 
