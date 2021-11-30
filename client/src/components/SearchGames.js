@@ -148,7 +148,7 @@ const SearchGames = () => {
                 <Button type="submit" variant="contained" sx= {{background: '#ffffff', color: '#616161', "&:hover": {
                       color: '#ffffff',
                       background: '#D70060',
-                      border: "2px solid white",
+                      // border: "2px solid white",
                   }}}>
                   Search
                 </Button>
