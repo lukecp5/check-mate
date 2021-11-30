@@ -1,96 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  Typography,
+  makeStyles,
+  useTheme,
+  useMediaQuery,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import DrawerComponent from "./Drawer";
 import { styled } from '@mui/system';
 import Logo from '../Images/Checkmatelogofinal.png'; 
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-
+import  { Grid }  from '@mui/material';
+// AVATAR/PROFILE
+// import IconButton from '@mui/material/IconButton';
+// import Avatar from '@mui/material/Avatar';
+// import Stack from '@mui/material/Stack';
 
 const MyLogo = styled("img")(() => ({
   width: 300,  
 })); 
 
-const NavBtn = styled(Button)(({ theme }) => ({ 
-  '&:hover': {
-      background: theme.palette.grey.dark, 
-  } 
-})); 
+const useStyles = makeStyles((theme) => ({
+  abRoot: {
+    backgroundColor: '#616161',
+  },
+  right: {
+    marginLeft: 'auto'
+  },
+  navlinks: {
+    marginLeft: theme.spacing(5),
+    display: "flex",
+    // padding: '5px',
+  },
+  logo: {
+    flexGrow: "1",
+    cursor: "pointer",
+  },
+  link: {
+    textDecoration: "none",
+    color: "white",
+    fontSize: "20px",
+    fontFamily: 'Quicksand',
+    fontWeight: 600,
+    align: 'right',
+    // padding: '5px',
+    marginRight: theme.spacing(10),
+    "&:hover": {
+      color: "#61AE24",
+      // TO DO: Link Hover Effects
+      // background: 'transparent',
+      // borderBottom: "2px solid white",
+    },
+  },
+}));
 
-export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+function Navbar() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar 
-        position="static" 
-        sx={{ backgroundColor: 'grey.main'}}
-      >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Login</MenuItem>
-                <MenuItem onClick={handleClose}>Register</MenuItem>
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>How To Play</MenuItem>
-                <MenuItem onClick={handleClose}>Start A Game</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-              </Menu>
-          <MyLogo src={Logo} /> 
-          {auth && (
-            <div>
-              <Avatar sx={{backgroundColor: "primary.main"}}>AM</Avatar>
+    <AppBar position="static" classes={{root: classes.abRoot}}>
+      <CssBaseline />
+      <Toolbar>
+          <Link to='/'>
+            <MyLogo src={Logo} /> 
+          </Link>
+        {/* <MyLogo src={Logo} />  */}
+        {isMobile ? (
+          <DrawerComponent />
+        ) : (
+          <Grid className={classes.right}>
+            <div className={classes.navlinks}>
+              {/* <Link to="/" className={classes.link}>
+                Home
+              </Link> */}
+              {/* <Link to="/startmatch" className={classes.link}>
+                Start a Match
+              </Link> */}
+              <Link to="/searchgames" className={classes.link}>
+                Search Games
+              </Link>
+              <Link to="/friends" className={classes.link}>
+                Add Friends
+              </Link>
+              <Link to="/login" className={classes.link}>
+                Login/Sign Up
+              </Link>
+              <Link to='/profile' className={classes.link}>
+                Profile
+              </Link>
+              {/* IF LOGGED in Avatar Button & REMOVE 'LOGIN/SIGN Up Link */}
+              {/* <Stack direction="row" spacing={2}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              </Stack> */}
             </div>
-          )}
-        </Toolbar>
-
-      </AppBar>
-    </Box>
+          </Grid>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
+export default Navbar;

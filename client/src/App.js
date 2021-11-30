@@ -1,15 +1,21 @@
 import React from "react";
+// Import React Router
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Homepage from "./components/Homepage";
-import SearchGames from "./pages/SearchGames";
 
+import SearchGames from "./components/SearchGames";
+// import GameSearch from "./components/GameSearch";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme/Theme";
+// import SubmitBtn from "./components/SubmitBtn";
+// import PieChartDemo from "./pages/PieChartDemo";
 
-import PieChartDemo from "./pages/PieChartDemo";
 import FunFact from "./pages/FactArray";
-import AltRules from "./pages/AltRules";
+// import AltRules from "./pages/AltRules";
+// import { withRouter } from 'react-router-dom';
+import Profile from "./components/Profile"
 
 import { setContext } from '@apollo/client/link/context';
 
@@ -47,19 +53,28 @@ const client = new ApolloClient({
 
 function App() {
 	return (
-		<ApolloProvider client={client}>
-			
+
+	<ApolloProvider client={client}>
+		<Router>
+			<div className="App">
 				<ThemeProvider theme={theme}>
 					<Navbar />
 					<FunFact />
-					<Homepage/>
-					<AltRules />
-					<PieChartDemo />
-					<SearchGames />
+						<Routes>
+							<Route path="/" element={<Homepage/>}/>
+							<Route path="/searchgames" element={<SearchGames/>}/>
+							<Route path="/profile" element={<Profile/>}/>
+							{/* <Route path="/friends" element={<Friends/>}/>
+							<Route path="/login" element={<Login/>}/>
+							<Route path="/startmatch" element={<StartMatch/>}/> */}
+						</Routes>
+						{/* <AltRules/> */}
 					<Footer />
 				</ThemeProvider>
-			
-		</ApolloProvider>	
+			</div>
+		</Router>
+</ApolloProvider>
+
 	);
 }
 
