@@ -23,7 +23,13 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		matches: [
+		// matches: [
+		// 	{
+		// 		type: Schema.Types.ObjectId,
+		// 		ref: 'Match',
+		// 	},
+		// ],
+		friends: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'Match',
