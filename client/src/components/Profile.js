@@ -34,27 +34,11 @@ import Stack from '@mui/material/Stack';
 
 export default function Profile() {
     return (
-    
-    //   <Grid container spacing={1}>
-  
-    //     <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
-    //       <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: '#61AE24', padding: '10px', }}>
-    //         <CardContent sx={{ textAlign: 'center'}}>
-    //           <Typography variant="h4" gutterBottom component="div">
-    //               Welcome back, User! 
-    //           </Typography>
-    //         </CardContent>
-    //         <CardActions>
-    //           <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
-    //         </CardActions>
-    //       </Card>
-    //     </Grid>
-    //     </Grid> 
     <Grid>
-        <Grid>
+        <Grid sx={{}}>
             <Card sx={{ color: "#ffffff", mt: '10px', padding: '10px', textAlign:'center', background: `linear-gradient(to right, #D70060, #F18D05)`, marginBottom: '20px', textAlign: 'left'}}>
                 <CardContent>
-                    <Stack>
+                    <Stack direction="row" spacing={2}>
                         <Avatar alt="User" src="/static/images/avatar/1.jpg" />
                     </Stack>
                     <Typography variant="h4">
@@ -63,10 +47,10 @@ export default function Profile() {
                 </CardContent>
             </Card>
         </Grid>
-        <Grid container spacing={3}>
+        <Grid container sx={{width: '100%', justifyContent: 'space-evenly'}}>
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
                 <CardContent sx={{ textAlign: 'center'}}>
-                        <Card sx={{ minWidth: 300, maxWidth: 600, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+                        <Card sx={{ minWidth: 300, maxWidth: 600, minHeight: 400, margin: '20px', color: "#ffffff", background: randomColor, padding: '10px', }}>
                             <CardContent sx={{ textAlign: 'center'}}>
                                 <Typography variant="h4" gutterBottom component="div">
                                     Stats
@@ -77,7 +61,7 @@ export default function Profile() {
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
                 <CardContent sx={{ textAlign: 'center'}}>
-                        <Card sx={{ minWidth: 300, maxWidth: 600, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+                        <Card sx={{ minWidth: 300, maxWidth: 600, minHeight: 400, margin: '20px', color: "#ffffff", background: randomColor, padding: '10px', }}>
                             <CardContent sx={{ textAlign: 'center'}}>
                                 <Typography variant="h4" gutterBottom component="div">
                                     Reviews
@@ -88,10 +72,21 @@ export default function Profile() {
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
                 <CardContent sx={{ textAlign: 'center'}}>
-                        <Card sx={{ minWidth: 300, maxWidth: 600, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+                        <Card sx={{ minWidth: 300, maxWidth: 600, minHeight: 400, margin: '20px', color: "#ffffff", background: randomColor, padding: '10px', }}>
                             <CardContent sx={{ textAlign: 'center'}}>
                                 <Typography variant="h4" gutterBottom component="div">
                                     Friends
+                                </Typography>
+                            </CardContent>
+                    </Card>
+                </CardContent>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
+                <CardContent sx={{ textAlign: 'center'}}>
+                        <Card sx={{ minWidth: 300, maxWidth: 600, minHeight: 400, margin: '20px', color: "#ffffff", background: randomColor, padding: '10px', }}>
+                            <CardContent sx={{ textAlign: 'center'}}>
+                                <Typography variant="h4" gutterBottom component="div">
+                                    Alternate Rules
                                 </Typography>
                             </CardContent>
                     </Card>
