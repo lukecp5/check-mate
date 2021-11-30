@@ -25,6 +25,8 @@ const AltRules = () => {
 
     const [altRules, setAltRules] = useState('');
 
+    const [altRulesName, setAltRulesName] = useState('');
+
     const [gameId, setGameID] = useState('');
 
     const [user, setCurrentUser] = useState('Timmy');
@@ -35,10 +37,9 @@ const AltRules = () => {
     };
 
     const handleRulesFormSubmit = async (event) => {
-        event.preventDefault();
-
-
+        event.preventDefault();        
         console.log("gameId: ", gameId);
+        console.log("altRulesName: ", altRulesName);
         console.log("altRules: ", altRules);
         console.log("user:", user)
     }
@@ -150,6 +151,18 @@ const AltRules = () => {
                                         {selectedIndex}
                                     </Typography>
                             ) : null}
+                            </Grid>
+
+                            <Grid item xs={12} sx={{ width: 400, maxWidth: '100%', ml:3, mr: 3, mt:2, mb:2, }}>
+                                {selectedIndex.length ? ( 
+                                <TextField
+                                    name="altRulesName"
+                                    value={altRulesName}
+                                    onChange={(e) => setAltRulesName(e.target.value)} 
+                                    label="New Rule Set Name" 
+                                    id="altRuleName"
+                                />
+                                 ) : null}                        
                             </Grid>
 
                             <Grid item xs={12} sx={{ width: 500, maxWidth: '100%', ml:3, mr: 3, mt:2, mb:2, }}>

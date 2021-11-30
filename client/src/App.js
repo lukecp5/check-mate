@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import Altrules from './pages/AltRules';
 import Homepage from "./components/Homepage";
 
 import SearchGames from "./components/SearchGames";
@@ -65,6 +65,7 @@ function App() {
 							<Route path="/login" element={<Login/>} />
 							<Route path="/signup" element={<Signup/>} />
 							<Route path="/profile" element={<Profile/>}/>
+							<Route path="/altrules" element={<Altrules/>}/>
 							{/* <Route path="/friends" element={<Friends/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
 							<Route path="*" element={<NotFound/>}/>
