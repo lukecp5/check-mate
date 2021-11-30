@@ -43,6 +43,14 @@ const typeDefs = gql`
     teams: [Team]
   }
 
+  type Altrules {
+    _id: ID!
+    game_id: String!
+    user: String!
+    description: String!
+    rule_set_name: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -66,6 +74,7 @@ const typeDefs = gql`
     team(_id: ID!): Team
     match(_id: ID!): Match
     matches: [Match]
+    findaltrules(game_id: String!): [Altrules]  
   }
 
   type Mutation {
@@ -75,6 +84,7 @@ const typeDefs = gql`
     addTeam(name: String!): Team
     # saveBook(bookData: BookInput!): User
     removeBook(bookId: ID!): User
+    addAltrules(game_id: String!, user: String!, description: String!,rule_set_name: String! ): Altrules
   }
 `;
 
