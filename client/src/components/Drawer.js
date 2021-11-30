@@ -63,6 +63,11 @@ function DrawerComponent() {
               <Link to="/login" className={classes.link}>Login/Sign Up</Link>
             </ListItemText>
           </ListItem>
+          <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/profile" className={classes.link}>Profile</Link>
+            </ListItemText>
+          </ListItem>
           <Divider/>
         </List>
       </Drawer>
