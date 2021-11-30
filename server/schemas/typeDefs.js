@@ -5,12 +5,14 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String
+    password: String
     bookCount: Int
-    matches: [Match]
-    teams: [Team]
-    games: [Game]
+    # matches: [Match]
+    # teams: [Team]
+    # games: [Game]
     wins: Int
     losses: Int
+    friends: [ User ]
     avatar: String
   }
 
@@ -72,14 +74,14 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
-    addGame(name: String, description: String, game_id: String): Game
-    addTeam(name: String): Team
-    updateUser(userId: ID!, username: String, email: String, password: String, avatar: String): User
-    updateTeam(teamId: ID!, name: String): Team
-    deleteMatch(matchId: ID!): Match
-    deleteTeam(teamId: ID!): Team
-    deleteUser(userId: ID!): User
-    deleteGame(gameId: ID!): Game
+    # addGame(name: String, description: String, game_id: String): Game
+    # addTeam(name: String): Team
+    # updateUser(userId: ID!, username: String, email: String, password: String, avatar: String): User
+    # updateTeam(teamId: ID!, name: String): Team
+    # deleteMatch(matchId: ID!): Match
+    # deleteTeam(teamId: ID!): Team
+    # deleteUser(userId: ID!): User
+    # deleteGame(gameId: ID!): Game
   }
 `;
 
