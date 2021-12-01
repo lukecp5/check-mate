@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const winSchema = require('./Win');
 const lossSchema = require('./Loss');
+const tieSchema = require('./Tie');
 
 const userSchema = new Schema(
 	{
@@ -43,7 +44,7 @@ const userSchema = new Schema(
 		// + Change wins to be array of objects containing game and number of wins
 		wins: [ winSchema ],
 		losses: [ lossSchema],
-		ties: [{ name: String, ties: Number }],
+		ties: [ tieSchema ],
 		avatar: {
 			type: String,
 			default: 'https://i.imgur.com/X2JhY8J.png',
