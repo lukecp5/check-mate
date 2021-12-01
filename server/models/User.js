@@ -29,13 +29,14 @@ const userSchema = new Schema(
 				ref: 'User',
 			},
 		],
-		// // +  Only track the last 5 games played, set after a match is submitted
-		// games: [
-		// 	{
-		// 		type: Schema.Types.ObjectId,
-		// 		ref: 'Game',
-		// 	},
-		// ],
+		games: [
+			{ 
+				name: String, date: {
+				type: Date,
+				default: Date.now,
+				}
+			}
+		],
 		// + Change wins to be array of objects containing game and number of wins
 		wins: [{ name: String, wins: Number }],
 		losses: [{ name: String, losses: Number }],
