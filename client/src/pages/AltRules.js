@@ -12,9 +12,10 @@ import {
     ListItemText, 
     ListItemButton, 
     List } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
+// import Grid from '@mui/material/Grid';
+// import Box from '@mui/material/Box';
+// import CardContent from '@mui/material/CardContent';
+import { Grid, Box, CardContent, CardMedia, Card } from '@mui/material';
 
 const AltRules = () => {
     const [searchedGames, setSearchedGames] = useState([]);
@@ -30,6 +31,8 @@ const AltRules = () => {
     const [gameId, setGameID] = useState('');
 
     const [user, setCurrentUser] = useState('Timmy');
+
+    const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Play until all water Tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
 
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
@@ -122,13 +125,24 @@ const AltRules = () => {
                             <List>
                                 {searchedGames.map((game) => {
                                     return (
-                                        <ListItemButton key={game.gameId} 
-                                        sx={{m:1}}
-                                        // selected={game.gameId}
-                                        onClick={(event) => handleListItemClick(event, game.gameName, game.gameId )}
-                                    >
-                                        <ListItemText primary={game.gameName} />
-                                    </ListItemButton>  
+                                        <CardContent sx={{ align: 'center'}}>
+                                            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                                <CardMedia
+                                                    component="img"
+                                                    sx={{ height: 50, width: 50}}
+                                                    image={game.image_url}
+                                                    alt="Board game box cover"
+                                                />
+                                        
+                                                <ListItemButton key={game.gameId} 
+                                                    sx={{m:1}}
+                                                    // selected={game.gameId}
+                                                    onClick={(event) => handleListItemClick(event, game.gameName, game.gameId )}
+                                                >
+                                                    <ListItemText primary={game.gameName} />
+                                                </ListItemButton>
+                                            </Box> 
+                                    </CardContent> 
                                     )
                                 })}
                             </List>                            
@@ -193,6 +207,7 @@ const AltRules = () => {
                 </Box>
             </Grid>
         
+        {/* THIS IS THE START OF THE ALTERNATE RULES DISPLAY */}
         <Grid item xs={12} md ={6}>
         <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
             <Grid container>
@@ -207,22 +222,28 @@ const AltRules = () => {
                                 Currently viewing rules for {selectedIndex}
                             </Typography>
                         ) : null}
-                        </Grid>
-                <Grid item xs={12}>
-                <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
-                    <CardContent>
-                        <Typography variant="h5" color="text.primary" align="left" sx={{mb:1}}>
-                            RulesetName
-                        </Typography>
-                        <Typography variant="h5" sx={{ mb:2 }}>
-                            Submitted by User
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            kagoinei gp bp4or bp4omwb plmr bwlmrplb mpwm pbgmw rpbm pwrombp owrmpb owm promb pwromb powrm.
-                        </Typography>
-                    </CardContent>
-                    </Box>
                 </Grid>
+
+                {returnedDatafromDB.map((game) => {
+                    return (
+                        <Grid item xs={12}>
+                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
+                                <CardContent>
+                                    <Typography variant="h5" color="text.primary" align="left" sx={{mb:1}}>
+                                        {game.rulesetName}
+                                    </Typography>
+                                    <Typography variant="h5" sx={{ mb:2 }}>
+                                        {game.user}
+                                    </Typography>
+                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        {game.desc}
+                                    </Typography>
+                                </CardContent>
+                            </Box>
+                        </Grid>
+                    )
+                })}
+
 
                 <Grid item xs={12}>
                 <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
