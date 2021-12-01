@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import AltRules from './pages/AltRules';
 import Homepage from "./components/Homepage";
 
 import SearchGames from "./components/SearchGames";
@@ -23,14 +23,12 @@ import FunFact from "./pages/FactArray";
 // import { withRouter } from 'react-router-dom';
 import Profile from "./components/Profile"
 
-
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -68,6 +66,7 @@ function App() {
 							<Route path="/login" element={<Login/>} />
 							<Route path="/signup" element={<Signup/>} />
 							<Route path="/profile" element={<Profile/>}/>
+							<Route path="/altrules" element={<AltRules/>}/>
 							{/* <Route path="/friends" element={<Friends/>}/>
 							<Route path="/startmatch" element={<StartMatch/>}/> */}
 							<Route path="*" element={<NotFound/>}/>

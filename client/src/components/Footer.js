@@ -42,11 +42,11 @@ export default function Footer() {
                     Contributors:
                 </Typography>
                 <Typography>
-                        <NavBtn color="inherit" href="https://github.com/AmandaC0022">Amanda Morgan</NavBtn>
-                        <NavBtn color="inherit" href="https://github.com/stevenslade">Ben Slinde</NavBtn>
-                        <NavBtn color="inherit" href="https://github.com/d4nnyq88">Danny Quigley</NavBtn>
-                        <NavBtn color="inherit" href="https://github.com/hannahnmcdonald">Hannah McDonald</NavBtn>
-                        <NavBtn color="inherit" href="https://github.com/lukecp5">Luke Poirrier</NavBtn>
+                        <NavBtn color="inherit" href="https://github.com/AmandaC0022" target="_blank">Amanda Morgan</NavBtn>
+                        <NavBtn color="inherit" href="https://github.com/stevenslade" target="_blank">Ben Slinde</NavBtn>
+                        <NavBtn color="inherit" href="https://github.com/d4nnyq88" target="_blank">Danny Quigley</NavBtn>
+                        <NavBtn color="inherit" href="https://github.com/hannahnmcdonald" target="_blank">Hannah McDonald</NavBtn>
+                        <NavBtn color="inherit" href="https://github.com/lukecp5" target="_blank">Luke Poirrier</NavBtn>
                 </Typography>
             </Stack>
         </MyToolbar>
