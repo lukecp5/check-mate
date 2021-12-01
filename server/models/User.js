@@ -1,10 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from Book.js
-const Match = require('./Match');
-const Team = require('./Team');
-const Game = require('./Game');
+const winSchema = require('./Win');
+const lossSchema = require('./Loss');
+const tieSchema = require('./Tie');
 
 const userSchema = new Schema(
 	{
@@ -13,7 +12,7 @@ const userSchema = new Schema(
 			required: true,
 			trim: true
 		},
-		  lastName: {
+		lastName: {
 			type: String,
 			required: true,
 			trim: true
@@ -28,36 +27,28 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		matches: [
+		friends: [
 			{
 				type: Schema.Types.ObjectId,
-				ref: 'Match',
-			},
-		],
-		teams: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Team',
+				ref: 'User',
 			},
 		],
 		games: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Game',
-			},
+			{ 
+				name: String, date: {
+				type: Date,
+				default: Date.now,
+				}
+			}
 		],
-		wins: {
-			type: Number,
-			default: 0,
-		},
-		losses: {
-			type: Number,
-			default: 0,
-		},
+		// + Change wins to be array of objects containing game and number of wins
+		wins: [ winSchema ],
+		losses: [ lossSchema],
+		ties: [ tieSchema ],
 		avatar: {
 			type: String,
 			default: 'https://i.imgur.com/X2JhY8J.png',
-		},
+		}
 	},
 	// set this to use virtual below
 	{
