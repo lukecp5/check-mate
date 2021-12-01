@@ -38,14 +38,7 @@ const userSchema = new Schema(
 		// ],
 		// + Change wins to be array of objects containing game and number of wins
 		wins: [{ name: String, wins: Number }],
-		losses: {
-			type: Number,
-			default: 0,
-		},
-		ties: {
-			type: Number,
-			default: 0
-		},
+		losses: [{ name: String, losses: Number }],
 		avatar: {
 			type: String,
 			default: 'https://i.imgur.com/X2JhY8J.png',
