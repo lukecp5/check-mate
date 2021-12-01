@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const winSchema = require('./Win');
+const lossSchema = require('./Loss');
+
 const userSchema = new Schema(
 	{
 		firstName: {
@@ -38,8 +41,8 @@ const userSchema = new Schema(
 			}
 		],
 		// + Change wins to be array of objects containing game and number of wins
-		wins: [{ name: String, wins: Number }],
-		losses: [{ name: String, losses: Number }],
+		wins: [ winSchema ],
+		losses: [ lossSchema],
 		ties: [{ name: String, ties: Number }],
 		avatar: {
 			type: String,

@@ -36,11 +36,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addMatch: async (parent, args, context) => {
-      const user = await User.findOne({ _id: context.user._id });
-      const game_id = args.game_id;
-// ! Fix addMatch to use the new match model
-    },
+//     addMatch: async (parent, args, context) => {
+//       const user = await User.findOne({ _id: context.user._id });
+//       const game_id = args.game_id;
+// // ! Fix addMatch to use the new match model
+//     },
     addAltrules: async (parent, args) => {
       const altrules = await Altrules.create(args);
 
