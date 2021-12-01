@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 // import Box from '@mui/material/Box';
 import Image from '../Images/gamebackgroundimage.png';
 import Find from '../Images/findyourgame2.png';
+import { Link } from "react-router-dom";
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -28,16 +29,9 @@ const SearchGames = () => {
   const [searchInput, setSearchInput] = useState('');
 
   // create a state to hold the value of the selected game to be used once learn more is clicked
-  const [selectedGame, setSelectedGame] = useState('');
+  //const [selectedGame, setSelectedGame] = useState('');
 
-  // create state to hold saved gameId values
-  // const [savedGameIds, setSavedGameIds] = useState(getSavedGameIds());
-
-  //const [saveGame, { error }] = useMutation(SAVE_GAME);
-
-  // useEffect(() => {
-  //   return () => saveGameIds(savedGameIds);
-  // });
+  const [selectedGameData, setSelectedGameData] = useState('');
 
   //This changes the colors of the backgrounds of each of the cards
     // Theme colors added to array
@@ -51,11 +45,16 @@ const SearchGames = () => {
       };
 
 
-      const handleLearnMoreClick = (gameId) => {
-        setSelectedGame(gameId); 
-        // console.log("selectedGame: ", selectedGame );
-        // use a useEffect to execute additional code
-      }
+  const handleLearnMoreClick = (selectedGameId) => {
+    const newArray = searchedGames.filter (item => item.gameId === selectedGameId);
+    setSelectedGameData(newArray);
+}
+
+  useEffect(() => {
+    if (selectedGameData) {
+    console.log("selectedGameData: ", selectedGameData);}
+  }, [selectedGameData]);
+
 
   // create method to search for games and set state on form submit
   const handleGameSearchFormSubmit = async (event) => {
@@ -97,7 +96,7 @@ const SearchGames = () => {
 
       const setLength = (description) => {
         if(description.length > 450){
-              return (description.slice(0,450) + "...");
+              return (description.slice(0,400) + "...");
         } else {
               return description;
         }
@@ -122,6 +121,7 @@ const SearchGames = () => {
 
       setSearchedGames(gameData);
       setSearchInput('');
+      setSelectedGameData('');
     } catch (err) {
       console.error(err);
     }
@@ -138,7 +138,7 @@ const SearchGames = () => {
             {/* <Typography variant="h4" align="center" sx={{ color: '#D70060', background: 'rgb(255,255,255,0.80)', maxWidth: '400px', textAlign: 'center'}} gutterBottom>
               Find Your Game!
             </Typography> */}
-            <img src= {Find}/>
+            <img alt="" src= {Find}/>
           </Grid>
 
           <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
@@ -170,82 +170,111 @@ const SearchGames = () => {
       </Grid>       
     </Grid>
 
-    
+  {!selectedGameData ? (  
   <Grid container sx={{ justifyContent:'center' }}>
     {searchedGames.map((game) => {
       return (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
           <Card sx={{ maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
-            <CardContent sx={{ textAlign: 'center'}}>
+            <CardContent sx={{ textAlign: 'center' }}>
+            
               <CardMedia
                 component="img"            
                 image={game.image_url}
                 alt="Board game box cover"
               />
+            
               <Typography variant="h5" gutterBottom component="div">
                 {game.gameName}
               </Typography>
+
+              <CardActions>
+                <StyledButton onClick={() => {
+                  handleLearnMoreClick(game.gameId);
+                }}
+                 size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+               </CardActions>
+
               <Typography>
                 {game.gameDescription}
               </Typography>
             </CardContent>
-        <CardActions>
-          <StyledButton onClick={() => {
-                  handleLearnMoreClick(game.gameId);
-          }}
-                 size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
-        </CardActions>
       </Card>
       </Grid>
             );
           })}
     </Grid>
-
+    ) : null}
 
 
           {/* This starts the hard code output to be replaced by filtered data */}
+  {selectedGameData ? (        
     <Grid container align="center" sx={{ justifyContent:'center', padding: '20px' }}>
       <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Selected game title
+          {selectedGameData[0].gameName}
         </Typography>
 
         <Card align='center' sx={{ m:2, maxWidth: 345, justifyContent:'center' }}>
           <CardMedia
             component="img"
-            image="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1629324032557.jpg"
+            image={selectedGameData[0].image_url}
             alt="Board game box cover"
             />
         </Card>
 
-        <Typography variant="h5">
-            Game description
+        <Typography variant="h5" sx={{ m:4, p:4, border: 2, borderRadius: 12, maxWidth: 1100}}>
+          {selectedGameData[0].fullGameDescription}
         </Typography>
 
-        <Grid container justifyContent="center" spacing="5" sx={{ m:2}}>
+        <Grid container justifyContent="center" spacing="5" sx={{ m:2, border:2, borderRadius: 12, maxWidth: 700 }}>
           <Grid item sx={{ minWidth: 200}}>
             <Typography>
-              Minimum Players: Min#
+              Minimum Players: {selectedGameData[0].minPlayers}
             </Typography>
           </Grid>
 
           <Grid item sx={{ minWidth: 200}}>
             <Typography>
-              Max Players: Max #
+              Max Players: {selectedGameData[0].maxPlayers}
             </Typography>
           </Grid>
 
           <Grid item sx={{ minWidth: 200}}>
             <Typography>
-              Minimum Age: Min Age
+              Minimum Age: {selectedGameData[0].minAge}
             </Typography>
           </Grid>
 
         </Grid>
 
-        <Button href= "http://www.fryxgames.se/TerraformingMars/TMRULESFINAL.pdf" variant="contained">Official Rules</Button>
+        <Grid container justifyContent="center" spacing="5" sx={{ m:2}}>
+
+       {selectedGameData[0].rulesUrl ? ( 
+          <Grid item >
+            <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
+          </Grid>
+        ) : null}
+
+        {selectedGameData[0].officialUrl ? ( 
+          <Grid item >
+            <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
+          </Grid>
+        ) : null}
+
+          <Grid item >
+            <Button component={Link} to="/match"variant="contained">Schedule a Game</Button>
+          </Grid>
+
+          <Grid item >
+            <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button>
+          </Grid>
+
+        </Grid>
+
       </Grid>
     </Grid>
+  ) : null}
     </>
   );
 };
