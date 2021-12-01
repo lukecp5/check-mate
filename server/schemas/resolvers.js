@@ -36,17 +36,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addMatch: async (parent, args, context) => {
-      const user = await User.findOne({ _id: context.user._id });
-      const game_id = args.game_id;
-// ! Fix addMatch to use the new match model
-    },
-    addAltrules: async (parent, args) => {
-      const altrules = await Altrules.create(args);
-
-      return { altrules };
-
-    },
+    
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -62,6 +52,46 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+
+    addLoss: async (parent, { lossData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { losses: lossData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+    },
+    addWin: async (parent, { winData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { wins: winData } },
+          { new: true }
+        );
+      }
+    },
+    addTie: async (parent, { tieData }, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id });
+        if(user.ties.game === tieData.game) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id, ties: user.ties.game },
+          { $inc: { ties: 1 } },
+          { new: true }
+        );
+        }
+      }
+    },
+
+    addAltrules: async (parent, args) => {
+      const altrules = await Altrules.create(args);
+
+      return { altrules };
+
     },
     // saveWin: async (parent, { winData }, context) => {
     //   if (context.user) {

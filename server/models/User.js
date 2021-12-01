@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const winSchema = require('./Win');
+const lossSchema = require('./Loss');
+const tieSchema = require('./Tie');
+
 const userSchema = new Schema(
 	{
 		firstName: {
@@ -29,23 +33,18 @@ const userSchema = new Schema(
 				ref: 'User',
 			},
 		],
-		// // +  Only track the last 5 games played, set after a match is submitted
-		// games: [
-		// 	{
-		// 		type: Schema.Types.ObjectId,
-		// 		ref: 'Game',
-		// 	},
-		// ],
+		games: [
+			{ 
+				name: String, date: {
+				type: Date,
+				default: Date.now,
+				}
+			}
+		],
 		// + Change wins to be array of objects containing game and number of wins
-		wins: [{ name: String, wins: Number }],
-		losses: {
-			type: Number,
-			default: 0,
-		},
-		ties: {
-			type: Number,
-			default: 0
-		},
+		wins: [ winSchema ],
+		losses: [ lossSchema],
+		ties: [ tieSchema ],
 		avatar: {
 			type: String,
 			default: 'https://i.imgur.com/X2JhY8J.png',
