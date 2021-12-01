@@ -1,11 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {
-	ApolloClient,
-	InMemoryCache,
-	ApolloProvider,
-	createHttpLink,
-  } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import Navbar from "./components/Navbar";
@@ -29,7 +23,6 @@ import FunFact from "./pages/FactArray";
 // import { withRouter } from 'react-router-dom';
 import Profile from "./components/Profile"
 
-import { setContext } from '@apollo/client/link/context';
 
 import {
   ApolloClient,
