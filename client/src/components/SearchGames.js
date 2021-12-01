@@ -50,6 +50,13 @@ const SearchGames = () => {
           elements[i].style.backgroundColor = randomColor();
       };
 
+
+      const handleLearnMoreClick = (gameId) => {
+        setSelectedGame(gameId); 
+        // console.log("selectedGame: ", selectedGame );
+        // use a useEffect to execute additional code
+      }
+
   // create method to search for games and set state on form submit
   const handleGameSearchFormSubmit = async (event) => {
     event.preventDefault();
@@ -86,6 +93,7 @@ const SearchGames = () => {
       // console.log ("min_age: ", data.games[0].min_age);
       // console.log ("rules_url: ", data.games[0].rules_url)
       // console.log ("official_url: ", data.games[0].official_url);
+
 
       const setLength = (description) => {
         if(description.length > 450){
@@ -182,7 +190,10 @@ const SearchGames = () => {
               </Typography>
             </CardContent>
         <CardActions>
-          <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+          <StyledButton onClick={() => {
+                  handleLearnMoreClick(game.gameId);
+          }}
+                 size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
         </CardActions>
       </Card>
       </Grid>
@@ -190,6 +201,9 @@ const SearchGames = () => {
           })}
     </Grid>
 
+
+
+          {/* This starts the hard code output to be replaced by filtered data */}
     <Grid container align="center" sx={{ justifyContent:'center', padding: '20px' }}>
       <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
         <Typography variant="h4" align="center" gutterBottom>
