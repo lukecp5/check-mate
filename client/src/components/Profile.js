@@ -10,29 +10,42 @@ import  { Grid }  from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
-import usePagination from '@mui/material/usePagination';
 
 const StatBox = styled(Card)(({ theme }) => ({
     color: "#ffffff",
-    mt: '20px', 
     padding: '10px', 
     textAlign:'center', 
     background: `linear-gradient(to right, ${theme.palette.tertiary.dark}, ${theme.palette.tertiary.main}, ${theme.palette.tertiary.light})`, 
-    marginBottom: '20px', 
+    margin: '10px 0', 
     textAlign: "left", 
-    height: 350
 })); 
 
 const FriendBox = styled(Card)(({ theme }) => ({
-    color: "#ffffff",
-    mt: '20px', 
+    color: "#ffffff", 
     padding: '10px', 
     textAlign:'center', 
     background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
-    marginBottom: '20px', 
-    textAlign: "left", 
-    height: 350
+    margin: '10px 0', 
+    textAlign: "center", 
 })); 
+
+const MyAvatar = styled(Avatar)(({ theme }) => ({
+    margin: 20,  
+    background: randomColor(), 
+    width: 56, 
+    height: 56,
+})); 
+
+//This changes the colors of the backgrounds of each of the cards
+// Theme colors added to array, Took out Green because of Green background
+var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
+var randomColor = () => {
+    return colors[Math.floor(Math.random()* colors.length)];
+};
+var elements = document.getElementsByClassName(Card);
+    for (var i=0; i<elements.length; i++) {
+    elements[i].style.backgroundColor = randomColor();
+};
 
 export default function Profile() {
     const [page, setPage] = useState(1); 
@@ -44,12 +57,12 @@ export default function Profile() {
 
     return (
     <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={5}>
+        <Grid item xs={12} sm={5}>
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
                         <Avatar alt="User" src="/static/images/avatar/1.jpg" />
-                        <Typography variant="h4">
+                        <Typography variant="h5">
                             Welcome back, User!
                         </Typography>
                     </Stack>
@@ -73,19 +86,25 @@ export default function Profile() {
                 </CardContent>
             </StatBox>
         </Grid>
-        <Grid item xs={12} sm={6} md={7}>
+        <Grid item xs={12} sm={7} >
             <FriendBox>
                 <CardContent>
                     <Grid container spacing={2}> 
                     {Array.from(Array(6)).map((_, index) => (
-                        <Grid item xs={3} sm={4} md={4} key={index}>
-                            <Avatar>B</Avatar>
-                            <Typography xs={{textAlign:"center"}} varient="h6">Ben</Typography>
+                        <Grid item xs={6} sm={4} lg={3} key={index} sx={{display: 'flex', justifyContent: 'center'}}>
+                            <MyAvatar>B</MyAvatar> 
+                            <Typography varient="h6" sx={{alignSelf: 'center',}}>Ben</Typography>
                         </Grid>
                         ))}
                     </Grid>
-                    <Stack spacing={1} xs={{ width: "100%"}}>
-                        <Pagination count={5} variant="outlined" page={page} onPageChange={handlePageChange}/> 
+                    <Stack>
+                        <Pagination 
+                            count={5} 
+                            variant="outlined" 
+                            page={page} 
+                            onPageChange={handlePageChange}
+                            sx={{mt: 5, alignSelf: 'center'}}
+                        /> 
                     </Stack>
                 </CardContent>
             </FriendBox>
