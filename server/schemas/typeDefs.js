@@ -6,12 +6,14 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    password: String
     bookCount: Int
-    matches: [Match]
-    teams: [Team]
-    games: [Game]
+    # matches: [Match]
+    # teams: [Team]
+    # games: [Game]
     wins: Int
     losses: Int
+    friends: [ User ]
     avatar: String
   }
 

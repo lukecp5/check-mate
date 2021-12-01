@@ -1,11 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from Book.js
-const Match = require('./Match');
-const Team = require('./Team');
-const Game = require('./Game');
-
 const userSchema = new Schema(
 	{
 		firstName: {
@@ -13,7 +8,7 @@ const userSchema = new Schema(
 			required: true,
 			trim: true
 		},
-		  lastName: {
+		lastName: {
 			type: String,
 			required: true,
 			trim: true
@@ -28,36 +23,33 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		matches: [
+		friends: [
 			{
 				type: Schema.Types.ObjectId,
-				ref: 'Match',
+				ref: 'User',
 			},
 		],
-		teams: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Team',
-			},
-		],
-		games: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Game',
-			},
-		],
-		wins: {
-			type: Number,
-			default: 0,
-		},
+		// // +  Only track the last 5 games played, set after a match is submitted
+		// games: [
+		// 	{
+		// 		type: Schema.Types.ObjectId,
+		// 		ref: 'Game',
+		// 	},
+		// ],
+		// + Change wins to be array of objects containing game and number of wins
+		wins: [{ name: String, wins: Number }],
 		losses: {
 			type: Number,
 			default: 0,
 		},
+		ties: {
+			type: Number,
+			default: 0
+		},
 		avatar: {
 			type: String,
 			default: 'https://i.imgur.com/X2JhY8J.png',
-		},
+		}
 	},
 	// set this to use virtual below
 	{
