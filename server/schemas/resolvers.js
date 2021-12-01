@@ -13,13 +13,13 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    getFriends: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.find({ _id: context.user._id }).select('-__v -password');
+    // getFriends: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const userData = await User.find({ _id: context.user._id }).select('-__v -password');
 
-        return userData.friends;
-      }
-
+    //     return userData.friends;
+    //   }
+    // },
     findaltrules: async (parent, args, context) => {
       if (context.user) {
         const altruleData = await Altrules.findall({});
@@ -29,7 +29,6 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     }
   },
-
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -41,7 +40,7 @@ const resolvers = {
       const user = await User.findOne({ _id: context.user._id });
       const game_id = args.game_id;
 // ! Fix addMatch to use the new match model
-      
+    },
     addAltrules: async (parent, args) => {
       const altrules = await Altrules.create(args);
 
@@ -64,17 +63,17 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveWin: async (parent, { winData }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { wins: winData } },
-          { new: true }
-        );
+    // saveWin: async (parent, { winData }, context) => {
+    //   if (context.user) {
+    //     const updatedUser = await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $push: { wins: winData } },
+    //       { new: true }
+    //     );
 
-        return updatedUser;
-      }
-
+    //     return updatedUser;
+    //   }
+    // }
 
     //   throw new AuthenticationError('You need to be logged in!');
     // },
@@ -91,7 +90,7 @@ const resolvers = {
 
     //   throw new AuthenticationError('You need to be logged in!');
     // },
-  },
-};
+  }
+}
 
 module.exports = resolvers;
