@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import SubmitBtn from '../components/SubmitBtn'; 
+import { Typography } from '@mui/material';
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -31,56 +35,48 @@ function Signup(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
-
-      <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            placeholder="First"
-            name="firstName"
-            type="firstName"
-            id="firstName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+    <Box 
+      onSubmit={handleFormSubmit}
+      component="form"
+      autoComplete="off"
+      sx={{'& .MuiTextField-root': { m: 1, width: '25ch' }, display: 'flex', flexDirection:'column', flexWrap: 'wrap', alignItems: 'center'}}
+    >
+      <TextField
+        required
+        label="First Name"
+        name="firstName"
+        type="firstName"
+        id="firstName"
+        onChange={handleChange}
+      />
+      <TextField
+        required
+        label="Last Name"
+        name="lastName"
+        type="lastName"
+        id="lastName"
+        onChange={handleChange}
+      />
+      <TextField
+        required
+        label="Email"
+        name="email"
+        type="email"
+        id="email"
+        onChange={handleChange}
+      />
+      <TextField
+        required
+        label="Password"
+        name="password"
+        type="password"
+        id="pwd"
+        onChange={handleChange}
+      />
+      <SubmitBtn type="submit">Register</SubmitBtn>
+      <Typography>Already have an account?</Typography>
+      <Link to="/login">Sign in here</Link>
+    </Box>
   );
 }
 
