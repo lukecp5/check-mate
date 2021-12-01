@@ -13,6 +13,13 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    // getFriends: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const userData = await User.find({ _id: context.user._id }).select('-__v -password');
+
+    //     return userData.friends;
+    //   }
+    // },
     findaltrules: async (parent, args, context) => {
       if (context.user) {
         const altruleData = await Altrules.findall({});
@@ -22,7 +29,6 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     }
   },
-
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -30,12 +36,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addAltrules: async (parent, args) => {
-      const altrules = await Altrules.create(args);
-
-      return { altrules };
-
-    },
+    
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -52,16 +53,57 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    // saveBook: async (parent, { bookData }, context) => {
+
+    addLoss: async (parent, { lossData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { losses: lossData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+    },
+    addWin: async (parent, { winData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { wins: winData } },
+          { new: true }
+        );
+      }
+    },
+    addTie: async (parent, { tieData }, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id });
+        if(user.ties.game === tieData.game) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id, ties: user.ties.game },
+          { $inc: { ties: 1 } },
+          { new: true }
+        );
+        }
+      }
+    },
+
+    addAltrules: async (parent, args) => {
+      const altrules = await Altrules.create(args);
+
+      return { altrules };
+
+    },
+    // saveWin: async (parent, { winData }, context) => {
     //   if (context.user) {
     //     const updatedUser = await User.findByIdAndUpdate(
     //       { _id: context.user._id },
-    //       { $push: { savedBooks: bookData } },
+    //       { $push: { wins: winData } },
     //       { new: true }
     //     );
 
     //     return updatedUser;
     //   }
+    // }
 
     //   throw new AuthenticationError('You need to be logged in!');
     // },
@@ -78,7 +120,7 @@ const resolvers = {
 
     //   throw new AuthenticationError('You need to be logged in!');
     // },
-  },
-};
+  }
+}
 
 module.exports = resolvers;
