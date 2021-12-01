@@ -6,7 +6,7 @@ const winSchema = new Schema({
       },
       wins: {
             type: Number
-      },
+      }
 });
 
 module.exports =  winSchema;
