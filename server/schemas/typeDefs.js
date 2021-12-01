@@ -5,7 +5,7 @@ const { Kind } = require('graphql/language');
 
 const typeDefs = gql`
   scalar Date
-  
+
   type User {
     _id: ID!
     firstName: String
@@ -20,7 +20,16 @@ const typeDefs = gql`
   type Win {
     _id: ID!
     game: String
-    date: Date
+  }
+
+  type Loss{
+    _id: ID!
+    game: String
+  }
+
+  type Tie{
+    _id: ID!
+    game: String
   }
 
   type Altrules {
@@ -55,6 +64,10 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+
+    addWin(game: String!): Win
+    addLoss(game: String!): Loss
+    addTie(game: String!): Tie
     # addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
     # saveBook(bookData: BookInput!): User
     addAltrules(game_id: String!, user: String!, description: String!,rule_set_name: String! ): Altrules
