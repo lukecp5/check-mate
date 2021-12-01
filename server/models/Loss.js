@@ -6,7 +6,7 @@ const lossSchema = new Schema({
       },
       losses: {
             type: Number
-      },
+      }
 });
 
 module.exports =  lossSchema;
