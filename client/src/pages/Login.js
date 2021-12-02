@@ -52,7 +52,7 @@ function Login(props) {
         > 
           Welcome to CheckMate!
         </Typography>
-        <Typography varient="body1">CheckMate is the app to keep track of your game nights with friends and family! Whether you're a competitive person or not, it's a great way to compare yourself to your opponents. Share your statistics with friends and see who the best is. Anyone can create an account, play on teams, and keep track of their wins and losses.</Typography>
+        <Typography varient="body1" sx={{textAlign: 'center', margin: '10px'}}>CheckMate is the app to keep track of your game nights with friends and family! Whether you're a competitive person or not, it's a great way to compare yourself to your opponents. Share your statistics with friends and see who the best is. Anyone can create an account, play on teams, and keep track of their wins and losses.</Typography>
       </WelcomeMessage>
       
       <Box 
