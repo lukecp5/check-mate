@@ -55,7 +55,7 @@ export const ADD_WIN = gql`
         ties
       }
     }
-  }}`;
+  }`;
 
 export const ADD_LOSS = gql`
   mutation addLoss(
