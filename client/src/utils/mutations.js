@@ -51,3 +51,29 @@ export const ADD_WIN = gql`
     }
   }}`;
   
+export const ADD_LOSS = gql`
+  mutation addLoss(
+  $game: String!
+  ) {
+    addLoss(
+      game: $game) {
+        _id
+        firstName
+        lastName
+        email
+        wins{
+          game
+          wins
+        }
+        losses{
+          game
+          losses
+        }
+        ties{
+          game
+          ties
+        }
+
+    }
+  }
+  `;
