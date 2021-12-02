@@ -88,6 +88,25 @@ export const ADD_LOSS = gql`
   mutation addTie(
   $game: String!
   ) {
+    addTie(
+      game: $game) {
+        _id
+        firstName
+        lastName
+        email
+        wins{
+          game
+          wins
+        }
+        losses{
+          game
+          losses
+        }
+        ties{
+          game
+          ties
+        }
 
+    }
   }
   `;
