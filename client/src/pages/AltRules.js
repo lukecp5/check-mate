@@ -32,7 +32,7 @@ const AltRules = () => {
 
     const [user, setCurrentUser] = useState('Timmy');
 
-    const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Play until all water Tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
+    const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
 
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
@@ -212,7 +212,7 @@ const AltRules = () => {
         <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
             <Grid container>
                 <Grid item xs={12}>
-                    <Typography variant="h4" align="center" sx={{ m:3}}>
+                    <Typography variant="h4" sx={{ m:3, textAlign: 'center'}}>
                         Browse the alternate rulesets and modifiers available or add your own.
                     </Typography>
                 </Grid>
@@ -227,13 +227,13 @@ const AltRules = () => {
                 {returnedDatafromDB.map((game) => {
                     return (
                         <Grid item xs={12}>
-                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
+                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
                                 <CardContent>
-                                    <Typography variant="h5" color="text.primary" align="left" sx={{mb:1}}>
+                                    <Typography variant="h5" color="text.primary" sx={{mb:1}}>
                                         {game.rulesetName}
                                     </Typography>
                                     <Typography variant="h5" sx={{ mb:2 }}>
-                                        {game.user}
+                                        Submitted by: {game.user}
                                     </Typography>
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                         {game.desc}
@@ -244,22 +244,6 @@ const AltRules = () => {
                     )
                 })}
 
-
-                <Grid item xs={12}>
-                <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
-                    <CardContent>
-                        <Typography variant="h5" color="text.primary" align="left" sx={{mb:1}}>
-                            RulesetName
-                        </Typography>
-                        <Typography variant="h5" sx={{ mb:2 }}>
-                            Submitted by User
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            kagoinei gp bp4or bp4omwb plmr bwlmrplb mpwm pbgmw rpbm pwrombp owrmpb owm promb pwromb powrm.
-                        </Typography>
-                    </CardContent>
-                    </Box>
-                </Grid>
             </Grid>
         </Box>
         </Grid>
