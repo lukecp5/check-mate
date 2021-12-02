@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
 import Button from '@mui/material/Button';
 import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled, textAlign } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image from '../Images/gamebackgroundimage.png';
 import { Link } from "react-router-dom";
+import SubmitBtn from './SubmitBtn'; 
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -37,10 +37,10 @@ const SearchGames = () => {
       var randomColor = () => {
           return colors[Math.floor(Math.random()* colors.length)];
       };
-      var elements = document.getElementsByClassName(Card);
-          for (var i=0; i<elements.length; i++) {
-          elements[i].style.backgroundColor = randomColor();
-      };
+      // var elements = document.getElementsByClassName(Card);
+      //     for (var i=0; i<elements.length; i++) {
+      //     elements[i].style.backgroundColor = randomColor();
+      // };
 
 
   const handleLearnMoreClick = (selectedGameId) => {
@@ -125,6 +125,11 @@ const SearchGames = () => {
     }
   };
 
+  const MyHeader = styled(Typography)(({ theme }) => ({
+    color: 'white', 
+    textShadow: `3px 3px 10px ${theme.palette.tertiary.dark}`, 
+
+  })); 
   return (
     <>
     <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff', borderRadius: 0 }}>
@@ -133,34 +138,38 @@ const SearchGames = () => {
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
-            <Typography variant="h3" align="center" sx={{ color: '#ffffff'}} gutterBottom>
+            <MyHeader variant="h3" align="center" gutterBottom>
               Find Your Game!
-            </Typography>
+
+            </MyHeader>
+            {/* <img alt="" src= {Find}/> */}
           </Grid>
 
           <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
             <form onSubmit={handleGameSearchFormSubmit}>
               <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
                 <TextField
+                  required
                   name="searchInput"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type="text"
-                    size="lg"
-                    placeholder="Enter name of Game"
-                    sx= {{background: '#ffffff', color: '#616161', borderRadius: 2, textAlign: 'center'}}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type="text"
+                  size="lg"
+                  placeholder="Enter name of Game"
+                  sx= {{background: '#ffffff', borderRadius: 2, textAlign: 'center'}}
                 />
+                {/* color: '#616161' */}
               </Grid>
-
-              <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
-                <Button type="submit" variant="contained" sx= {{background: '#ffffff', color: '#616161', "&:hover": {
+              <Grid item sx={{display: 'flex', justifyContent: 'center'}}>
+                <SubmitBtn type="submit">Search</SubmitBtn>
+              </Grid>
+                {/* <Button type="submit" variant="contained" sx= {{background: '#ffffff', color: '#616161', "&:hover": {
                       color: '#ffffff',
                       background: '#D70060',
                       // border: "2px solid white",
                   }}}>
                   Search
-                </Button>
-              </Grid>
+                </Button> */}
             </form>
           </Grid>
         </Grid>  
@@ -171,7 +180,7 @@ const SearchGames = () => {
   <Grid container sx={{ justifyContent:'center' }}>
     {searchedGames.map((game) => {
       return (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
+        <Grid item item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}} key={game.gameId}>
           <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
             <CardContent sx={{ textAlign: 'center' }}>
             
