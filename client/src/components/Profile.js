@@ -6,7 +6,7 @@ import { styled } from '@mui/system';
 import  { Grid }  from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 import Popover from '@mui/material/Popover';
 
 //this styles the User's stat box. Orange/red box 
@@ -17,6 +17,7 @@ const StatBox = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.tertiary.dark}, ${theme.palette.tertiary.main}, ${theme.palette.tertiary.light})`, 
     margin: '10px 0', 
     textAlign: "left", 
+    borderRadius: 0,
 })); 
 
 //this styles the Friend's box, the green box 
@@ -27,12 +28,24 @@ const FriendBox = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
     margin: '10px 0', 
     textAlign: "center", 
+    borderRadius: 0, 
 })); 
 
 //this styles the friend's avatars 
 const MyAvatar = styled(Avatar)(({ theme }) => ({
     margin: 20,  
     background: randomColor(), 
+    width: 56, 
+    height: 56,
+    '&:hover': {
+    cursor: 'pointer', 
+    opacity: .7, 
+    }
+})); 
+
+//this styles the friend's avatars 
+const UserAvatar = styled(Avatar)(({ theme }) => ({
+    background: userRandomColor(), 
     width: 56, 
     height: 56,
 })); 
@@ -71,19 +84,20 @@ var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
 var randomColor = () => {
     return colors[Math.floor(Math.random()* colors.length)];
 };
-var elements = document.getElementsByClassName(Card);
-    for (var i=0; i<elements.length; i++) {
-    elements[i].style.backgroundColor = randomColor();
+
+var userColors = ['#00A1CB','#01A4A4','#113F8C', '#61AE24', '#D0D102', '#32742C'];
+var userRandomColor = () => {
+    return userColors[Math.floor(Math.random()* colors.length)];
 };
 
 export default function Profile() {
-    //this handles the pagniation changes 
-    const [page, setPage] = useState(1); 
+    // //this handles the pagniation changes 
+    // const [page, setPage] = useState(1); 
 
-    const handlePageChange = (event, newPage) => {
-        setPage(newPage); 
-        console.log(event.target); 
-    }
+    // const handlePageChange = (event, newPage) => {
+    //     setPage(newPage); 
+    //     console.log(event.target); 
+    // }
 
     //this handles the popovers on the friends list 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -105,7 +119,7 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                        <Avatar alt="User" src="/static/images/avatar/1.jpg" />
+                        <UserAvatar alt="User" />
                         {/* TODO: Replace User with Username from DB */}
                         <Typography variant="h5">
                             Welcome back, User!
@@ -221,13 +235,13 @@ export default function Profile() {
                         ))}
                     </Grid>
                     <Stack>
-                        <Pagination 
+                        {/* <Pagination 
                             count={5} 
                             variant="outlined" 
                             page={page} 
                             onPageChange={handlePageChange}
                             sx={{mt: 5, alignSelf: 'center'}}
-                        /> 
+                        />  */}
                     </Stack>
                 </CardContent>
             </FriendBox>
