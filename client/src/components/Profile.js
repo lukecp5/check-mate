@@ -6,8 +6,9 @@ import { styled } from '@mui/system';
 import  { Grid }  from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -17,6 +18,7 @@ const StatBox = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.tertiary.dark}, ${theme.palette.tertiary.main}, ${theme.palette.tertiary.light})`, 
     margin: '10px 0', 
     textAlign: "left", 
+    borderRadius: 0,
 })); 
 
 //this styles the Friend's box, the green box 
@@ -27,12 +29,24 @@ const FriendBox = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
     margin: '10px 0', 
     textAlign: "center", 
+    borderRadius: 0, 
 })); 
 
 //this styles the friend's avatars 
 const MyAvatar = styled(Avatar)(({ theme }) => ({
     margin: 20,  
     background: randomColor(), 
+    width: 56, 
+    height: 56,
+    '&:hover': {
+    cursor: 'pointer', 
+    opacity: .7, 
+    }
+})); 
+
+//this styles the friend's avatars 
+const UserAvatar = styled(Avatar)(({ theme }) => ({
+    background: userRandomColor(), 
     width: 56, 
     height: 56,
 })); 
@@ -71,19 +85,20 @@ var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
 var randomColor = () => {
     return colors[Math.floor(Math.random()* colors.length)];
 };
-var elements = document.getElementsByClassName(Card);
-    for (var i=0; i<elements.length; i++) {
-    elements[i].style.backgroundColor = randomColor();
+
+var userColors = ['#00A1CB','#01A4A4','#113F8C', '#61AE24', '#D0D102', '#32742C'];
+var userRandomColor = () => {
+    return userColors[Math.floor(Math.random()* colors.length)];
 };
 
 export default function Profile() {
-    //this handles the pagniation changes 
-    const [page, setPage] = useState(1); 
+    // //this handles the pagniation changes 
+    // const [page, setPage] = useState(1); 
 
-    const handlePageChange = (event, newPage) => {
-        setPage(newPage); 
-        console.log(event.target); 
-    }
+    // const handlePageChange = (event, newPage) => {
+    //     setPage(newPage); 
+    //     console.log(event.target); 
+    // }
 
     //this handles the popovers on the friends list 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -105,7 +120,7 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                        <Avatar alt="User" src="/static/images/avatar/1.jpg" />
+                        <UserAvatar alt="User" />
                         {/* TODO: Replace User with Username from DB */}
                         <Typography variant="h5">
                             Welcome back, User!
@@ -139,7 +154,8 @@ export default function Profile() {
         <Grid item xs={12} sm={7} >
             <FriendBox>
                 <CardContent>
-                    <Grid container spacing={2}> 
+                    <Grid container spacing={2} sx={{justifyContent: 'center'}}> 
+                    <Typography variant="h4">My Friends</Typography>
                     {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
                     {myFriends.map((friend, index) => (
                         <Grid 
@@ -148,12 +164,14 @@ export default function Profile() {
                             key={index} 
                             sx={{display: 'flex', justifyContent: 'center'}}
                         >
-                            <MyAvatar aria-describeby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
-                            <Typography 
-                                varient="h6" 
-                                sx={{alignSelf: 'center'}}
-                            >{friend.name}
-                            </Typography>
+                            <Tooltip title="See Stats">
+                                <MyAvatar aria-describeby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
+                            </Tooltip>
+                                <Typography 
+                                    varient="h6" 
+                                    sx={{alignSelf: 'center'}}
+                                >{friend.name}
+                                </Typography>
                             <Popover
                                 id={id}
                                 open={open}
@@ -166,61 +184,61 @@ export default function Profile() {
                                 }}
                             >
                                 {/* TODO: Replace with friend's name */}
-                                <Typography varient="h6">{myFriends[0].name}</Typography>
+                                <Typography variant="h6">{myFriends[0].name}</Typography>
                                 {/* TODO: Replace with how many times they have played together */}
-                                <Typography varient="body2">Teamup Times: 20</Typography>
+                                <Typography variant="body2">Teamup Times: 20</Typography>
                                 {/* TODO: Replace with friend's game they have played the most */}
-                                <Typography varient="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
+                                <Typography variant="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
                                 <Grid container spacing={2} sx={{marginBottom: 2}}> 
                                     <Grid item>
-                                        <Typography varient="div">.</Typography>
-                                        <Typography varient="body1">Wins:</Typography>
-                                        <Typography varient="body1">Loses:</Typography>
+                                        <Typography variant="div">.</Typography>
+                                        <Typography variant="body1">Wins:</Typography>
+                                        <Typography variant="body1">Loses:</Typography>
                                     </Grid>
                                     <Grid item>
                                         {/* TODO: Replace with Friend's name */}
-                                        <Typography varient="body1">{myFriends[0].name}</Typography>
+                                        <Typography variant="body1">{myFriends[0].name}</Typography>
                                         {/* TODO: Replace with Friends Total Wins */}
-                                        <Typography varient="body2">12</Typography>
+                                        <Typography variant="body2">12</Typography>
                                         {/* TODO: Replace with Friends Total Losses */}
-                                        <Typography varient="body2">3</Typography>
+                                        <Typography variant="body2">3</Typography>
                                         
                                     </Grid>
                                     <Grid item>
-                                        <Typography varient="body1">Me</Typography>
+                                        <Typography variant="body1">Me</Typography>
                                         {/* TODO: Replace with Users Total Wins */}
-                                        <Typography varient="body2">18</Typography>
+                                        <Typography variant="body2">18</Typography>
                                         {/* TODO: Replace with Users Total Losses */}
-                                        <Typography varient="body2">0</Typography>
+                                        <Typography variant="body2">0</Typography>
                                     </Grid>
                                 </Grid>
-                                <Typography varient="h6" sx={{textAlign: 'center'}}>Total Wins</Typography>
+                                <Typography variant="h6" sx={{textAlign: 'center'}}>Total Wins</Typography>
                                 {/* TODO: Replace this with a .map for our user's common games. Shows the wins from each game the user and friend have played together */}
                                 <Grid container spacing={2}> 
                                     <Grid item>
-                                        <Typography varient="div">.</Typography>
-                                        <Typography varient="body1">Monopoly:</Typography>
-                                        <Typography varient="body1">Yahtzee:</Typography>
-                                        <Typography varient="body1">Life:</Typography>
+                                        <Typography variant="div">.</Typography>
+                                        <Typography variant="body1">Monopoly:</Typography>
+                                        <Typography variant="body1">Yahtzee:</Typography>
+                                        <Typography variant="body1">Life:</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography varient="body1">{myFriends[0].name}</Typography>
-                                        <Typography varient="body2">5</Typography>
-                                        <Typography varient="body2">1</Typography>  
-                                        <Typography varient="body2">3</Typography>
+                                        <Typography variant="body1">{myFriends[0].name}</Typography>
+                                        <Typography variant="body2">5</Typography>
+                                        <Typography variant="body2">1</Typography>  
+                                        <Typography variant="body2">3</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography varient="body1">Me</Typography>
-                                        <Typography varient="body2">4</Typography>
-                                        <Typography varient="body2">10</Typography>
-                                        <Typography varient="body2">1</Typography>
+                                        <Typography variant="body1">Me</Typography>
+                                        <Typography variant="body2">4</Typography>
+                                        <Typography variant="body2">10</Typography>
+                                        <Typography variant="body2">1</Typography>
                                     </Grid>
                                 </Grid>
                             </Popover>
                         </Grid>
                         ))}
                     </Grid>
-                    <Stack>
+                    {/* <Stack>
                         <Pagination 
                             count={5} 
                             variant="outlined" 
@@ -228,7 +246,7 @@ export default function Profile() {
                             onPageChange={handlePageChange}
                             sx={{mt: 5, alignSelf: 'center'}}
                         /> 
-                    </Stack>
+                    </Stack> */}
                 </CardContent>
             </FriendBox>
         </Grid>
