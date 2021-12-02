@@ -83,8 +83,9 @@ const resolvers = {
         );
 
         return updatedUser;
-      }
-    },
+        }
+    }
+  },
     addWin: async (parent, { winData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
