@@ -10,6 +10,11 @@ import Stack from '@mui/material/Stack';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 
+// Import the useQuery and useMutation hooks
+import { useQuery, useMutation } from '@apollo/client';
+// Import the USER_INFO query
+import { USER_INFO } from '../utils/queries'
+
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
     color: "#ffffff",
@@ -94,6 +99,11 @@ var userRandomColor = () => {
 export default function Profile() {
     // //this handles the pagniation changes 
     // const [page, setPage] = useState(1); 
+
+    // This is the state for the user's info
+    const { loading, error, data } = useQuery(USER_INFO);
+	const userInfo = data ? data.userInfo : {};
+    console.log(userInfo);
 
     // const handlePageChange = (event, newPage) => {
     //     setPage(newPage); 
