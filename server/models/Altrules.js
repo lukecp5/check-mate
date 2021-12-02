@@ -7,7 +7,7 @@ const altrulesSchema = new Schema({
       },
     user: {
         type: String,
-        reuired: true,
+        required: true,
       },
     description: {
         type: String,

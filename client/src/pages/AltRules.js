@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-//import { useMutation } from '@apollo/client';
-//import { SAVE_RULES } from '../utils/mutations';
-//import { saveGameIds, getSavedGameIds } from '../utils/localStorage';
+import { useMutation } from '@apollo/client';
+
 
 //import Auth from '../utils/auth';
-
+import {ADD_ALTRULES} from '../utils/mutations';
 import Button from '@mui/material/Button';
 import { 
     Typography, 
@@ -12,22 +11,29 @@ import {
     ListItemText, 
     ListItemButton, 
     List } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
+// import Grid from '@mui/material/Grid';
+// import Box from '@mui/material/Box';
+// import CardContent from '@mui/material/CardContent';
+import { Grid, Box, CardContent, CardMedia } from '@mui/material';
 
 const AltRules = () => {
     const [searchedGames, setSearchedGames] = useState([]);
 
     const [searchInput, setSearchInput] = useState('');
 
-    const [selectedIndex, setSelectedIndex] = React.useState('');
+    const [selectedIndex, setSelectedIndex] = useState('');
 
     const [altRules, setAltRules] = useState('');
+
+    const [altRulesName, setAltRulesName] = useState('');
 
     const [gameId, setGameID] = useState('');
 
     const [user, setCurrentUser] = useState('Timmy');
+
+    const [addAltRules, {error}] = useMutation(ADD_ALTRULES);
+
+    const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
 
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
@@ -36,12 +42,19 @@ const AltRules = () => {
 
     const handleRulesFormSubmit = async (event) => {
         event.preventDefault();
-
-
+        
+        try {
+            await addAltRules({
+                variables: { game_id: gameId, user: user, description: altRules, rule_set_name: altRulesName },
+            });
+        } catch (err) {
+            console.log(err);
+        }
         console.log("gameId: ", gameId);
+        console.log("altRulesName: ", altRulesName);
         console.log("altRules: ", altRules);
         console.log("user:", user)
-    }
+    };
     
     const handleGameSearchFormSubmit = async (event) => {
         event.preventDefault();
@@ -121,13 +134,23 @@ const AltRules = () => {
                             <List>
                                 {searchedGames.map((game) => {
                                     return (
-                                        <ListItemButton key={game.gameId} 
-                                        sx={{m:1}}
-                                        // selected={game.gameId}
-                                        onClick={(event) => handleListItemClick(event, game.gameName, game.gameId )}
-                                    >
-                                        <ListItemText primary={game.gameName} />
-                                    </ListItemButton>  
+                                        <CardContent sx={{ align: 'center'}} key={game.gameId}>
+                                            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                                <CardMedia
+                                                    component="img"
+                                                    sx={{ height: 50, width: 50}}
+                                                    image={game.image_url}
+                                                    alt="Board game box cover"
+                                                />
+                                        
+                                                <ListItemButton key={game.gameId} 
+                                                    sx={{m:1}}
+                                                    onClick={(event) => handleListItemClick(event, game.gameName, game.gameId )}
+                                                >
+                                                    <ListItemText primary={game.gameName} />
+                                                </ListItemButton>
+                                            </Box> 
+                                    </CardContent> 
                                     )
                                 })}
                             </List>                            
@@ -150,6 +173,18 @@ const AltRules = () => {
                                         {selectedIndex}
                                     </Typography>
                             ) : null}
+                            </Grid>
+
+                            <Grid item xs={12} sx={{ width: 400, maxWidth: '100%', ml:3, mr: 3, mt:2, mb:2, }}>
+                                {selectedIndex.length ? ( 
+                                <TextField
+                                    name="altRulesName"
+                                    value={altRulesName}
+                                    onChange={(e) => setAltRulesName(e.target.value)} 
+                                    label="New Rule Set Name" 
+                                    id="altRuleName"
+                                />
+                                 ) : null}                        
                             </Grid>
 
                             <Grid item xs={12} sx={{ width: 500, maxWidth: '100%', ml:3, mr: 3, mt:2, mb:2, }}>
@@ -180,11 +215,12 @@ const AltRules = () => {
                 </Box>
             </Grid>
         
+        {/* THIS IS THE START OF THE ALTERNATE RULES DISPLAY */}
         <Grid item xs={12} md ={6}>
         <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
             <Grid container>
                 <Grid item xs={12}>
-                    <Typography variant="h4" align="center" sx={{ m:3}}>
+                    <Typography variant="h4" sx={{ m:3, textAlign: 'center'}}>
                         Browse the alternate rulesets and modifiers available or add your own.
                     </Typography>
                 </Grid>
@@ -194,38 +230,28 @@ const AltRules = () => {
                                 Currently viewing rules for {selectedIndex}
                             </Typography>
                         ) : null}
-                        </Grid>
-                <Grid item xs={12}>
-                <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
-                    <CardContent>
-                        <Typography variant="h5" color="text.primary" align="left" sx={{mb:1}}>
-                            RulesetName
-                        </Typography>
-                        <Typography variant="h5" sx={{ mb:2 }}>
-                            Submitted by User
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            kagoinei gp bp4or bp4omwb plmr bwlmrplb mpwm pbgmw rpbm pwrombp owrmpb owm promb pwromb powrm.
-                        </Typography>
-                    </CardContent>
-                    </Box>
                 </Grid>
 
-                <Grid item xs={12}>
-                <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'center', borderRadius: 12 }}>
-                    <CardContent>
-                        <Typography variant="h5" color="text.primary" align="left" sx={{mb:1}}>
-                            RulesetName
-                        </Typography>
-                        <Typography variant="h5" sx={{ mb:2 }}>
-                            Submitted by User
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            kagoinei gp bp4or bp4omwb plmr bwlmrplb mpwm pbgmw rpbm pwrombp owrmpb owm promb pwromb powrm.
-                        </Typography>
-                    </CardContent>
-                    </Box>
-                </Grid>
+                {returnedDatafromDB.map((game) => {
+                    return (
+                        <Grid item xs={12} key={game.rulesetName}>
+                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
+                                <CardContent>
+                                    <Typography variant="h5" color="text.primary" sx={{mb:1}}>
+                                        {game.rulesetName}
+                                    </Typography>
+                                    <Typography variant="h5" sx={{ mb:2 }}>
+                                        Submitted by: {game.user}
+                                    </Typography>
+                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        {game.desc}
+                                    </Typography>
+                                </CardContent>
+                            </Box>
+                        </Grid>
+                    )
+                })}
+
             </Grid>
         </Box>
         </Grid>
