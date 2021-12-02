@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 
-//import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import {ADD_ALTRULES} from '../utils/mutations';
 import Button from '@mui/material/Button';
 import { 
@@ -31,7 +31,7 @@ const AltRules = () => {
 
     const [user, setCurrentUser] = useState('Timmy');
 
-    const [addAltRules, {error}] = useMutation(ADD_ALTRULES);
+    const [addAltRules ] = useMutation(ADD_ALTRULES);
 
     const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
 
@@ -54,6 +54,7 @@ const AltRules = () => {
         console.log("altRulesName: ", altRulesName);
         console.log("altRules: ", altRules);
         console.log("user:", user)
+        
     };
     
     const handleGameSearchFormSubmit = async (event) => {

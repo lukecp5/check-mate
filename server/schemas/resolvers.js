@@ -87,7 +87,7 @@ const resolvers = {
       }
     },
 
-    addAltrules: async (parent, args) => {
+    addRules: async (parent, args) => {
       const altrules = await Altrules.create(args);
 
       return  altrules ;
