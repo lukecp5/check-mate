@@ -12,7 +12,8 @@ const typeDefs = gql`
     lastName: String
     email: String
     wins: [ Win ]
-    losses: Int
+    losses: [ Loss]
+    ties: [ Tie ]
     friends: [ User ]
     avatar: String
   }

@@ -65,33 +65,67 @@ const resolvers = {
 
     addLoss: async (parent, { lossData }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const user = await User.findOne({ _id: context.user._id });
+        const userGames = user.losses;
+        const currentGame = userGames.find(loss => loss.game === lossData.game);
+        if (currentGame) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $inc: { losses: 1 } },
+            { new: true }
+          )
+          return updatedUser;
+      }else{
+          const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { losses: lossData } },
           { new: true }
         );
-
         return updatedUser;
-      }
-    },
+        }
+    }
+  },
     addWin: async (parent, { winData }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const user = await User.findOne({ _id: context.user._id });
+        const userGames = user.wins;
+        const currentGame = userGames.find(wins => wins.game === winData.game);
+        if (currentGame) {
+          const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $inc: { ties: 1 } },
+          { new: true }
+        );
+        return updatedUser;
+        } else{
+          const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { wins: winData } },
           { new: true }
         );
+        return updatedUser;
+        }
       }
     },
     addTie: async (parent, { tieData }, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id });
-        if(user.ties.game === tieData.game) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id, ties: user.ties.game },
+        const userGames = user.ties;
+        const currentGame = userGames.find(tie => tie.game === tieData.game);
+        if(currentGame) {
+          const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
           { $inc: { ties: 1 } },
           { new: true }
         );
+        return updatedUser;
+        }else{
+          const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { ties: tieData } },
+          { new: true }
+        );
+        return updatedUser;
         }
       }
     },
