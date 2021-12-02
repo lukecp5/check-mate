@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 // import Box from '@mui/material/Box';
 import Image from '../Images/gamebackgroundimage.png';
-import Find from '../Images/findyourgame2.png';
+// import Find from '../Images/findyourgame2.png';
 import { Link } from "react-router-dom";
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
@@ -135,10 +135,10 @@ const SearchGames = () => {
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
-            {/* <Typography variant="h4" align="center" sx={{ color: '#D70060', background: 'rgb(255,255,255,0.80)', maxWidth: '400px', textAlign: 'center'}} gutterBottom>
+            <Typography variant="h3" align="center" sx={{ color: '#ffffff'}} gutterBottom>
               Find Your Game!
-            </Typography> */}
-            <img alt="" src= {Find}/>
+            </Typography>
+            {/* <img alt="" src= {Find}/> */}
           </Grid>
 
           <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
