@@ -154,7 +154,8 @@ export default function Profile() {
         <Grid item xs={12} sm={7} >
             <FriendBox>
                 <CardContent>
-                    <Grid container spacing={2}> 
+                    <Grid container spacing={2} sx={{justifyContent: 'center'}}> 
+                    <Typography variant="h4">My Friends</Typography>
                     {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
                     {myFriends.map((friend, index) => (
                         <Grid 
@@ -183,54 +184,54 @@ export default function Profile() {
                                 }}
                             >
                                 {/* TODO: Replace with friend's name */}
-                                <Typography varient="h6">{myFriends[0].name}</Typography>
+                                <Typography variant="h6">{myFriends[0].name}</Typography>
                                 {/* TODO: Replace with how many times they have played together */}
-                                <Typography varient="body2">Teamup Times: 20</Typography>
+                                <Typography variant="body2">Teamup Times: 20</Typography>
                                 {/* TODO: Replace with friend's game they have played the most */}
-                                <Typography varient="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
+                                <Typography variant="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
                                 <Grid container spacing={2} sx={{marginBottom: 2}}> 
                                     <Grid item>
-                                        <Typography varient="div">.</Typography>
-                                        <Typography varient="body1">Wins:</Typography>
-                                        <Typography varient="body1">Loses:</Typography>
+                                        <Typography variant="div">.</Typography>
+                                        <Typography variant="body1">Wins:</Typography>
+                                        <Typography variant="body1">Loses:</Typography>
                                     </Grid>
                                     <Grid item>
                                         {/* TODO: Replace with Friend's name */}
-                                        <Typography varient="body1">{myFriends[0].name}</Typography>
+                                        <Typography variant="body1">{myFriends[0].name}</Typography>
                                         {/* TODO: Replace with Friends Total Wins */}
-                                        <Typography varient="body2">12</Typography>
+                                        <Typography variant="body2">12</Typography>
                                         {/* TODO: Replace with Friends Total Losses */}
-                                        <Typography varient="body2">3</Typography>
+                                        <Typography variant="body2">3</Typography>
                                         
                                     </Grid>
                                     <Grid item>
-                                        <Typography varient="body1">Me</Typography>
+                                        <Typography variant="body1">Me</Typography>
                                         {/* TODO: Replace with Users Total Wins */}
-                                        <Typography varient="body2">18</Typography>
+                                        <Typography variant="body2">18</Typography>
                                         {/* TODO: Replace with Users Total Losses */}
-                                        <Typography varient="body2">0</Typography>
+                                        <Typography variant="body2">0</Typography>
                                     </Grid>
                                 </Grid>
-                                <Typography varient="h6" sx={{textAlign: 'center'}}>Total Wins</Typography>
+                                <Typography variant="h6" sx={{textAlign: 'center'}}>Total Wins</Typography>
                                 {/* TODO: Replace this with a .map for our user's common games. Shows the wins from each game the user and friend have played together */}
                                 <Grid container spacing={2}> 
                                     <Grid item>
-                                        <Typography varient="div">.</Typography>
-                                        <Typography varient="body1">Monopoly:</Typography>
-                                        <Typography varient="body1">Yahtzee:</Typography>
-                                        <Typography varient="body1">Life:</Typography>
+                                        <Typography variant="div">.</Typography>
+                                        <Typography variant="body1">Monopoly:</Typography>
+                                        <Typography variant="body1">Yahtzee:</Typography>
+                                        <Typography variant="body1">Life:</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography varient="body1">{myFriends[0].name}</Typography>
-                                        <Typography varient="body2">5</Typography>
-                                        <Typography varient="body2">1</Typography>  
-                                        <Typography varient="body2">3</Typography>
+                                        <Typography variant="body1">{myFriends[0].name}</Typography>
+                                        <Typography variant="body2">5</Typography>
+                                        <Typography variant="body2">1</Typography>  
+                                        <Typography variant="body2">3</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography varient="body1">Me</Typography>
-                                        <Typography varient="body2">4</Typography>
-                                        <Typography varient="body2">10</Typography>
-                                        <Typography varient="body2">1</Typography>
+                                        <Typography variant="body1">Me</Typography>
+                                        <Typography variant="body2">4</Typography>
+                                        <Typography variant="body2">10</Typography>
+                                        <Typography variant="body2">1</Typography>
                                     </Grid>
                                 </Grid>
                             </Popover>
