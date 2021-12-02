@@ -171,7 +171,7 @@ const SearchGames = () => {
   <Grid container sx={{ justifyContent:'center' }}>
     {searchedGames.map((game) => {
       return (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
+        <Grid item item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}} key={game.gameId}>
           <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
             <CardContent sx={{ textAlign: 'center' }}>
             
