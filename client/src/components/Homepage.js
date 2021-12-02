@@ -38,7 +38,7 @@ export default function BasicCard() {
     <Grid container spacing={1}>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
-        <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shoplightspeed.com/shops/636957/files/24072452/terraforming-mars.jpg" alt="surface of Mars" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -55,7 +55,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254186140-51iNoyxoamL.jpg" alt="team of CDC experts" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -72,7 +72,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1541531739549" alt="stable of unstable unicorns" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -89,7 +89,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1629324738308.jpg" alt="trains and a conductor" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -106,7 +106,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254847937-51zyVWbt8aL.jpg" alt="Napoleon on horseback" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -123,7 +123,7 @@ export default function BasicCard() {
       </Grid>
 
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shopify.com/s/files/1/0505/8019/3473/products/NM-Azul-Box-EN-Z_540x.jpg?v=1611288614" alt="stable of unstable unicorns" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">

@@ -131,7 +131,7 @@ const SearchGames = () => {
     <>
     <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff' }}>
          
-      <Grid item xs={12} sx={{ border: 2, display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
+      <Grid item xs={12} sx={{ border: 2, borderRadius: 0, display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
@@ -175,7 +175,7 @@ const SearchGames = () => {
     {searchedGames.map((game) => {
       return (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={game.gameId}>
-          <Card sx={{ maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+          <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
             <CardContent sx={{ textAlign: 'center' }}>
             
               <CardMedia
