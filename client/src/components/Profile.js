@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 // import Pagination from '@mui/material/Pagination';
 import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -162,12 +163,14 @@ export default function Profile() {
                             key={index} 
                             sx={{display: 'flex', justifyContent: 'center'}}
                         >
-                            <MyAvatar aria-describeby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
-                            <Typography 
-                                varient="h6" 
-                                sx={{alignSelf: 'center'}}
-                            >{friend.name}
-                            </Typography>
+                            <Tooltip title="See Stats">
+                                <MyAvatar aria-describeby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
+                            </Tooltip>
+                                <Typography 
+                                    varient="h6" 
+                                    sx={{alignSelf: 'center'}}
+                                >{friend.name}
+                                </Typography>
                             <Popover
                                 id={id}
                                 open={open}
@@ -234,15 +237,15 @@ export default function Profile() {
                         </Grid>
                         ))}
                     </Grid>
-                    <Stack>
-                        {/* <Pagination 
+                    {/* <Stack>
+                        <Pagination 
                             count={5} 
                             variant="outlined" 
                             page={page} 
                             onPageChange={handlePageChange}
                             sx={{mt: 5, alignSelf: 'center'}}
-                        />  */}
-                    </Stack>
+                        /> 
+                    </Stack> */}
                 </CardContent>
             </FriendBox>
         </Grid>
