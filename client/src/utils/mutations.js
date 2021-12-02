@@ -34,7 +34,7 @@ export const ADD_USER = gql`
 
 export const ADD_WIN = gql`
   mutation addWin(
-  $userId: String!, 
+  $game: String!
   ) {
     addWin(
       game: $game) {
@@ -43,4 +43,6 @@ export const ADD_WIN = gql`
       _id
       wins
       }
-    }`;
+    }
+  }}`;
+  
