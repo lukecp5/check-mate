@@ -57,6 +57,7 @@ const typeDefs = gql`
   type Query {
     me: User
     user(_id: ID!): User
+    userInfo: User
     users: [User]
     findaltrules(game_id: String!): [Altrules]  
   }
