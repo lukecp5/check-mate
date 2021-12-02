@@ -41,7 +41,12 @@ export const ADD_WIN = gql`
       token
       user{
       _id
+      firstName
+      lastName
+      email
       wins
+      losses
+      ties
       }
     }
   }}`;
