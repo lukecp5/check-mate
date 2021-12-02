@@ -104,6 +104,8 @@ const resolvers = {
           { $push: { wins: winData } },
           { new: true }
         );
+        return updatedUser;
+        }
       }
     },
     addTie: async (parent, { tieData }, context) => {
