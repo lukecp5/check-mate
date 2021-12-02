@@ -88,7 +88,18 @@ const resolvers = {
   },
     addWin: async (parent, { winData }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const user = await User.findOne({ _id: context.user._id });
+        const userGames = user.wins;
+        const currentGame = userGames.find(wins => wins.game === winData.game);
+        if (currentGame) {
+          const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $inc: { ties: 1 } },
+          { new: true }
+        );
+        return updatedUser;
+        } else{
+          const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { wins: winData } },
           { new: true }
