@@ -5,9 +5,7 @@ import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
 import { styled } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-// import Box from '@mui/material/Box';
 import Image from '../Images/gamebackgroundimage.png';
-// import Find from '../Images/findyourgame2.png';
 import { Link } from "react-router-dom";
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
@@ -129,16 +127,15 @@ const SearchGames = () => {
 
   return (
     <>
-    <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff' }}>
+    <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff', borderRadius: 0 }}>
          
-      <Grid item xs={12} sx={{ border: 2, borderRadius: 0, display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
+      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
             <Typography variant="h3" align="center" sx={{ color: '#ffffff'}} gutterBottom>
               Find Your Game!
             </Typography>
-            {/* <img alt="" src= {Find}/> */}
           </Grid>
 
           <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
@@ -188,16 +185,16 @@ const SearchGames = () => {
                 {game.gameName}
               </Typography>
 
+              <Typography>
+                {game.gameDescription}
+              </Typography>
+
               <CardActions>
                 <StyledButton onClick={() => {
                   handleLearnMoreClick(game.gameId);
                 }}
                  size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
                </CardActions>
-
-              <Typography>
-                {game.gameDescription}
-              </Typography>
             </CardContent>
       </Card>
       </Grid>

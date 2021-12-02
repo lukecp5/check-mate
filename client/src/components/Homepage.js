@@ -35,13 +35,13 @@ const StyledButton = styled(Button)(({ theme }) => ({
 export default function BasicCard() {
   return (
   
-    <Grid container spacing={1}>
+    <Grid container spacing={1} sx={{justifyContent: 'space-evenly'}}>
 
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
-        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+      <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px' }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shoplightspeed.com/shops/636957/files/24072452/terraforming-mars.jpg" alt="surface of Mars" width='100%'/>
-            <Typography variant="h4" gutterBottom component="div">
+            <Typography variant="h5" gutterBottom component="div">
                 Terraforming Mars
             </Typography>
             <Typography>
@@ -54,11 +54,11 @@ export default function BasicCard() {
         </Card>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+      <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254186140-51iNoyxoamL.jpg" alt="team of CDC experts" width='100%'/>
-            <Typography variant="h4" gutterBottom component="div">
+            <Typography variant="h5" gutterBottom component="div">
               Pandemic
             </Typography>
             <Typography>
@@ -71,11 +71,11 @@ export default function BasicCard() {
         </Card>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+      <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1541531739549" alt="stable of unstable unicorns" width='100%'/>
-            <Typography variant="h4" gutterBottom component="div">
+            <Typography variant="h5" gutterBottom component="div">
                 Unstable Unicorns
             </Typography>
             <Typography>
@@ -88,8 +88,8 @@ export default function BasicCard() {
         </Card>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+      <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1629324738308.jpg" alt="trains and a conductor" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -105,8 +105,8 @@ export default function BasicCard() {
         </Card>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+      <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254847937-51zyVWbt8aL.jpg" alt="Napoleon on horseback" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -122,8 +122,8 @@ export default function BasicCard() {
         </Card>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-        <Card sx={{ borderRadius: 0, maxWidth: 300, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+      <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shopify.com/s/files/1/0505/8019/3473/products/NM-Azul-Box-EN-Z_540x.jpg?v=1611288614" alt="stable of unstable unicorns" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
