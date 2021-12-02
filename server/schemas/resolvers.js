@@ -90,7 +90,7 @@ const resolvers = {
     addAltrules: async (parent, args) => {
       const altrules = await Altrules.create(args);
 
-      return { altrules };
+      return  altrules ;
 
     },
     // saveWin: async (parent, { winData }, context) => {

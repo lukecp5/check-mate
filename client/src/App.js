@@ -55,30 +55,28 @@ const client = new ApolloClient({
 function App() {
 	return (
 		<ApolloProvider client={client}>
-		<Router>
-			<div className="App">
-				<ThemeProvider theme={theme}>
-					<Navbar />
-					<FunFact />
-						<Routes>
-							<Route path="/" element={<Homepage/>}/>
-							<Route path="/searchgames" element={<SearchGames/>}/>
-							<Route path="/login" element={<Login/>} />
-							<Route path="/signup" element={<Signup/>} />
-							<Route path="/profile" element={<Profile/>}/>
-							<Route path="/altrules" element={<AltRules/>}/>
-							{/* <Route path="/friends" element={<Friends/>}/>
-							<Route path="/startmatch" element={<StartMatch/>}/> */}
-							<Route path="*" element={<NotFound/>}/>
-						</Routes>
-						{/* <AltRules/> */}
-					<Footer />
-				</ThemeProvider>
-			</div>
-		</Router>
-</ApolloProvider>
-
-
+			<Router>
+				<div className="App">
+					<ThemeProvider theme={theme}>
+						<Navbar />
+						<FunFact />
+							<Routes>
+								<Route path="/" element={<Homepage/>}/>
+								<Route path="/searchgames" element={<SearchGames/>}/>
+								<Route path="/login" element={<Login/>} />
+								<Route path="/signup" element={<Signup/>} />
+								<Route path="/profile" element={<Profile/>}/>
+								<Route path="/altrules" element={<AltRules/>}/>
+								{/* <Route path="/friends" element={<Friends/>}/>
+								<Route path="/startmatch" element={<StartMatch/>}/> */}
+								<Route path="*" element={<NotFound/>}/>
+							</Routes>
+							
+						<Footer />
+					</ThemeProvider>
+				</div>
+			</Router>
+		</ApolloProvider>
 	);
 }
 
