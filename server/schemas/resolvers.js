@@ -81,7 +81,6 @@ const resolvers = {
           { $push: { losses: lossData } },
           { new: true }
         );
-
         return updatedUser;
         }
     }
