@@ -38,19 +38,25 @@ export const ADD_WIN = gql`
   ) {
     addWin(
       game: $game) {
-      token
-      user{
       _id
       firstName
       lastName
       email
-      wins
-      losses
-      ties
+      wins{
+        game
+        wins
+      }
+      losses{
+        game
+        losses
+      }
+      ties{
+        game
+        ties
       }
     }
   }}`;
-  
+
 export const ADD_LOSS = gql`
   mutation addLoss(
   $game: String!
