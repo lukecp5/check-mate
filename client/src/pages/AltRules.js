@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-//import { useMutation } from '@apollo/client';
-//import { SAVE_RULES } from '../utils/mutations';
-//import { saveGameIds, getSavedGameIds } from '../utils/localStorage';
+import { useMutation } from '@apollo/client';
+
 
 //import Auth from '../utils/auth';
-
+import {ADD_ALTRULES} from '../utils/mutations';
 import Button from '@mui/material/Button';
 import { 
     Typography, 
@@ -15,14 +14,14 @@ import {
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
 // import CardContent from '@mui/material/CardContent';
-import { Grid, Box, CardContent, CardMedia, Card } from '@mui/material';
+import { Grid, Box, CardContent, CardMedia } from '@mui/material';
 
 const AltRules = () => {
     const [searchedGames, setSearchedGames] = useState([]);
 
     const [searchInput, setSearchInput] = useState('');
 
-    const [selectedIndex, setSelectedIndex] = React.useState('');
+    const [selectedIndex, setSelectedIndex] = useState('');
 
     const [altRules, setAltRules] = useState('');
 
@@ -32,6 +31,8 @@ const AltRules = () => {
 
     const [user, setCurrentUser] = useState('Timmy');
 
+    const [addAltRules, {error}] = useMutation(ADD_ALTRULES);
+
     const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
 
     const handleListItemClick = (event, index, gameId) => {
@@ -40,12 +41,20 @@ const AltRules = () => {
     };
 
     const handleRulesFormSubmit = async (event) => {
-        event.preventDefault();        
+        event.preventDefault();
+        
+        try {
+            await addAltRules({
+                variables: { game_id: gameId, user: user, description: altRules, rule_set_name: altRulesName },
+            });
+        } catch (err) {
+            console.log(err);
+        }
         console.log("gameId: ", gameId);
         console.log("altRulesName: ", altRulesName);
         console.log("altRules: ", altRules);
         console.log("user:", user)
-    }
+    };
     
     const handleGameSearchFormSubmit = async (event) => {
         event.preventDefault();
@@ -125,7 +134,7 @@ const AltRules = () => {
                             <List>
                                 {searchedGames.map((game) => {
                                     return (
-                                        <CardContent sx={{ align: 'center'}}>
+                                        <CardContent sx={{ align: 'center'}} key={game.gameId}>
                                             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                                                 <CardMedia
                                                     component="img"
@@ -136,7 +145,6 @@ const AltRules = () => {
                                         
                                                 <ListItemButton key={game.gameId} 
                                                     sx={{m:1}}
-                                                    // selected={game.gameId}
                                                     onClick={(event) => handleListItemClick(event, game.gameName, game.gameId )}
                                                 >
                                                     <ListItemText primary={game.gameName} />
@@ -226,7 +234,7 @@ const AltRules = () => {
 
                 {returnedDatafromDB.map((game) => {
                     return (
-                        <Grid item xs={12}>
+                        <Grid item xs={12} key={game.rulesetName}>
                             <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
                                 <CardContent>
                                     <Typography variant="h5" color="text.primary" sx={{mb:1}}>
