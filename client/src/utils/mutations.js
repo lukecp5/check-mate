@@ -31,3 +31,25 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_ALTRULES = gql`
+  mutation addRules(
+    $game_id: String!,
+    $user: String!,
+    $description: String!,
+    $rule_set_name: String!
+    ) {
+      addRules(
+        game_id: $game_id,
+        user: $user,
+        description: $description,
+        rule_set_name: $rule_set_name
+      ) {
+        _id
+        game_id
+        user
+        description
+        rule_set_name
+      }
+    }
+`;
