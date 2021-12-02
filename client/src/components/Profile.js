@@ -102,7 +102,12 @@ export default function Profile() {
 
     // This is the state for the user's info
     const { loading, error, data } = useQuery(USER_INFO);
-	const userInfo = data ? data.userInfo : {};
+	const userInfo = data ? data.userInfo : { name: '', email: '', friends: [] };
+    if(error) {
+        console.log(error);
+    }
+    const firstName = userInfo.firstName;
+
     console.log(userInfo);
 
     // const handlePageChange = (event, newPage) => {
@@ -133,7 +138,7 @@ export default function Profile() {
                         <UserAvatar alt="User" />
                         {/* TODO: Replace User with Username from DB */}
                         <Typography variant="h5">
-                            Welcome back, User!
+                            Welcome back, {firstName}!
                         </Typography>
                     </Stack>
                     <Stack direction="column" spacing={2}>
