@@ -66,11 +66,11 @@ function Navbar() {
       <CssBaseline />
       <Toolbar>
         <Link to='/'>
-        <MyLogo src={Logo} />
+          <MyLogo src={Logo} />
         </Link> 
         {isMobile ? (
-          <DrawerComponent />
-        ) : (
+          <DrawerComponent/>
+        ) : ( 
           <Grid className={classes.right}>
             <div className={classes.navlinks}>
               {/* <Link to="/" className={classes.link}>
