@@ -83,3 +83,11 @@ export const ADD_LOSS = gql`
     }
   }
   `;
+
+  export const ADD_TIE = gql`
+  mutation addTie(
+  $game: String!
+  ) {
+
+  }
+  `;
