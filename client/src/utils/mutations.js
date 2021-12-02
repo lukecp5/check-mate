@@ -37,4 +37,12 @@ export const ADD_WIN = gql`
   $userId: String!, 
   $game: String!
   ) {
+    addWin(
+      userId: $userId, 
+      game: $game) {
+      token
+      user{
+      _id
+      wins
+      }
     }`;
