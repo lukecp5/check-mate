@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 // import Pagination from '@mui/material/Pagination';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
-
+import { PieChart } from 'react-minimal-pie-chart';
 // Import the useQuery and useMutation hooks
 import { useQuery, useMutation } from '@apollo/client';
 // Import the USER_INFO query
@@ -104,7 +104,7 @@ export default function Profile() {
     if(error) {
         console.log(error);
     }
-    const firstName = userInfo.firstName;
+    const firstName = userInfo.firstName;   
 
     console.log(userInfo);
 
@@ -115,6 +115,12 @@ export default function Profile() {
 
     //this handles the popovers on the friends list 
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const [chartData, setChartData] = useState ([
+        { title: 'Tie', value: 5, color: '#E38627' },
+        { title: 'Lose', value: 15, color: '#C13C37' },
+        { title: 'Win', value: 20, color: '#6A2135' },
+    ]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -133,9 +139,10 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                        <UserAvatar alt="User" />
+                    <MyAvatar>{firstName}</MyAvatar>
+                        {/* <UserAvatar aria-describedby={id} alt="User" /> */}
                         {/* TODO: Replace User with Username from DB */}
-                        <Typography variant="h5">
+                        <Typography variant="h5" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
                             Welcome back, {firstName}!
                         </Typography>
                     </Stack>
@@ -160,6 +167,33 @@ export default function Profile() {
                         <Typography variant="body1" component="div">
                             Favorite Game: Monopoly  
                         </Typography>
+                    </Stack>
+                    <Stack>
+                        <Typography variant="h4" sx={{ mt:2, textAlign: "center"  }}>
+                            Career Stats
+                        </Typography>
+                        
+                        <PieChart
+                            style={{
+                                fontFamily:'"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                                fontSize: '8px',
+                            }}
+                            data={chartData}
+                            radius={35}
+                            lineWidth={60}
+                            segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
+                            segmentsShift={1}
+                            animate
+                            label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
+                            labelPosition={70}
+                            labelStyle={{
+                                fill: '#fff',
+                                opacity: 0.75,
+                                pointerEvents: 'none',
+                                fontSize: '3px',
+                                fontFamily: 'sans-serif',
+                        }}
+            />
                     </Stack>
                 </CardContent>
             </StatBox>
