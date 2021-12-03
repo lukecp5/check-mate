@@ -31,17 +31,13 @@ const FunFact = () => {
     })); 
 
     return (
-        <>
-
-        <Card sx={{ borderRadius: 0, color: "#ffffff", mt: '10px', mb:"10px", padding: '10px', textAlign:'center', background: `linear-gradient(to left, #113F8C, #01A4A4)` }}>
+    <MyCard>
       <CardContent>
         <Typography>
             { randomFact }
         </Typography>
       </CardContent>
-    </Card>
-
-        </>
+    </MyCard>
     );
 };
 

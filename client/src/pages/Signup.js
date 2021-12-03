@@ -18,6 +18,7 @@ function Signup(props) {
       variables: {
         email: formState.email,
         password: formState.password,
+        username: formState.username, 
         firstName: formState.firstName,
         lastName: formState.lastName,
       },
@@ -39,7 +40,7 @@ function Signup(props) {
       onSubmit={handleFormSubmit}
       component="form"
       autoComplete="off"
-      sx={{'& .MuiTextField-root': { m: 1, width: '25ch' }, display: 'flex', flexDirection:'column', flexWrap: 'wrap', alignItems: 'center'}}
+      sx={{'& .MuiTextField-root': { m: 1, width: '50ch' }, display: 'flex', flexDirection:'column', flexWrap: 'wrap', alignItems: 'center'}}
     >
       <TextField
         required
@@ -55,6 +56,14 @@ function Signup(props) {
         name="lastName"
         type="lastName"
         id="lastName"
+        onChange={handleChange}
+      />
+      <TextField
+        required
+        label="Username"
+        name="username"
+        type="username"
+        id="username"
         onChange={handleChange}
       />
       <TextField

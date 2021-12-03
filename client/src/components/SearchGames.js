@@ -11,14 +11,35 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
+  height: "auto",
   "&:hover": {
       color: '#ffffff',
       background: 'transparent',
       border: "2px solid white",
   }
+})); 
+
+const RulesBtn = styled(Button)(({ theme }) => ({ 
+  display: 'block', 
+  height: "auto",
+  background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
+  color: 'white', 
+  margin: 20, 
+  fontSize: 20, 
+  '&:hover': {
+    cursor: 'pointer', 
+    opacity: .8, 
+  }
+})); 
+
+const MyCard = styled(Card)(({ theme }) => ({ 
+  background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
+  color: 'white',  
+  borderRadius: 0,
 })); 
 
 const SearchGames = () => {
@@ -106,11 +127,18 @@ const SearchGames = () => {
     }
   };
 
-  let content; 
+  const MyHeader = styled(Typography)(({ theme }) => ({
+    color: 'white', 
+    textShadow: `3px 3px 10px ${theme.palette.tertiary.dark}`, 
+  })); 
 
+  // This starts the code for the Tabs functionality
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
     return (
       <div
         role="tabpanel"
@@ -127,31 +155,18 @@ const SearchGames = () => {
       </div>
     );
   }
-  
   TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired,
   };
-  
   function a11yProps(index) {
     return {
       id: `simple-tab-${index}`,
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
-  
-  const [value, setValue] = React.useState(0);
-  
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
-  const MyHeader = styled(Typography)(({ theme }) => ({
-    color: 'white', 
-    textShadow: `3px 3px 10px ${theme.palette.tertiary.dark}`, 
-  })); 
-    
   return (
     <>
     <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff', borderRadius: 0 }}>
@@ -227,74 +242,77 @@ const SearchGames = () => {
     </Grid>
     ) : null}
 
-
   {/* This starts the hard code output to be replaced by filtered data */}
-  {selectedGameData ? (        
-    <Grid container align="center" sx={{ justifyContent:'center', padding: '20px' }}>
-      <Grid item xs={12} sx={{ m:3, ml:4, mr:4 }}>
-        <Typography variant="h4" align="center" gutterBottom>
-          {selectedGameData[0].gameName}
-        </Typography>
-
-        <Card align='center' sx={{ m:2, maxWidth: 345, justifyContent:'center' }}>
-          <CardMedia
-            component="img"
-            image={selectedGameData[0].image_url}
-            alt="Board game box cover"
+  {selectedGameData ? ( 
+    <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
+      <Grid item xs={8} md={5}>
+        <MyCard sx={{width: '70%', m: 5, p: 3}}>
+          <CardContent>
+            <CardMedia 
+              component="img"
+              image={selectedGameData[0].image_url}
+              alt="Board game box cover"
             />
-        </Card>
-
-        <Typography variant="h5" sx={{ m:4, p:4, border: 2, borderRadius: 12, maxWidth: 1100}}>
-          {selectedGameData[0].fullGameDescription}
-        </Typography>
-
-        <Grid container justifyContent="center" spacing="5" sx={{ m:2, border:2, borderRadius: 12, maxWidth: 700 }}>
-          <Grid item sx={{ minWidth: 200}}>
-            <Typography>
-              Minimum Players: {selectedGameData[0].minPlayers}
-            </Typography>
-          </Grid>
-
-          <Grid item sx={{ minWidth: 200}}>
-            <Typography>
-              Max Players: {selectedGameData[0].maxPlayers}
-            </Typography>
-          </Grid>
-
-          <Grid item sx={{ minWidth: 200}}>
-            <Typography>
-              Minimum Age: {selectedGameData[0].minAge}
-            </Typography>
-          </Grid>
-
-        </Grid>
-
-        <Grid container justifyContent="center" spacing="5" sx={{ m:2}}>
-
-       {selectedGameData[0].rulesUrl ? ( 
-          <Grid item >
-            <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
-          </Grid>
-        ) : null}
-
-        {selectedGameData[0].officialUrl ? ( 
-          <Grid item >
-            <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
-          </Grid>
-        ) : null}
-
-          <Grid item >
-            <Button component={Link} to="/play"variant="contained">Play!</Button>
-          </Grid>
-
-          <Grid item >
-            <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button>
-          </Grid>
-
-        </Grid>
-
+            {/* <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
+            {selectedGameData[0].gameName}
+            </Typography> */}
+          </CardContent>
+        </MyCard>
       </Grid>
-    </Grid>
+      <Grid item xs={12} md={7}>
+        <Box sx={{mr: 20}}>
+          <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
+            {selectedGameData[0].gameName}
+          </Typography>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+              <Tab label="About" {...a11yProps(0)} />
+              <Tab label="Official Rules" {...a11yProps(1)} />
+              <Tab label="Alternate Rules" {...a11yProps(2)} />
+            </Tabs>
+          </Box>
+          <TabPanel value={value} index={0}>
+            <Typography variant="body1" sx={{textAlign: 'left', fontSize: '20px'}}>
+              {selectedGameData[0].fullGameDescription}
+            </Typography>
+            <Stack direction="row" spacing={3} sx={{marginTop: 5}}>
+              <Typography>
+                Minimum Players: {selectedGameData[0].minPlayers}
+              </Typography>
+              <Typography>
+                Max Players: {selectedGameData[0].maxPlayers}
+              </Typography>
+              <Typography>
+                Minimum Age: {selectedGameData[0].minAge}
+              </Typography>
+              </Stack>
+              <Stack direction= "row" sx={{justifyContent: 'center', p: 5}}>
+                <SubmitBtn component={Link} to="/play" size= 'large' sx={{width: 100}}>Play!</SubmitBtn>
+              </Stack>
+            {/* {selectedGameData[0].officialUrl ? ( 
+              <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
+            ) : null} */}
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            {selectedGameData[0].rulesUrl ? ( 
+              // <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
+              <RulesBtn href= {selectedGameData[0].rulesUrl} size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
+            ) : (
+              <Typography sx={{color:'red'}}>Sorry! We can't find the link.</Typography>
+            )}
+          </TabPanel>
+          {/* TODO: Change this from a link to display the list of alternate rules created my different users */}
+          <TabPanel value={value} index={2}>
+            {/* <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button> */}
+            <Stack direction= "row" sx={{justifyContent: 'center'}}>
+              <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn>
+            </Stack>
+          </TabPanel>
+          {/* <SubmitBtn component={Link} to="/play">Play!</SubmitBtn> */}
+          {/* <RulesBtn component={Link} to="/altrules">Add A Rule</RulesBtn> */}
+        </Box>
+      </Grid>
+  </Grid>      
   ) : null}
     </>
   );

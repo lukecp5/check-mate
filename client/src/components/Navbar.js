@@ -3,7 +3,6 @@ import {
   AppBar,
   Toolbar,
   CssBaseline,
-  Typography,
   makeStyles,
   useTheme,
   useMediaQuery,
