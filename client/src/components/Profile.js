@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 // Import the useQuery and useMutation hooks
 import { useQuery, useMutation } from '@apollo/client';
-// Import the USER_INFO query
+// // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
 
 //this styles the User's stat box. Orange/red box 
@@ -99,14 +99,56 @@ var userRandomColor = () => {
 export default function Profile() {
     // //this handles the pagniation changes 
     // const [page, setPage] = useState(1); 
-
     // This is the state for the user's info
-    const { loading, error, data } = useQuery(USER_INFO);
+    const { loading, error, data } = useQuery(USER_INFO);  
+    const [ totalWins, setWins ] = useState([3]);
+  
+
 	const userInfo = data ? data.userInfo : { };
-    if(error) {
-        console.log(error);
+    console.log("userInfo: ", userInfo);
+  
+    const { firstName } = data ? data.userInfo : { firstName: "Player" };
+    const { wins } = data ? data.userInfo : { wins: "No Wins" };
+    
+    console.log("wins: ", ...wins);
+
+    let winsArray = [...wins]
+    console.log("winsArray: ", winsArray);
+    const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
+    console.log(countWins);
+    // setWins(countWins);
+    
+    // console.log("userInfo: ", userInfo);
+    const handleWins = (wins) => {
+        // let gameWins = Object.values(wins);
+        // console.log("gameWins: ", gameWins);
+        let winsArray = [...wins];
+        const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
+        console.log(countWins);
+        setWins(countWins);
     }
-    const firstName = userInfo.firstName;
+    // console.log("gameWins Length: ", gameWins.length);
+    // setWins(gameWins);
+    
+    // handleWins(wins);
+
+    // useEffect(() => {        
+    //     handleWins(wins);
+    // },[wins]);
+
+    // useEffect(() => {        
+    //     getUserInfo();
+    // });
+    
+    // const getUserInfo = () => {
+    //     console.log("userInfo: ", userInfo);
+    //     let gameWins = userInfo.wins.map(w => w.wins).reduce((prev, curr) => prev + curr, 0);
+    //     console.log("gameWins: ", gameWins);
+    //     setWins(gameWins);
+    //     // setWins(userInfo.wins[0].wins);
+    // }
+    
+     
 
     console.log(userInfo);
 
@@ -144,7 +186,7 @@ export default function Profile() {
                     <Stack direction="column" spacing={2}>
                         {/* TODO: Replace with total wins of that user */}
                         <Typography variant="body1" component="div" sx={{mt: '10px'}}>
-                            Wins: 0 
+                            Wins: {countWins}
                         </Typography>
                         {/* TODO: Replace with total losses of that user */}
                         <Typography variant="body1" component="div">
