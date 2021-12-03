@@ -51,5 +51,36 @@ export default function Friends() {
                 </Grid>  
             </Grid>       
         </Grid>
+// {!selectedGameData ? (  
+//     <Grid container sx={{ justifyContent:'center' }}>
+//       {searchedGames.map((game) => {
+//     return (
+//         <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}} key={game.gameId}>
+//         <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+//             <CardContent sx={{ textAlign: 'center' }}>
+            
+//             <CardMedia
+//                 component="img"            
+//                 image={game.image_url}
+//                 alt="Board game box cover"
+//             />
+            
+//             <Typography variant="h5" gutterBottom component="div">
+//                 {game.gameName}
+//             </Typography>
+
+//             <Typography>
+//                 {game.gameDescription}
+//             </Typography>
+
+//             <CardActions>
+//                 <StyledButton onClick={() => {
+//                 handleLearnMoreClick(game.gameId);
+//                 }}
+//                 size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+//             </CardActions>
+//             </CardContent>
+//     </Card>
+//     </Grid>
     );
 };
