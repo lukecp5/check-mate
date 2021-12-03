@@ -29,13 +29,9 @@ const resolvers = {
     //     return userData.friends;
     //   }
     // },
-    findaltrules: async (parent, args, context) => {
-      if (context.user) {
-        const altruleData = await Altrules.findall({});
-
-        return altruleData;
-      }
-      throw new AuthenticationError('Not logged in');
+    findaltrules: async (parent, args) => {
+      console.log('Hello World');
+        return Altrules.find();
     }
   },
   Mutation: {
@@ -130,7 +126,7 @@ const resolvers = {
       }
     },
 
-    addAltrules: async (parent, args) => {
+    addRules: async (parent, args) => {
       const altrules = await Altrules.create(args);
 
       return  altrules ;

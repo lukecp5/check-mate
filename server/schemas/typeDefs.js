@@ -61,7 +61,7 @@ const typeDefs = gql`
     user(_id: ID!): User
     userInfo: User
     users: [User]
-    findaltrules(game_id: String!): [Altrules]  
+    findaltrules: [Altrules]  
   }
 
   type Mutation {
@@ -73,7 +73,7 @@ const typeDefs = gql`
     addTie(game: String!): User
     # addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
     # saveBook(bookData: BookInput!): User
-    addAltrules(game_id: String!, user: String!, description: String!,rule_set_name: String! ): Altrules
+    addRules(game_id: String!, user: String!, description: String!,rule_set_name: String! ): Altrules
   }
 `;
 

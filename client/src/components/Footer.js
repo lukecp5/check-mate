@@ -8,6 +8,9 @@ import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import logoicon from '../Images/checkmate-favicon.png'; 
 
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const MyToolbar = styled(Toolbar)(({ theme }) => ({
     background: theme.palette.grey.main, 
@@ -15,13 +18,21 @@ const MyToolbar = styled(Toolbar)(({ theme }) => ({
     color: "#ffffff",
 })); 
 
+//This changes the colors of the backgrounds of each of the cards
+// Theme colors added to array
+// var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+// var randomColor = () => {
+//     return colors[Math.floor(Math.random()* colors.length)];
+// };
+
 const NavBtn = styled(Button)(({ theme }) => ({
-    '&:hover': {
-        background: theme.palette.grey.dark, 
-        color: theme.palette.secondary.main,
-    }, 
     display: 'flex', 
     justifyContent:'flex-end', 
+    '&:hover': { 
+        color: '#61AE24',
+        background: 'transparent'
+    }, 
+
 })); 
 
 export default function Footer() {
@@ -38,10 +49,21 @@ export default function Footer() {
                     All Rights Reserved
                 </Typography>
             </Stack>
+            <Stack direction="row">
+                <NavBtn>
+                    <FacebookIcon sx={{ margin: '20px', fontSize: 40}}/>
+                </NavBtn>
+                <NavBtn>
+                    <InstagramIcon sx={{ margin: '20px', fontSize: 40}}/>
+                </NavBtn>
+                <NavBtn>
+                    <TwitterIcon  sx={{ margin: '20px', fontSize: 40}}/>
+                </NavBtn>
+            </Stack>
             <Stack
                 direction="column"
             >
-                {/* <Typography> 
+                {/* <Typography variant="h6"> 
                     Contributors:
                 </Typography> */}
                 <NavBtn color="inherit" href="https://github.com/AmandaC0022" target="_blank">Amanda Morgan</NavBtn>

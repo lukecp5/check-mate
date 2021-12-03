@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-
-//import Auth from '../utils/auth';
+import { useQuery } from '@apollo/client';
+import { USER_INFO, FIND_ALT_RULES } from '../utils/queries'
 import {ADD_ALTRULES} from '../utils/mutations';
+
 import Button from '@mui/material/Button';
 import { 
     Typography, 
@@ -17,6 +18,14 @@ import {
 import { Grid, Box, CardContent, CardMedia } from '@mui/material';
 
 const AltRules = () => {
+
+    const { loading, error, data } = useQuery(USER_INFO);
+	const userInfo = data ? data.userInfo : { name: '', email: '', friends: [] };
+    if(error) {
+        console.log(error);
+    }
+    const firstName = userInfo.firstName;
+
     const [searchedGames, setSearchedGames] = useState([]);
 
     const [searchInput, setSearchInput] = useState('');
@@ -29,15 +38,31 @@ const AltRules = () => {
 
     const [gameId, setGameID] = useState('');
 
-    const [user, setCurrentUser] = useState('Timmy');
+    const [user, setCurrentUser] = useState('');
 
-    const [addAltRules, {error}] = useMutation(ADD_ALTRULES);
+    const [addAltRules ] = useMutation(ADD_ALTRULES);
 
-    const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
+    //const [findAltRules ] = useQuery(FIND_ALT_RULES);
+
+    const [returnedDatafromDB, setReturnedDatafromDB ]  = useState([]);
+
+    // Query to the db to get the alt rules
+    const   { data: dataDB }  = useQuery(FIND_ALT_RULES);
+
+    const rulesfromDB = dataDB?.findaltrules || [];
+    
 
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
         setGameID(gameId);
+        //This is where I could execute a database search 
+        // or if I already pulled everthing I could do a filter here or maybe something I haven't thought of yet.
+        console.log("dataDB: ", rulesfromDB);
+        console.log("gameId: ", gameId);
+
+        const filteredData = rulesfromDB.filter (item => item.game_id === gameId);
+        setReturnedDatafromDB(filteredData);
+
     };
 
     const handleRulesFormSubmit = async (event) => {
@@ -54,11 +79,12 @@ const AltRules = () => {
         console.log("altRulesName: ", altRulesName);
         console.log("altRules: ", altRules);
         console.log("user:", user)
+
     };
     
     const handleGameSearchFormSubmit = async (event) => {
         event.preventDefault();
-    
+        setCurrentUser(firstName);
         if (!searchInput) {
           return false;
         }
@@ -216,6 +242,7 @@ const AltRules = () => {
             </Grid>
         
         {/* THIS IS THE START OF THE ALTERNATE RULES DISPLAY */}
+        {/* Right now it populates from a map over a state value's initial state (returnedDatafromDB) it needs to populte from the Database pull and either the pull needs to filter just games with matching Ids (gameID) or we can pull all the lat rules and run a filter for the matching game ids. */}
         <Grid item xs={12} md ={6}>
         <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
             <Grid container>
@@ -234,17 +261,17 @@ const AltRules = () => {
 
                 {returnedDatafromDB.map((game) => {
                     return (
-                        <Grid item xs={12} key={game.rulesetName}>
+                        <Grid item xs={12} key={game._id}>
                             <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
                                 <CardContent>
                                     <Typography variant="h5" color="text.primary" sx={{mb:1}}>
-                                        {game.rulesetName}
+                                        {game.rule_set_name}
                                     </Typography>
                                     <Typography variant="h5" sx={{ mb:2 }}>
                                         Submitted by: {game.user}
                                     </Typography>
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                        {game.desc}
+                                        {game.description}
                                     </Typography>
                                 </CardContent>
                             </Box>

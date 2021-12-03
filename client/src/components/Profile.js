@@ -14,12 +14,12 @@ import Tooltip from '@mui/material/Tooltip';
 import { useQuery, useMutation } from '@apollo/client';
 // // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
+import PieChartPlayer from '../pages/PieChartPlayer';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
     color: "#ffffff",
-    padding: '10px', 
-    textAlign:'center', 
+    padding: '10px',  
     background: `linear-gradient(to right, ${theme.palette.tertiary.dark}, ${theme.palette.tertiary.main}, ${theme.palette.tertiary.light})`, 
     margin: '10px 0', 
     textAlign: "left", 
@@ -29,8 +29,7 @@ const StatBox = styled(Card)(({ theme }) => ({
 //this styles the Friend's box, the green box 
 const FriendBox = styled(Card)(({ theme }) => ({
     color: "#ffffff", 
-    padding: '10px', 
-    textAlign:'center', 
+    padding: '10px',  
     background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
     margin: '10px 0', 
     textAlign: "center", 
@@ -147,8 +146,6 @@ export default function Profile() {
     //     setWins(gameWins);
     //     // setWins(userInfo.wins[0].wins);
     // }
-    
-     
 
     console.log(userInfo);
 
@@ -177,9 +174,10 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                        <UserAvatar alt="User" />
+                    <MyAvatar>{firstName}</MyAvatar>
+                        {/* <UserAvatar aria-describedby={id} alt="User" /> */}
                         {/* TODO: Replace User with Username from DB */}
-                        <Typography variant="h5">
+                        <Typography variant="h5" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
                             Welcome back, {firstName}!
                         </Typography>
                     </Stack>
@@ -205,14 +203,22 @@ export default function Profile() {
                             Favorite Game: Monopoly  
                         </Typography>
                     </Stack>
+                    <Stack>
+                        <Typography variant="h4" sx={{ mt:2, textAlign: "center"  }}>
+                            Career Stats
+                        </Typography>
+                        
+                        <PieChartPlayer win={20} lose={15} tie={5}/>
+
+                    </Stack>
                 </CardContent>
             </StatBox>
         </Grid>
         <Grid item xs={12} sm={7} >
             <FriendBox>
                 <CardContent>
-                    <Grid container spacing={2} sx={{justifyContent: 'center'}}> 
-                    <Typography variant="h4">My Friends</Typography>
+                    <Typography variant="h4">My Friends</Typography>    
+                    <Grid container spacing={2} sx={{justifyContent: 'space-evenly'}}> 
                     {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
                     {myFriends.map((friend, index) => (
                         <Grid 
@@ -222,7 +228,7 @@ export default function Profile() {
                             sx={{display: 'flex', justifyContent: 'center'}}
                         >
                             <Tooltip title="See Stats">
-                                <MyAvatar aria-describeby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
+                                <MyAvatar aria-describedby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
                             </Tooltip>
                                 <Typography 
                                     varient="h6" 
