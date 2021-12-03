@@ -30,7 +30,8 @@ const resolvers = {
     //   }
     // },
     findaltrules: async (parent, args) => {
-        return Altrules.findall();
+      console.log('Hello World');
+        return Altrules.find();
     }
   },
   Mutation: {

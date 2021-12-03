@@ -23,6 +23,7 @@ export const USER_INFO = gql`
 export const FIND_ALT_RULES = gql`
       query getfindaltrules {
             findaltrules {
+                  _id
                   game_id
                   user
                   description

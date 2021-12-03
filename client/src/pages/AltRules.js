@@ -44,12 +44,12 @@ const AltRules = () => {
 
     //const [findAltRules ] = useQuery(FIND_ALT_RULES);
 
-    const [returnedDatafromDB, setReturnedDatafromDB ]  = useState([ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are met and one player has four cities" }]);
+    const [returnedDatafromDB, setReturnedDatafromDB ]  = useState([]);
 
-    // Query to the db to get the alt rules, this gives a 400 error and I can't figure out why
-    const { dataDB } = useQuery(FIND_ALT_RULES);
+    // Query to the db to get the alt rules
+    const   { data: dataDB }  = useQuery(FIND_ALT_RULES);
 
-    // const rulesfromDB = dataDB?.rulesfromDB || [];
+    const rulesfromDB = dataDB?.findaltrules || [];
     
 
     const handleListItemClick = (event, index, gameId) => {
@@ -57,10 +57,11 @@ const AltRules = () => {
         setGameID(gameId);
         //This is where I could execute a database search 
         // or if I already pulled everthing I could do a filter here or maybe something I haven't thought of yet.
-        //console.log(rulesfromDB);
+        console.log("dataDB: ", rulesfromDB);
+        console.log("gameId: ", gameId);
 
-        //const filteredData = returnedDatafromDB.filter (item => item.gameId === gameId);
-        //setReturnedDatafromDB(filteredData);
+        const filteredData = rulesfromDB.filter (item => item.game_id === gameId);
+        setReturnedDatafromDB(filteredData);
 
     };
 
@@ -260,17 +261,17 @@ const AltRules = () => {
 
                 {returnedDatafromDB.map((game) => {
                     return (
-                        <Grid item xs={12} key={game.rulesetName}>
+                        <Grid item xs={12} key={game._id}>
                             <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
                                 <CardContent>
                                     <Typography variant="h5" color="text.primary" sx={{mb:1}}>
-                                        {game.rulesetName}
+                                        {game.rule_set_name}
                                     </Typography>
                                     <Typography variant="h5" sx={{ mb:2 }}>
                                         Submitted by: {game.user}
                                     </Typography>
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                        {game.desc}
+                                        {game.description}
                                     </Typography>
                                 </CardContent>
                             </Box>
