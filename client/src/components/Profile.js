@@ -9,11 +9,12 @@ import Stack from '@mui/material/Stack';
 // import Pagination from '@mui/material/Pagination';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
-import { PieChart } from 'react-minimal-pie-chart';
+
 // Import the useQuery and useMutation hooks
 import { useQuery, useMutation } from '@apollo/client';
 // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
+import PieChartPlayer from '../pages/PieChartPlayer';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -116,12 +117,6 @@ export default function Profile() {
     //this handles the popovers on the friends list 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const [chartData, setChartData] = useState ([
-        { title: 'Tie', value: 5, color: '#E38627' },
-        { title: 'Lose', value: 15, color: '#C13C37' },
-        { title: 'Win', value: 20, color: '#6A2135' },
-    ]);
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -173,27 +168,8 @@ export default function Profile() {
                             Career Stats
                         </Typography>
                         
-                        <PieChart
-                            style={{
-                                fontFamily:'"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                                fontSize: '8px',
-                            }}
-                            data={chartData}
-                            radius={35}
-                            lineWidth={60}
-                            segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
-                            segmentsShift={1}
-                            animate
-                            label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
-                            labelPosition={70}
-                            labelStyle={{
-                                fill: '#fff',
-                                opacity: 0.75,
-                                pointerEvents: 'none',
-                                fontSize: '3px',
-                                fontFamily: 'sans-serif',
-                        }}
-            />
+                        <PieChartPlayer />
+                        
                     </Stack>
                 </CardContent>
             </StatBox>
