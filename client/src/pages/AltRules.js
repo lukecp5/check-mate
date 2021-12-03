@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-
-//import Auth from '../utils/auth';
+import { useQuery } from '@apollo/client';
+import { USER_INFO } from '../utils/queries'
 import {ADD_ALTRULES} from '../utils/mutations';
 import Button from '@mui/material/Button';
 import { 
@@ -17,6 +17,14 @@ import {
 import { Grid, Box, CardContent, CardMedia } from '@mui/material';
 
 const AltRules = () => {
+
+    const { loading, error, data } = useQuery(USER_INFO);
+	const userInfo = data ? data.userInfo : { name: '', email: '', friends: [] };
+    if(error) {
+        console.log(error);
+    }
+    const firstName = userInfo.firstName;
+
     const [searchedGames, setSearchedGames] = useState([]);
 
     const [searchInput, setSearchInput] = useState('');
@@ -29,9 +37,9 @@ const AltRules = () => {
 
     const [gameId, setGameID] = useState('');
 
-    const [user, setCurrentUser] = useState('Timmy');
+    const [user, setCurrentUser] = useState('');
 
-    const [addAltRules, {error}] = useMutation(ADD_ALTRULES);
+    const [addAltRules ] = useMutation(ADD_ALTRULES);
 
     const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
 
@@ -58,7 +66,7 @@ const AltRules = () => {
     
     const handleGameSearchFormSubmit = async (event) => {
         event.preventDefault();
-    
+        setCurrentUser(firstName);
         if (!searchInput) {
           return false;
         }

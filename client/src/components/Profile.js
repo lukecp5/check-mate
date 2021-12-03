@@ -18,8 +18,7 @@ import { USER_INFO } from '../utils/queries'
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
     color: "#ffffff",
-    padding: '10px', 
-    textAlign:'center', 
+    padding: '10px',  
     background: `linear-gradient(to right, ${theme.palette.tertiary.dark}, ${theme.palette.tertiary.main}, ${theme.palette.tertiary.light})`, 
     margin: '10px 0', 
     textAlign: "left", 
@@ -29,8 +28,7 @@ const StatBox = styled(Card)(({ theme }) => ({
 //this styles the Friend's box, the green box 
 const FriendBox = styled(Card)(({ theme }) => ({
     color: "#ffffff", 
-    padding: '10px', 
-    textAlign:'center', 
+    padding: '10px',  
     background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
     margin: '10px 0', 
     textAlign: "center", 
@@ -180,7 +178,7 @@ export default function Profile() {
                             sx={{display: 'flex', justifyContent: 'center'}}
                         >
                             <Tooltip title="See Stats">
-                                <MyAvatar aria-describeby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
+                                <MyAvatar aria-describedby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
                             </Tooltip>
                                 <Typography 
                                     varient="h6" 
