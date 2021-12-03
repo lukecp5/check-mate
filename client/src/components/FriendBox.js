@@ -6,7 +6,8 @@ import { styled } from '@mui/system';
 import  { Grid }  from '@mui/material';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
-import MyAvatar from './MyAvatar'; 
+// import MyAvatar from './MyAvatar'; 
+import Avatar from '@mui/material/Avatar';
 
 //this styles the Friend's box, the green box 
 const StyledFriendBox = styled(Card)(({ theme }) => ({
@@ -16,6 +17,23 @@ const StyledFriendBox = styled(Card)(({ theme }) => ({
     margin: '10px 0', 
     textAlign: "center", 
     borderRadius: 0, 
+})); 
+
+var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+var randomColor = () => {
+    return colors[Math.floor(Math.random()* colors.length)];
+};
+
+//this styles the friend's avatars 
+const MyAvatar = styled(Avatar)(({ theme }) => ({
+    margin: 20,  
+    background: randomColor(), 
+    width: 56, 
+    height: 56,
+    '&:hover': {
+    cursor: 'pointer', 
+    opacity: .7, 
+    }
 })); 
 
 //this is mockup data for the friend's list. We will delete this after we get it pulling from the database
@@ -48,6 +66,7 @@ const myFriends = [
 ]
 
 const FriendBox = () => {
+    
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -61,7 +80,6 @@ const FriendBox = () => {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <Grid item xs={12} sm={7} >
         <StyledFriendBox>
             <CardContent>
                 <Typography variant="h4">My Friends</Typography>    
@@ -148,18 +166,8 @@ const FriendBox = () => {
                     </Grid>
                     ))}
                 </Grid>
-                {/* <Stack>
-                    <Pagination 
-                        count={5} 
-                        variant="outlined" 
-                        page={page} 
-                        onPageChange={handlePageChange}
-                        sx={{mt: 5, alignSelf: 'center'}}
-                    /> 
-                </Stack> */}
             </CardContent>
         </StyledFriendBox>
-    </Grid>
     )
 }
 

@@ -13,6 +13,7 @@ import { useQuery, useMutation } from '@apollo/client';
 // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
 import FriendBox from './FriendBox';
+import MyAvatar from './MyAvatar';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -63,25 +64,11 @@ export default function Profile() {
     //     console.log(event.target); 
     // }
 
-    //this handles the popovers on the friends list 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
     const [chartData, setChartData] = useState ([
         { title: 'Tie', value: 5, color: '#E38627' },
         { title: 'Lose', value: 15, color: '#C13C37' },
         { title: 'Win', value: 20, color: '#6A2135' },
     ]);
-
-    // const handleClick = (event) => {
-    //     setAnchorEl(event.currentTarget);
-    // };
-
-    // const handleClose = () => {
-    //     setAnchorEl(null);
-    // };
-
-    // const open = Boolean(anchorEl);
-    // const id = open ? 'simple-popover' : undefined;
 
     return (
     <Grid container spacing={2}>
@@ -148,7 +135,9 @@ export default function Profile() {
                 </CardContent>
             </StatBox>
         </Grid>
-        <FriendBox/> 
+        <Grid item xs={12} sm={7} >
+            <FriendBox/> 
+        </Grid>
     </Grid>
 
 

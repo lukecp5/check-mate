@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
-// import Button from '@mui/material/Button';
 import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
 import { styled } from '@mui/system';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
 import Image from '../Images/friends.png';
-// import { Link } from "react-router-dom";
 import SubmitBtn from '../components/SubmitBtn'; 
+import FriendBox from '../components/FriendBox';
 
 const MyHeader = styled(Typography)(({ theme }) => ({
     color: 'white', 
     textShadow: `3px 3px 10px ${theme.palette.tertiary.dark}`, 
   })); 
-
-  const freindList = [
-      {
-          name: "Amanda", 
-          initial: "A"
-      }
-  ]
 
 export default function Friends() {
 
@@ -89,42 +79,13 @@ export default function Friends() {
                 </Grid>  
             </Grid>       
         </Grid>
-
-{selectedFriendData ? (  
-    <Grid container sx={{ justifyContent:'center' }}>
-      {friendsList.map((friend) => {
-        return (
-          <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}} key={game.gameId}>
-            <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
-              <CardContent sx={{ textAlign: 'center' }}>
-              
-                <CardMedia
-                  component="img"            
-                  image={game.image_url}
-                  alt="Board game box cover"
-                />
-              
-                <Typography variant="h5" gutterBottom component="div">
-                  {game.gameName}
-                </Typography>
-  
-                <Typography>
-                  {game.gameDescription}
-                </Typography>
-  
-                <CardActions>
-                  <StyledButton onClick={() => {
-                    handleLearnMoreClick(game.gameId);
-                  }}
-                   size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
-                 </CardActions>
-              </CardContent>
-        </Card>
+        <Grid container>
+            <Grid item>
+                <FriendBox /> 
+            </Grid>
         </Grid>
-              );
-            })}
-      </Grid>
-      ) : null}
+{/* {selectedFriendData ? (  
+    ) : null} */}
     </>
     )
 }; 
