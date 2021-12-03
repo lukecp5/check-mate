@@ -40,7 +40,7 @@ function Signup(props) {
       onSubmit={handleFormSubmit}
       component="form"
       autoComplete="off"
-      sx={{'& .MuiTextField-root': { m: 1, width: '25ch' }, display: 'flex', flexDirection:'column', flexWrap: 'wrap', alignItems: 'center'}}
+      sx={{'& .MuiTextField-root': { m: 1, width: '50ch' }, display: 'flex', flexDirection:'column', flexWrap: 'wrap', alignItems: 'center'}}
     >
       <TextField
         required
