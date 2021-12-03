@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AltRules from './pages/AltRules';
 import Homepage from "./components/Homepage";
+import Play from "./pages/Play"; 
 
 import SearchGames from "./components/SearchGames";
 // import GameSearch from "./components/GameSearch";
@@ -67,6 +68,7 @@ function App() {
 								<Route path="/signup" element={<Signup/>} />
 								<Route path="/profile" element={<Profile/>}/>
 								<Route path="/altrules" element={<AltRules/>}/>
+								<Route path='/play' element={<Play/>}/>
 								{/* <Route path="/friends" element={<Friends/>}/>
 								<Route path="/startmatch" element={<StartMatch/>}/> */}
 								<Route path="*" element={<NotFound/>}/>
