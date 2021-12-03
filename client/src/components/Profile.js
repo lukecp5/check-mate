@@ -168,8 +168,8 @@ export default function Profile() {
                             Career Stats
                         </Typography>
                         
-                        <PieChartPlayer />
-                        
+                        <PieChartPlayer win={20} lose={15} tie={5}/>
+
                     </Stack>
                 </CardContent>
             </StatBox>

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import { PieChart } from 'react-minimal-pie-chart';
 
-const PieChartPlayer = () => {
+const PieChartPlayer = (props) => {
 
-    const [chartData, setChartData] = useState ([
-        { title: 'Tie', value: 5, color: '#E38627' },
-        { title: 'Lose', value: 15, color: '#C13C37' },
-        { title: 'Win', value: 20, color: '#6A2135' },
+    const [chartData] = useState ([
+        { title: 'Tie', value: props.tie, color: '#E38627' },
+        { title: 'Lose', value: props.lose, color: '#C13C37' },
+        { title: 'Win', value: props.win, color: '#6A2135' },
     ]);
 
     return (
