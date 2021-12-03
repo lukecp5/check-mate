@@ -244,23 +244,26 @@ const SearchGames = () => {
 
   {/* This starts the hard code output to be replaced by filtered data */}
   {selectedGameData ? ( 
-    <Grid container align="center" justifyContent="center" sx={{marginBottom:5, marginTop: 5}}>
+    <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
       <Grid item xs={8} md={5}>
-        <MyCard>
+        <MyCard sx={{width: '70%', m: 5, p: 3}}>
           <CardContent>
-            <CardMedia
+            <CardMedia 
               component="img"
               image={selectedGameData[0].image_url}
               alt="Board game box cover"
             />
-            <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
+            {/* <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
             {selectedGameData[0].gameName}
-            </Typography>
+            </Typography> */}
           </CardContent>
         </MyCard>
       </Grid>
       <Grid item xs={12} md={7}>
-        <Box>
+        <Box sx={{mr: 20}}>
+          <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
+            {selectedGameData[0].gameName}
+          </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="About" {...a11yProps(0)} />
@@ -269,7 +272,7 @@ const SearchGames = () => {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <Typography variant="body2" sx={{textAlign: 'left'}}>
+            <Typography variant="body1" sx={{textAlign: 'left', fontSize: '20px'}}>
               {selectedGameData[0].fullGameDescription}
             </Typography>
             <Stack direction="row" spacing={3} sx={{marginTop: 5}}>
@@ -282,24 +285,31 @@ const SearchGames = () => {
               <Typography>
                 Minimum Age: {selectedGameData[0].minAge}
               </Typography>
-            </Stack>
-            {selectedGameData[0].officialUrl ? ( 
+              </Stack>
+              <Stack direction= "row" sx={{justifyContent: 'center', p: 5}}>
+                <SubmitBtn component={Link} to="/play" size= 'large' sx={{width: 100}}>Play!</SubmitBtn>
+              </Stack>
+            {/* {selectedGameData[0].officialUrl ? ( 
               <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
-            ) : null}
+            ) : null} */}
           </TabPanel>
           <TabPanel value={value} index={1}>
             {selectedGameData[0].rulesUrl ? ( 
-              <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
+              // <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
+              <RulesBtn href= {selectedGameData[0].rulesUrl} size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
             ) : (
               <Typography sx={{color:'red'}}>Sorry! We can't find the link.</Typography>
             )}
           </TabPanel>
           {/* TODO: Change this from a link to display the list of alternate rules created my different users */}
           <TabPanel value={value} index={2}>
-            <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button>
+            {/* <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button> */}
+            <Stack direction= "row" sx={{justifyContent: 'center'}}>
+              <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn>
+            </Stack>
           </TabPanel>
-          <SubmitBtn component={Link} to="/play">Play!</SubmitBtn>
-          <RulesBtn component={Link} to="/altrules">Add A Rule</RulesBtn>
+          {/* <SubmitBtn component={Link} to="/play">Play!</SubmitBtn> */}
+          {/* <RulesBtn component={Link} to="/altrules">Add A Rule</RulesBtn> */}
         </Box>
       </Grid>
   </Grid>      
