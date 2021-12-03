@@ -12,7 +12,10 @@ export const USER_INFO = gql`
                   #       firstName
                   #       lastName
                   # }
-                  # wins
+                  wins {
+                        game
+                        wins
+                  }
                   # losses
                   # ties
                   # avatar

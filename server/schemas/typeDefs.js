@@ -21,6 +21,7 @@ const typeDefs = gql`
   type Win {
     _id: ID!
     game: String
+    wins: Int
   }
 
   type Loss{
