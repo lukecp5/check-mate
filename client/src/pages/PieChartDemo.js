@@ -44,7 +44,7 @@ const PieChartDemo = () => {
                     fontFamily:'"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
                     fontSize: '8px',
                  }}
-                data={data}
+                data={chartData}
                 radius={25}
                 lineWidth={60}
                 segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
