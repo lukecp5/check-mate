@@ -102,7 +102,7 @@ export default function Profile() {
 
     // This is the state for the user's info
     const { loading, error, data } = useQuery(USER_INFO);
-	const userInfo = data ? data.userInfo : { name: '', email: '', friends: [] };
+	const userInfo = data ? data.userInfo : { };
     if(error) {
         console.log(error);
     }
