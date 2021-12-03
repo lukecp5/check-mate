@@ -19,3 +19,14 @@ export const USER_INFO = gql`
 		}
 	}
 `;
+
+export const FIND_ALT_RULES = gql`
+      query getfindaltrules {
+            findaltrules {
+                  game_id
+                  user
+                  description
+                  rule_set_name
+            }
+      }
+`;

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { useQuery } from '@apollo/client';
-import { USER_INFO } from '../utils/queries'
+import { USER_INFO, FIND_ALT_RULES } from '../utils/queries'
 import {ADD_ALTRULES} from '../utils/mutations';
+
 import Button from '@mui/material/Button';
 import { 
     Typography, 
@@ -41,11 +42,26 @@ const AltRules = () => {
 
     const [addAltRules ] = useMutation(ADD_ALTRULES);
 
-    const returnedDatafromDB = [ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are meet and one player has four cities" }];
+    //const [findAltRules ] = useQuery(FIND_ALT_RULES);
+
+    const [returnedDatafromDB, setReturnedDatafromDB ]  = useState([ {gameId: "Idnumber", user: "Timmy", rulesetName: "Oceanic Rules", desc: "Victory conditions are: normal conditions plus play until all water tiles are placed" }, {gameId: "Idnumber", user: "Jimmy", rulesetName: "Alexander's Rules", desc: "Play until all victory conditions are met and one player has four cities" }]);
+
+    // Query to the db to get the alt rules, this gives a 400 error and I can't figure out why
+    const { dataDB } = useQuery(FIND_ALT_RULES);
+
+    // const rulesfromDB = dataDB?.rulesfromDB || [];
+    
 
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
         setGameID(gameId);
+        //This is where I could execute a database search 
+        // or if I already pulled everthing I could do a filter here or maybe something I haven't thought of yet.
+        //console.log(rulesfromDB);
+
+        //const filteredData = returnedDatafromDB.filter (item => item.gameId === gameId);
+        //setReturnedDatafromDB(filteredData);
+
     };
 
     const handleRulesFormSubmit = async (event) => {
@@ -62,6 +78,7 @@ const AltRules = () => {
         console.log("altRulesName: ", altRulesName);
         console.log("altRules: ", altRules);
         console.log("user:", user)
+
     };
     
     const handleGameSearchFormSubmit = async (event) => {
@@ -224,6 +241,7 @@ const AltRules = () => {
             </Grid>
         
         {/* THIS IS THE START OF THE ALTERNATE RULES DISPLAY */}
+        {/* Right now it populates from a map over a state value's initial state (returnedDatafromDB) it needs to populte from the Database pull and either the pull needs to filter just games with matching Ids (gameID) or we can pull all the lat rules and run a filter for the matching game ids. */}
         <Grid item xs={12} md ={6}>
         <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
             <Grid container>

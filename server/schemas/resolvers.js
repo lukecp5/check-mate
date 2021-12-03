@@ -29,13 +29,8 @@ const resolvers = {
     //     return userData.friends;
     //   }
     // },
-    findaltrules: async (parent, args, context) => {
-      if (context.user) {
-        const altruleData = await Altrules.findall({});
-
-        return altruleData;
-      }
-      throw new AuthenticationError('Not logged in');
+    findaltrules: async (parent, args) => {
+        return Altrules.findall();
     }
   },
   Mutation: {
