@@ -201,8 +201,8 @@ export default function Profile() {
         <Grid item xs={12} sm={7} >
             <FriendBox>
                 <CardContent>
-                    <Grid container spacing={2} sx={{justifyContent: 'center'}}> 
-                    <Typography variant="h4">My Friends</Typography>
+                    <Typography variant="h4">My Friends</Typography>    
+                    <Grid container spacing={2} sx={{justifyContent: 'space-evenly'}}> 
                     {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
                     {myFriends.map((friend, index) => (
                         <Grid 
