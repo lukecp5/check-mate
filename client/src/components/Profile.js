@@ -72,16 +72,16 @@ export default function Profile() {
         { title: 'Win', value: 20, color: '#6A2135' },
     ]);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleClick = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    // const open = Boolean(anchorEl);
+    // const id = open ? 'simple-popover' : undefined;
 
     return (
     <Grid container spacing={2}>

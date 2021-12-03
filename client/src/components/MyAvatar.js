@@ -10,7 +10,7 @@ var randomColor = () => {
 };
 
 //this styles the friend's avatars 
-const MyAvatar = styled(Avatar)(({ theme }) => ({
+const StyledMyAvatar = styled(Avatar)(({ theme }) => ({
     margin: 20,  
     background: randomColor(), 
     width: 56, 
@@ -24,7 +24,7 @@ const MyAvatar = styled(Avatar)(({ theme }) => ({
 const MyAvatar = () => {
     return (
         <div>
-            <MyAvatar/> 
+            <StyledMyAvatar/> 
         </div>
     )
 }
