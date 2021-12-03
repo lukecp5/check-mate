@@ -106,6 +106,8 @@ export default function Profile() {
     }
     const firstName = userInfo.firstName;
 
+    const firstInit = firstName.slice(0,1);
+
     console.log(userInfo);
 
     // const handlePageChange = (event, newPage) => {
@@ -133,9 +135,10 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                        <UserAvatar alt="User" />
+                    <MyAvatar>{firstInit}</MyAvatar>
+                        {/* <UserAvatar aria-describedby={id} alt="User" /> */}
                         {/* TODO: Replace User with Username from DB */}
-                        <Typography variant="h5">
+                        <Typography variant="h5" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
                             Welcome back, {firstName}!
                         </Typography>
                     </Stack>
