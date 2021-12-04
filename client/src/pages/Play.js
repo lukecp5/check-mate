@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import { Typography, TextField, Card } from '@mui/material';
 
+import { useGameContext } from '../utils/GameContext';
+
 const MyCard = styled(Card)(({ theme }) => ({ 
   background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
   color: 'white',  
@@ -17,6 +19,7 @@ const MyCard = styled(Card)(({ theme }) => ({
 
 
 const Play = () => {
+      const { currentGame, setGame } = useGameContext();
     // const [friends, setFriends] = useState(" "); 
 
     const friends = [
