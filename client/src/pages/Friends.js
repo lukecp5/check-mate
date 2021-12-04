@@ -85,6 +85,7 @@ export default function Friends() {
             search: search
         }
     });
+
     useEffect(() => {
         if(error) {
             console.log(error);
