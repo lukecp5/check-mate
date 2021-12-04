@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -8,6 +8,8 @@ import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 
+import { useQuery } from '@apollo/client';
+import { GET_FRIENDS } from '../utils/queries';
 //this styles the Friend's box, the green box 
 const StyledFriendBox = styled(Card)(({ theme }) => ({
     color: "#ffffff", 
@@ -35,7 +37,8 @@ const MyAvatar = styled(Avatar)(({ theme }) => ({
     }
 })); 
 
-//this is mockup data for the friend's list. We will delete this after we get it pulling from the database
+
+    //this is mockup data for the friend's list. We will delete this after we get it pulling from the database
 const myFriends = [
     {
         name: "Amanda", 
@@ -67,7 +70,17 @@ const myFriends = [
 const FriendBox = () => {
     
     const [anchorEl, setAnchorEl] = React.useState(null);
-    
+    const [friendList, setFriendList] = React.useState([]);
+
+    const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
+
+    useEffect(() => {
+        if(data) {
+            console.log(data);
+            setFriendList(data.getFriends);
+        }
+        }, [data]);
+
     const handleClick = (event) => {
         event.preventDefault(); 
         setAnchorEl(event.currentTarget);
