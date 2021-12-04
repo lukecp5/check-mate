@@ -60,7 +60,9 @@ const typeDefs = gql`
     me: User
     user(_id: ID!): User
     userInfo: User
+    allUsers: [ User ]
     users: [User]
+    findFriends(search: String): [User]
     findaltrules: [Altrules]  
   }
 
