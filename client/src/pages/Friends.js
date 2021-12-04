@@ -9,8 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
-import { useQuery, useLazyQuery} from '@apollo/client';
+import { useQuery, useLazyQuery, useMutation} from '@apollo/client';
+import { ADD_FRIEND } from '../utils/mutations';
 import { FIND_FRIENDS } from '../utils/queries';
+
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
     color: '#616161',
