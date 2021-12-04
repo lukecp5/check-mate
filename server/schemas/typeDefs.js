@@ -28,11 +28,13 @@ const typeDefs = gql`
   type Loss{
     _id: ID!
     game: String
+    losses: Int
   }
 
   type Tie{
     _id: ID!
     game: String
+    ties: Int
   }
 
   type Altrules {

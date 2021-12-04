@@ -55,16 +55,30 @@ export default function Profile() {
     console.log("userInfo: ", userInfo);
   
     const { firstName } = data ? data.userInfo : { firstName: "Player" };
-    const { wins } = data ? data.userInfo : { wins: "No Wins" };
+    const { wins } = data ? data.userInfo : { wins: "0" };
+    const { losses } = data ? data.userInfo : { losses: "0" };
+    const { ties } = data ? data.userInfo : { ties: "0" };
     
     console.log("wins: ", ...wins);
+    console.log("losses: ", ...losses);
+    console.log("ties: ", ...ties);
 
     let winsArray = [...wins]
     console.log("winsArray: ", winsArray);
     const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
     console.log(countWins);
-    // setWins(countWins);
+
+    let lossesArray = [...losses]
+    console.log("lossesArray: ", lossesArray);
+    const countLosses = lossesArray.map(item => item.losses).reduce((prev, curr) => prev + curr, 0);
+    console.log(countLosses);
     
+    let tiesArray = [...ties]
+    console.log("tiesArray: ", tiesArray);
+    const countTies = tiesArray.map(item => item.ties).reduce((prev, curr) => prev + curr, 0);
+    console.log(countTies);
+    
+    // setWins(countWins);
     // console.log("userInfo: ", userInfo);
     const handleWins = (wins) => {
         // let gameWins = Object.values(wins);
@@ -128,7 +142,10 @@ export default function Profile() {
                         </Typography>
                         {/* TODO: Replace with total losses of that user */}
                         <Typography variant="body1" component="div">
-                            Losses: 0 
+                            Losses: {countLosses} 
+                        </Typography>
+                        <Typography variant="body1" component="div">
+                            Ties: {countTies} 
                         </Typography>
                         {/* TODO: Replace with friend who user plays with most */}
                         <Typography variant="body1" component="div">
