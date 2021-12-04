@@ -9,6 +9,9 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
+import { useQuery, useLazyQuery} from '@apollo/client';
+import { FIND_FRIENDS } from '../utils/queries';
+
 const StyledButton = styled(Button)(({ theme }) => ({ 
     color: '#616161',
     background: 'white', 
@@ -34,25 +37,78 @@ const MyCard = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
 })); 
 
+const myFriends = [
+    {
+        name: "Amanda", 
+        initial: "A", 
+    }, 
+    {
+        name: "Chris", 
+        initial: "C", 
+    }, 
+    {
+        name: "Hannah", 
+        initial: "H", 
+    }, 
+    {
+        name: "Ben", 
+        initial: "B", 
+    }, 
+    {
+        name: "Luke", 
+        initial: "L", 
+    }, 
+    {
+        name: "Daniel", 
+        initial: "D", 
+    }, 
+
+]
+
+
 export default function Friends() {
 
     const [searchedFriend, setSearchedFriend] = useState('');
-    const [searchInput, setSearchInput] = useState('');
+
+    // > The value of the search input when the user submits the form
+    const [search, setSearch] = useState('');
+
+    // > The results of the search after calling initiateSearchQuery
+    const [searchResults, setSearchResults] = useState([]);
+
     const [selectedFriendData, setSelectedFriendData] = useState('');
+
+
+    // > useLazyQuery definition that sets up the query to use the 'search' state variable as input. It gives us the results of the query as well as a function to call the query whenever needed
+    const [initiateSearchQuery, { loading, error, data, refetch }] = useLazyQuery(FIND_FRIENDS, {
+        variables: {
+            search: search
+        }
+    });
+
+    useEffect(() => {
+        if(error) {
+            console.log(error);
+        }
+        if (data) {
+            setSearchResults(data);
+        }
+        console.log(data);
+    }, [data]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(searchInput); 
-
-        if (!searchInput) {
+        setSearch(searchedFriend);
+        await initiateSearchQuery();
+        if (!search) {
           return false;
         }
-    
-        // setSearchedFriend("");
-        // setSearchInput('');
-      };
+            setSearchResults(data.findFriends);
+            console.log(searchResults);
+    };
 
     return (
+        
         <>
         <Grid container 
             sx={{ 
@@ -86,9 +142,10 @@ export default function Friends() {
                             <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
                                 <TextField
                                     required
-                                    name="searchInput"
+                                    name="search"
                                     // value={searchInput}
                                     onChange={(e) => setSearchedFriend(e.target.value)}
+                                    value={searchedFriend}
                                     type="text"
                                     size="lg"
                                     placeholder="Enter Username"

@@ -11,6 +11,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    username: String
     wins: [ Win ]
     losses: [ Loss]
     ties: [ Tie ]
@@ -60,7 +61,9 @@ const typeDefs = gql`
     me: User
     user(_id: ID!): User
     userInfo: User
+    allUsers: [ User ]
     users: [User]
+    findFriends(search: String): [User]
     findaltrules: [Altrules]  
   }
 
@@ -68,6 +71,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
 
+    addFriend(friendId: ID!): User
+    
     addWin(game: String!): User
     addLoss(game: String!): User
     addTie(game: String!): User

@@ -22,6 +22,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+    allUsers: async (_, args) => {
+        const userData = await User.find({}).select('-__v -password');
+        return userData;
+      },
     // getFriends: async (parent, args, context) => {
     //   if (context.user) {
     //     const userData = await User.find({ _id: context.user._id }).select('-__v -password');
@@ -29,6 +34,21 @@ const resolvers = {
     //     return userData.friends;
     //   }
     // },
+    findFriends: async (parent, args, context) => {
+    const { search = ""} = args;
+
+      const friendData = await User.find({
+      $or: [
+        { firstName: { $regex: search, $options: 'i' } },
+        { lastName: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } },
+        { username: { $regex: search, $options: 'i' } },
+      ],
+    }).select('-__v -password');
+
+    return friendData;
+    },
+
     findaltrules: async (parent, args) => {
       console.log('Hello World');
         return Altrules.find();
@@ -59,6 +79,16 @@ const resolvers = {
       return { token, user };
     },
 
+    addFriend: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { friends: args.friendId } },
+          { new: true }
+        );
+      }
+    },
+    
     addLoss: async (parent, { lossData }, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id });

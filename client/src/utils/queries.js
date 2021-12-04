@@ -7,11 +7,12 @@ export const USER_INFO = gql`
 			firstName
                   lastName
 			email
-                  # friends{
-                  #       _id
-                  #       firstName
-                  #       lastName
-                  # }
+                  username
+                  friends{
+                        _id
+                        firstName
+                        lastName
+                  }
                   wins {
                         game
                         wins
@@ -23,6 +24,28 @@ export const USER_INFO = gql`
 	}
 `;
 
+
+
+export const FIND_FRIENDS = gql`
+  query findFriends($search: String) {
+    findFriends(search: $search) {
+      _id
+      firstName
+      username
+    }
+  }
+`;
+
+export const ALL_USERS = gql`
+  query allUsers {
+      allUsers {
+            _id
+            firstName
+            lastName
+            username
+      }
+      }
+`;
 export const FIND_ALT_RULES = gql`
       query getfindaltrules {
             findaltrules {
