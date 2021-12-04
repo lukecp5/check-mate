@@ -16,6 +16,7 @@ import Play from '../components/Play';
 import Results from '../components/Results'; 
 import GameDetails from '../components/GameDetails';
 import randomColor from '../utils/randomColor';
+import AltRulesComp from '../components/AltRulesComp';
 
 var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
 
@@ -295,7 +296,7 @@ const SearchGames = () => {
           <TabPanel value={value} index={1}>
             {selectedGameData[0].rulesUrl ? ( 
               // <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
-              <RulesBtn href= {selectedGameData[0].rulesUrl} size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
+              <RulesBtn href= {selectedGameData[0].rulesUrl} target="_blank"  size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
             ) : (
               <Typography sx={{color:'red'}}>Sorry! We can't find the link.</Typography>
             )}
@@ -304,7 +305,8 @@ const SearchGames = () => {
           <TabPanel value={value} index={2}>
             {/* <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button> */}
             <Stack direction= "row" sx={{justifyContent: 'center'}}>
-              <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn>
+              <AltRulesComp />
+              {/* <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn> */}
             </Stack>
           </TabPanel>
           {/* <SubmitBtn component={Link} to="/play">Play!</SubmitBtn> */}
