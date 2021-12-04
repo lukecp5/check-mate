@@ -34,7 +34,7 @@ const Play = () => {
         <Stack spacing={3} 
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column', p: 5}}>
             <MyCard sx={{ p: 10}}>
-              <Typography variant="h3" sx={{p: 2}}>Game Name</Typography>
+              <Typography variant="h3" sx={{p: 2}}>{currentGame.name}</Typography>
               <Typography variant="h5" sx={{p: 2}}>Choose Your Players</Typography>
               <Autocomplete
               multiple
