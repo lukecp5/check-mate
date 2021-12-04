@@ -22,6 +22,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+    allUsers: async (_, args) => {
+        const userData = await User.find({}).select('-__v -password');
+        return userData;
+      },
     // getFriends: async (parent, args, context) => {
     //   if (context.user) {
     //     const userData = await User.find({ _id: context.user._id }).select('-__v -password');
