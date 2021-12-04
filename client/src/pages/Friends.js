@@ -119,6 +119,28 @@ export default function Friends() {
             console.log(data.findFriends[0].firstName);
     };
     
+    const [friendId, setFriendId] = useState();
+
+    const [addFriend, {completed} ] = useMutation(ADD_FRIEND, {
+        variables: {
+            friendID: friendId
+        },
+        onCompleted: () => {
+            console.log('Friend added!');
+        }
+    });
+
+    const handleAddFriend = async (event) => {
+    event.preventDefault();
+    let currentFriendId = event.target.id;
+    setFriendId(currentFriendId);
+    console.log("Before Add Friend Mutation: " + friendId);
+    if(friendId) {
+    await addFriend(friendId);
+    console.log("Friend ID of friend to add: " + friendId);
+    }
+    return;    
+}
 
     return (
         
