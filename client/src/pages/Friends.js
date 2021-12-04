@@ -65,11 +65,17 @@ const myFriends = [
 
 ]
 
+
 export default function Friends() {
 
     const [searchedFriend, setSearchedFriend] = useState('');
-    
-    const [searchInput, setSearchInput] = useState('');
+
+    // > The value of the search input when the user submits the form
+    const [search, setSearch] = useState('');
+
+    // > The results of the search
+    const [searchResults, setSearchResults] = useState([]);
+
     const [selectedFriendData, setSelectedFriendData] = useState('');
 
     const handleSubmit = async (event) => {
