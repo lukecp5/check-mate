@@ -12,6 +12,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { USER_INFO } from '../utils/queries'
 import FriendBox from '../components/FriendBox';
 import PieChartPlayer from '../components/PieChartPlayer';
+import randomColor from '../utils/randomColor';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -25,23 +26,15 @@ const StatBox = styled(Card)(({ theme }) => ({
 
 //this styles the friend's avatars 
 const UserAvatar = styled(Avatar)(({ theme }) => ({
-    background: userRandomColor(), 
-    width: 56, 
-    height: 56,
+    background: randomColor(userColors), 
+    color:'white', 
+    width: 72, 
+    height: 72,
 })); 
 
-
-//This changes the colors of the backgrounds of each of the friend's avatars 
-// Theme colors added to array, Took out Green because of Green background
 var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
-var randomColor = () => {
-    return colors[Math.floor(Math.random()* colors.length)];
-};
-
 var userColors = ['#00A1CB','#01A4A4','#113F8C', '#61AE24', '#D0D102', '#32742C'];
-var userRandomColor = () => {
-    return userColors[Math.floor(Math.random()* colors.length)];
-};
+
 
 export default function Profile() {
     // //this handles the pagniation changes 
@@ -49,7 +42,11 @@ export default function Profile() {
     // This is the state for the user's info
     const { loading, error, data } = useQuery(USER_INFO);  
     const [ totalWins, setWins ] = useState([3]);
-  
+    
+    //this takes the firstName from the db and returns just the first letter for the avatars
+    const initial = () => {
+        return firstName.charAt(0); 
+    }
 
 	const userInfo = data ? data.userInfo : { };
     console.log("userInfo: ", userInfo);
@@ -128,7 +125,7 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                    <Avatar>{firstName}</Avatar>
+                    <UserAvatar>{initial()}</UserAvatar>
                         {/* <UserAvatar aria-describedby={id} alt="User" /> */}
                         {/* TODO: Replace User with Username from DB */}
                         <Typography variant="h5" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
