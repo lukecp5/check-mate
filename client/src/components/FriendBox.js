@@ -70,14 +70,15 @@ const myFriends = [
 const FriendBox = () => {
     
     const [anchorEl, setAnchorEl] = React.useState(null);
+    
     const [friendList, setFriendList] = React.useState([]);
 
     const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
 
     useEffect(() => {
         if(data) {
-            console.log(data);
-            setFriendList(data.getFriends);
+            setFriendList([...data.getFriends[0].friends]);
+            console.log("Friend List State Variable: " + friendList);
         }
         }, [data]);
 
