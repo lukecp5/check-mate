@@ -12,10 +12,25 @@ export const USER_INFO = gql`
                   #       firstName
                   #       lastName
                   # }
-                  # wins
+                  wins {
+                        game
+                        wins
+                  }
                   # losses
                   # ties
                   # avatar
 		}
 	}
+`;
+
+export const FIND_ALT_RULES = gql`
+      query getfindaltrules {
+            findaltrules {
+                  _id
+                  game_id
+                  user
+                  description
+                  rule_set_name
+            }
+      }
 `;

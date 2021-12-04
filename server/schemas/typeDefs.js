@@ -21,6 +21,7 @@ const typeDefs = gql`
   type Win {
     _id: ID!
     game: String
+    wins: Int
   }
 
   type Loss{
@@ -60,7 +61,7 @@ const typeDefs = gql`
     user(_id: ID!): User
     userInfo: User
     users: [User]
-    findaltrules(game_id: String!): [Altrules]  
+    findaltrules: [Altrules]  
   }
 
   type Mutation {

@@ -8,11 +8,14 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 // import Pagination from '@mui/material/Pagination';
 import { PieChart } from 'react-minimal-pie-chart';
+import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
 // Import the useQuery and useMutation hooks
 import { useQuery, useMutation } from '@apollo/client';
-// Import the USER_INFO query
+// // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
 import FriendBox from './FriendBox';
+import PieChartPlayer from '../pages/PieChartPlayer';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -47,14 +50,54 @@ var userRandomColor = () => {
 export default function Profile() {
     // //this handles the pagniation changes 
     // const [page, setPage] = useState(1); 
-
     // This is the state for the user's info
-    const { loading, error, data } = useQuery(USER_INFO);
+    const { loading, error, data } = useQuery(USER_INFO);  
+    const [ totalWins, setWins ] = useState([3]);
+  
+
 	const userInfo = data ? data.userInfo : { };
-    if(error) {
-        console.log(error);
+    console.log("userInfo: ", userInfo);
+  
+    const { firstName } = data ? data.userInfo : { firstName: "Player" };
+    const { wins } = data ? data.userInfo : { wins: "No Wins" };
+    
+    console.log("wins: ", ...wins);
+
+    let winsArray = [...wins]
+    console.log("winsArray: ", winsArray);
+    const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
+    console.log(countWins);
+    // setWins(countWins);
+    
+    // console.log("userInfo: ", userInfo);
+    const handleWins = (wins) => {
+        // let gameWins = Object.values(wins);
+        // console.log("gameWins: ", gameWins);
+        let winsArray = [...wins];
+        const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
+        console.log(countWins);
+        setWins(countWins);
     }
-    const firstName = userInfo.firstName;   
+    // console.log("gameWins Length: ", gameWins.length);
+    // setWins(gameWins);
+    
+    // handleWins(wins);
+
+    // useEffect(() => {        
+    //     handleWins(wins);
+    // },[wins]);
+
+    // useEffect(() => {        
+    //     getUserInfo();
+    // });
+    
+    // const getUserInfo = () => {
+    //     console.log("userInfo: ", userInfo);
+    //     let gameWins = userInfo.wins.map(w => w.wins).reduce((prev, curr) => prev + curr, 0);
+    //     console.log("gameWins: ", gameWins);
+    //     setWins(gameWins);
+    //     // setWins(userInfo.wins[0].wins);
+    // }
 
     console.log(userInfo);
 
@@ -85,7 +128,7 @@ export default function Profile() {
                     <Stack direction="column" spacing={2}>
                         {/* TODO: Replace with total wins of that user */}
                         <Typography variant="body1" component="div" sx={{mt: '10px'}}>
-                            Wins: 0 
+                            Wins: {countWins}
                         </Typography>
                         {/* TODO: Replace with total losses of that user */}
                         <Typography variant="body1" component="div">
@@ -109,27 +152,8 @@ export default function Profile() {
                             Career Stats
                         </Typography>
                         
-                        <PieChart
-                            style={{
-                                fontFamily:'"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                                fontSize: '8px',
-                            }}
-                            data={chartData}
-                            radius={35}
-                            lineWidth={60}
-                            segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
-                            segmentsShift={1}
-                            animate
-                            label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
-                            labelPosition={70}
-                            labelStyle={{
-                                fill: '#fff',
-                                opacity: 0.75,
-                                pointerEvents: 'none',
-                                fontSize: '3px',
-                                fontFamily: 'sans-serif',
-                        }}
-            />
+                        <PieChartPlayer win={20} lose={15} tie={5}/>
+
                     </Stack>
                 </CardContent>
             </StatBox>
