@@ -7,6 +7,7 @@ export const USER_INFO = gql`
 			firstName
                   lastName
 			email
+                  username
                   friends{
                         _id
                         firstName
@@ -25,7 +26,7 @@ export const USER_INFO = gql`
 
 
 
-export const FIND_FRIEND = gql`
+export const FIND_FRIENDS = gql`
   query findFriends($search: String) {
     findFriends(search: $search) {
       _id
