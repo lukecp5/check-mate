@@ -26,7 +26,8 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-
+import randomColor from "../utils/randomColor";
+// import { colors } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   abRoot: {
@@ -62,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060', '#61AE24', '#D0D102', '#32742C'];
 
 function Navbar() {
   const classes = useStyles();
@@ -109,7 +112,7 @@ function Navbar() {
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                   <Tooltip title="Account settings">
                     <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                      <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                      <Avatar sx={{ width: 56, height: 56, background: randomColor(colors) }}>M</Avatar>
                     </IconButton>
                   </Tooltip>
                 </Box>
