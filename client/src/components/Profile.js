@@ -10,6 +10,9 @@ import Stack from '@mui/material/Stack';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 
+import Auth from "../utils/auth";
+
+
 // Import the useQuery and useMutation hooks
 import { useQuery, useMutation } from '@apollo/client';
 // // Import the USER_INFO query
@@ -83,6 +86,9 @@ const myFriends = [
     }, 
 
 ]
+
+
+
 //This changes the colors of the backgrounds of each of the friend's avatars 
 // Theme colors added to array, Took out Green because of Green background
 var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
