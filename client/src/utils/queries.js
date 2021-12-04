@@ -23,6 +23,17 @@ export const USER_INFO = gql`
 	}
 `;
 
+
+export const ALL_USERS = gql`
+  query allUsers {
+      allUsers {
+            _id
+            firstName
+            lastName
+            username
+      }
+      }
+`;
 export const FIND_ALT_RULES = gql`
       query getfindaltrules {
             findaltrules {
