@@ -96,10 +96,17 @@ export default function Friends() {
             console.log(error);
         }
         if (data) {
-            setSearchResults(data);
+            setSearchResults(data.findFriends);
         }
-        console.log(data);
+        // console.log(data);
     }, [data]);
+
+    // useEffect(() => {
+    //     if(!data) {
+    //         return;
+    //     }
+    //     console.log(friendId);
+    // }, [friendId]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -108,9 +115,10 @@ export default function Friends() {
         if (!search) {
           return false;
         }
-            setSearchResults(data.findFriends);
-            console.log(searchResults);
+            await setSearchResults(data.findFriends);
+            console.log(data.findFriends[0].firstName);
     };
+    
 
     return (
         
