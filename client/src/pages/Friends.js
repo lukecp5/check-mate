@@ -85,6 +85,16 @@ export default function Friends() {
             search: search
         }
     });
+    useEffect(() => {
+        if(error) {
+            console.log(error);
+        }
+        if (data) {
+            setSearchResults(data);
+        }
+        console.log(data);
+    }, [data]);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(searchInput); 
