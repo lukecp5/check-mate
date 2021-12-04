@@ -4,7 +4,7 @@ const funFactArray = [
     "The oldest records of board gaming in Europe date back to Homer's Iliad (written in the 8th century BC), in which he mentions the Ancient Greek game of Petteia",
     "The most popular board game in the United States is chess",
     "There are over 300 different themed version of Monopoly",
-    "Trey's favorite game is exploding kittens",
+    "Trey's favorite game is exploding kittens.  Eve is not amused.",
     "Ben has never lost a game of Risk",
     "Hannah is undefeated at the game of 'Ticket to Ride'",
     "Danny, being a very serious gamer, lacks any fun facts regarding board games",
