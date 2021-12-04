@@ -73,11 +73,18 @@ export default function Friends() {
     // > The value of the search input when the user submits the form
     const [search, setSearch] = useState('');
 
-    // > The results of the search
+    // > The results of the search after calling initiateSearchQuery
     const [searchResults, setSearchResults] = useState([]);
 
     const [selectedFriendData, setSelectedFriendData] = useState('');
 
+
+    // > useLazyQuery definition that sets up the query to use the 'search' state variable as input. It gives us the results of the query as well as a function to call the query whenever needed
+    const [initiateSearchQuery, { loading, error, data, refetch }] = useLazyQuery(FIND_FRIENDS, {
+        variables: {
+            search: search
+        }
+    });
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(searchInput); 
