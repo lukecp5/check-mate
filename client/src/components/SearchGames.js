@@ -13,6 +13,9 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
+
+import { useGameContext } from '../utils/GameContext';
+
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
   height: "auto",
