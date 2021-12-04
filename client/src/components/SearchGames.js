@@ -57,6 +57,10 @@ const SearchGames = () => {
 
   const [selectedGameData, setSelectedGameData] = useState('');
 
+  // > Import the GameContext(An object containing: {name: [selected game]}) and the method to set the current game
+  // > This will be used to display as the header and send to the DB for wins, losses, ties, etc.
+  const { currentGame, setGame } = useGameContext();
+
   //This changes the colors of the backgrounds of each of the cards
   // Theme colors added to array
   var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
