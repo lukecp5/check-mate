@@ -4,9 +4,9 @@ import { PieChart } from 'react-minimal-pie-chart';
 const PieChartPlayer = (props) => {
 
     const [chartData] = useState ([
-        { title: 'Tie', value: props.tie, color: '#01A4A4' },
-        { title: 'Lose', value: props.lose, color: '#113F8C' },
-        { title: 'Win', value: props.win, color: '#61AE24' },
+        { title: `Tie: ${props.tie}`, value: props.tie, color: '#01A4A4' },
+        { title: `Lose: ${props.lose}`, value: props.lose, color: '#113F8C' },
+        { title: `Win: ${props.win}`, value: props.win, color: '#61AE24' },
     ]);
 
     return (

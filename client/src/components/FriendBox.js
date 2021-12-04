@@ -74,8 +74,9 @@ const FriendBox = () => {
 
     useEffect(() => {
         if(data) {
-            setFriendList([...data.getFriends[0].friends]);
-            console.log("Friend List State Variable: " + friendList);
+            console.log(data.getFriends); 
+            // setFriendList([...data.getFriends[0].friends]);
+            // console.log("Friend List State Variable: " + friendList);
         }
         }, [data]);
 
@@ -180,6 +181,8 @@ const FriendBox = () => {
                                 </Grid>
                             </Grid>
                         </Popover>
+                    </Grid>
+                    ))}
                 </Grid>
             </CardContent>
         </StyledFriendBox>
