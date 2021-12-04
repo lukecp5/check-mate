@@ -108,6 +108,7 @@ export default function Friends() {
     };
 
     return (
+        
         <>
         <Grid container 
             sx={{ 
@@ -141,9 +142,10 @@ export default function Friends() {
                             <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
                                 <TextField
                                     required
-                                    name="searchInput"
+                                    name="search"
                                     // value={searchInput}
                                     onChange={(e) => setSearchedFriend(e.target.value)}
+                                    value={searchedFriend}
                                     type="text"
                                     size="lg"
                                     placeholder="Enter Username"
