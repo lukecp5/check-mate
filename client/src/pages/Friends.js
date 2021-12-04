@@ -103,10 +103,9 @@ export default function Friends() {
         if (!search) {
           return false;
         }
-    
-        // setSearchedFriend("");
-        // setSearchInput('');
-      };
+            setSearchResults(data.findFriends);
+            console.log(searchResults);
+    };
 
     return (
         <>
