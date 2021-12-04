@@ -81,6 +81,9 @@ export default function Friends() {
     const [selectedFriendData, setSelectedFriendData] = useState('');
 
 
+
+
+
     // > useLazyQuery definition that sets up the query to use the 'search' state variable as input. It gives us the results of the query as well as a function to call the query whenever needed
     const [initiateSearchQuery, { loading, error, data, refetch }] = useLazyQuery(FIND_FRIENDS, {
         variables: {
