@@ -100,20 +100,20 @@ const FriendBox = () => {
                 <Typography variant="h4">My Friends</Typography>    
                 <Grid container spacing={2} sx={{justifyContent: 'space-evenly'}}> 
                 {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
-                {myFriends.map((friend, index) => (
+                {friendList.map((friend, i) => (
                     <Grid 
                         item 
                         xs={6} md={4} lg={3} 
-                        key={index} 
+                        key={i} 
                         sx={{display: 'flex', justifyContent: 'center'}}
                     >
                         <Tooltip title="See Stats">
-                            <MyAvatar aria-describedby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
+                            <MyAvatar aria-describedby={id} onClick={handleClick}>{friend.firstName.charAt(0)}</MyAvatar> 
                         </Tooltip>
                             <Typography 
                                 varient="h6" 
                                 sx={{alignSelf: 'center'}}
-                            >{friend.name}
+                            >{friend.firstName}
                             </Typography>
                         <Popover
                             id={id}
