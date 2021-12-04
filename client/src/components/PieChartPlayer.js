@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { PieChart } from 'react-minimal-pie-chart';
 
 const PieChartPlayer = (props) => {

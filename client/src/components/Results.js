@@ -7,7 +7,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
-import SubmitBtn from '../components/SubmitBtn';
+import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 

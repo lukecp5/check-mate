@@ -6,16 +6,12 @@ import { styled } from '@mui/system';
 import  { Grid }  from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-// import Pagination from '@mui/material/Pagination';
-import { PieChart } from 'react-minimal-pie-chart';
-import Popover from '@mui/material/Popover';
-import Tooltip from '@mui/material/Tooltip';
 // Import the useQuery and useMutation hooks
 import { useQuery, useMutation } from '@apollo/client';
 // // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
-import FriendBox from './FriendBox';
-import PieChartPlayer from '../pages/PieChartPlayer';
+import FriendBox from '../components/FriendBox';
+import PieChartPlayer from '../components/PieChartPlayer';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({

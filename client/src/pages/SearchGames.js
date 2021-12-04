@@ -6,7 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image from '../Images/gamebackgroundimage.png';
 import { Link } from "react-router-dom";
-import SubmitBtn from './SubmitBtn'; 
+import SubmitBtn from '../components/SubmitBtn'; 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
