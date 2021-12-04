@@ -23,10 +23,10 @@ const StyledFriendBox = styled(Card)(({ theme }) => ({
 
 //this styles the friend's avatars 
 const MyAvatar = styled(Avatar)(({ theme }) => ({
-    margin: 20,  
+    margin: "15px 40px", 
     background: randomColor(colors), 
-    width: 72, 
-    height: 72,
+    width: 80, 
+    height: 80,
     '&:hover': {
     cursor: 'pointer', 
     opacity: .7, 
@@ -90,19 +90,19 @@ const FriendBox = () => {
                 {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
                 {myFriends.map((friend, index) => (
                     <Grid 
-                        item 
-                        xs={6} md={4} lg={3} 
+                        item  
                         key={index} 
-                        sx={{display: 'flex', justifyContent: 'center'}}
                     >
                         <Tooltip title="See Stats">
                             <MyAvatar aria-describedby={id} onClick={handleClick}>{friend.initial}</MyAvatar> 
                         </Tooltip>
-                            <Typography 
-                                varient="h6" 
-                                sx={{alignSelf: 'center'}}
-                            >{friend.name}
-                            </Typography>
+                        <Typography 
+                            varient="h6" 
+                            sx={{alignSelf: 'center'}}
+                        >{friend.name}
+                        </Typography>
+                    </Grid>
+                    ))}
                         <Popover
                             id={id}
                             open={open}
@@ -166,8 +166,6 @@ const FriendBox = () => {
                                 </Grid>
                             </Grid>
                         </Popover>
-                    </Grid>
-                    ))}
                 </Grid>
             </CardContent>
         </StyledFriendBox>
