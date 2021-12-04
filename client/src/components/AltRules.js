@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-
 import { useQuery } from '@apollo/client';
 import { USER_INFO, FIND_ALT_RULES } from '../utils/queries'
 import {ADD_ALTRULES} from '../utils/mutations';
-
 import Button from '@mui/material/Button';
 import { 
     Typography, 

@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
-import SubmitBtn from '../components/SubmitBtn';
+import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import { Typography, TextField, Card } from '@mui/material';
@@ -52,9 +52,7 @@ const Play = () => {
             />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}}>
-            <Link to="/results">Ok!</Link>
-          </SubmitBtn>
+          <SubmitBtn size='large' sx={{width: 100}}>Ok!</SubmitBtn>
         </Stack>
       </Stack>
     )

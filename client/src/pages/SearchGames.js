@@ -6,12 +6,15 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image from '../Images/gamebackgroundimage.png';
 import { Link } from "react-router-dom";
-import SubmitBtn from './SubmitBtn'; 
+import SubmitBtn from '../components/SubmitBtn'; 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Play from '../components/Play'; 
+import Results from '../components/Results'; 
+import GameDetails from '../components/GameDetails';
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -243,9 +246,10 @@ const SearchGames = () => {
     ) : null}
 
   {/* This starts the hard code output to be replaced by filtered data */}
+  {/* THIS NOW LIVES IN GAMEDETAILS PAGE!!! */}
   {selectedGameData ? ( 
     <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
-      <Grid item xs={8} md={5}>
+      <Grid item xs={10} md={5}>
         <MyCard sx={{width: '70%', m: 5, p: 3}}>
           <CardContent>
             <CardMedia 
@@ -259,8 +263,8 @@ const SearchGames = () => {
           </CardContent>
         </MyCard>
       </Grid>
-      <Grid item xs={12} md={7}>
-        <Box sx={{mr: 20}}>
+      <Grid item xs={10} md={7}>
+        <Box>
           <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
             {selectedGameData[0].gameName}
           </Typography>
@@ -287,7 +291,7 @@ const SearchGames = () => {
               </Typography>
               </Stack>
               <Stack direction= "row" sx={{justifyContent: 'center', p: 5}}>
-                <SubmitBtn component={Link} to="/play" size= 'large' sx={{width: 100}}>Play!</SubmitBtn>
+                <SubmitBtn size= 'large' sx={{width: 100}}>Play!</SubmitBtn>
               </Stack>
             {/* {selectedGameData[0].officialUrl ? ( 
               <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
@@ -314,6 +318,9 @@ const SearchGames = () => {
       </Grid>
   </Grid>      
   ) : null}
+
+  <Play /> 
+  <Results /> 
     </>
   );
 };
