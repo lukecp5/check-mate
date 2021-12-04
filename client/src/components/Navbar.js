@@ -10,16 +10,13 @@ import {
 import { Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import { styled } from '@mui/system';
-import Logo from '../Images/Checkmatelogofinal.png'; 
+import Logo from '../Images/Checkmatelogofinal2.png'; 
 import  { Grid }  from '@mui/material';
 // AVATAR/PROFILE
-// import IconButton from '@mui/material/IconButton';
-// import Avatar from '@mui/material/Avatar';
-// import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
-const MyLogo = styled("img")(() => ({
-  width: 300,  
-})); 
 
 const useStyles = makeStyles((theme) => ({
   abRoot: {
@@ -63,21 +60,21 @@ function Navbar() {
   return (
     <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
-      <Toolbar>
-        <Link to='/'>
-          <MyLogo src={Logo} />
-        </Link> 
+      <Toolbar> 
         {isMobile ? (
+          <>
           <DrawerComponent/>
+          <Link to='/'>
+            <img src={Logo} />
+          </Link>
+          </>
         ) : ( 
+          <>
+          <Link to='/'>
+            <img src={Logo} />
+          </Link>
           <Grid className={classes.right}>
             <div className={classes.navlinks}>
-              {/* <Link to="/" className={classes.link}>
-                Home
-              </Link> */}
-              {/* <Link to="/startmatch" className={classes.link}>
-                Start a Match
-              </Link> */}
               <Link to="/searchgames" className={classes.link}>
                 Search Games
               </Link>
@@ -99,6 +96,7 @@ function Navbar() {
               </Stack> */}
             </div>
           </Grid>
+          </>
         )}
       </Toolbar>
     </AppBar>
