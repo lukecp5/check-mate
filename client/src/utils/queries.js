@@ -17,8 +17,14 @@ export const USER_INFO = gql`
                         game
                         wins
                   }
-                  # losses
-                  # ties
+                  losses {
+                        game
+                        losses
+                  }
+                  ties {
+                        game
+                        ties
+                  }
                   # avatar
 		}
 	}
