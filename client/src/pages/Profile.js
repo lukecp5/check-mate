@@ -126,19 +126,7 @@ export default function Profile() {
                             Welcome back, {firstName}!
                         </Typography>
                     </Stack>
-                    <Stack direction="column" spacing={2}>
-                        {/* TODO: Replace with total wins of that user */}
-                        {/* <Typography variant="body1" component="div" sx={{mt: '10px'}}>
-                            Wins: {countWins}
-                        </Typography> */}
-                        {/* TODO: Replace with total losses of that user */}
-                        {/* <Typography variant="body1" component="div">
-                            Losses: {countLosses} 
-                        </Typography> */}
-                        {/* <Typography variant="body1" component="div">
-                            Ties: {countTies} 
-                        </Typography> */}
-                        {/* TODO: Replace with friend who user plays with most */}
+                    <Stack direction="column" spacing={2} sx={{marginTop: 4}}>
                         <Typography variant="body1" component="div">
                             Best Teammate: Chris 
                         </Typography>
