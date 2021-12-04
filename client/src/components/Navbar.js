@@ -60,9 +60,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(10),
     "&:hover": {
       color: "#61AE24",
-      // TO DO: Link Hover Effects
-      // background: 'transparent',
-      // borderBottom: "2px solid white",
     },
   },
 }));
@@ -107,9 +104,9 @@ function Navbar() {
                   </Link> 
                 {/* </div> */}
               
-                {/* // <Link to="/searchgames" className={classes.link}>
-                //   Search Games
-                // </Link> */}
+                <Link to="/login" className={classes.link}>
+                  Log in
+                </Link>
                 {/* </div> */}
                 <React.Fragment>
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
