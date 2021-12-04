@@ -50,7 +50,6 @@ const resolvers = {
     },
 
     findaltrules: async (parent, args) => {
-      console.log('Hello World');
         return Altrules.find();
     }
   },

@@ -17,12 +17,12 @@ import { Grid, Box, CardContent, CardMedia } from '@mui/material';
 
 const AltRules = () => {
 
-    const { loading, error, data } = useQuery(USER_INFO);
+    const { error, data } = useQuery(USER_INFO);
 	const userInfo = data ? data.userInfo : { name: '', email: '', friends: [] };
     if(error) {
         console.log(error);
     }
-    const firstName = userInfo.firstName;
+    const username = userInfo.username;
 
     const [searchedGames, setSearchedGames] = useState([]);
 
@@ -53,14 +53,9 @@ const AltRules = () => {
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
         setGameID(gameId);
-        //This is where I could execute a database search 
-        // or if I already pulled everthing I could do a filter here or maybe something I haven't thought of yet.
-        console.log("dataDB: ", rulesfromDB);
-        console.log("gameId: ", gameId);
 
         const filteredData = rulesfromDB.filter (item => item.game_id === gameId);
         setReturnedDatafromDB(filteredData);
-
     };
 
     const handleRulesFormSubmit = async (event) => {
@@ -73,16 +68,12 @@ const AltRules = () => {
         } catch (err) {
             console.log(err);
         }
-        console.log("gameId: ", gameId);
-        console.log("altRulesName: ", altRulesName);
-        console.log("altRules: ", altRules);
-        console.log("user:", user)
 
     };
     
     const handleGameSearchFormSubmit = async (event) => {
         event.preventDefault();
-        setCurrentUser(firstName);
+        setCurrentUser(username);
         if (!searchInput) {
           return false;
         }
