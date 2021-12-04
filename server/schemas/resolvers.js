@@ -79,6 +79,16 @@ const resolvers = {
       return { token, user };
     },
 
+    addFriend: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { friends: args.friendId } },
+          { new: true }
+        );
+      }
+    },
+    
     addLoss: async (parent, { lossData }, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id });
