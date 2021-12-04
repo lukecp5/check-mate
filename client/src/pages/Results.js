@@ -58,7 +58,7 @@ const Results = () => {
             <MyCard sx={{ p: 10}}>
                 {/* TO DO: Change Trophy Size */}
             <Typography variant="h5">{trophy}</Typography>
-            <Typography variant="h3">Game Name</Typography>
+            <Typography variant="h3">{ currentGame.name }</Typography>
             <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
             <Autocomplete
             multiple
