@@ -112,6 +112,21 @@ export const ADD_LOSS = gql`
     }
   }
   `;
+
+export const ADD_FRIEND = gql`
+  mutation addFriend(
+    $friendId: String!
+  ) {
+    addFriend(
+      friendId: $friendId
+    ) {
+      _id
+      firstName
+      username
+    }
+  }
+`;
+
 export const ADD_ALTRULES = gql`
   mutation addRules(
     $game_id: String!,
