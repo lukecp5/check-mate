@@ -42,6 +42,24 @@ export const FIND_FRIENDS = gql`
   }
 `;
 
+export const GET_FRIENDS = gql`
+      query getFriends {
+            getFriends {
+                  _id
+                  firstName
+                  lastName
+                  email
+                  username
+                        friends{
+                              _id
+                              firstName
+                              lastName
+                              username
+                        }                  
+            }
+      }
+`;
+
 export const ALL_USERS = gql`
   query allUsers {
       allUsers {
