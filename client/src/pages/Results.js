@@ -11,6 +11,11 @@ import SubmitBtn from '../components/SubmitBtn';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
+// > Import the GameContext(An object containing: {name: [selected game]}) and the method to set the current game
+// > This will be used to display as the header and send to the DB for wins, losses, ties, etc.
+import { useGameContext } from '../utils/GameContext';
+
+
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const trophy = <EmojiEventsIcon fontSize="small" sx={{color: 'gold'}} /> 
 
@@ -43,6 +48,10 @@ const friends = [
 ]
 
 const Results = () => {
+    // > Extract the global "Game Name" state from the context, as well as the method to update it if needed.
+    // > The "Game Name" state is the name of the game that the user selected from the search games page
+    const { currentGame, setGame } = useGameContext();
+
     return (
         <Stack spacing={3} 
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
