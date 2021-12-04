@@ -47,7 +47,7 @@ const resolvers = {
     }).select('-__v -password');
 
     return friendData;
-        },
+    },
 
     findaltrules: async (parent, args) => {
       console.log('Hello World');
