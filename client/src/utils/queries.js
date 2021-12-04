@@ -7,11 +7,11 @@ export const USER_INFO = gql`
 			firstName
                   lastName
 			email
-                  # friends{
-                  #       _id
-                  #       firstName
-                  #       lastName
-                  # }
+                  friends{
+                        _id
+                        firstName
+                        lastName
+                  }
                   wins {
                         game
                         wins
