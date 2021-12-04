@@ -15,19 +15,22 @@ import  { Grid }  from '@mui/material';
 // AVATAR/PROFILE
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import randomColor from "../utils/randomColor";
 // import { colors } from "@material-ui/core";
+
+const MyLink = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: 'grey'
+}));
 
 const useStyles = makeStyles((theme) => ({
   abRoot: {
@@ -152,26 +155,26 @@ function Navbar() {
                 >
                   <MenuItem>
                     <Avatar /> 
-                    <Link to='/profile'>
+                    <MyLink to='/profile'>
                       Profile
-                      </Link>
+                      </MyLink>
                   </MenuItem>
                   <Divider />
                   <MenuItem>
                     <ListItemIcon>
                       <PersonAdd fontSize="small" />
                     </ListItemIcon>
-                    <Link to="/friends">
+                    <MyLink to="/friends">
                     Add Friends
-                    </Link>
+                    </MyLink>
                   </MenuItem>
                   <MenuItem>
                     <ListItemIcon>
                       <Logout fontSize="small" />
                     </ListItemIcon>
-                      <Link to="/login" sx={{ textDecoration: 'none'}}>
+                      <MyLink to="/login" sx={{ textDecoration: 'none'}}>
                         Logout
-                      </Link>
+                      </MyLink>
                   </MenuItem>
                 </Menu>
               </React.Fragment>
