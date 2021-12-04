@@ -13,9 +13,10 @@ import { styled } from '@mui/system';
 import Logo from '../Images/Checkmatelogofinal.png'; 
 import  { Grid }  from '@mui/material';
 // AVATAR/PROFILE
-// import IconButton from '@mui/material/IconButton';
-// import Avatar from '@mui/material/Avatar';
-// import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+
 
 const MyLogo = styled("img")(() => ({
   width: 300,  
@@ -94,9 +95,9 @@ function Navbar() {
                 Altrules
               </Link>
               {/* IF LOGGED in Avatar Button & REMOVE 'LOGIN/SIGN Up Link */}
-              {/* <Stack direction="row" spacing={2}>
+              <Stack direction="row" spacing={2}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </Stack> */}
+              </Stack>
             </div>
           </Grid>
         )}
