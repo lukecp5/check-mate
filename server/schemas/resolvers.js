@@ -34,6 +34,21 @@ const resolvers = {
     //     return userData.friends;
     //   }
     // },
+    findFriends: async (parent, args, context) => {
+    const { search = ""} = args;
+
+      const friendData = await User.find({
+      $or: [
+        { firstName: { $regex: search, $options: 'i' } },
+        { lastName: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } },
+        { username: { $regex: search, $options: 'i' } },
+      ],
+    }).select('-__v -password');
+
+    return friendData;
+        },
+
     findaltrules: async (parent, args) => {
       console.log('Hello World');
         return Altrules.find();
