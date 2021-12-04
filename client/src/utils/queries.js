@@ -24,6 +24,17 @@ export const USER_INFO = gql`
 `;
 
 
+
+export const FIND_FRIEND = gql`
+  query findFriends($search: String) {
+    findFriends(search: $search) {
+      _id
+      firstName
+      username
+    }
+  }
+`;
+
 export const ALL_USERS = gql`
   query allUsers {
       allUsers {
