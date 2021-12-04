@@ -52,9 +52,7 @@ const Play = () => {
             />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}}>
-            <Link to="/results">Ok!</Link>
-          </SubmitBtn>
+          <SubmitBtn size='large' sx={{width: 100}}>Ok!</SubmitBtn>
         </Stack>
       </Stack>
     )
