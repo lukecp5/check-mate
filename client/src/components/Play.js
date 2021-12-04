@@ -36,13 +36,14 @@ const Play = () => {
     return (
       <Grid container sx={{justifyContent: 'center', }}>
         <Grid item xs={12} md={8}>
-          <Stack spacing={2} direction="column" align="center">
+          <Stack spacing={2} direction="column" align="center" sx={{marginBottom: '16px'}}>
               <MyCard sx={{ p: 5}}>
                 <Typography variant="h3" sx={{pt: 3}}>Game Name</Typography>
                 <Typography variant="h5" sx={{p: 3}}>Choose Your Players</Typography>
                 <Autocomplete
                 multiple
                 sx={{ p: 3, color: 'white' }}
+                style={{ width: 500 }}
                 id="tags-outlined"
                 options={friends}
                 getOptionLabel={(option) => option.name}

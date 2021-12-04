@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
+import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -54,81 +55,81 @@ const Results = () => {
         console.log("This button should take you back to Choose Teammates / Play component"); 
     }
     return (
-        <Stack spacing={3} 
-          sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
-            <MyCard sx={{ p: 10}}>
-                {/* TO DO: Change Trophy Size */}
-            <EmojiEventsIcon sx={{fontSize:80}} />
-            <Typography variant="h3">Game Name</Typography>
-            <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
-            <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={trophy}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
+    <Grid container sx={{justifyContent: 'center', }}>
+        <Grid item xs={12} md={8}>
+          <Stack spacing={2} direction="column" align="center">
+            <MyCard sx={{ p: 5}}>
+                <EmojiEventsIcon sx={{fontSize:80}} />
+                <Typography variant="h3">Game Name</Typography>
+                <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
+                <Autocomplete
+                    multiple
+                    id="checkboxes-tags-demo"
+                    options={friends}
+                    disableCloseOnSelect
+                    getOptionLabel={(option) => option.name}
+                    renderOption={(props, option, { selected }) => (
+                        <li {...props}>
+                        <Checkbox
+                            icon={icon}
+                            checkedIcon={trophy}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                        />
+                        {option.name}
+                        </li>
+                    )}
+                    style={{ width: 500 }}
+                    renderInput={(params) => (
+                        <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
+                    )}
                 />
-                {option.name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
-                <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
-            )}
-        />
-        <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
+            <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
             <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={checkedIcon}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                />
-                {option.name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
+                multiple
+                id="checkboxes-tags-demo"
+                options={friends}
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                        <Checkbox
+                            icon={icon}
+                            checkedIcon={checkedIcon}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                        />
+                    {option.name}
+                    </li>
+                )}
+                style={{ width: 500 }}
+                renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
-            )}
-        />
-        <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
+                )}
+            />
+            <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
             <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={checkedIcon}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                />
-                {option.name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
-                <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
-            )}
-        />
+                multiple
+                id="checkboxes-tags-demo"
+                options={friends}
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                        <Checkbox
+                            icon={icon}
+                            checkedIcon={checkedIcon}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                        />
+                        {option.name}
+                    </li>
+                )}
+                style={{ width: 500 }}
+                renderInput={(params) => (
+                    <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
+                )}
+            />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
           <SubmitBtn size='large' sx={{width: 180}}>
@@ -139,6 +140,8 @@ const Results = () => {
           </RulesBtn>
         </Stack>
     </Stack>
+</Grid>
+</Grid>
   );
 }
 
