@@ -122,7 +122,10 @@ export const ADD_FRIEND = gql`
     ) {
       _id
       firstName
+      lastName
+      email
       username
+      
     }
   }
 `;
