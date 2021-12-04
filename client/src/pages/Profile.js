@@ -116,12 +116,6 @@ export default function Profile() {
     //     console.log(event.target); 
     // }
 
-    const [chartData, setChartData] = useState ([
-        { title: 'Tie', value: 5, color: '#E38627' },
-        { title: 'Lose', value: 15, color: '#C13C37' },
-        { title: 'Win', value: 20, color: '#6A2135' },
-    ]);
-
     return (
     <Grid container spacing={2}>
         <Grid item xs={12} sm={5}>
@@ -165,7 +159,7 @@ export default function Profile() {
                             Career Stats
                         </Typography>
                         
-                        <PieChartPlayer win={20} lose={15} tie={5}/>
+                        <PieChartPlayer win={20} lose={10} tie={5}/>
 
                     </Stack>
                 </CardContent>

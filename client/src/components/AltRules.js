@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { USER_INFO, FIND_ALT_RULES } from '../utils/queries'
 import {ADD_ALTRULES} from '../utils/mutations';
@@ -10,9 +10,7 @@ import {
     ListItemText, 
     ListItemButton, 
     List } from '@mui/material';
-// import Grid from '@mui/material/Grid';
-// import Box from '@mui/material/Box';
-// import CardContent from '@mui/material/CardContent';
+
 import { Grid, Box, CardContent, CardMedia } from '@mui/material';
 
 const AltRules = () => {
@@ -40,22 +38,13 @@ const AltRules = () => {
 
     const [addAltRules ] = useMutation(ADD_ALTRULES);
 
-    //const [findAltRules ] = useQuery(FIND_ALT_RULES);
+    let [getAltRules, { data: dataDB = [] }  ] = useLazyQuery(FIND_ALT_RULES, {fetchPolicy: "network-only", nextFetchPolicy: "network-only"});
 
-    const [returnedDatafromDB, setReturnedDatafromDB ]  = useState([]);
-
-    // Query to the db to get the alt rules
-    const   { data: dataDB }  = useQuery(FIND_ALT_RULES);
-
-    const rulesfromDB = dataDB?.findaltrules || [];
     
-
     const handleListItemClick = (event, index, gameId) => {
         setSelectedIndex(index);
         setGameID(gameId);
-
-        const filteredData = rulesfromDB.filter (item => item.game_id === gameId);
-        setReturnedDatafromDB(filteredData);
+        getAltRules({variables: {game_id: gameId} });
     };
 
     const handleRulesFormSubmit = async (event) => {
@@ -65,10 +54,12 @@ const AltRules = () => {
             await addAltRules({
                 variables: { game_id: gameId, user: user, description: altRules, rule_set_name: altRulesName },
             });
+            getAltRules({variables: {game_id: gameId} });
         } catch (err) {
             console.log(err);
         }
-
+        setAltRulesName('');
+        setAltRules('');   
     };
     
     const handleGameSearchFormSubmit = async (event) => {
@@ -231,7 +222,7 @@ const AltRules = () => {
             </Grid>
         
         {/* THIS IS THE START OF THE ALTERNATE RULES DISPLAY */}
-        {/* Right now it populates from a map over a state value's initial state (returnedDatafromDB) it needs to populte from the Database pull and either the pull needs to filter just games with matching Ids (gameID) or we can pull all the lat rules and run a filter for the matching game ids. */}
+        
         <Grid item xs={12} md ={6}>
         <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
             <Grid container>
@@ -248,7 +239,7 @@ const AltRules = () => {
                         ) : null}
                 </Grid>
 
-                {returnedDatafromDB.map((game) => {
+                {!dataDB.findaltrules ? null : dataDB.findaltrules.map((game) => {
                     return (
                         <Grid item xs={12} key={game._id}>
                             <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>

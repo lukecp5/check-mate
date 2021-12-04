@@ -53,8 +53,8 @@ export const ALL_USERS = gql`
       }
 `;
 export const FIND_ALT_RULES = gql`
-      query getfindaltrules {
-            findaltrules {
+      query getfindaltrules($game_id: String!) {
+            findaltrules(game_id: $game_id) {
                   _id
                   game_id
                   user

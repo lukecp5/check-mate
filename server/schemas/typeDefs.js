@@ -66,7 +66,7 @@ const typeDefs = gql`
     allUsers: [ User ]
     users: [User]
     findFriends(search: String): [User]
-    findaltrules: [Altrules]  
+    findaltrules(game_id: String!): [Altrules]  
   }
 
   type Mutation {
