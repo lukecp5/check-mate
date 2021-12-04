@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import { styled } from '@mui/system';
-import Logo from '../Images/Checkmatelogofinal.png'; 
+import Logo from '../Images/Checkmatelogofinal2.png'; 
 import  { Grid }  from '@mui/material';
 // AVATAR/PROFILE
 import IconButton from '@mui/material/IconButton';
@@ -24,11 +24,8 @@ import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
-
-
-const MyLogo = styled("img")(() => ({
-  width: 300,  
-})); 
+import randomColor from "../utils/randomColor";
+// import { colors } from "@material-ui/core";
 
 const MyLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
@@ -70,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060', '#61AE24', '#D0D102', '#32742C'];
+
 function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
@@ -87,18 +86,20 @@ function Navbar() {
   return (
     <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
-      <Toolbar>
-        <Link to='/'>
-          <MyLogo src={Logo} />
-        </Link> 
+      <Toolbar> 
         {isMobile ? (
+          <>
           <DrawerComponent/>
+          <Link to='/'>
+            <img src={Logo} />
+          </Link>
+          </>
         ) : ( 
+          <>
+          <Link to='/'>
+            <img src={Logo} />
+          </Link>
           <Grid className={classes.right}>
-            {/* <div className={classes.navlinks}> */}
-              {/* <Link to="/searchgames" className={classes.link}>
-                Search Games
-              </Link>  */}
               { isLogged ? (<>
                 <div className={classes.navlinks}>
                   <Link to="/searchgames" className={classes.link}>
@@ -114,7 +115,7 @@ function Navbar() {
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                   <Tooltip title="Account settings">
                     <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                      <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                      <Avatar sx={{ width: 56, height: 56, background: randomColor(colors) }}>M</Avatar>
                     </IconButton>
                   </Tooltip>
                 </Box>
@@ -186,6 +187,7 @@ function Navbar() {
                 }
             {/* </div> */}
           </Grid>
+          </>
         )}
         
       </Toolbar>

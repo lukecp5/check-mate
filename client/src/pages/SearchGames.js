@@ -15,6 +15,9 @@ import Stack from '@mui/material/Stack';
 import Play from '../components/Play'; 
 import Results from '../components/Results'; 
 import GameDetails from '../components/GameDetails';
+import randomColor from '../utils/randomColor';
+
+var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
   color: '#616161',
@@ -56,14 +59,6 @@ const SearchGames = () => {
   //const [selectedGame, setSelectedGame] = useState('');
 
   const [selectedGameData, setSelectedGameData] = useState('');
-
-  //This changes the colors of the backgrounds of each of the cards
-  // Theme colors added to array
-  var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
-  var randomColor = () => {
-      return colors[Math.floor(Math.random()* colors.length)];
-  };
-
 
   const handleLearnMoreClick = (selectedGameId) => {
     const newArray = searchedGames.filter (item => item.gameId === selectedGameId);
@@ -214,7 +209,7 @@ const SearchGames = () => {
     {searchedGames.map((game) => {
       return (
         <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}} key={game.gameId}>
-          <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+          <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
             <CardContent sx={{ textAlign: 'center' }}>
             
               <CardMedia
