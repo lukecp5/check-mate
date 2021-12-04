@@ -61,6 +61,7 @@ const myFriends = [
         name: "Daniel", 
         initial: "D", 
     }, 
+    
 ]
 
 const FriendBox = () => {
