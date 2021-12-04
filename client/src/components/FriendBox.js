@@ -8,11 +8,10 @@ import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import randomColor from '../utils/randomColor';
-
-var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
-
 import { useQuery } from '@apollo/client';
 import { GET_FRIENDS } from '../utils/queries';
+
+var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
 //this styles the Friend's box, the green box 
 const StyledFriendBox = styled(Card)(({ theme }) => ({
     color: "#ffffff", 
