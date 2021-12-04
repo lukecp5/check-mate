@@ -14,6 +14,8 @@ import Play from "./pages/Play";
 import Results from './pages/Results'; 
 import Friends from './pages/Friends';
 
+import { GameProvider } from './utils/GameContext';
+
 import SearchGames from "./components/SearchGames";
 // import GameSearch from "./components/GameSearch";
 import { ThemeProvider } from "@mui/material/styles";
@@ -65,6 +67,7 @@ function App() {
 					<ThemeProvider theme={theme}>
 						<Navbar />
 						<FunFact />
+						<GameProvider>
 							<Routes>
 								<Route path="/" element={<Homepage/>}/>
 								<Route path="/searchgames" element={<SearchGames/>}/>
@@ -78,7 +81,7 @@ function App() {
 								{/* <Route path="/startmatch" element={<StartMatch/>}/> */}
 								<Route path="*" element={<NotFound/>}/>
 							</Routes>
-							
+						</GameProvider>
 						<Footer />
 					</ThemeProvider>
 				</div>
