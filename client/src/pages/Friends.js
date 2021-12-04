@@ -196,21 +196,23 @@ export default function Friends() {
             </Grid>       
         </Grid>
 
-        {setSearchedFriend ? (
+        {searchResults ? (
+            searchResults.map((friend, index) => (
+
             <Grid container align="center" sx={{justifyContent:'center'}}>
             <Grid item xs={12} md={8}>
                 <MyCard>
                     <CardContent>
                         <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
-                        <Typography variant="h5">AmandaC0022</Typography>
+                        <Typography variant="h5">{friend.username}</Typography>
                         <CardActions sx={{justifyContent:'center'}}>
-                            <StyledButton>Add Friend</StyledButton>
+                            <StyledButton key={friend._id} onClick={handleAddFriend} id={friend._id}>Add Friend: {friend._id}</StyledButton>
                         </CardActions>
                     </CardContent>
                 </MyCard>
             </Grid>
         </Grid>
-        ) : null }
+            ))) : null }
         <Grid container align="center" sx={{display:"flex", justifyContent:"center"}}>
             <Grid item>
                 <FriendBox /> 
