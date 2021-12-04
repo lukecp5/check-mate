@@ -72,6 +72,10 @@ const SearchGames = () => {
   const handleLearnMoreClick = (selectedGameId) => {
     const newArray = searchedGames.filter (item => item.gameId === selectedGameId);
     setSelectedGameData(newArray);
+    let gameGlobalVar = newArray[0]
+    setGame(gameGlobalVar);
+    console.log(gameGlobalVar);
+    console.log("This is the game currently in the global game context: " + currentGame.name);
 }
 
   useEffect(() => {
