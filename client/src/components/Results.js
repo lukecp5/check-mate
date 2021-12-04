@@ -22,20 +22,24 @@ const MyCard = styled(Card)(({ theme }) => ({
     borderRadius: 0,
 })); 
 
-// const RulesBtn = styled(Button)(({ theme }) => ({ 
-//     display: 'block', 
-//     height: "auto",
-//     background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
-//     color: 'white', 
-//     margin: 20, 
-//     fontSize: 20, 
-//     '&:hover': {
-//       cursor: 'pointer', 
-//       opacity: .8, 
-//     }
-// })); 
-  
+const MyLink = styled(Link)(({ theme }) => ({ 
+    textDecoration: 'none', 
+    color: 'white'
+})); 
 
+const RulesBtn = styled(Button)(({ theme }) => ({ 
+    display: 'block', 
+    height: "auto",
+    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
+    color: 'white', 
+    margin: 20, 
+    fontSize: 20, 
+    '&:hover': {
+      cursor: 'pointer', 
+      opacity: .8, 
+    }
+})); 
+  
 const friends = [
     {name: "Amanda"}, 
     {name: "Hannah"}, 
@@ -45,12 +49,16 @@ const friends = [
 ]
 
 const Results = () => {
+    const handlePlayAgain = (event) => {
+        event.preventDefault(); 
+        console.log("This button should take you back to Choose Teammates / Play component"); 
+    }
     return (
         <Stack spacing={3} 
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
             <MyCard sx={{ p: 10}}>
                 {/* TO DO: Change Trophy Size */}
-            <Typography variant="h5">{trophy}</Typography>
+            <EmojiEventsIcon sx={{fontSize:80}} />
             <Typography variant="h3">Game Name</Typography>
             <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
             <Autocomplete
@@ -123,13 +131,12 @@ const Results = () => {
         />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}}>
-            <Link to="/results">Done!</Link>
+          <SubmitBtn size='large' sx={{width: 180}}>
+            <MyLink to="/">Done!</MyLink>
           </SubmitBtn>
-          {/* TO DO: Style Play Again Button */}
-          {/* <RulesBtn to="/results" size= 'large' sx={{width: 200}}>
-              <Link> Play Again?</Link>
-          </RulesBtn> */}
+          <RulesBtn size= 'large' sx={{width: 180}} onClick={handlePlayAgain}>
+              Play Again?
+          </RulesBtn>
         </Stack>
     </Stack>
   );

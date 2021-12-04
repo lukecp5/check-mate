@@ -8,6 +8,7 @@ import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import { Typography, TextField, Card } from '@mui/material';
+import  { Grid }  from '@mui/material';
 
 const MyCard = styled(Card)(({ theme }) => ({ 
   background: `linear-gradient(to right, ${theme.palette.secondary.dark}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`, 
@@ -15,6 +16,11 @@ const MyCard = styled(Card)(({ theme }) => ({
   borderRadius: 0,
 })); 
 
+const MyTextField = styled(TextField)(({ theme }) => ({ 
+  '&:active': {
+    color: 'white'
+  }
+})); 
 
 const Play = () => {
     // const [friends, setFriends] = useState(" "); 
@@ -28,33 +34,32 @@ const Play = () => {
     ]
 
     return (
-        <Stack spacing={3} 
-          sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column', p: 5}}>
-            <MyCard sx={{ p: 10}}>
-              <Typography variant="h3" sx={{p: 2}}>Game Name</Typography>
-              <Typography variant="h5" sx={{p: 2}}>Choose Your Players</Typography>
-              <Autocomplete
-              multiple
-              sx={{ width: 300, p: 2 }}
-              id="tags-outlined"
-              options={friends}
-              getOptionLabel={(option) => option.name}
-              filterSelectedOptions
-              renderInput={(params) => (
-                <TextField
-                // Change font color to white
-                // sx={{ color: '#ffffff'}}
-                  {...params}
-                  label="Choose Players"
-                  placeholder="Select Players"
-                />
-              )}
-            />
-        </MyCard>
-        <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}}>Ok!</SubmitBtn>
-        </Stack>
-      </Stack>
+      <Grid container sx={{justifyContent: 'center', }}>
+        <Grid item xs={12} md={8}>
+          <Stack spacing={2} direction="column" align="center">
+              <MyCard sx={{ p: 5}}>
+                <Typography variant="h3" sx={{pt: 3}}>Game Name</Typography>
+                <Typography variant="h5" sx={{p: 3}}>Choose Your Players</Typography>
+                <Autocomplete
+                multiple
+                sx={{ p: 3, color: 'white' }}
+                id="tags-outlined"
+                options={friends}
+                getOptionLabel={(option) => option.name}
+                filterSelectedOptions
+                renderInput={(params) => (
+                  <MyTextField
+                    {...params}
+                    label="Choose Players"
+                    placeholder="Select Players"
+                  />
+                )}
+              />
+          </MyCard>
+          <SubmitBtn size='large' sx={{width: 100, alignSelf: 'center'}}>Ok!</SubmitBtn>
+          </Stack>
+        </Grid>
+      </Grid>
     )
 }
 
