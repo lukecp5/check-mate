@@ -65,6 +65,7 @@ const typeDefs = gql`
     userInfo: User
     allUsers: [ User ]
     users: [User]
+    getFriends: [ User ]
     findFriends(search: String): [User]
     findaltrules: [Altrules]  
   }
@@ -73,7 +74,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
 
-    addFriend(friendId: ID!): User
+    addFriend(friendID: ID!): User
     
     addWin(game: String!): User
     addLoss(game: String!): User
