@@ -10,13 +10,12 @@ import {
 import { Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import { styled } from '@mui/system';
-import Logo from '../Images/Checkmatelogofinal.png'; 
+import Logo from '../Images/Checkmatelogofinal2.png'; 
 import  { Grid }  from '@mui/material';
 // AVATAR/PROFILE
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -28,10 +27,6 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
-
-const MyLogo = styled("img")(() => ({
-  width: 300,  
-})); 
 
 const useStyles = makeStyles((theme) => ({
   abRoot: {
@@ -85,18 +80,20 @@ function Navbar() {
   return (
     <AppBar position="static" classes={{root: classes.abRoot}}>
       <CssBaseline />
-      <Toolbar>
-        <Link to='/'>
-          <MyLogo src={Logo} />
-        </Link> 
+      <Toolbar> 
         {isMobile ? (
+          <>
           <DrawerComponent/>
+          <Link to='/'>
+            <img src={Logo} />
+          </Link>
+          </>
         ) : ( 
+          <>
+          <Link to='/'>
+            <img src={Logo} />
+          </Link>
           <Grid className={classes.right}>
-            {/* <div className={classes.navlinks}> */}
-              {/* <Link to="/searchgames" className={classes.link}>
-                Search Games
-              </Link>  */}
               { isLogged ? (<>
                 <div className={classes.navlinks}>
                   <Link to="/searchgames" className={classes.link}>
@@ -184,6 +181,7 @@ function Navbar() {
                 }
             {/* </div> */}
           </Grid>
+          </>
         )}
         
       </Toolbar>
