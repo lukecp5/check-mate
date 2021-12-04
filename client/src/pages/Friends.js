@@ -34,9 +34,38 @@ const MyCard = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
 })); 
 
+const myFriends = [
+    {
+        name: "Amanda", 
+        initial: "A", 
+    }, 
+    {
+        name: "Chris", 
+        initial: "C", 
+    }, 
+    {
+        name: "Hannah", 
+        initial: "H", 
+    }, 
+    {
+        name: "Ben", 
+        initial: "B", 
+    }, 
+    {
+        name: "Luke", 
+        initial: "L", 
+    }, 
+    {
+        name: "Daniel", 
+        initial: "D", 
+    }, 
+
+]
+
 export default function Friends() {
 
     const [searchedFriend, setSearchedFriend] = useState('');
+    
     const [searchInput, setSearchInput] = useState('');
     const [selectedFriendData, setSelectedFriendData] = useState('');
 
