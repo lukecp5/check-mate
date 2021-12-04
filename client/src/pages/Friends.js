@@ -98,9 +98,9 @@ export default function Friends() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(searchInput); 
-
-        if (!searchInput) {
+        setSearch(searchedFriend);
+        await initiateSearchQuery();
+        if (!search) {
           return false;
         }
     
