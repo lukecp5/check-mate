@@ -51,8 +51,7 @@ const resolvers = {
 
     getFriends: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.find({ _id: context.user._id }).select('-__v -password');
-        userData.populate('friends');
+        const userData = await User.find({ _id: context.user._id }).select('-__v -password').populate('friends');
         return userData;
       }
     },
