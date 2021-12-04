@@ -4,11 +4,35 @@ import { styled } from '@mui/system';
 import Image from '../Images/friends.png';
 import SubmitBtn from '../components/SubmitBtn'; 
 import FriendBox from '../components/FriendBox';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+
+const StyledButton = styled(Button)(({ theme }) => ({ 
+    color: '#616161',
+    background: 'white', 
+    height: "auto",
+    marginTop: 30, 
+    fontSize: 15, 
+    "&:hover": {
+        color: '#ffffff',
+        background: 'transparent',
+        border: "2px solid white",
+    }
+  })); 
 
 const MyHeader = styled(Typography)(({ theme }) => ({
     color: 'white', 
     textShadow: `3px 3px 10px ${theme.palette.tertiary.dark}`, 
   })); 
+
+const MyCard = styled(Card)(({ theme }) => ({
+    color: 'white', 
+    borderRadius: 0, 
+    padding: 20, 
+    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
+})); 
 
 export default function Friends() {
 
@@ -24,8 +48,8 @@ export default function Friends() {
           return false;
         }
     
-        setSearchedFriend();
-        setSearchInput('');
+        // setSearchedFriend("");
+        // setSearchInput('');
       };
 
     return (
@@ -63,7 +87,7 @@ export default function Friends() {
                                 <TextField
                                     required
                                     name="searchInput"
-                                    value={searchInput}
+                                    // value={searchInput}
                                     onChange={(e) => setSearchedFriend(e.target.value)}
                                     type="text"
                                     size="lg"
@@ -79,7 +103,23 @@ export default function Friends() {
                 </Grid>  
             </Grid>       
         </Grid>
-        <Grid container>
+
+        {setSearchedFriend ? (
+            <Grid container align="center" sx={{justifyContent:'center'}}>
+            <Grid item xs={12} md={8}>
+                <MyCard>
+                    <CardContent>
+                        <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
+                        <Typography variant="h5">AmandaC0022</Typography>
+                        <CardActions sx={{justifyContent:'center'}}>
+                            <StyledButton>Add Friend</StyledButton>
+                        </CardActions>
+                    </CardContent>
+                </MyCard>
+            </Grid>
+        </Grid>
+        ) : null }
+        <Grid container align="center" sx={{display:"flex", justifyContent:"center"}}>
             <Grid item>
                 <FriendBox /> 
             </Grid>

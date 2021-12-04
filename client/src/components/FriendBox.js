@@ -6,7 +6,6 @@ import { styled } from '@mui/system';
 import  { Grid }  from '@mui/material';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
-// import MyAvatar from './MyAvatar'; 
 import Avatar from '@mui/material/Avatar';
 
 //this styles the Friend's box, the green box 
@@ -19,7 +18,7 @@ const StyledFriendBox = styled(Card)(({ theme }) => ({
     borderRadius: 0, 
 })); 
 
-var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
 var randomColor = () => {
     return colors[Math.floor(Math.random()* colors.length)];
 };
@@ -68,7 +67,9 @@ const myFriends = [
 const FriendBox = () => {
     
     const [anchorEl, setAnchorEl] = React.useState(null);
+    
     const handleClick = (event) => {
+        event.preventDefault(); 
         setAnchorEl(event.currentTarget);
     };
 

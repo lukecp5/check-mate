@@ -13,7 +13,6 @@ import { useQuery, useMutation } from '@apollo/client';
 // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
 import FriendBox from './FriendBox';
-import MyAvatar from './MyAvatar';
 
 //this styles the User's stat box. Orange/red box 
 const StatBox = styled(Card)(({ theme }) => ({
@@ -76,7 +75,7 @@ export default function Profile() {
             <StatBox>
                 <CardContent >
                     <Stack direction="row" spacing={2}>
-                    <MyAvatar>{firstName}</MyAvatar>
+                    <Avatar>{firstName}</Avatar>
                         {/* <UserAvatar aria-describedby={id} alt="User" /> */}
                         {/* TODO: Replace User with Username from DB */}
                         <Typography variant="h5" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
