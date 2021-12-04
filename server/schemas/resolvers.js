@@ -57,7 +57,8 @@ const resolvers = {
     },
 
     findaltrules: async (parent, args) => {
-        return Altrules.find();
+      const { game_id } = args;
+      return Altrules.find({game_id: game_id});
     }
   },
   Mutation: {

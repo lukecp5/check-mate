@@ -7,9 +7,11 @@ import  { Grid }  from '@mui/material';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
-
+import randomColor from '../utils/randomColor';
 import { useQuery } from '@apollo/client';
 import { GET_FRIENDS } from '../utils/queries';
+
+var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
 //this styles the Friend's box, the green box 
 const StyledFriendBox = styled(Card)(({ theme }) => ({
     color: "#ffffff", 
@@ -20,17 +22,12 @@ const StyledFriendBox = styled(Card)(({ theme }) => ({
     borderRadius: 0, 
 })); 
 
-var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
-var randomColor = () => {
-    return colors[Math.floor(Math.random()* colors.length)];
-};
-
 //this styles the friend's avatars 
 const MyAvatar = styled(Avatar)(({ theme }) => ({
-    margin: 20,  
-    background: randomColor(), 
-    width: 56, 
-    height: 56,
+    margin: "15px 40px", 
+    background: randomColor(colors), 
+    width: 80, 
+    height: 80,
     '&:hover': {
     cursor: 'pointer', 
     opacity: .7, 
@@ -64,7 +61,6 @@ const myFriends = [
         name: "Daniel", 
         initial: "D", 
     }, 
-
 ]
 
 const FriendBox = () => {
@@ -87,12 +83,17 @@ const FriendBox = () => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (event) => {
+        event.preventDefault(); 
         setAnchorEl(null);
     };
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
+
+    // useEffect(() => {
+    //     randomColor(colors); 
+    // }, []);
 
     return (
         <StyledFriendBox>
@@ -178,8 +179,6 @@ const FriendBox = () => {
                                 </Grid>
                             </Grid>
                         </Popover>
-                    </Grid>
-                    ))}
                 </Grid>
             </CardContent>
         </StyledFriendBox>

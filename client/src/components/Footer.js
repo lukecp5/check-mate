@@ -38,40 +38,38 @@ const NavBtn = styled(Button)(({ theme }) => ({
 export default function Footer() {
   return (
         <MyToolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
-            <Stack
-                direction="column"
-                >
-                <img src={logoicon} width="50" alt="Dice Logo"/>  
-                <Typography>
-                    © 2021 CheckMate
-                </Typography>
-                <Typography>
-                    All Rights Reserved
-                </Typography>
-            </Stack>
-            <Stack direction="row">
-                <NavBtn>
-                    <FacebookIcon sx={{ margin: '20px', fontSize: 40}}/>
-                </NavBtn>
-                <NavBtn>
-                    <InstagramIcon sx={{ margin: '20px', fontSize: 40}}/>
-                </NavBtn>
-                <NavBtn>
-                    <TwitterIcon  sx={{ margin: '20px', fontSize: 40}}/>
-                </NavBtn>
-            </Stack>
-            <Stack
-                direction="column"
-            >
-                {/* <Typography variant="h6"> 
-                    Contributors:
-                </Typography> */}
-                <NavBtn color="inherit" href="https://github.com/AmandaC0022" target="_blank">Amanda Morgan</NavBtn>
-                <NavBtn color="inherit" href="https://github.com/stevenslade" target="_blank">Ben Slinde</NavBtn>
-                <NavBtn color="inherit" href="https://github.com/d4nnyq88" target="_blank">Danny Quigley</NavBtn>
-                <NavBtn color="inherit" href="https://github.com/hannahnmcdonald" target="_blank">Hannah McDonald</NavBtn>
-                <NavBtn color="inherit" href="https://github.com/lukecp5" target="_blank">Luke Poirrier</NavBtn>
-            </Stack>
+                <Stack direction="column">
+                    <img src={logoicon} width="50" alt="Dice Logo"/>  
+                    <div direction= 'row'>
+                    <Typography>
+                        © 2021 CheckMate 
+                    </Typography>
+                    <Typography>
+                         All Rights Reserved
+                    </Typography>
+                    </div>
+                        {/* <div direction='row'>
+                            <NavBtn>
+                                <FacebookIcon sx={{ margin: '10px', fontSize: 30}}/>
+                            </NavBtn>
+                            <NavBtn>
+                                <InstagramIcon sx={{ margin: '10px', fontSize: 30}}/>
+                            </NavBtn>
+                            <NavBtn>
+                                <TwitterIcon  sx={{ margin: '10px', fontSize: 30}}/>
+                            </NavBtn>
+                        </div> */}
+                </Stack>
+                {/* <Stack direction="column">
+                    <img src={logoicon} width="50" alt="Dice Logo"/>  
+                </Stack> */}
+                <Stack direction="column">
+                    <NavBtn color="inherit" href="https://github.com/AmandaC0022" target="_blank">Amanda Morgan</NavBtn>
+                    <NavBtn color="inherit" href="https://github.com/stevenslade" target="_blank">Ben Slinde</NavBtn>
+                    <NavBtn color="inherit" href="https://github.com/d4nnyq88" target="_blank">Danny Quigley</NavBtn>
+                    <NavBtn color="inherit" href="https://github.com/hannahnmcdonald" target="_blank">Hannah McDonald</NavBtn>
+                    <NavBtn color="inherit" href="https://github.com/lukecp5" target="_blank">Luke Poirrier</NavBtn>
+                </Stack>
         </MyToolbar>
   );
 }
