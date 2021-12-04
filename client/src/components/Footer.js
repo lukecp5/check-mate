@@ -1,16 +1,12 @@
 import * as React from 'react';
-// import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-// import { theme } from '../Theme/Theme'; 
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import logoicon from '../Images/checkmate-favicon.png'; 
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, FacebookIcon, LinkedinIcon, TwitterIcon } from "react-share";
-// import InstagramIcon from '@mui/icons-material/Instagram';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import TwitterIcon from '@mui/icons-material/Twitter';
+
 
 const MyToolbar = styled(Toolbar)(({ theme }) => ({
     background: theme.palette.grey.main, 
@@ -47,21 +43,7 @@ export default function Footer() {
                         <TwitterShareButton url={shareUrl}><TwitterIcon size={30} round={true} /></TwitterShareButton>
                         <LinkedinShareButton url={shareUrl}><LinkedinIcon size={30} round={true} /></LinkedinShareButton>
                     </Stack>
-                        {/* <div direction='row'>
-                            <NavBtn>
-                                <FacebookIcon sx={{ margin: '10px', fontSize: 30}}/>
-                            </NavBtn>
-                            <NavBtn>
-                                <InstagramIcon sx={{ margin: '10px', fontSize: 30}}/>
-                            </NavBtn>
-                            <NavBtn>
-                                <TwitterIcon  sx={{ margin: '10px', fontSize: 30}}/>
-                            </NavBtn>
-                        </div> */}
                 </Stack>
-                {/* <Stack direction="column">
-                    <img src={logoicon} width="50" alt="Dice Logo"/>  
-                </Stack> */}
                 <Stack direction="column">
                     <NavBtn color='inherit' sx={{'&:hover': {color: '#D70060'}}} href="https://github.com/AmandaC0022" target="_blank">Amanda Morgan</NavBtn>
                     <NavBtn color="inherit" sx={{'&:hover': {color: '#D0D102'}}} href="https://github.com/stevenslade" target="_blank">Ben Slinde</NavBtn>
