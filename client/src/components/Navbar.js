@@ -17,6 +17,17 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
+import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+
 
 const MyLogo = styled("img")(() => ({
   width: 300,  
@@ -32,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   navlinks: {
     marginLeft: theme.spacing(5),
     display: "flex",
+    alignItems: 'center',
     // padding: '5px',
   },
   logo: {
@@ -60,6 +72,15 @@ function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isLogged = true;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar position="static" classes={{root: classes.abRoot}}>
@@ -72,35 +93,99 @@ function Navbar() {
           <DrawerComponent/>
         ) : ( 
           <Grid className={classes.right}>
-            <div className={classes.navlinks}>
-              {/* <Link to="/" className={classes.link}>
-                Home
-              </Link> */}
-              {/* <Link to="/startmatch" className={classes.link}>
-                Start a Match
-              </Link> */}
-              <Link to="/searchgames" className={classes.link}>
+            {/* <div className={classes.navlinks}> */}
+              {/* <Link to="/searchgames" className={classes.link}>
                 Search Games
-              </Link>
-              <Link to="/friends" className={classes.link}>
-                Add Friends
-              </Link>
-              <Link to="/login" className={classes.link}>
-                Login/Sign Up
-              </Link>
-              <Link to='/profile' className={classes.link}>
-                Profile
-              </Link>
-              <Link to='/altrules' className={classes.link}>
-                Altrules
-              </Link>
-              {/* IF LOGGED in Avatar Button & REMOVE 'LOGIN/SIGN Up Link */}
-              <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </Stack>
-            </div>
+              </Link>  */}
+              { isLogged ? (<>
+                <div className={classes.navlinks}>
+                  <Link to="/searchgames" className={classes.link}>
+                  Search Games
+                  </Link> 
+                {/* </div> */}
+              
+                {/* // <Link to="/searchgames" className={classes.link}>
+                //   Search Games
+                // </Link> */}
+                {/* </div> */}
+                <React.Fragment>
+                <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                  <Tooltip title="Account settings">
+                    <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+                      <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  onClick={handleClose}
+                  PaperProps={{
+                    elevation: 0,
+                    sx: {
+                      overflow: 'visible',
+                      filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                      mt: 1.5,
+                      '& .MuiAvatar-root': {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      '&:before': {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: 'background.paper',
+                        transform: 'translateY(-50%) rotate(45deg)',
+                        zIndex: 0,
+                      },
+                    },
+                  }}
+                  transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                >
+                  <MenuItem>
+                    <Avatar /> 
+                    <Link to='/profile'>
+                      Profile
+                      </Link>
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem>
+                    <ListItemIcon>
+                      <PersonAdd fontSize="small" />
+                    </ListItemIcon>
+                    <Link to="/friends">
+                    Add Friends
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <ListItemIcon>
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
+                      <Link to="/login" sx={{ textDecoration: 'none'}}>
+                        Logout
+                      </Link>
+                  </MenuItem>
+                </Menu>
+              </React.Fragment>
+              </div>
+              </>
+              )
+              : <Link to="/login" className={classes.link}>
+                  Login
+                </Link>
+                }
+            {/* </div> */}
           </Grid>
         )}
+        
       </Toolbar>
     </AppBar>
   );
