@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image from '../Images/gamebackgroundimage.png';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import SubmitBtn from '../components/SubmitBtn'; 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -14,8 +14,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Play from '../components/Play'; 
 import Results from '../components/Results'; 
-//import GameDetails from '../components/GameDetails';
 import randomColor from '../utils/randomColor';
+import AltRulesComp from '../components/AltRulesComp';
+// import SubmitBtn from '../components/SubmitBtn';
 
 var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
 
@@ -88,7 +89,8 @@ const handlePlayClick = () => {
 
   useEffect(() => {
     if (selectedGameData) {
-    console.log("selectedGameData: ", selectedGameData);}
+    console.log("selectedGameData: ", selectedGameData);
+    console.log("selectedGameData.gameId: ", selectedGameData[0].gameId)}
   }, [selectedGameData]);
 
 
@@ -110,11 +112,11 @@ const handlePlayClick = () => {
       }
 
       const data  = await response.json();
-      console.log( data );
+      
       const returnedGameData = data.games;
 
       const setLength = (description) => {
-        if(description.length > 450){
+        if(description.length > 300){
               return (description.slice(0,300) + "...");
         } else {
               return description;
@@ -264,7 +266,7 @@ const handlePlayClick = () => {
   {selectedGameData ? ( 
     <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
       <Grid item xs={10} md={5}>
-        <MyCard sx={{width: '70%', m: 5, p: 3}}>
+        <MyCard sx={{width: '85%', p: 3}}>
           <CardContent>
             <CardMedia 
               component="img"
@@ -283,14 +285,14 @@ const handlePlayClick = () => {
             {selectedGameData[0].gameName}
           </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
               <Tab label="About" {...a11yProps(0)} />
-              <Tab label="Official Rules" {...a11yProps(1)} />
-              <Tab label="Alternate Rules" {...a11yProps(2)} />
+              <Tab label="Official" {...a11yProps(1)} />
+              <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <Typography variant="body1" sx={{textAlign: 'left', fontSize: '20px'}}>
+            <Typography variant="body2" sx={{textAlign: 'left', fontSize: '15px'}}>
               {selectedGameData[0].fullGameDescription}
             </Typography>
             <Stack direction="row" spacing={3} sx={{marginTop: 5}}>
@@ -315,8 +317,16 @@ const handlePlayClick = () => {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {selectedGameData[0].rulesUrl ? ( 
-              // <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
-              <RulesBtn href= {selectedGameData[0].rulesUrl} size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
+              <>
+              <Typography>
+                If you want to find out more about this game or its creators, you can view the official site here.
+              </Typography>
+              <SubmitBtn href= {selectedGameData[0].official_url} target="_blank" > Official Site </SubmitBtn>
+              <Typography>
+                Lost your copy? View this game's official rule set here.
+              </Typography>
+              <RulesBtn href= {selectedGameData[0].rulesUrl} target="_blank"  size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
+              </>
             ) : (
               <Typography sx={{color:'red'}}>Sorry! We can't find the link.</Typography>
             )}
@@ -325,7 +335,11 @@ const handlePlayClick = () => {
           <TabPanel value={value} index={2}>
             {/* <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button> */}
             <Stack direction= "row" sx={{justifyContent: 'center'}}>
-              <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn>
+
+              <AltRulesComp selectedGameId={selectedGameData[0].gameId}/>
+
+
+              {/* <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn> */}
             </Stack>
           </TabPanel>
           {/* <SubmitBtn component={Link} to="/play">Play!</SubmitBtn> */}
