@@ -207,15 +207,15 @@ const AltRulesComp = () => {
                 {!dataDB.findaltrules ? null : dataDB.findaltrules.map((game) => {
                     return (
                         <Grid item xs={12} key={game._id}>
-                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12, background: randomColor }}>
+                            <Box sx={{ m:2, display: 'flex', justifyContent: 'left', borderRadius: 0, background: randomColor }}>
                                 <CardContent>
-                                    <Typography variant="h5" color="text.primary" sx={{mb:1}}>
+                                    <Typography variant="h6" color="#ffffff" sx={{mb:1}}>
                                         {game.rule_set_name}
                                     </Typography>
-                                    <Typography variant="h5" sx={{ mb:2 }}>
+                                    <Typography variant="body2" color="#ffffff">
                                         Submitted by: {game.user}
                                     </Typography>
-                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    <Typography variant="body1" sx={{ mb: 1 }} color="#ffffff">
                                         {game.description}
                                     </Typography>
                                 </CardContent>
