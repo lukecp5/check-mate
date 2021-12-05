@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
+import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -22,20 +23,24 @@ const MyCard = styled(Card)(({ theme }) => ({
     borderRadius: 0,
 })); 
 
-// const RulesBtn = styled(Button)(({ theme }) => ({ 
-//     display: 'block', 
-//     height: "auto",
-//     background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
-//     color: 'white', 
-//     margin: 20, 
-//     fontSize: 20, 
-//     '&:hover': {
-//       cursor: 'pointer', 
-//       opacity: .8, 
-//     }
-// })); 
-  
+const MyLink = styled(Link)(({ theme }) => ({ 
+    textDecoration: 'none', 
+    color: 'white'
+})); 
 
+const RulesBtn = styled(Button)(({ theme }) => ({ 
+    display: 'block', 
+    height: "auto",
+    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
+    color: 'white', 
+    margin: 20, 
+    fontSize: 20, 
+    '&:hover': {
+      cursor: 'pointer', 
+      opacity: .8, 
+    }
+})); 
+  
 const friends = [
     {name: "Amanda"}, 
     {name: "Hannah"}, 
@@ -45,93 +50,98 @@ const friends = [
 ]
 
 const Results = () => {
+    const handlePlayAgain = (event) => {
+        event.preventDefault(); 
+        console.log("This button should take you back to Choose Teammates / Play component"); 
+    }
     return (
-        <Stack spacing={3} 
-          sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
-            <MyCard sx={{ p: 10}}>
-                {/* TO DO: Change Trophy Size */}
-            <Typography variant="h5">{trophy}</Typography>
-            <Typography variant="h3">Game Name</Typography>
-            <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
-            <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={trophy}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
+    <Grid container sx={{justifyContent: 'center', }}>
+        <Grid item xs={12} md={8}>
+          <Stack spacing={2} direction="column" align="center">
+            <MyCard sx={{ p: 5}}>
+                <EmojiEventsIcon sx={{fontSize:80}} />
+                <Typography variant="h3">Game Name</Typography>
+                <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
+                <Autocomplete
+                    multiple
+                    id="checkboxes-tags-demo"
+                    options={friends}
+                    disableCloseOnSelect
+                    getOptionLabel={(option) => option.name}
+                    renderOption={(props, option, { selected }) => (
+                        <li {...props}>
+                        <Checkbox
+                            icon={icon}
+                            checkedIcon={trophy}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                        />
+                        {option.name}
+                        </li>
+                    )}
+                    style={{ width: 350 }}
+                    renderInput={(params) => (
+                        <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
+                    )}
                 />
-                {option.name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
-                <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
-            )}
-        />
-        <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
+            <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
             <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={checkedIcon}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                />
-                {option.name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
+                multiple
+                id="checkboxes-tags-demo"
+                options={friends}
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                        <Checkbox
+                            icon={icon}
+                            checkedIcon={checkedIcon}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                        />
+                    {option.name}
+                    </li>
+                )}
+                style={{ width: 350 }}
+                renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
-            )}
-        />
-        <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
+                )}
+            />
+            <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
             <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={checkedIcon}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                />
-                {option.name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
-                <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
-            )}
-        />
+                multiple
+                id="checkboxes-tags-demo"
+                options={friends}
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                        <Checkbox
+                            icon={icon}
+                            checkedIcon={checkedIcon}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                        />
+                        {option.name}
+                    </li>
+                )}
+                style={{ width: 350 }}
+                renderInput={(params) => (
+                    <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
+                )}
+            />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}}>
-            <Link to="/results">Done!</Link>
+          <SubmitBtn size='large' sx={{width: 180}}>
+            <MyLink to="/">Done!</MyLink>
           </SubmitBtn>
-          {/* TO DO: Style Play Again Button */}
-          {/* <RulesBtn to="/results" size= 'large' sx={{width: 200}}>
-              <Link> Play Again?</Link>
-          </RulesBtn> */}
+          <RulesBtn size= 'large' sx={{width: 180}} onClick={handlePlayAgain}>
+              Play Again?
+          </RulesBtn>
         </Stack>
     </Stack>
+</Grid>
+</Grid>
   );
 }
 
