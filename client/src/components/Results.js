@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
-import  { Grid }  from '@mui/material';
+// import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -144,8 +144,6 @@ const Results = (props) => {
           </RulesBtn>
         </Stack>
     </Stack>
-</Grid>
-</Grid>
   );
 }
 
