@@ -69,7 +69,7 @@ const SearchGames = () => {
 
 // play and handlePlayclick switch a state variable between 1 and 0.  Game results renders conditionally as a result using a ternary operator below in the jsx
 
-const [ play, setPlay] = useState(0);
+// const [ play, setPlay] = useState(0);
 
 // function switchPlay() {
 //   if (play === 1) {
@@ -79,19 +79,19 @@ const [ play, setPlay] = useState(0);
 //   }  
 // }
 
-const handlePlayClick = () => {
-  if (play === 1) {
-    setPlay(0);
-  } else {
-    setPlay(1);
-  } 
-}
+// const handlePlayClick = () => {
+//   if (play === 1) {
+//     setPlay(0);
+//   } else {
+//     setPlay(1);
+//   } 
+// }
 
-  useEffect(() => {
-    if (selectedGameData) {
-    console.log("selectedGameData: ", selectedGameData);
-    console.log("selectedGameData.gameId: ", selectedGameData[0].gameId)}
-  }, [selectedGameData]);
+  // useEffect(() => {
+  //   if (selectedGameData) {
+  //   console.log("selectedGameData: ", selectedGameData);
+  //   console.log("selectedGameData.gameId: ", selectedGameData[0].gameId)}
+  // }, [selectedGameData]);
 
 
   // create method to search for games and set state on form submit
@@ -287,8 +287,9 @@ const handlePlayClick = () => {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
               <Tab label="About" {...a11yProps(0)} />
-              <Tab label="Official" {...a11yProps(1)} />
+              <Tab label="Links" {...a11yProps(1)} />
               <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
+              <Tab label="Play" {...a11yProps(3)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -306,11 +307,13 @@ const handlePlayClick = () => {
                 Minimum Age: {selectedGameData[0].minAge}
               </Typography>
               </Stack>
-              <Stack direction= "row" sx={{justifyContent: 'center', p: 5}}>
+
+              {/* THIS PLAY CLICK BUTTON SWITCHED THE GAME RESULTS ON OR OFF ITS BEEN MOVED UNDER A TAB AT THE MOMENT */}
+              {/* <Stack direction= "row" sx={{justifyContent: 'center', p: 5}}>
 
                 <SubmitBtn size= 'large' sx={{minWidth: 100}} onClick={(event) => handlePlayClick()}>{(play === 0) ? 'Play!' : "OR DON'T!"}</SubmitBtn>
 
-              </Stack>
+              </Stack> */}
             {/* {selectedGameData[0].officialUrl ? ( 
               <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
             ) : null} */}
@@ -333,17 +336,23 @@ const handlePlayClick = () => {
           </TabPanel>
           {/* TODO: Change this from a link to display the list of alternate rules created my different users */}
           <TabPanel value={value} index={2}>
-            {/* <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button> */}
+            
             <Stack direction= "row" sx={{justifyContent: 'center'}}>
 
               <AltRulesComp selectedGameId={selectedGameData[0].gameId}/>
 
-
-              {/* <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn> */}
             </Stack>
           </TabPanel>
-          {/* <SubmitBtn component={Link} to="/play">Play!</SubmitBtn> */}
-          {/* <RulesBtn component={Link} to="/altrules">Add A Rule</RulesBtn> */}
+
+          <TabPanel value={value} index={3}>
+            
+            <Stack direction= "row" sx={{justifyContent: 'center'}}>
+
+            <Results gameName={selectedGameData[0].gameName} gameId={selectedGameData[0].gameId}/>  
+
+            </Stack>
+          </TabPanel>
+
         </Box>
       </Grid>
   </Grid>      
@@ -354,9 +363,9 @@ const handlePlayClick = () => {
   <Play />
   : null } */}
 
-{ (play === 1) ?
+{/* { (play === 1) ?
   <Results gameName={selectedGameData[0].gameName} gameId={selectedGameData[0].gameId}/>
-  : null }
+  : null } */}
 
 
 
