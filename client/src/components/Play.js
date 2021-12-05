@@ -30,7 +30,7 @@ const Play = () => {
         {name: "Hannah"}, 
         {name: "Ben"}, 
         {name: "Luke"}, 
-        {name: "Daniel"},
+        {name: "Danny"},
     ]
 
     return (
