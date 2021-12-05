@@ -17,6 +17,7 @@ import Results from '../components/Results';
 import GameDetails from '../components/GameDetails';
 import randomColor from '../utils/randomColor';
 import AltRulesComp from '../components/AltRulesComp';
+// import SubmitBtn from '../components/SubmitBtn';
 
 var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
 
@@ -246,7 +247,7 @@ const SearchGames = () => {
   {selectedGameData ? ( 
     <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
       <Grid item xs={10} md={5}>
-        <MyCard sx={{width: '70%', m: 5, p: 3}}>
+        <MyCard sx={{width: '85%', p: 3}}>
           <CardContent>
             <CardMedia 
               component="img"
@@ -265,14 +266,14 @@ const SearchGames = () => {
             {selectedGameData[0].gameName}
           </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
               <Tab label="About" {...a11yProps(0)} />
-              <Tab label="Official Rules" {...a11yProps(1)} />
-              <Tab label="Alternate Rules" {...a11yProps(2)} />
+              <Tab label="Official" {...a11yProps(1)} />
+              <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <Typography variant="body1" sx={{textAlign: 'left', fontSize: '20px'}}>
+            <Typography variant="body2" sx={{textAlign: 'left', fontSize: '15px'}}>
               {selectedGameData[0].fullGameDescription}
             </Typography>
             <Stack direction="row" spacing={3} sx={{marginTop: 5}}>
@@ -295,8 +296,16 @@ const SearchGames = () => {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {selectedGameData[0].rulesUrl ? ( 
-              // <Button href= {selectedGameData[0].rulesUrl} target="_blank" variant="contained">Official Rules</Button>
+              <>
+              <Typography>
+                If you want to find out more about this game or its creators, you can view the official site here.
+              </Typography>
+              <SubmitBtn href= {selectedGameData[0].official_url} target="_blank" > Official Site </SubmitBtn>
+              <Typography>
+                Lost your copy? View this game's official rule set here.
+              </Typography>
               <RulesBtn href= {selectedGameData[0].rulesUrl} target="_blank"  size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
+              </>
             ) : (
               <Typography sx={{color:'red'}}>Sorry! We can't find the link.</Typography>
             )}

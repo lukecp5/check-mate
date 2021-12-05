@@ -97,11 +97,16 @@ const AltRulesComp = () => {
           console.error(err);
         }
       };
+
+    var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
+    var randomColor = () => {
+    return colors[Math.floor(Math.random()* colors.length)];
+};
   
     return (
         <Grid container>
             <Grid item xs={12}>
-                <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center',       borderRadius: 16 }}>
+                <Box sx={{ m:1, display: 'flex', justifyContent: 'center', borderRadius: 0 }}>
                     <Grid container>
 
                         {/* <Grid item xs={12} sx={{ m:1 }}>
@@ -113,15 +118,15 @@ const AltRulesComp = () => {
                         <Grid item xs={12}>
                         <form onSubmit={handleRulesFormSubmit}>
                             <Grid container>
-                            <Grid item xs={12} sx={{ m:1 }}>
+                            <Grid item xs={12} sx={{}}>
                                 {/* {selectedIndex.length ? ( */}
-                                    <Typography variant="h6" align="center" sx={{m:3}}>
-                                        Enter your own rules set or modifications by entering a name for the ruleset and then a description
+                                    <Typography variant="body2" align="center" sx={{}}>
+                                        Enter your own rule modifications by entering a name for the ruleset and then its description.
                                     </Typography>
                              {/* ) : null} */}
                             </Grid>
 
-                            <Grid item xs={12} sx={{ width: 400, maxWidth: '100%', ml:3, mr: 3, mt:2, mb:2, }}>
+                            <Grid item xs={12} sx={{ width: 400, maxWidth: '100%', ml:1, mr: 1, mt:1, mb:1, }}>
                                 {/* {selectedIndex.length ? (  */}
                                 <TextField
                                     name="altRulesName"
@@ -133,7 +138,7 @@ const AltRulesComp = () => {
                                  {/* ) : null}                         */}
                             </Grid>
 
-                            <Grid item xs={12} sx={{ width: 500, maxWidth: '100%', ml:3, mr: 3, mt:2, mb:2, }}>
+                            <Grid item xs={12} sx={{ width: 500, maxWidth: '100%',ml:1, mr: 1, mt:1, mb:1,  }}>
                                 {/* {selectedIndex.length ? (  */}
                                 <TextField
                                     name="altRules"
@@ -152,7 +157,7 @@ const AltRulesComp = () => {
 
                             <Grid item xs={12} sx={{ mb:2, textAlign: 'center'}}>
                                 {/* {selectedIndex.length ? (  */}
-                                    <Button type="submit" variant="contained">Submit your Ruleset</Button>
+                                    <Button type="submit" variant="contained">Submit</Button>
                                 {/* ) : null} */}
                             </Grid>
                         </form>
@@ -164,33 +169,33 @@ const AltRulesComp = () => {
         {/* THIS IS THE START OF THE ALTERNATE RULES DISPLAY */}
         
         <Grid item xs={12}>
-        <Box sx={{ border: 2, m:1, display: 'flex', justifyContent: 'center', borderRadius: 16 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', borderRadius: 0 }}>
             <Grid container>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <Typography variant="h4" sx={{ m:3, textAlign: 'center'}}>
                         Browse the alternate rulesets and modifiers available or add your own.
                     </Typography>
-                </Grid>
-                <Grid item xs={12} sx={{ m:1 }}>
+                </Grid> */}
+                {/* <Grid item xs={12} sx={{ m:1 }}> */}
                         {/* {selectedIndex.length ? ( */}
-                            <Typography variant="h6" align="center" gutterBottom>
+                            {/* <Typography variant="h6" align="center" gutterBottom>
                                 Currently viewing rules for {selectedIndex}
-                            </Typography>
+                            </Typography> */}
                         {/* ) : null} */}
-                </Grid>
+                {/* </Grid> */}
 
                 {/* THIS CARD BELOW IS FOR styling SO MODIFY THIS GET IT LOOKING HOWYOU WANT THEN APPLY THE STYLES TO THE CARD BELOW*/}
 
                 <Grid item xs={12}>
-                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
+                            <Box sx={{ m:2, display: 'flex', justifyContent: 'left', borderRadius: 0, background: randomColor }}>
                                 <CardContent>
-                                    <Typography variant="h5" color="text.primary" sx={{mb:1}}>
+                                    <Typography variant="h6" color="#ffffff" sx={{mb:1}}>
                                         Rule Set Name
                                     </Typography>
-                                    <Typography variant="h5" sx={{ mb:2 }}>
+                                    <Typography variant="body2" sx={{ color: '#ffffff' }}>
                                         Submitted by: UserName
                                     </Typography>
-                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    <Typography variant="body1" sx={{ mb: 1 }} color="#ffffff">
                                         this is a hardcoded card, its here for styling, this will be deleted in production but the mapped card below(in the JSX) will be used
                                     </Typography>
                                 </CardContent>
@@ -202,15 +207,15 @@ const AltRulesComp = () => {
                 {!dataDB.findaltrules ? null : dataDB.findaltrules.map((game) => {
                     return (
                         <Grid item xs={12} key={game._id}>
-                            <Box sx={{ border: 2, m:2, display: 'flex', justifyContent: 'left', borderRadius: 12 }}>
+                            <Box sx={{ m:2, display: 'flex', justifyContent: 'left', borderRadius: 0, background: randomColor }}>
                                 <CardContent>
-                                    <Typography variant="h5" color="text.primary" sx={{mb:1}}>
+                                    <Typography variant="h6" color="#ffffff" sx={{mb:1}}>
                                         {game.rule_set_name}
                                     </Typography>
-                                    <Typography variant="h5" sx={{ mb:2 }}>
+                                    <Typography variant="body2" color="#ffffff">
                                         Submitted by: {game.user}
                                     </Typography>
-                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    <Typography variant="body1" sx={{ mb: 1 }} color="#ffffff">
                                         {game.description}
                                     </Typography>
                                 </CardContent>

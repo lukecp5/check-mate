@@ -79,7 +79,7 @@ const Results = () => {
                         {option.name}
                         </li>
                     )}
-                    style={{ width: 500 }}
+                    style={{ width: 350 }}
                     renderInput={(params) => (
                         <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
                     )}
@@ -102,7 +102,7 @@ const Results = () => {
                     {option.name}
                     </li>
                 )}
-                style={{ width: 500 }}
+                style={{ width: 350 }}
                 renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
@@ -125,7 +125,7 @@ const Results = () => {
                         {option.name}
                     </li>
                 )}
-                style={{ width: 500 }}
+                style={{ width: 350 }}
                 renderInput={(params) => (
                     <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
                 )}

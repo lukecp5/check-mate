@@ -43,7 +43,7 @@ const Play = () => {
                 <Autocomplete
                 multiple
                 sx={{ p: 3, color: 'white' }}
-                style={{ width: 500 }}
+                style={{ width: 350 }}
                 id="tags-outlined"
                 options={friends}
                 getOptionLabel={(option) => option.name}
