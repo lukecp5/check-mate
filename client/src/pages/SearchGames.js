@@ -247,7 +247,7 @@ const SearchGames = () => {
   {selectedGameData ? ( 
     <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
       <Grid item xs={10} md={5}>
-        <MyCard sx={{width: '85%', m: 5, p: 3}}>
+        <MyCard sx={{width: '85%', p: 3}}>
           <CardContent>
             <CardMedia 
               component="img"
