@@ -28,6 +28,7 @@ const FunFact = () => {
         textAlign:'center', 
         background: `linear-gradient(to left, ${theme.palette.primary.light}, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
         borderRadius: 0, 
+        minHeight: 120,
     })); 
 
     return (

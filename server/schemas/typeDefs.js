@@ -70,15 +70,16 @@ const typeDefs = gql`
     userInfo: User
     allUsers: [ User ]
     users: [User]
+    getFriends: [ User ]
     findFriends(search: String): [User]
-    findaltrules: [Altrules]  
+    findaltrules(game_id: String!): [Altrules]  
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
 
-    addFriend(friendId: ID!): User
+    addFriend(friendID: ID!): User
     
     addWin(firstName: String!, wins: WinInput): User
     addLoss(game: String!): User

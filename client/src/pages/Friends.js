@@ -9,8 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
-import { useQuery, useLazyQuery} from '@apollo/client';
+import { useQuery, useLazyQuery, useMutation} from '@apollo/client';
+import { ADD_FRIEND } from '../utils/mutations';
 import { FIND_FRIENDS } from '../utils/queries';
+
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
     color: '#616161',
@@ -79,6 +81,9 @@ export default function Friends() {
     const [selectedFriendData, setSelectedFriendData] = useState('');
 
 
+
+
+
     // > useLazyQuery definition that sets up the query to use the 'search' state variable as input. It gives us the results of the query as well as a function to call the query whenever needed
     const [initiateSearchQuery, { loading, error, data, refetch }] = useLazyQuery(FIND_FRIENDS, {
         variables: {
@@ -91,10 +96,17 @@ export default function Friends() {
             console.log(error);
         }
         if (data) {
-            setSearchResults(data);
+            setSearchResults(data.findFriends);
         }
-        console.log(data);
+        // console.log(data);
     }, [data]);
+
+    // useEffect(() => {
+    //     if(!data) {
+    //         return;
+    //     }
+    //     console.log(friendId);
+    // }, [friendId]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -103,9 +115,32 @@ export default function Friends() {
         if (!search) {
           return false;
         }
-            setSearchResults(data.findFriends);
-            console.log(searchResults);
+            await setSearchResults(data.findFriends);
+            console.log(data.findFriends[0].firstName);
     };
+    
+    const [friendId, setFriendId] = useState();
+
+    const [addFriend, {completed} ] = useMutation(ADD_FRIEND, {
+        variables: {
+            friendID: friendId
+        },
+        onCompleted: () => {
+            console.log('Friend added!');
+        }
+    });
+
+    const handleAddFriend = async (event) => {
+    event.preventDefault();
+    let currentFriendId = event.target.id;
+    setFriendId(currentFriendId);
+    console.log("Before Add Friend Mutation: " + friendId);
+    if(friendId) {
+    await addFriend(friendId);
+    console.log("Friend ID of friend to add: " + friendId);
+    }
+    return;    
+}
 
     return (
         
@@ -161,21 +196,23 @@ export default function Friends() {
             </Grid>       
         </Grid>
 
-        {setSearchedFriend ? (
+        {searchResults ? (
+            searchResults.map((friend, index) => (
+
             <Grid container align="center" sx={{justifyContent:'center'}}>
             <Grid item xs={12} md={8}>
                 <MyCard>
                     <CardContent>
                         <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
-                        <Typography variant="h5">AmandaC0022</Typography>
+                        <Typography variant="h5">{friend.username}</Typography>
                         <CardActions sx={{justifyContent:'center'}}>
-                            <StyledButton>Add Friend</StyledButton>
+                            <StyledButton key={friend._id} onClick={handleAddFriend} id={friend._id}>Add Friend: {friend._id}</StyledButton>
                         </CardActions>
                     </CardContent>
                 </MyCard>
             </Grid>
         </Grid>
-        ) : null }
+            ))) : null }
         <Grid container align="center" sx={{display:"flex", justifyContent:"center"}}>
             <Grid item>
                 <FriendBox /> 

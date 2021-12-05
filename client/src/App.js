@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AltRules from './components/AltRules';
+import AltRulesComp from './components/AltRulesComp';
 import Homepage from "./pages/Homepage";
 import Friends from './pages/Friends';
 import SearchGames from "./pages/SearchGames";
@@ -67,6 +68,7 @@ function App() {
 								<Route path="/signup" element={<Signup/>} />
 								<Route path="/profile" element={<Profile/>}/>
 								<Route path="/altrules" element={<AltRules/>}/>
+								<Route path="/altrulescomp" element={<AltRulesComp/>}/>
 								<Route path="/friends" element={<Friends/>}/>
 								{/* <Route path="/startmatch" element={<StartMatch/>}/> */}
 								<Route path="*" element={<NotFound/>}/>

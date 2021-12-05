@@ -107,14 +107,17 @@ export const ADD_LOSS = gql`
 
 export const ADD_FRIEND = gql`
   mutation addFriend(
-    $friendId: String!
+    $friendID: ID!
   ) {
     addFriend(
-      friendId: $friendId
+      friendID: $friendID
     ) {
       _id
       firstName
+      lastName
+      email
       username
+      
     }
   }
 `;

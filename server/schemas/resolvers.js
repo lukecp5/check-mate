@@ -49,8 +49,16 @@ const resolvers = {
     return friendData;
     },
 
+    getFriends: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.find({ _id: context.user._id }).select('-__v -password').populate('friends');
+        return userData;
+      }
+    },
+
     findaltrules: async (parent, args) => {
-        return Altrules.find();
+      const { game_id } = args;
+      return Altrules.find({game_id: game_id});
     }
   },
   Mutation: {
@@ -78,11 +86,11 @@ const resolvers = {
       return { token, user };
     },
 
-    addFriend: async (parent, args, context) => {
+    addFriend: async (parent, {friendID}, context) => {
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { friends: args.friendId } },
+          { $push: { friends: friendID } },
           { new: true }
         );
       }

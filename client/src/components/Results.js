@@ -12,6 +12,7 @@ import { Typography, TextField, Card } from '@mui/material';
 import { ADD_WIN } from '../utils/mutations'
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
+import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -24,20 +25,24 @@ const MyCard = styled(Card)(({ theme }) => ({
     borderRadius: 0,
 })); 
 
-// const RulesBtn = styled(Button)(({ theme }) => ({ 
-//     display: 'block', 
-//     height: "auto",
-//     background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
-//     color: 'white', 
-//     margin: 20, 
-//     fontSize: 20, 
-//     '&:hover': {
-//       cursor: 'pointer', 
-//       opacity: .8, 
-//     }
-// })); 
-  
+const MyLink = styled(Link)(({ theme }) => ({ 
+    textDecoration: 'none', 
+    color: 'white'
+})); 
 
+const RulesBtn = styled(Button)(({ theme }) => ({ 
+    display: 'block', 
+    height: "auto",
+    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
+    color: 'white', 
+    margin: 20, 
+    fontSize: 20, 
+    '&:hover': {
+      cursor: 'pointer', 
+      opacity: .8, 
+    }
+})); 
+  
 const friends = [
     {firstName: "Amanda"}, 
     {firstName: "Hannah"}, 
@@ -46,14 +51,15 @@ const friends = [
     {firstName: "Daniel"},
 ]
 
-
 const Results = (props) => {
     const [addWin, { error }] = useMutation(ADD_WIN);
     const [winners, setWinners ] = useState([]);
     const [selectedArray, setSelected] = useState([]);
-    const { gameId, gameName } = props.props[0] || {};
+    // > gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
+    // > game Name is in props as props.gameName
+    const gameId = props.gameId;
+    const gameName = props.gameName;
     // console.log("winnersArray: ", winnersArray);
-    console.log("props: ", props.props);
     console.log("gameName: ", gameName);
     console.log("gameId: ", gameId);
        
@@ -61,6 +67,11 @@ const Results = (props) => {
         setWinners(selectedWinners);
         console.log("selectedWinners: ", selectedWinners);
         
+    }
+
+  const handlePlayAgain = (event) => {
+        event.preventDefault(); 
+        console.log("This button should take you back to Choose Teammates / Play component"); 
     }
 
     const handleSubmitClick = async (event) => {
@@ -87,7 +98,7 @@ const Results = (props) => {
             <MyCard sx={{ p: 10}}>
                 {/* TO DO: Change Trophy Size */}
             <Typography variant="h5">{trophy}</Typography>
-            <Typography variant="h3">Game Name</Typography>
+            <Typography variant="h3">{props.gameName}</Typography>
             <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
             <Autocomplete
             multiple
@@ -102,6 +113,7 @@ const Results = (props) => {
                     checkedIcon={trophy}
                     style={{ marginRight: 8 }}
                     checked={selected}
+
                 />
                 {option.firstName}
                 </li>
@@ -113,6 +125,7 @@ const Results = (props) => {
                 <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
             )}
         />
+
         <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
             <Autocomplete
             multiple
@@ -135,9 +148,9 @@ const Results = (props) => {
             
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
-            )}
-        />
-        <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
+                )}
+            />
+            <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
             <Autocomplete
             multiple
             id="checkboxes-tags-demo"
@@ -155,20 +168,19 @@ const Results = (props) => {
                 {option.firstName}
                 </li>
             )}
-            style={{ width: 500 }}
+            style={{ width: 350 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
             )}
         />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}} onClick={handleSubmitClick}>
+          <SubmitBtn size='large' sx={{width: 180}} onClick={handleSubmitClick}>
             Submit
           </SubmitBtn>
-          {/* TO DO: Style Play Again Button */}
-          {/* <RulesBtn to="/results" size= 'large' sx={{width: 200}}>
-              <Link> Play Again?</Link>
-          </RulesBtn> */}
+          <RulesBtn size= 'large' sx={{width: 180}} onClick={handlePlayAgain}>
+              Play Again?
+          </RulesBtn>
         </Stack>
     </Stack>
   );
