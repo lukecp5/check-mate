@@ -116,50 +116,16 @@ const AltRulesComp = (props) => {
         <Grid item xs={12}>
         <Box sx={{ display: 'flex', justifyContent: 'center', borderRadius: 0 }}>
             <Grid container>
-                {/* <Grid item xs={12}>
-                    <Typography variant="h4" sx={{ m:3, textAlign: 'center'}}>
-                        Browse the alternate rulesets and modifiers available or add your own.
-                    </Typography>
-                </Grid> */}
-                {/* <Grid item xs={12} sx={{ m:1 }}> */}
-                        {/* {selectedIndex.length ? ( */}
-
-                            {/* <Typography variant="h6" align="center" gutterBottom>
-                                Currently viewing rules for {selectedIndex}
-                            </Typography> */}
-
-                        {/* ) : null} */}
-                {/* </Grid> */}
-
-                {/* THIS CARD BELOW IS FOR styling SO MODIFY THIS GET IT LOOKING HOWYOU WANT THEN APPLY THE STYLES TO THE CARD BELOW*/}
-
-                <Grid item xs={12}>
-                            <Box sx={{ m:2, display: 'flex', justifyContent: 'left', borderRadius: 0, background: randomColor }}>
-                                <CardContent>
-                                    <Typography variant="h6" color="#ffffff" sx={{mb:1}}>
-                                        Rule Set Name
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                                        Submitted by: UserName
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ mb: 1 }} color="#ffffff">
-                                        this is a hardcoded card, its here for styling, this will be deleted in production but the mapped card below(in the JSX) will be used
-                                    </Typography>
-                                </CardContent>
-                            </Box>
-                </Grid>
-
-                {/* THIS CARD BELOW IS THE MAP FOR PRODUCTION USE It WONT POPULATE UNTIL I CAN EVERYTHING HOOKED BACK UP AGAIN IN SEARCH GAMES */}
 
                 {!dataDB.findaltrules ? null : dataDB.findaltrules.map((game) => {
                     return (
                         <Grid item xs={12} key={game._id}>
-                            <Box sx={{ m:2, display: 'flex', justifyContent: 'left', borderRadius: 0, background: randomColor }}>
+                            <Box sx={{ m:2, display: 'flex', justifyContent: 'center', borderRadius: 0, background: randomColor }}>
                                 <CardContent>
                                     <Typography variant="h6" color="#ffffff" sx={{mb:1}}>
                                         {game.rule_set_name}
                                     </Typography>
-                                    <Typography variant="body2" color="#ffffff">
+                                    <Typography variant="body2" color="#ffffff" sx={{mb:1}}>
                                         Submitted by: {game.user}
                                     </Typography>
                                     <Typography variant="body1" sx={{ mb: 1 }} color="#ffffff">
