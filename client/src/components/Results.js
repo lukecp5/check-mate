@@ -51,7 +51,7 @@ const Results = (props) => {
     const [addWin, { error }] = useMutation(ADD_WIN);
     const [winners, setWinners ] = useState([]);
     const [selectedArray, setSelected] = useState([]);
-    const { gameId, gameName } = props.props[0];
+    const { gameId, gameName } = props.props[0] || {};
     // console.log("winnersArray: ", winnersArray);
     console.log("props: ", props.props);
     console.log("gameName: ", gameName);
@@ -68,13 +68,16 @@ const Results = (props) => {
         
         const winnersArray = winners.map(v => ({...v, wins: [{ game: gameName, wins: 1}]}));
         console.log("winnersArray: ", winnersArray);
-        console.log("winner data ", winnersArray[0]);
+        console.log("winnersArray: ", ...winnersArray);
+        console.log("winner data wins ", winnersArray[0].wins[0].wins);
+        console.log("winner data game ", winnersArray[0].wins[0].game);
+
         
         // console.log("selected: ", selected)
         try {
-            await addWin(winnersArray[0])
-        } catch (err) {
-            console.error(err);
+            await addWin(...winnersArray)
+        } catch (error) {
+            console.error(error);
         }
     };
     

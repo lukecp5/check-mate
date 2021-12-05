@@ -110,8 +110,10 @@ const resolvers = {
         }
     }
   },
-    addWin: async (parent, { winData } , context) => {
-      if (context.user) {
+    addWin: async (parent, winData, context) => {
+      console.log("winData: ", winData)
+      console.log(context);
+      if (context.user) {        
         const user = await User.findOne({ _id: context.user._id });
         const userGames = user.wins;
         const currentGame = userGames.find(wins => wins.game === winData.game);
@@ -131,6 +133,7 @@ const resolvers = {
         return updatedUser;
         }
       }
+      throw new AuthenticationError('No winners updated');
     },
     addTie: async (parent, { tieData }, context) => {
       if (context.user) {
