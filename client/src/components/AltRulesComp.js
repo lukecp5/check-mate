@@ -98,7 +98,7 @@ const AltRulesComp = () => {
         }
       };
 
-    var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+    var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
     var randomColor = () => {
     return colors[Math.floor(Math.random()* colors.length)];
 };
@@ -121,7 +121,7 @@ const AltRulesComp = () => {
                             <Grid item xs={12} sx={{}}>
                                 {/* {selectedIndex.length ? ( */}
                                     <Typography variant="body2" align="center" sx={{}}>
-                                        Enter your own rules set or modifications by entering a name for the ruleset and then a description.
+                                        Enter your own rule modifications by entering a name for the ruleset and then its description.
                                     </Typography>
                              {/* ) : null} */}
                             </Grid>
