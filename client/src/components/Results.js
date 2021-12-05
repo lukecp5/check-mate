@@ -49,33 +49,36 @@ const friends = [
     {name: "Danny"},
 ]
 
-const Results = () => {
-    const handlePlayAgain = (event) => {
+
+// gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
+// game Name is in props as props.gameName
+const Results = (props) => {
+  const handlePlayAgain = (event) => {
         event.preventDefault(); 
         console.log("This button should take you back to Choose Teammates / Play component"); 
     }
     return (
-    <Grid container sx={{justifyContent: 'center', }}>
-        <Grid item xs={12} md={8}>
-          <Stack spacing={2} direction="column" align="center">
-            <MyCard sx={{ p: 5}}>
-                <EmojiEventsIcon sx={{fontSize:80}} />
-                <Typography variant="h3">Game Name</Typography>
-                <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
-                <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={friends}
-                    disableCloseOnSelect
-                    getOptionLabel={(option) => option.name}
-                    renderOption={(props, option, { selected }) => (
-                        <li {...props}>
-                        <Checkbox
-                            icon={icon}
-                            checkedIcon={trophy}
-                            style={{ marginRight: 8 }}
-                            checked={selected}
-                        />
+        <Stack spacing={3} 
+          sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
+            <MyCard sx={{ p: 10}}>
+                {/* TO DO: Change Trophy Size */}
+            <Typography variant="h5">{trophy}</Typography>
+            <Typography variant="h3">{props.gameName}</Typography>
+            <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
+            <Autocomplete
+            multiple
+            id="checkboxes-tags-demo"
+            options={friends}
+            disableCloseOnSelect
+            getOptionLabel={(option) => option.name}
+            renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                <Checkbox
+                    icon={icon}
+                    checkedIcon={trophy}
+                    style={{ marginRight: 8 }}
+                    checked={selected}
+                    />
                         {option.name}
                         </li>
                     )}
@@ -83,6 +86,7 @@ const Results = () => {
                     renderInput={(params) => (
                         <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
                     )}
+
                 />
             <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
             <Autocomplete
