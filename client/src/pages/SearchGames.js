@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image from '../Images/gamebackgroundimage.png';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import SubmitBtn from '../components/SubmitBtn'; 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Play from '../components/Play'; 
 import Results from '../components/Results'; 
-import GameDetails from '../components/GameDetails';
+// import GameDetails from '../components/GameDetails';
 import randomColor from '../utils/randomColor';
 import AltRulesComp from '../components/AltRulesComp';
 // import SubmitBtn from '../components/SubmitBtn';
@@ -69,7 +69,8 @@ const SearchGames = () => {
 
   useEffect(() => {
     if (selectedGameData) {
-    console.log("selectedGameData: ", selectedGameData);}
+    console.log("selectedGameData: ", selectedGameData);
+    console.log("selectedGameData.gameId: ", selectedGameData[0].gameId)}
   }, [selectedGameData]);
 
 
@@ -91,11 +92,11 @@ const SearchGames = () => {
       }
 
       const data  = await response.json();
-      console.log( data );
+      
       const returnedGameData = data.games;
 
       const setLength = (description) => {
-        if(description.length > 450){
+        if(description.length > 300){
               return (description.slice(0,300) + "...");
         } else {
               return description;
@@ -314,7 +315,10 @@ const SearchGames = () => {
           <TabPanel value={value} index={2}>
             {/* <Button component={Link} to="/altrules" variant="contained">Alternate Rulesets</Button> */}
             <Stack direction= "row" sx={{justifyContent: 'center'}}>
-              <AltRulesComp />
+
+              <AltRulesComp selectedGameId={selectedGameData[0].gameId}/>
+
+
               {/* <RulesBtn component={Link} to="/altrules" size= 'large' sx={{width: 300}}>Add an Alternate Rule</RulesBtn> */}
             </Stack>
           </TabPanel>

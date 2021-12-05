@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { USER_INFO, FIND_ALT_RULES } from '../utils/queries'
@@ -7,13 +7,11 @@ import Button from '@mui/material/Button';
 import { 
     Typography, 
     TextField, 
-    ListItemText, 
-    ListItemButton, 
-    List } from '@mui/material';
+     } from '@mui/material';
 
-import { Grid, Box, CardContent, CardMedia } from '@mui/material';
+import { Grid, Box, CardContent } from '@mui/material';
 
-const AltRulesComp = () => {
+const AltRulesComp = (props) => {
 
     const { error, data } = useQuery(USER_INFO);
 	const userInfo = data ? data.userInfo : { name: '', email: '', friends: [] };
@@ -22,37 +20,25 @@ const AltRulesComp = () => {
     }
     const username = userInfo.username;
 
-    const [searchedGames, setSearchedGames] = useState([]);
-
-    const [searchInput, setSearchInput] = useState('');
-
-    const [selectedIndex, setSelectedIndex] = useState('');
-
     const [altRules, setAltRules] = useState('');
 
     const [altRulesName, setAltRulesName] = useState('');
 
-    const [gameId, setGameID] = useState('');
-
-    const [user, setCurrentUser] = useState('');
+    const [gameId] = useState(props.selectedGameId);
 
     const [addAltRules ] = useMutation(ADD_ALTRULES);
 
     let [getAltRules, { data: dataDB = [] }  ] = useLazyQuery(FIND_ALT_RULES, {fetchPolicy: "network-only", nextFetchPolicy: "network-only"});
 
-    
-    const handleListItemClick = (event, index, gameId) => {
-        setSelectedIndex(index);
-        setGameID(gameId);
+    useEffect (() => {
         getAltRules({variables: {game_id: gameId} });
-    };
+    }, []);
 
     const handleRulesFormSubmit = async (event) => {
         event.preventDefault();
-        
         try {
             await addAltRules({
-                variables: { game_id: gameId, user: user, description: altRules, rule_set_name: altRulesName },
+                variables: { game_id: gameId, user: username, description: altRules, rule_set_name: altRulesName },
             });
             getAltRules({variables: {game_id: gameId} });
         } catch (err) {
@@ -61,42 +47,7 @@ const AltRulesComp = () => {
         setAltRulesName('');
         setAltRules('');   
     };
-    
-    const handleGameSearchFormSubmit = async (event) => {
-        event.preventDefault();
-        setCurrentUser(username);
-        if (!searchInput) {
-          return false;
-        }
-    
-        try {
-          const response = await fetch(
-            `https://api.boardgameatlas.com/api/search?name=${searchInput}&limit=5&client_id=${process.env.REACT_APP_CLIENT_ID}`
-          );
-    
-          if (!response.ok) {
-            throw new Error('something went wrong!');
-          }
-    
-          const data  = await response.json();
-          
-          const returnedGameData = data.games;  
-    
-          const gameData = returnedGameData.map((game) => ({
-            gameId: game.id,
-            gameName: game.name,
-            image_url: game.image_url,
-            image_thumb: game.images.thumb,
-            rulesUrl: game.rules_url,   
-          }));
-    
-          setSearchedGames(gameData);
-          setSearchInput('');
-          setSelectedIndex('');
-        } catch (err) {
-          console.error(err);
-        }
-      };
+
 
     var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
     var randomColor = () => {
@@ -108,12 +59,6 @@ const AltRulesComp = () => {
             <Grid item xs={12}>
                 <Box sx={{ m:1, display: 'flex', justifyContent: 'center', borderRadius: 0 }}>
                     <Grid container>
-
-                        {/* <Grid item xs={12} sx={{ m:1 }}>
-                            <Typography variant="h5" align="center" gutterBottom>
-                                You are submitting Alternate rules for
-                            </Typography>
-                        </Grid> */}
 
                         <Grid item xs={12}>
                         <form onSubmit={handleRulesFormSubmit}>
@@ -178,9 +123,11 @@ const AltRulesComp = () => {
                 </Grid> */}
                 {/* <Grid item xs={12} sx={{ m:1 }}> */}
                         {/* {selectedIndex.length ? ( */}
+
                             {/* <Typography variant="h6" align="center" gutterBottom>
                                 Currently viewing rules for {selectedIndex}
                             </Typography> */}
+
                         {/* ) : null} */}
                 {/* </Grid> */}
 
