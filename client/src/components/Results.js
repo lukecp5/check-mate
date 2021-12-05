@@ -144,8 +144,6 @@ const Results = (props) => {
           </RulesBtn>
         </Stack>
     </Stack>
-</Grid>
-</Grid>
   );
 }
 
