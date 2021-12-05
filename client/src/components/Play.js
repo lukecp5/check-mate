@@ -24,7 +24,7 @@ const Play = () => {
         {name: "Hannah"}, 
         {name: "Ben"}, 
         {name: "Luke"}, 
-        {name: "Danny"},
+        {name: "Daniel"},
     ]
 
     return (
@@ -45,6 +45,7 @@ const Play = () => {
                 // Change font color to white
                 // sx={{ color: '#ffffff'}}
                   {...params}
+                  
                   label="Choose Players"
                   placeholder="Select Players"
                 />

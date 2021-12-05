@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client';
 import Checkbox from '@mui/material/Checkbox';
 // import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -8,6 +9,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
+import { ADD_WIN } from '../utils/mutations'
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -37,14 +39,45 @@ const MyCard = styled(Card)(({ theme }) => ({
   
 
 const friends = [
-    {name: "Amanda"}, 
-    {name: "Hannah"}, 
-    {name: "Ben"}, 
-    {name: "Luke"}, 
-    {name: "Danny"},
+    {firstName: "Amanda"}, 
+    {firstName: "Hannah"}, 
+    {firstName: "Ben"}, 
+    {firstName: "Luke"}, 
+    {firstName: "Daniel"},
 ]
 
-const Results = () => {
+
+const Results = (props) => {
+    const [addWin, { error }] = useMutation(ADD_WIN);
+    const [winners, setWinners ] = useState([]);
+    const [selectedArray, setSelected] = useState([]);
+    const { gameId, gameName } = props.props[0];
+    // console.log("winnersArray: ", winnersArray);
+    console.log("props: ", props.props);
+    console.log("gameName: ", gameName);
+    console.log("gameId: ", gameId);
+       
+    const handleWins = (event, selectedWinners) => {
+        setWinners(selectedWinners);
+        console.log("selectedWinners: ", selectedWinners);
+        
+    }
+
+    const handleSubmitClick = async (event) => {
+        event.preventDefault();
+        
+        const winnersArray = winners.map(v => ({...v, wins: [{ game: gameName, wins: 1}]}));
+        console.log("winnersArray: ", winnersArray);
+        console.log("winner data ", winnersArray[0]);
+        
+        // console.log("selected: ", selected)
+        try {
+            await addWin(winnersArray[0])
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    
     return (
         <Stack spacing={3} 
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
@@ -58,7 +91,7 @@ const Results = () => {
             id="checkboxes-tags-demo"
             options={friends}
             disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.firstName}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>
                 <Checkbox
@@ -67,9 +100,11 @@ const Results = () => {
                     style={{ marginRight: 8 }}
                     checked={selected}
                 />
-                {option.name}
+                {option.firstName}
                 </li>
             )}
+            onChange={handleWins}
+
             style={{ width: 500 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
@@ -81,7 +116,7 @@ const Results = () => {
             id="checkboxes-tags-demo"
             options={friends}
             disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.firstName}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>
                 <Checkbox
@@ -90,10 +125,11 @@ const Results = () => {
                     style={{ marginRight: 8 }}
                     checked={selected}
                 />
-                {option.name}
+                {option.firstName}
                 </li>
             )}
             style={{ width: 500 }}
+            
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
             )}
@@ -104,7 +140,7 @@ const Results = () => {
             id="checkboxes-tags-demo"
             options={friends}
             disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.firstName}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>
                 <Checkbox
@@ -113,7 +149,7 @@ const Results = () => {
                     style={{ marginRight: 8 }}
                     checked={selected}
                 />
-                {option.name}
+                {option.firstName}
                 </li>
             )}
             style={{ width: 500 }}
@@ -123,8 +159,8 @@ const Results = () => {
         />
         </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 100}}>
-            <Link to="/results">Done!</Link>
+          <SubmitBtn size='large' sx={{width: 100}} onClick={handleSubmitClick}>
+            Submit
           </SubmitBtn>
           {/* TO DO: Style Play Again Button */}
           {/* <RulesBtn to="/results" size= 'large' sx={{width: 200}}>

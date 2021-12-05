@@ -320,7 +320,7 @@ const SearchGames = () => {
   ) : null}
 
   <Play /> 
-  <Results /> 
+  <Results props={selectedGameData}/> 
     </>
   );
 };

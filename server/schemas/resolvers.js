@@ -110,7 +110,7 @@ const resolvers = {
         }
     }
   },
-    addWin: async (parent, { winData }, context) => {
+    addWin: async (parent, { winData } , context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id });
         const userGames = user.wins;
@@ -118,7 +118,7 @@ const resolvers = {
         if (currentGame) {
           const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $inc: { ties: 1 } },
+          { $inc: { wins: 1 } },
           { new: true }
         );
         return updatedUser;
