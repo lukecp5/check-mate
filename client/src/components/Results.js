@@ -62,34 +62,10 @@ const Results = (props) => {
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
             <MyCard sx={{ p: 10}}>
                 {/* TO DO: Change Trophy Size */}
-            <Typography variant="h5">{trophy}</Typography>
-            <Typography variant="h3">{props.gameName}</Typography>
-            <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
-            <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            options={friends}
-            disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                <Checkbox
-                    icon={icon}
-                    checkedIcon={trophy}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                    />
-                        {option.name}
-                        </li>
-                    )}
-                    style={{ width: 350 }}
-                    renderInput={(params) => (
-                        <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
-                    )}
-
-                />
-            <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
-            <Autocomplete
+                <Typography variant="h5">{trophy}</Typography>
+                <Typography variant="h3">{props.gameName}</Typography>
+                <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
+                <Autocomplete
                 multiple
                 id="checkboxes-tags-demo"
                 options={friends}
@@ -97,20 +73,44 @@ const Results = (props) => {
                 getOptionLabel={(option) => option.name}
                 renderOption={(props, option, { selected }) => (
                     <li {...props}>
-                        <Checkbox
-                            icon={icon}
-                            checkedIcon={checkedIcon}
-                            style={{ marginRight: 8 }}
-                            checked={selected}
+                    <Checkbox
+                        icon={icon}
+                        checkedIcon={trophy}
+                        style={{ marginRight: 8 }}
+                        checked={selected}
                         />
-                    {option.name}
-                    </li>
-                )}
-                style={{ width: 350 }}
-                renderInput={(params) => (
-                <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
-                )}
-            />
+                            {option.name}
+                            </li>
+                        )}
+                        style={{ width: 350 }}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
+                        )}
+
+                    />
+                <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
+                <Autocomplete
+                    multiple
+                    id="checkboxes-tags-demo"
+                    options={friends}
+                    disableCloseOnSelect
+                    getOptionLabel={(option) => option.name}
+                    renderOption={(props, option, { selected }) => (
+                        <li {...props}>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{ marginRight: 8 }}
+                                checked={selected}
+                            />
+                        {option.name}
+                        </li>
+                    )}
+                    style={{ width: 350 }}
+                    renderInput={(params) => (
+                    <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
+                    )}
+                />
             <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
             <Autocomplete
                 multiple
@@ -144,8 +144,6 @@ const Results = (props) => {
           </RulesBtn>
         </Stack>
     </Stack>
-</Grid>
-</Grid>
   );
 }
 
