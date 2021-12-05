@@ -44,14 +44,16 @@ const friends = [
     {name: "Danny"},
 ]
 
-const Results = () => {
+// gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
+// game Name is in props as props.gameName
+const Results = (props) => {
     return (
         <Stack spacing={3} 
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
             <MyCard sx={{ p: 10}}>
                 {/* TO DO: Change Trophy Size */}
             <Typography variant="h5">{trophy}</Typography>
-            <Typography variant="h3">Game Name</Typography>
+            <Typography variant="h3">{props.gameName}</Typography>
             <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
             <Autocomplete
             multiple

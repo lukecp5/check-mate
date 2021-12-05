@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Play from '../components/Play'; 
 import Results from '../components/Results'; 
-import GameDetails from '../components/GameDetails';
+//import GameDetails from '../components/GameDetails';
 import randomColor from '../utils/randomColor';
 
 var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
@@ -65,6 +65,27 @@ const SearchGames = () => {
     setSelectedGameData(newArray);
 }
 
+
+// play and handlePlayclick switch a state variable between 1 and 0.  Game results renders conditionally as a result using a ternary operator below in the jsx
+
+const [ play, setPlay] = useState(0);
+
+// function switchPlay() {
+//   if (play === 1) {
+//     setPlay(0);
+//   } else {
+//     setPlay(1);
+//   }  
+// }
+
+const handlePlayClick = () => {
+  if (play === 1) {
+    setPlay(0);
+  } else {
+    setPlay(1);
+  } 
+}
+
   useEffect(() => {
     if (selectedGameData) {
     console.log("selectedGameData: ", selectedGameData);}
@@ -113,8 +134,6 @@ const SearchGames = () => {
         rulesUrl: game.rules_url,
         officialUrl: game.official_url
 
-        // game: game.designer || ['No designer to display'],
-        // image: game.imageLinks?.thumbnail || '',
       }));
 
       setSearchedGames(gameData);
@@ -209,7 +228,7 @@ const SearchGames = () => {
     {searchedGames.map((game) => {
       return (
         <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}} key={game.gameId}>
-          <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 900, minHeight: 900, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
+          <Card sx={{ borderRadius: 0, maxWidth: 300, maxHeight: 1000, minHeight: 400, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
             <CardContent sx={{ textAlign: 'center' }}>
             
               <CardMedia
@@ -286,7 +305,9 @@ const SearchGames = () => {
               </Typography>
               </Stack>
               <Stack direction= "row" sx={{justifyContent: 'center', p: 5}}>
-                <SubmitBtn size= 'large' sx={{width: 100}}>Play!</SubmitBtn>
+
+                <SubmitBtn size= 'large' sx={{minWidth: 100}} onClick={(event) => handlePlayClick()}>{(play === 0) ? 'Play!' : "OR DON'T!"}</SubmitBtn>
+
               </Stack>
             {/* {selectedGameData[0].officialUrl ? ( 
               <Button href= {selectedGameData[0].officialUrl} target="_blank" variant="contained">Game Site</Button>
@@ -314,8 +335,17 @@ const SearchGames = () => {
   </Grid>      
   ) : null}
 
-  <Play /> 
-  <Results /> 
+
+{/* { (play === 1) ?
+  <Play />
+  : null } */}
+
+{ (play === 1) ?
+  <Results gameName={selectedGameData[0].gameName} gameId={selectedGameData[0].gameId}/>
+  : null }
+
+
+
     </>
   );
 };
