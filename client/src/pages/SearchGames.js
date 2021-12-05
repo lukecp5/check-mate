@@ -266,10 +266,10 @@ const SearchGames = () => {
             {selectedGameData[0].gameName}
           </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
               <Tab label="About" {...a11yProps(0)} />
               <Tab label="Official" {...a11yProps(1)} />
-              <Tab label="Alt Rules" {...a11yProps(2)} />
+              <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
