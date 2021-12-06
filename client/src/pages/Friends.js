@@ -116,7 +116,7 @@ export default function Friends() {
           return false;
         }
             await setSearchResults(data.findFriends);
-            console.log(data.findFriends[0].firstName);
+            // console.log(data.findFriends[0].firstName);
     };
     
     const [friendId, setFriendId] = useState();
@@ -134,10 +134,10 @@ export default function Friends() {
     event.preventDefault();
     let currentFriendId = event.target.id;
     setFriendId(currentFriendId);
-    console.log("Before Add Friend Mutation: " + friendId);
+    // console.log("Before Add Friend Mutation: " + friendId);
     if(friendId) {
     await addFriend(friendId);
-    console.log("Friend ID of friend to add: " + friendId);
+    // console.log("Friend ID of friend to add: " + friendId);
     }
     return;    
 }
@@ -206,7 +206,7 @@ export default function Friends() {
                         <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
                         <Typography variant="h5">{friend.username}</Typography>
                         <CardActions sx={{justifyContent:'center'}}>
-                            <StyledButton key={friend._id} onClick={handleAddFriend} id={friend._id}>Add Friend: {friend._id}</StyledButton>
+                            <StyledButton key={friend._id} onClick={handleAddFriend} id={friend._id}>Add Friend</StyledButton>
                         </CardActions>
                     </CardContent>
                 </MyCard>
