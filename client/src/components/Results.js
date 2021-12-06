@@ -64,10 +64,21 @@ const Results = (props) => {
     const [winners, setWinners ] = useState([]);
     const [winArray, setWinArray] = useState([]);
 
-    // > Use this query to get the list of all the friends
-    const [friendList, setFriendList] = React.useState([]);
+    // const [selectedArray, setSelected] = useState([]); // > I think we can remove this state variable, since we're not using it
 
-    const [selectedArray, setSelected] = useState([]);
+    useEffect(() => {
+        if(data) {
+            console.log(data.getFriends); 
+            setFriendsList([...data.getFriends[0].friends]);
+            console.log("Friend List State Variable: " + friends);
+        }
+        }, [data]);
+        
+        
+    async function setFriendsList(friends) {
+        await setFriends(friends);
+        console.log("Friends: ", friends);
+    }
     // > gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
     // > game Name is in props as props.gameName
     const gameId = props.gameId;
