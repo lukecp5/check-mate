@@ -50,77 +50,37 @@ export const ADD_WIN = gql`
     }
   }`;
 
-// export const ADD_WIN = gql`
-//   mutation addWin(
-//   $firstName: String!
-//   $wins: WinInput
-//   ) {
-//     addWin(
-//       firstName: $firstName
-//       wins: $WinInput
-//       ) {
-//       firstName
-//       wins{
-//         game
-//         wins      
-//       }
-//     }
-//   }`;
-
-
 export const ADD_LOSS = gql`
   mutation addLoss(
-  $game: String!
+    $firstName: String!
+    $game: String!
   ) {
-    addLoss(
-      game: $game) {
-        _id
-        firstName
-        lastName
-        email
-        wins{
-          game
-          wins
-        }
-        losses{
-          game
-          losses
-        }
-        ties{
-          game
-          ties
-        }
-
+    addLoss(firstName: $firstName, game: $game) {
+      _id
+      firstName
+      lastName
+      losses{
+        game
+        losses
+      }
     }
-  }
-  `;
+  }`;
 
-  export const ADD_TIE = gql`
+export const ADD_TIE = gql`
   mutation addTie(
-  $game: String!
+    $firstName: String!
+    $game: String!
   ) {
-    addTie(
-      game: $game) {
-        _id
-        firstName
-        lastName
-        email
-        wins{
-          game
-          wins
-        }
-        losses{
-          game
-          losses
-        }
-        ties{
-          game
-          ties
-        }
-
+    addTie(firstName: $firstName, game: $game) {
+      _id
+      firstName
+      lastName
+      ties{
+        game
+        ties
+      }
     }
-  }
-  `;
+  }`;
 
 export const ADD_FRIEND = gql`
   mutation addFriend(

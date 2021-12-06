@@ -88,9 +88,11 @@ const typeDefs = gql`
     addFriend(friendID: ID!): User
     
     addWin(firstName: String!, game: String!): User
+    addLoss(firstName: String!, game: String!): User
+    addTie(firstName: String!, game: String!): User
 
-    addLoss(game: String!): User
-    addTie(game: String!): User
+    # addLoss(game: String!): User
+    # addTie(game: String!): User
     # addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
     # saveBook(bookData: BookInput!): User
     addRules(game_id: String!, user: String!, description: String!,rule_set_name: String! ): Altrules

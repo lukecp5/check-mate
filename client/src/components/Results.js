@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client';
 import Checkbox from '@mui/material/Checkbox';
 // import TextField from '@mui/material/TextField';
@@ -9,11 +9,15 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
-import { ADD_WIN } from '../utils/mutations'
+import { ADD_WIN, ADD_LOSS, ADD_TIE } from '../utils/mutations'
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 // import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
+
+import { useQuery } from '@apollo/client';
+import { GET_FRIENDS } from '../utils/queries';
+
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const trophy = <EmojiEventsIcon fontSize="small" sx={{color: 'gold'}} /> 
@@ -43,46 +47,84 @@ const RulesBtn = styled(Button)(({ theme }) => ({
     }
 })); 
   
-const friends = [
-    {firstName: "Amanda"}, 
-    {firstName: "Hannah"}, 
-    {firstName: "Ben"}, 
-    {firstName: "Luke"}, 
-    {firstName: "Daniel"},
-]
+// const friends = [
+//     {firstName: "Amanda"}, 
+//     {firstName: "Hannah"}, 
+//     {firstName: "Ben"}, 
+//     {firstName: "Luke"}, 
+//     {firstName: "Daniel"},
+// ]
 
 const Results = (props) => {
-    // const [addWin, { error }] = useMutation(ADD_WIN);
+    // > State variable to hold a user's friends, and the Query to get all friends of the logged in user
+    const [friends, setFriends] = useState([]);
+    const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
+    useEffect(() => {
+        if(data != null) {
+            if(data.getFriends != null) {
+            console.log(data.getFriends); 
+            setFriendsList([...data.getFriends[0].friends]);
+            console.log("Friend List State Variable: " + friends);
+        }else{
+            setFriendsList(['No Friends']);
+            console.log("No friends found");
+        }
+        }
+        }, [data]);
+        
+    // > Function that sets the state variable that contains a user's friends
+    async function setFriendsList(friends) {
+        await setFriends(friends);
+        console.log("Friends: ", friends);
+    }
+
+    // > State variable that holds information about the winners, losses, and tires 
+    // > that the user selects, and the second array contains the actual data being sent to the server
     const [winners, setWinners ] = useState([]);
     const [winArray, setWinArray] = useState([]);
 
-    // > Use this query to get the list of all the friends
-    const [friendList, setFriendList] = React.useState([]);
+    const [losers, setLosers] = useState([]);
+    const [loseArray, setLoseArray] = useState([]);
 
-    const [selectedArray, setSelected] = useState([]);
-    // > gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
-    // > game Name is in props as props.gameName
+    const [tires, setTires] = useState([]);
+    const [tieArray, setTieArray] = useState([]);
+
+
+
+    // > Set up local variables based off of props passed down from searchGames component
     const gameId = props.gameId;
     const gameName = props.gameName;
-    // console.log("winnersArray: ", winnersArray);
     console.log("gameName: ", gameName);
-    console.log("gameId: ", gameId);
-       
+
+    // > onChange function for the wins, lose, and tie checkboxes. Updates the state variable
     const handleWins = (event, selectedWinners) => {
         setWinners(selectedWinners);
         console.log("selectedWinners: ", selectedWinners);
-        
+    }
+    const handleLosses = (event, selectedLosers) => {
+        setLosers(selectedLosers);
+        console.log("selectedLosers: ", selectedLosers);
+    }
+    const handleTies = (event, selectedTires) => {
+        setTires(selectedTires);
+        console.log("selectedTires: ", selectedTires);    
     }
 
-
-    const [addWin, {completed} ] = useMutation(ADD_WIN, {
-        variables: {
-            ...winArray[0]
-        },
-        onCompleted: () => {
-            console.log('Wins have been submitted to the database!');
-        }
+    // > Mutations to add a win, loss, or tie to the database
+    const [addWin] = useMutation(ADD_WIN, {
+        variables: {...winArray[0]},
+        onCompleted: () => console.log('Wins have been submitted to the database!') 
     });
+    const [addTie] = useMutation(ADD_TIE, {
+        variables: {...tieArray[0]},
+        onCompleted: () => console.log('Ties have been submitted to the database!') 
+    });
+    const [addLoss] = useMutation(ADD_LOSS, {
+        variables: {...loseArray[0]},
+        onCompleted: () => console.log('Losses have been submitted to the database!') 
+    });
+
+
 
   const handlePlayAgain = (event) => {
         event.preventDefault(); 
@@ -92,19 +134,27 @@ const Results = (props) => {
     const handleSubmitClick = async (event) => {
         try {
         event.preventDefault();
-        
+        // > Submit wins
         const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
         await setWinArray(winnersArray);
-        console.log("WinArray State Var: ", winArray);
-        await addWin(winArray);
-        // console.log("winnersArray: ", winnersArray);
-        // console.log("winnersArray: ", winners);
-        // console.log("winner data wins ", winnersArray[0].wins[0].wins);
-        // console.log("winner data game ", winnersArray[0].wins[0].game);
-
-        
-        // console.log("selected: ", selected)
-
+        for (let i = 0; i < winnersArray.length; i++) {
+            await addWin({variables: {...winnersArray[i]}});
+            console.log("winnersArray[i]: ", winnersArray[i]);
+        }
+        // > Submit losses
+        const losersArray = losers.map(v => ({...v, game: gameName, losses: 1}));
+        await setLoseArray(losersArray);
+        for (let i = 0; i < losersArray.length; i++) {
+            await addLoss({variables: {...losersArray[i]}});
+            console.log("losersArray[i]: ", losersArray[i]);
+        }
+        // > Submit ties
+        const tiresArray = tires.map(v => ({...v, game: gameName, ties: 1}));
+        await setTieArray(tiresArray);
+        for (let i = 0; i < tiresArray.length; i++) {
+            await addTie({variables: {...tiresArray[i]}});
+            console.log("tiresArray[i]: ", tiresArray[i]);
+        }
         } catch (error) {
             console.error(error);
         }
@@ -162,8 +212,9 @@ const Results = (props) => {
                 {option.firstName}
                 </li>
             )}
-            style={{ width: 500 }}
-            
+
+            onChange={handleLosses}
+            style={{ width: 500 }}            
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
@@ -186,6 +237,7 @@ const Results = (props) => {
                 {option.firstName}
                 </li>
             )}
+            onChange={handleTies}
             style={{ width: 350 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
