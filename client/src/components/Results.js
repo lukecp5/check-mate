@@ -47,13 +47,13 @@ const RulesBtn = styled(Button)(({ theme }) => ({
     }
 })); 
   
-const friends = [
-    {firstName: "Amanda"}, 
-    {firstName: "Hannah"}, 
-    {firstName: "Ben"}, 
-    {firstName: "Luke"}, 
-    {firstName: "Daniel"},
-]
+// const friends = [
+//     {firstName: "Amanda"}, 
+//     {firstName: "Hannah"}, 
+//     {firstName: "Ben"}, 
+//     {firstName: "Luke"}, 
+//     {firstName: "Daniel"},
+// ]
 
 const Results = (props) => {
     const [winners, setWinners ] = useState([]);
