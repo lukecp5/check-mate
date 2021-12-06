@@ -51,8 +51,9 @@ const typeDefs = gql`
   }
 
   input WinnerInput {
+    firstName: String
     game: String
-    winnerID: String
+    wins: Int
   }
   
   # input WinInput {
