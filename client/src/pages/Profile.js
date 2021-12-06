@@ -63,7 +63,7 @@ export default function Profile() {
     let winsArray = [...wins]
     console.log("winsArray: ", winsArray);
     const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
-    console.log(countWins);
+    console.log("countWins:", countWins);
 
     let lossesArray = [...losses]
     console.log("lossesArray: ", lossesArray);
@@ -113,6 +113,172 @@ export default function Profile() {
     //     console.log(event.target); 
     // }
 
+    /////////////////////Start of Ben messing around in here////////////////////////
+    
+    const favoriteGame = () => {
+        //make an object
+            let favoriteGameObj = {};
+            let currentKey = '';
+        //iterate over each array win, lose, draw, one at a time adding to the favortie Game Obj, the object has the name of a game with an acrueing counter of wins, then acrues loses into the count then finally ties
+
+        //Win array iteration
+        for (let i=0; i <winsArray.length; i++) {
+            currentKey = winsArray[i].game;
+            // console.log("currentKey: ", currentKey);
+            if (favoriteGameObj[currentKey] === undefined){
+                favoriteGameObj[currentKey] = 1;
+            } else {
+                favoriteGameObj[currentKey] ++;                
+            }
+        }
+
+        //Lose array iteration i and j are in use, go with k 
+
+        for (let k=0; k <lossesArray.length; k++) {
+            currentKey = lossesArray[k].game;
+            // console.log("currentKey: ", currentKey);
+            if (favoriteGameObj[currentKey] === undefined){
+                favoriteGameObj[currentKey] = 1;
+            } else {
+                favoriteGameObj[currentKey] ++;                
+            }
+        }
+
+        //Tie array iteration i and j and k are in use, go with l
+
+        for (let l=0; l <tiesArray.length; l++) {
+            currentKey = tiesArray[l].game;
+            // console.log("currentKey: ", currentKey);
+            if (favoriteGameObj[currentKey] === undefined){
+                favoriteGameObj[currentKey] = 1;
+            } else {
+                favoriteGameObj[currentKey] ++;                
+            }
+        }
+
+        //Make a key array to iterate
+        const keyArray = (Object.keys(favoriteGameObj))
+        //make variables to store the highest values, initial Them with the first value in the array
+        let highestKey = keyArray[0];
+        let highestKeyValue = favoriteGameObj[keyArray[0]];
+
+        // console.log('highestKey', highestKey);
+        // console.log('highestKeyValue', highestKeyValue);
+
+        // Iterate across the key array taking the obj value from favoriteGaemObj at the key and comparing to the current value, replace if higher.  Start with the second index position.
+        
+        for (let j=1; j <keyArray.length; j++){
+            // console.log('keyArray:',keyArray[j]);
+            // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
+            if(favoriteGameObj[keyArray[j]] > highestKeyValue){
+                highestKeyValue = favoriteGameObj[keyArray[j]];
+                highestKey = keyArray[j];
+                console.log('j: ', j);
+                console.log('highestKey', highestKey);
+                console.log('highestKeyValue', highestKeyValue);
+            }
+        }
+
+        //return the highest value key
+        return highestKey;
+    }
+    // The JSX didn't like using favoriteGame() so I had to add this seemingly extra useless variable so the JSX could use it
+    const faveGame = favoriteGame();
+
+
+    // here we calculate the game the player has won the most, we go over the winning array again but then do the key sort at that point
+    
+    const WinningestGame = () => {
+        //make an object to hold the games from the array as keys and the numbers of wins as the value
+        let winningestGameObj = {};
+        let currentKey = '';
+            //iterate over the win array adding up each win in a win object.
+    
+            //Win array iteration
+            for (let i=0; i <winsArray.length; i++) {
+                currentKey = winsArray[i].game;
+                // console.log("currentKey: ", currentKey);
+                if (winningestGameObj[currentKey] === undefined){
+                    winningestGameObj[currentKey] = 1;
+                } else {
+                    winningestGameObj[currentKey] ++;                
+                }
+            }
+
+            //Make a key array to iterate over the keys in the object finding the one with the highest value
+            const keyArray = (Object.keys(winningestGameObj))
+            //make variables to store the highest values, initial Them with the first value in the array
+            let highestKey = keyArray[0];
+            let highestKeyValue = winningestGameObj[keyArray[0]];
+
+            for (let j=1; j <keyArray.length; j++){
+                // console.log('keyArray:',keyArray[j]);
+                // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
+                if(winningestGameObj[keyArray[j]] > highestKeyValue){
+                    highestKeyValue = winningestGameObj[keyArray[j]];
+                    highestKey = keyArray[j];
+                    console.log('j: ', j);
+                    console.log('highestKey', highestKey);
+                    console.log('highestKeyValue', highestKeyValue);
+                }
+            }
+    
+            //return the highest value key
+            return highestKey;
+    }
+
+    const winningestGame = WinningestGame();
+
+
+    // same thing but losing
+    
+    const LosingestGame = () => {
+        //make an object to hold the games from the array as keys and the numbers of wins as the value
+        let losingestGameObj = {};
+        let currentKey = '';
+            //iterate over the win array adding up each win in a win object.
+    
+            //Win array iteration
+            for (let i=0; i <lossesArray.length; i++) {
+                currentKey = lossesArray[i].game;
+                // console.log("currentKey: ", currentKey);
+                if (losingestGameObj[currentKey] === undefined){
+                    losingestGameObj[currentKey] = 1;
+                } else {
+                    losingestGameObj[currentKey] ++;                
+                }
+            }
+
+            //Make a key array to iterate over the keys in the object finding the one with the highest value
+            const keyArray = (Object.keys(losingestGameObj))
+            //make variables to store the highest values, initial Them with the first value in the array
+            let highestKey = keyArray[0];
+            let highestKeyValue = losingestGameObj[keyArray[0]];
+
+            for (let j=1; j <keyArray.length; j++){
+                // console.log('keyArray:',keyArray[j]);
+                // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
+                if(losingestGameObj[keyArray[j]] > highestKeyValue){
+                    highestKeyValue = losingestGameObj[keyArray[j]];
+                    highestKey = keyArray[j];
+                    console.log('j: ', j);
+                    console.log('highestKey', highestKey);
+                    console.log('highestKeyValue', highestKeyValue);
+                }
+            }
+    
+            //return the highest value key
+            return highestKey;
+    }
+
+    const losingestGame = LosingestGame();
+
+    const totalGamesPlayed = (winsArray.length + lossesArray.length + tiesArray.length);
+
+
+    ///////////////////End of Ben messing around in here?//////////////////////////
+
+
     return (
     <Grid container spacing={2}>
         <Grid item xs={12} sm={5}>
@@ -128,23 +294,23 @@ export default function Profile() {
                     </Stack>
                     <Stack direction="column" spacing={2} sx={{marginTop: 4}}>
                         <Typography variant="body1" component="div">
-                            Best Teammate: Chris 
+                            Winningest Game: {winningestGame}
                         </Typography>
                         {/* TODO: replace with friend who has beaten user the most */}
                         <Typography variant="body1" component="div">
-                            Arch Nemesis: Ben 
+                            Losingest Game: {losingestGame} 
                         </Typography>
                         {/* TODO: Replace with game user has played the most times */}
                         <Typography variant="body1" component="div">
-                            Favorite Game: Monopoly  
+                            Favorite Game: {faveGame}
                         </Typography>
                     </Stack>
                     <Stack>
                         <Typography variant="h4" sx={{ mt:2, textAlign: "center"  }}>
-                            Career Stats
+                            Career Stats - Total Games {totalGamesPlayed}
                         </Typography>
                         
-                        <PieChartPlayer win={20} lose={10} tie={5}/>
+                        <PieChartPlayer win={countWins} lose={countLosses} tie={countTies}/>
 
                     </Stack>
                 </CardContent>
