@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client';
 import Checkbox from '@mui/material/Checkbox';
 // import TextField from '@mui/material/TextField';
@@ -14,6 +14,10 @@ import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 // import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
+
+import { useQuery } from '@apollo/client';
+import { GET_FRIENDS } from '../utils/queries';
+
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const trophy = <EmojiEventsIcon fontSize="small" sx={{color: 'gold'}} /> 
@@ -43,23 +47,43 @@ const RulesBtn = styled(Button)(({ theme }) => ({
     }
 })); 
   
-const friends = [
-    {firstName: "Amanda"}, 
-    {firstName: "Hannah"}, 
-    {firstName: "Ben"}, 
-    {firstName: "Luke"}, 
-    {firstName: "Daniel"},
-]
+// const friends = [
+//     {firstName: "Amanda"}, 
+//     {firstName: "Hannah"}, 
+//     {firstName: "Ben"}, 
+//     {firstName: "Luke"}, 
+//     {firstName: "Daniel"},
+// ]
 
 const Results = (props) => {
-    // const [addWin, { error }] = useMutation(ADD_WIN);
+    // > State variable to hold a user's friends, and the Query to get all friends of the logged in user
+    const [friends, setFriends] = useState([]);
+    const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
+
+    // > State variable that holds information about the winners that the user selects, and winArray contains the actual data being sent to the server
     const [winners, setWinners ] = useState([]);
     const [winArray, setWinArray] = useState([]);
 
-    // > Use this query to get the list of all the friends
-    const [friendList, setFriendList] = React.useState([]);
+    // const [selectedArray, setSelected] = useState([]); // > I think we can remove this state variable, since we're not using it
 
-    const [selectedArray, setSelected] = useState([]);
+    useEffect(() => {
+        if(data != null) {
+            if(data.getFriends != null) {
+            console.log(data.getFriends); 
+            setFriendsList([...data.getFriends[0].friends]);
+            console.log("Friend List State Variable: " + friends);
+        }else{
+            setFriendsList(['No Friends']);
+            console.log("No friends found");
+        }
+        }
+        }, [data]);
+        
+        
+    async function setFriendsList(friends) {
+        await setFriends(friends);
+        console.log("Friends: ", friends);
+    }
     // > gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
     // > game Name is in props as props.gameName
     const gameId = props.gameId;
@@ -95,8 +119,12 @@ const Results = (props) => {
         
         const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
         await setWinArray(winnersArray);
-        console.log("WinArray State Var: ", winArray);
-        await addWin(winArray);
+        for (let i = 0; i < winnersArray.length; i++) {
+            await addWin({variables: {...winnersArray[i]}});
+            console.log("winnersArray[i]: ", winnersArray[i]);
+        }
+        // console.log("WinArray State Var: ", winArray);
+        // await addWin(winArray);
         // console.log("winnersArray: ", winnersArray);
         // console.log("winnersArray: ", winners);
         // console.log("winner data wins ", winnersArray[0].wins[0].wins);
