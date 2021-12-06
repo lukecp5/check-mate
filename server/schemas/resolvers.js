@@ -147,56 +147,36 @@ const resolvers = {
     // },
     addWin: async (parent, args, context) => {
       console.log("Args from results: ", args)
-      // console.log(context);
+      // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 } to user.wins
         const user = await User.findOneAndUpdate({
           firstName: args.firstName,
         }, { $push: { wins: {game: args.game, wins: 1} }}, {
           new: true,
         });
-        // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 }
-        // const newWin = user.wins.push({game: args.game, wins: 1});
-
-        // user.save();
-        // const currentGame = userGames.find(wins => wins.game === args.game);
-        // if (currentGame) {
-        //   const updatedUser = await User.findO (
-        //   { _id: context.user._id },
-        //   { $inc: { wins: 1 } },
-        //   { new: true }
-        // );
-        // return updatedUser;
-        // } else{
-        //   const updatedUser = await User.findByIdAndUpdate(
-        //   { _id: context.user._id },
-        //   { $push: { wins: winData } },
-        //   { new: true }
-        // );
         return user;
-      //   }
-      // }
       throw new AuthenticationError('No winners updated');
     },
-    addTie: async (parent, { tieData }, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.ties;
-        const currentGame = userGames.find(tie => tie.game === tieData.game);
-        if(currentGame) {
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $inc: { ties: 1 } },
-          { new: true }
-        );
-        return updatedUser;
-        }else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { ties: tieData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-      }
+    addLoss: async (parent, args, context) => {
+      console.log("Args from results: ", args)
+      // > Every time somone loses monopoly give object { game: "monopoly", wins: 1 } to user.losses
+        const user = await User.findOneAndUpdate({
+          firstName: args.firstName,
+        }, { $push: { losses: {game: args.game, losses: 1} }}, {
+          new: true,
+        });
+        return user;
+      throw new AuthenticationError('No losers updated');
+    },
+        addTie: async (parent, args, context) => {
+      console.log("Args from results: ", args)
+      // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 } to user.wins
+        const user = await User.findOneAndUpdate({
+          firstName: args.firstName,
+        }, { $push: { ties: {game: args.game, ties: 1} }}, {
+          new: true,
+        });
+        return user;
+      throw new AuthenticationError('No tires updated');
     },
 
     addRules: async (parent, args) => {
