@@ -167,7 +167,7 @@ const resolvers = {
         return user;
       throw new AuthenticationError('No losers updated');
     },
-        addTie: async (parent, args, context) => {
+    addTie: async (parent, args, context) => {
       console.log("Args from results: ", args)
       // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 } to user.wins
         const user = await User.findOneAndUpdate({
