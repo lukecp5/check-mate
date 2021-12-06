@@ -104,9 +104,7 @@ function Navbar() {
                   </Link> 
                 {/* </div> */}
               
-                <Link to="/login" className={classes.link}>
-                  Log in
-                </Link>
+                
                 {/* </div> */}
                 <React.Fragment>
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
