@@ -15,6 +15,10 @@ import { Link } from 'react-router-dom';
 // import  { Grid }  from '@mui/material';
 import Button from '@mui/material/Button';
 
+import { useQuery } from '@apollo/client';
+import { GET_FRIENDS } from '../utils/queries';
+
+
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const trophy = <EmojiEventsIcon fontSize="small" sx={{color: 'gold'}} /> 
 const checkedIcon = <CheckBoxIcon fontSize="small" /> 
