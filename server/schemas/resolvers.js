@@ -98,28 +98,28 @@ const resolvers = {
       }
     },
     
-    addLoss: async (parent, { lossData }, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.losses;
-        const currentGame = userGames.find(loss => loss.game === lossData.game);
-        if (currentGame) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $inc: { losses: 1 } },
-            { new: true }
-          )
-          return updatedUser;
-      }else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { losses: lossData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-    }
-  },
+  //   addLoss: async (parent, { lossData }, context) => {
+  //     if (context.user) {
+  //       const user = await User.findOne({ _id: context.user._id });
+  //       const userGames = user.losses;
+  //       const currentGame = userGames.find(loss => loss.game === lossData.game);
+  //       if (currentGame) {
+  //         const updatedUser = await User.findOneAndUpdate(
+  //           { _id: context.user._id },
+  //           { $inc: { losses: 1 } },
+  //           { new: true }
+  //         )
+  //         return updatedUser;
+  //     }else{
+  //         const updatedUser = await User.findByIdAndUpdate(
+  //         { _id: context.user._id },
+  //         { $push: { losses: lossData } },
+  //         { new: true }
+  //       );
+  //       return updatedUser;
+  //       }
+  //   }
+  // },
     //   addOtherWin: async (parent, args, context) => {
     //   console.log("winData: ", winData)
     //   console.log(context);
