@@ -123,6 +123,16 @@ const Results = (props) => {
         variables: {...winArray[0]},
         onCompleted: () => console.log('Wins have been submitted to the database!') 
     });
+    const [addTie] = useMutation(ADD_TIE, {
+        variables: {...tieArray[0]},
+        onCompleted: () => console.log('Ties have been submitted to the database!') 
+    });
+    const [addLoss] = useMutation(ADD_LOSS, {
+        variables: {...loseArray[0]},
+        onCompleted: () => console.log('Losses have been submitted to the database!') 
+    });
+
+
 
   const handlePlayAgain = (event) => {
         event.preventDefault(); 
