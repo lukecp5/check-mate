@@ -103,22 +103,25 @@ const Results = (props) => {
     const gameName = props.gameName;
     // console.log("winnersArray: ", winnersArray);
     console.log("gameName: ", gameName);
-    console.log("gameId: ", gameId);
-       
+
+    // > onChange function for the wins, lose, and tie checkboxes. Updates the state variable
     const handleWins = (event, selectedWinners) => {
         setWinners(selectedWinners);
         console.log("selectedWinners: ", selectedWinners);
-        
+    }
+    const handleLosses = (event, selectedLosers) => {
+        setLosers(selectedLosers);
+        console.log("selectedLosers: ", selectedLosers);
+    }
+    const handleTies = (event, selectedTires) => {
+        setTires(selectedTires);
+        console.log("selectedTires: ", selectedTires);    
     }
 
-
-    const [addWin, {completed} ] = useMutation(ADD_WIN, {
-        variables: {
-            ...winArray[0]
-        },
-        onCompleted: () => {
-            console.log('Wins have been submitted to the database!');
-        }
+    // > Mutations to add a win, loss, or tie to the database
+    const [addWin] = useMutation(ADD_WIN, {
+        variables: {...winArray[0]},
+        onCompleted: () => console.log('Wins have been submitted to the database!') 
     });
 
   const handlePlayAgain = (event) => {
