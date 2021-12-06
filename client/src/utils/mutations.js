@@ -43,6 +43,10 @@ export const ADD_WIN = gql`
       _id
       firstName
       lastName
+      wins{
+        game
+        wins
+      }
     }
   }`;
 
