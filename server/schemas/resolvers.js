@@ -171,7 +171,7 @@ const resolvers = {
         //   { $push: { wins: winData } },
         //   { new: true }
         // );
-        return user.wins;
+        return user;
       //   }
       // }
       throw new AuthenticationError('No winners updated');
