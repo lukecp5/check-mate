@@ -61,6 +61,8 @@ const resolvers = {
       return Altrules.find({game_id: game_id});
     }
   },
+
+
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -118,29 +120,53 @@ const resolvers = {
         }
     }
   },
-    addWin: async (parent, winData, context) => {
-      console.log("winData: ", winData)
+    //   addOtherWin: async (parent, args, context) => {
+    //   console.log("winData: ", winData)
+    //   console.log(context);
+    //   if (context.user) {        
+    //     const user = await User.findOne({ _id: context.user._id });
+    //     const userGames = user.wins;
+    //     const currentGame = userGames.find(wins => wins.game === winData.game);
+    //     if (currentGame) {
+    //       const updatedUser = await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $inc: { wins: 1 } },
+    //       { new: true }
+    //     );
+    //     return updatedUser;
+    //     } else{
+    //       const updatedUser = await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $push: { wins: winData } },
+    //       { new: true }
+    //     );
+    //     return updatedUser;
+    //     }
+    //   }
+    //   throw new AuthenticationError('No winners updated');
+    // },
+    addWin: async (parent, args, context) => {
+      console.log(args)
       console.log(context);
-      if (context.user) {        
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.wins;
-        const currentGame = userGames.find(wins => wins.game === winData.game);
-        if (currentGame) {
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $inc: { wins: 1 } },
-          { new: true }
-        );
-        return updatedUser;
-        } else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { wins: winData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-      }
+        const user = await User.findOne({});
+        const newWin = user.wins.create({ ...args });
+        // const currentGame = userGames.find(wins => wins.game === args.game);
+        // if (currentGame) {
+        //   const updatedUser = await User.findO (
+        //   { _id: context.user._id },
+        //   { $inc: { wins: 1 } },
+        //   { new: true }
+        // );
+        // return updatedUser;
+        // } else{
+        //   const updatedUser = await User.findByIdAndUpdate(
+        //   { _id: context.user._id },
+        //   { $push: { wins: winData } },
+        //   { new: true }
+        // );
+        return user.wins;
+      //   }
+      // }
       throw new AuthenticationError('No winners updated');
     },
     addTie: async (parent, { tieData }, context) => {
