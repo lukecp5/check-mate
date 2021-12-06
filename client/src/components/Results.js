@@ -90,18 +90,21 @@ const Results = (props) => {
     }
 
     const handleSubmitClick = async (event) => {
+        try {
         event.preventDefault();
         
         const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
-        console.log("winnersArray: ", winnersArray);
-        console.log("winnersArray: ", ...winnersArray);
-        console.log("winner data wins ", winnersArray[0].wins[0].wins);
-        console.log("winner data game ", winnersArray[0].wins[0].game);
+        await setWinArray(winnersArray);
+        console.log("WinArray State Var: ", winArray);
+        await addWin(winArray);
+        // console.log("winnersArray: ", winnersArray);
+        // console.log("winnersArray: ", winners);
+        // console.log("winner data wins ", winnersArray[0].wins[0].wins);
+        // console.log("winner data game ", winnersArray[0].wins[0].game);
 
         
         // console.log("selected: ", selected)
-        try {
-            // await addWin(...winnersArray)
+
         } catch (error) {
             console.error(error);
         }
