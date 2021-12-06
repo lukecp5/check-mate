@@ -54,6 +54,7 @@ const friends = [
 const Results = (props) => {
     // const [addWin, { error }] = useMutation(ADD_WIN);
     const [winners, setWinners ] = useState([]);
+    const [winArray, setWinArray] = useState([]);
 
     // > Use this query to get the list of all the friends
     const [friendList, setFriendList] = React.useState([]);
@@ -74,14 +75,14 @@ const Results = (props) => {
     }
 
 
-    // const [addWin, {completed} ] = useMutation(ADD_WIN, {
-    //     variables: {
-    //         winData: winnersArray
-    //     },
-    //     onCompleted: () => {
-    //         console.log('Wins have been submitted to the database!');
-    //     }
-    // });
+    const [addWin, {completed} ] = useMutation(ADD_WIN, {
+        variables: {
+            ...winArray[0]
+        },
+        onCompleted: () => {
+            console.log('Wins have been submitted to the database!');
+        }
+    });
 
   const handlePlayAgain = (event) => {
         event.preventDefault(); 
@@ -89,18 +90,21 @@ const Results = (props) => {
     }
 
     const handleSubmitClick = async (event) => {
+        try {
         event.preventDefault();
         
-        const winnersArray = winners.map(v => ({...v, wins: [{ game: gameName, wins: 1}]}));
-        console.log("winnersArray: ", winnersArray);
-        console.log("winnersArray: ", ...winnersArray);
-        console.log("winner data wins ", winnersArray[0].wins[0].wins);
-        console.log("winner data game ", winnersArray[0].wins[0].game);
+        const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
+        await setWinArray(winnersArray);
+        console.log("WinArray State Var: ", winArray);
+        await addWin(winArray);
+        // console.log("winnersArray: ", winnersArray);
+        // console.log("winnersArray: ", winners);
+        // console.log("winner data wins ", winnersArray[0].wins[0].wins);
+        // console.log("winner data game ", winnersArray[0].wins[0].game);
 
         
         // console.log("selected: ", selected)
-        try {
-            // await addWin(...winnersArray)
+
         } catch (error) {
             console.error(error);
         }
