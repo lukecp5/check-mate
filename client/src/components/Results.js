@@ -52,8 +52,12 @@ const friends = [
 ]
 
 const Results = (props) => {
-    const [addWin, { error }] = useMutation(ADD_WIN);
+    // const [addWin, { error }] = useMutation(ADD_WIN);
     const [winners, setWinners ] = useState([]);
+
+    // > Use this query to get the list of all the friends
+    const [friendList, setFriendList] = React.useState([]);
+
     const [selectedArray, setSelected] = useState([]);
     // > gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
     // > game Name is in props as props.gameName
@@ -68,6 +72,16 @@ const Results = (props) => {
         console.log("selectedWinners: ", selectedWinners);
         
     }
+
+
+    // const [addWin, {completed} ] = useMutation(ADD_WIN, {
+    //     variables: {
+    //         winData: winnersArray
+    //     },
+    //     onCompleted: () => {
+    //         console.log('Wins have been submitted to the database!');
+    //     }
+    // });
 
   const handlePlayAgain = (event) => {
         event.preventDefault(); 
@@ -86,7 +100,7 @@ const Results = (props) => {
         
         // console.log("selected: ", selected)
         try {
-            await addWin(...winnersArray)
+            // await addWin(...winnersArray)
         } catch (error) {
             console.error(error);
         }

@@ -145,29 +145,28 @@ const resolvers = {
     //   }
     //   throw new AuthenticationError('No winners updated');
     // },
-    addWin: async (parent, winData, context) => {
-      console.log("winData: ", winData)
+    addWin: async (parent, args, context) => {
+      console.log(args)
       console.log(context);
-      if (context.user) {        
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.wins;
-        const currentGame = userGames.find(wins => wins.game === winData.game);
-        if (currentGame) {
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $inc: { wins: 1 } },
-          { new: true }
-        );
-        return updatedUser;
-        } else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { wins: winData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-      }
+        const user = await User.findOne({});
+        const newWin = user.wins.create({ ...args });
+        // const currentGame = userGames.find(wins => wins.game === args.game);
+        // if (currentGame) {
+        //   const updatedUser = await User.findO (
+        //   { _id: context.user._id },
+        //   { $inc: { wins: 1 } },
+        //   { new: true }
+        // );
+        // return updatedUser;
+        // } else{
+        //   const updatedUser = await User.findByIdAndUpdate(
+        //   { _id: context.user._id },
+        //   { $push: { wins: winData } },
+        //   { new: true }
+        // );
+        return user.wins;
+      //   }
+      // }
       throw new AuthenticationError('No winners updated');
     },
     addTie: async (parent, { tieData }, context) => {

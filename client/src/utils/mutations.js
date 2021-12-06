@@ -36,20 +36,36 @@ export const ADD_USER = gql`
 
 export const ADD_WIN = gql`
   mutation addWin(
-  $firstName: String!
-  $wins: WinInput
+    $winData: [WinnerInput]
   ) {
-    addWin(
-      firstName: $firstName
-      wins: $WinInput
-      ) {
-      firstName
-      wins{
-        game
-        wins      
-      }
+    addWin(winData: $winData) {
+        _id
+        firstName
+        lastName
+        wins{
+          game
+          wins
+        }
     }
   }`;
+
+// export const ADD_WIN = gql`
+//   mutation addWin(
+//   $firstName: String!
+//   $wins: WinInput
+//   ) {
+//     addWin(
+//       firstName: $firstName
+//       wins: $WinInput
+//       ) {
+//       firstName
+//       wins{
+//         game
+//         wins      
+//       }
+//     }
+//   }`;
+
 
 export const ADD_LOSS = gql`
   mutation addLoss(

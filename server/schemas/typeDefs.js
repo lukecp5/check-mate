@@ -50,10 +50,15 @@ const typeDefs = gql`
     user: User
   }
 
-  input WinInput {
-    game: String!
-    wins: Int
+  input WinnerInput {
+    game: String
+    winnerID: String
   }
+  
+  # input WinInput {
+  #   game: String
+  #   winnerID: String
+  # }
 
   # input BookInput {
   #   authors: [String]
@@ -81,7 +86,7 @@ const typeDefs = gql`
 
     addFriend(friendID: ID!): User
     
-    addWin(firstName: String!, wins: WinInput): User
+    addWin(winData: [WinnerInput]): User
     addLoss(game: String!): User
     addTie(game: String!): User
     # addMatch(team1: String!, team2: String!, team1Score: Int, team2Score: Int, winner: String, loser: String, game_id: String): Match
