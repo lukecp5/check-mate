@@ -52,7 +52,6 @@ const friends = [
 ]
 
 const Results = (props) => {
-    // const [addWin, { error }] = useMutation(ADD_WIN);
     const [winners, setWinners ] = useState([]);
     const [winArray, setWinArray] = useState([]);
 
@@ -95,8 +94,12 @@ const Results = (props) => {
         
         const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
         await setWinArray(winnersArray);
-        console.log("WinArray State Var: ", winArray);
-        await addWin(winArray);
+        for (let i = 0; i < winnersArray.length; i++) {
+            await addWin({variables: {...winnersArray[i]}});
+            console.log("winnersArray[i]: ", winnersArray[i]);
+        }
+        // console.log("WinArray State Var: ", winArray);
+        // await addWin(winArray);
         // console.log("winnersArray: ", winnersArray);
         // console.log("winnersArray: ", winners);
         // console.log("winner data wins ", winnersArray[0].wins[0].wins);
