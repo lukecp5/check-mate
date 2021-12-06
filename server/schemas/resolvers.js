@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Altrules } = require('../models');
+const { User, Altrules, Win } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -146,10 +146,17 @@ const resolvers = {
     //   throw new AuthenticationError('No winners updated');
     // },
     addWin: async (parent, args, context) => {
-      console.log(args)
-      console.log(context);
-        const user = await User.findOne({});
-        const newWin = user.wins.create({ ...args });
+      console.log("Args from results: ", args)
+      // console.log(context);
+        const user = await User.findOneAndUpdate({
+          firstName: args.firstName,
+        }, { $push: { wins: {game: args.game, wins: 1} }}, {
+          new: true,
+        });
+        // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 }
+        // const newWin = user.wins.push({game: args.game, wins: 1});
+
+        // user.save();
         // const currentGame = userGames.find(wins => wins.game === args.game);
         // if (currentGame) {
         //   const updatedUser = await User.findO (
