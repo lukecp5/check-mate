@@ -63,7 +63,7 @@ export default function Profile() {
     let winsArray = [...wins]
     console.log("winsArray: ", winsArray);
     const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
-    console.log(countWins);
+    console.log("countWins:", countWins);
 
     let lossesArray = [...losses]
     console.log("lossesArray: ", lossesArray);
@@ -113,6 +113,61 @@ export default function Profile() {
     //     console.log(event.target); 
     // }
 
+    /////////////////////Start of Ben messing around in here////////////////////////
+    
+    const favoriteGame = () => {
+        //make an object
+            let favoriteGameObj = {};
+            let currentKey = '';
+        //iterate over each array win, lose, draw, one at a time adding to the favortie Game Obj, the object has the name of a game with an acrueing counter of wins, then acrues loses into the count then finally ties
+
+        //Win array iteration
+        for (let i=0; i <winsArray.length; i++) {
+            currentKey = winsArray[i].game;
+            // console.log("currentKey: ", currentKey);
+            if (favoriteGameObj[currentKey] === undefined){
+                favoriteGameObj[currentKey] = 1;
+            } else {
+                favoriteGameObj[currentKey] ++;                
+            }
+        }
+
+        //Lose array iteration i and j are in use, go with k 
+
+        //Tie array iteration i and j and k are in use, go with l
+
+        //Make a key array to iterate
+        const keyArray = (Object.keys(favoriteGameObj))
+        //make variables to store the highest values, initial Them with the first value in the array
+        let highestKey = keyArray[0];
+        let highestKeyValue = favoriteGameObj[keyArray[0]];
+
+        // console.log('highestKey', highestKey);
+        // console.log('highestKeyValue', highestKeyValue);
+
+        // Iterate across the key array taking the obj value from favoriteGaemObj at the key and comparing to the current value, replace if higher.  Start with the second index position.
+        
+        for (let j=1; j <keyArray.length; j++){
+            // console.log('keyArray:',keyArray[j]);
+            // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
+            if(favoriteGameObj[keyArray[j]] > highestKeyValue){
+                highestKeyValue = favoriteGameObj[keyArray[j]];
+                highestKey = keyArray[j];
+                console.log('j: ', j);
+                console.log('highestKey', highestKey);
+                console.log('highestKeyValue', highestKeyValue);
+            }
+        }
+
+        //return the highest value key
+        return highestKey;
+    }
+    // The JSX didn't like using favoriteGame() so I had this seemingly extra useless variable so the JSX could use it
+    const faveGame = favoriteGame();
+
+    ///////////////////End of Ben messing around in here?//////////////////////////
+
+
     return (
     <Grid container spacing={2}>
         <Grid item xs={12} sm={5}>
@@ -136,7 +191,7 @@ export default function Profile() {
                         </Typography>
                         {/* TODO: Replace with game user has played the most times */}
                         <Typography variant="body1" component="div">
-                            Favorite Game: Monopoly  
+                            Favorite Game: {faveGame}
                         </Typography>
                     </Stack>
                     <Stack>
@@ -144,7 +199,7 @@ export default function Profile() {
                             Career Stats
                         </Typography>
                         
-                        <PieChartPlayer win={20} lose={10} tie={5}/>
+                        <PieChartPlayer win={countWins} lose={10} tie={5}/>
 
                     </Stack>
                 </CardContent>
