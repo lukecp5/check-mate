@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { Grid, Typography, TextField, CardMedia, Card } from '@mui/material';
 import { styled } from '@mui/system';
@@ -12,7 +12,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Play from '../components/Play'; 
+// import Play from '../components/Play'; 
 import Results from '../components/Results'; 
 import randomColor from '../utils/randomColor';
 import AltRulesComp from '../components/AltRulesComp';
@@ -319,22 +319,29 @@ const SearchGames = () => {
             ) : null} */}
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {selectedGameData[0].rulesUrl ? ( 
+            {selectedGameData[0].officialUrl ? ( 
               <>
-              <Typography>
-                If you want to find out more about this game or its creators, you can view the official site here.
-              </Typography>
-              <SubmitBtn href= {selectedGameData[0].official_url} target="_blank" > Official Site </SubmitBtn>
-              <Typography>
-                Lost your copy? View this game's official rule set here.
-              </Typography>
-              <RulesBtn href= {selectedGameData[0].rulesUrl} target="_blank"  size= 'large' sx={{width: 200}}> Official Rules </RulesBtn>
+                <Typography>
+                  If you want to find out more about this game or its creators, you can view the official site here.
+                </Typography>
+                <SubmitBtn href= {selectedGameData[0].officialUrl} target="_blank" size= 'large' sx={{width: 200}}> Official Site </SubmitBtn>
+                </>
+            ) : (
+              <Typography sx={{color:'red'}}>Sorry! This game doesn't have a website.</Typography>
+            )}
+
+            {selectedGameData[0].rulesUrl ? (  
+              <>
+                <Typography>
+                    Lost your copy? View this game's official rule set here.
+                </Typography>
+                <RulesBtn href={selectedGameData[0].rulesUrl} target="_blank" size='large' sx={{ width: 200 }}> Official Rules </RulesBtn>
               </>
             ) : (
-              <Typography sx={{color:'red'}}>Sorry! We can't find the link.</Typography>
+              <Typography sx={{color:'red'}}>Sorry! We can't seem to find the rules.</Typography>
             )}
           </TabPanel>
-          {/* TODO: Change this from a link to display the list of alternate rules created my different users */}
+          
           <TabPanel value={value} index={2}>
             
             <Stack direction= "row" sx={{justifyContent: 'center'}}>
