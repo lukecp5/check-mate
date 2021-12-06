@@ -31,7 +31,7 @@ import {
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: (process.env.NODE_ENV === 'production'? '/graphql' : 'http://localhost:3001/graphql'),
 });
 
 const authLink = setContext((_, { headers }) => {
