@@ -61,37 +61,26 @@ export const ADD_LOSS = gql`
       lastName
       losses{
         game
-        wins
+        losses
       }
     }
   }`;
 
-  export const ADD_TIE = gql`
+export const ADD_TIE = gql`
   mutation addTie(
-  $game: String!
+    $firstName: String!
+    $game: String!
   ) {
-    addTie(
-      game: $game) {
-        _id
-        firstName
-        lastName
-        email
-        wins{
-          game
-          wins
-        }
-        losses{
-          game
-          losses
-        }
-        ties{
-          game
-          ties
-        }
-
+    addTie(firstName: $firstName, game: $game) {
+      _id
+      firstName
+      lastName
+      ties{
+        game
+        ties
+      }
     }
-  }
-  `;
+  }`;
 
 export const ADD_FRIEND = gql`
   mutation addFriend(
