@@ -56,6 +56,11 @@ const RulesBtn = styled(Button)(({ theme }) => ({
 // ]
 
 const Results = (props) => {
+    // > State variable to hold a user's friends, and the Query to get all friends of the logged in user
+    const [friends, setFriends] = useState([]);
+    const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
+
+    // > State variable that holds information about the winners that the user selects, and winArray contains the actual data being sent to the server
     const [winners, setWinners ] = useState([]);
     const [winArray, setWinArray] = useState([]);
 
