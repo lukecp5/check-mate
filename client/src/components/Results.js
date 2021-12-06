@@ -142,23 +142,27 @@ const Results = (props) => {
     const handleSubmitClick = async (event) => {
         try {
         event.preventDefault();
-        
+        // > Submit wins
         const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
         await setWinArray(winnersArray);
         for (let i = 0; i < winnersArray.length; i++) {
             await addWin({variables: {...winnersArray[i]}});
             console.log("winnersArray[i]: ", winnersArray[i]);
         }
-        // console.log("WinArray State Var: ", winArray);
-        // await addWin(winArray);
-        // console.log("winnersArray: ", winnersArray);
-        // console.log("winnersArray: ", winners);
-        // console.log("winner data wins ", winnersArray[0].wins[0].wins);
-        // console.log("winner data game ", winnersArray[0].wins[0].game);
-
-        
-        // console.log("selected: ", selected)
-
+        // > Submit losses
+        const losersArray = losers.map(v => ({...v, game: gameName, losses: 1}));
+        await setLoseArray(losersArray);
+        for (let i = 0; i < losersArray.length; i++) {
+            await addLoss({variables: {...losersArray[i]}});
+            console.log("losersArray[i]: ", losersArray[i]);
+        }
+        // > Submit ties
+        const tiresArray = tires.map(v => ({...v, game: gameName, ties: 1}));
+        await setTieArray(tiresArray);
+        for (let i = 0; i < tiresArray.length; i++) {
+            await addTie({variables: {...tiresArray[i]}});
+            console.log("tiresArray[i]: ", tiresArray[i]);
+        }
         } catch (error) {
             console.error(error);
         }
