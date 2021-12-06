@@ -9,7 +9,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { Typography, TextField, Card } from '@mui/material';
-import { ADD_WIN } from '../utils/mutations'
+import { ADD_WIN, ADD_LOSS, ADD_TIE } from '../utils/mutations'
 import SubmitBtn from './SubmitBtn';
 import { Link } from 'react-router-dom';
 // import  { Grid }  from '@mui/material';
@@ -59,13 +59,6 @@ const Results = (props) => {
     // > State variable to hold a user's friends, and the Query to get all friends of the logged in user
     const [friends, setFriends] = useState([]);
     const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
-
-    // > State variable that holds information about the winners that the user selects, and winArray contains the actual data being sent to the server
-    const [winners, setWinners ] = useState([]);
-    const [winArray, setWinArray] = useState([]);
-
-    // const [selectedArray, setSelected] = useState([]); // > I think we can remove this state variable, since we're not using it
-
     useEffect(() => {
         if(data != null) {
             if(data.getFriends != null) {
@@ -101,7 +94,6 @@ const Results = (props) => {
     // > Set up local variables based off of props passed down from searchGames component
     const gameId = props.gameId;
     const gameName = props.gameName;
-    // console.log("winnersArray: ", winnersArray);
     console.log("gameName: ", gameName);
 
     // > onChange function for the wins, lose, and tie checkboxes. Updates the state variable
@@ -220,8 +212,9 @@ const Results = (props) => {
                 {option.firstName}
                 </li>
             )}
-            style={{ width: 500 }}
-            
+
+            onChange={handleLosses}
+            style={{ width: 500 }}            
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
@@ -244,6 +237,7 @@ const Results = (props) => {
                 {option.firstName}
                 </li>
             )}
+            onChange={handleTies}
             style={{ width: 350 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
