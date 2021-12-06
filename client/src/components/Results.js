@@ -79,13 +79,26 @@ const Results = (props) => {
         }
         }, [data]);
         
-        
+    // > Function that sets the state variable that contains a user's friends
     async function setFriendsList(friends) {
         await setFriends(friends);
         console.log("Friends: ", friends);
     }
-    // > gameId is sent in props, it is props.gameId, I don't think we need it but was not certain so its there
-    // > game Name is in props as props.gameName
+
+    // > State variable that holds information about the winners, losses, and tires 
+    // > that the user selects, and the second array contains the actual data being sent to the server
+    const [winners, setWinners ] = useState([]);
+    const [winArray, setWinArray] = useState([]);
+
+    const [losers, setLosers] = useState([]);
+    const [loseArray, setLoseArray] = useState([]);
+
+    const [tires, setTires] = useState([]);
+    const [tieArray, setTieArray] = useState([]);
+
+
+
+    // > Set up local variables based off of props passed down from searchGames component
     const gameId = props.gameId;
     const gameName = props.gameName;
     // console.log("winnersArray: ", winnersArray);
