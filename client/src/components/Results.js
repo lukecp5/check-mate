@@ -91,7 +91,7 @@ const Results = (props) => {
     const handleSubmitClick = async (event) => {
         event.preventDefault();
         
-        const winnersArray = winners.map(v => ({...v, wins: [{ game: gameName, wins: 1}]}));
+        const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
         console.log("winnersArray: ", winnersArray);
         console.log("winnersArray: ", ...winnersArray);
         console.log("winner data wins ", winnersArray[0].wins[0].wins);
