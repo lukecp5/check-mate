@@ -54,6 +54,7 @@ const friends = [
 const Results = (props) => {
     // const [addWin, { error }] = useMutation(ADD_WIN);
     const [winners, setWinners ] = useState([]);
+    const [winArray, setWinArray] = useState([]);
 
     // > Use this query to get the list of all the friends
     const [friendList, setFriendList] = React.useState([]);
