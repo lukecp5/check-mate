@@ -75,14 +75,14 @@ const Results = (props) => {
     }
 
 
-    // const [addWin, {completed} ] = useMutation(ADD_WIN, {
-    //     variables: {
-    //         winData: winnersArray
-    //     },
-    //     onCompleted: () => {
-    //         console.log('Wins have been submitted to the database!');
-    //     }
-    // });
+    const [addWin, {completed} ] = useMutation(ADD_WIN, {
+        variables: {
+            ...winArray[0]
+        },
+        onCompleted: () => {
+            console.log('Wins have been submitted to the database!');
+        }
+    });
 
   const handlePlayAgain = (event) => {
         event.preventDefault(); 
