@@ -67,10 +67,15 @@ const Results = (props) => {
     // const [selectedArray, setSelected] = useState([]); // > I think we can remove this state variable, since we're not using it
 
     useEffect(() => {
-        if(data) {
+        if(data != null) {
+            if(data.getFriends != null) {
             console.log(data.getFriends); 
             setFriendsList([...data.getFriends[0].friends]);
             console.log("Friend List State Variable: " + friends);
+        }else{
+            setFriendsList(['No Friends']);
+            console.log("No friends found");
+        }
         }
         }, [data]);
         
