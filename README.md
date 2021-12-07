@@ -17,7 +17,7 @@ Board games provide the opportunity for nearly endless entertainment, able to br
 
 1. [Wireframe](#wireframe)
 
-1. [Screenshot](#screenshot)
+1. [Screenshots](#screenshots)
 
 1. [Installation](#installation)
 
@@ -62,11 +62,13 @@ npm Modules
 
 The wireframe and decision flow chart developed by the team prior to coding to guide the overall process.
 
-![Wireframe Home Page]()
+[Wireframe Google Slides](https://docs.google.com/presentation/d/1JgKm855sQCqV2e1933rVzCwUySc2Q4pyw-93iVzt-zY/edit#slide=id.g103454a0f88_0_0)
 
 [Lucid Flow Chart](https://lucid.app/lucidchart/de7946a0-8639-4d26-8d44-f184f338f276/edit?invitationId=inv_3960a10b-fd03-4360-b988-9731fd16fd70&page=0_0#)
 
-## <a id="screenshot"></a>Screenshot
+[Project Presentation](https://docs.google.com/presentation/d/1kVhAbRWVcFoBLmkUuZtMDWdt1OfFgnHGfkaltbFOfvE/edit#slide=id.g10621f4ff8c_0_8)
+
+## <a id="screenshot"></a>Screenshots
 
 ![Screenshot of App Homepage](/public/images/screenshothome.png)
 ![Screenshot of ](/public/images/screenshot2)
@@ -94,17 +96,17 @@ npm install
 
 ## <a id="contact"></a>Contact
 
-- If you would like, you can connect with any of the creators through their github profiles
+If you would like, you can connect with any of the creators through their github profiles
 
-  [Amanda Morgan](https://github.com/AmandaC0022) 
+🎲[Amanda Morgan](https://github.com/AmandaC0022) 
 
-  [Ben Slinde](https://github.com/stevenslade)
+🎲[Ben Slinde](https://github.com/stevenslade)
 
-  [Daniel Quigley](https://github.com/d4nnyq88)
+🎲[Daniel Quigley](https://github.com/d4nnyq88)
 
-  [Hannah McDonald](https://github.com/hannahnmcdonald)
+🎲[Hannah McDonald](https://github.com/hannahnmcdonald)
 
-  [Luke Poirrier](https://github.com/lukecp5)
+🎲[Luke Poirrier](https://github.com/lukecp5)
 
 
 ## <a id="sample"></a>Link to Heroku Deployment
