@@ -38,13 +38,18 @@ const MyAvatar = styled(Avatar)(({ theme }) => ({
 
     //this is mockup data for the friend's list. We will delete this after we get it pulling from the database
 
-const FriendBox = () => {
+const FriendBox = (props) => {
     
     const [anchorEl, setAnchorEl] = React.useState(null);
     
     const [friendList, setFriendList] = React.useState([]);
 
     const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
+
+    const [ openedPopoverId, setOpenedPopoverId ] = React.useState(null);
+    
+
+    const faveGame = props.faveGame? props.faveGame : ["Monopoly", 10];
 
     useEffect(() => {
         if(data) {
@@ -58,13 +63,15 @@ const FriendBox = () => {
         }
         }, [data]);
 
-    const handleClick = (event) => {
+    const handleClick = (event, popoverId) => {
         event.preventDefault(); 
         setAnchorEl(event.currentTarget);
+        setOpenedPopoverId(popoverId);
     };
 
     const handleClose = (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
+        setOpenedPopoverId(null);
         setAnchorEl(null);
     };
 
@@ -85,7 +92,7 @@ const FriendBox = () => {
                     <>
                     <Stack direction="column">
                         <Tooltip title="See Stats">
-                            <MyAvatar aria-describedby={id} onClick={handleClick}>{friend? friend.firstName.charAt(0): null}</MyAvatar> 
+                            <MyAvatar aria-describedby={id} onClick={(e) => handleClick(e, friend._id)}>{friend? friend.firstName.charAt(0): null}</MyAvatar> 
                         </Tooltip>
                             <Typography 
                                 varient="h6" 
@@ -95,7 +102,7 @@ const FriendBox = () => {
                     </Stack>
                     <Popover
                         id={id}
-                        open={open}
+                        open={openedPopoverId === friend._id}
                         anchorEl={anchorEl}
                         onClose={handleClose}
                         sx={{width: '100%', padding: "10px"}}
@@ -107,9 +114,9 @@ const FriendBox = () => {
                         {/* TODO: Replace with friend's name */}
                         <Typography variant="h6">{friend.firstName}</Typography>
                         {/* TODO: Replace with how many times they have played together */}
-                        <Typography variant="body2">Teamup Times: 3</Typography>
+                        {/* <Typography variant="body2">Teamup Times: 3</Typography> */}
                         {/* TODO: Replace with friend's game they have played the most */}
-                        <Typography variant="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
+                        {/* <Typography variant="body2" sx={{marginBottom: 2}}>Favorite Game: {faveGame[0]}</Typography> */}
                         <Grid container spacing={2} sx={{marginBottom: 2}}> 
                             <Grid item>
                                 <Typography variant="div">.</Typography>
