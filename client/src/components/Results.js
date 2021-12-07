@@ -187,7 +187,7 @@ const Results = (props) => {
             )}
             onChange={handleWins}
 
-            style={{ maxWidth: 450, minWidth: 350}} 
+            style={{ width: 350, alignSelf: 'center'}} 
             renderInput={(params) => (
                 <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
             )}
@@ -213,7 +213,7 @@ const Results = (props) => {
             )}
 
             onChange={handleLosses}
-            style={{ maxWidth: 450, minWidth: 350}}            
+            style={{ width: 350, alignSelf: 'center'}}          
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
@@ -237,16 +237,16 @@ const Results = (props) => {
                 </li>
             )}
             onChange={handleTies}
-            style={{ maxWidth: 450, minWidth: 350}} 
+            style={{ width: 350, alignSelf: 'center'}} 
             renderInput={(params) => (
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
             )}
         />
-        <Stack direction= "row" sx={{justifyContent: 'center'}}>
-          <SubmitBtn size='large' sx={{width: 180}} onClick={handleSubmitClick}>
+        <Stack direction= "column" sx={{justifyContent: 'center'}}>
+          <SubmitBtn size='large' sx={{width: 180, alignSelf: 'center'}} onClick={handleSubmitClick}>
             Submit
           </SubmitBtn>
-          <RulesBtn size= 'large' sx={{width: 180}} onClick={handlePlayAgain}>
+          <RulesBtn size= 'large' sx={{width: 180, alignSelf: 'center'}} onClick={handlePlayAgain}>
               Play Again?
           </RulesBtn>
         </Stack>
