@@ -188,9 +188,22 @@ const SearchGames = () => {
 
   return (
     <>
-    <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff', borderRadius: 0 }}>
+    <Grid container sx={{ 
+      justifyContent:'center', 
+      // padding: '20px', 
+      color: '#ffffff', 
+      marginBottom: "10px" }}>
          
-      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
+      <Grid item xs={12} align="center" sx={{ 
+        // display: 'flex', 
+        // justifyContent: 'center', 
+        textAlign: 'center',  
+        backgroundImage: `url(${Image})`, 
+        backgroundRepeat: 'no-repeat', 
+        backgroundSize: 'cover', 
+        padding: '10px', 
+        // borderRadius: 3, 
+        minHeight: 360}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
