@@ -9,17 +9,9 @@ import { styled } from '@mui/system';
 // import tm from '../Images/terraformingmars.png'
 // import { Container } from '@mui/material';
 import  { Grid }  from '@mui/material';
+import randomColor from '../utils/randomColor'; 
 
-//This changes the colors of the backgrounds of each of the cards
-    // Theme colors added to array
 var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
-var randomColor = () => {
-    return colors[Math.floor(Math.random()* colors.length)];
-};
-var elements = document.getElementsByClassName(Card);
-    for (var i=0; i<elements.length; i++) {
-    elements[i].style.backgroundColor = randomColor();
-};
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
     color: '#616161',
@@ -38,7 +30,7 @@ export default function BasicCard() {
     <Grid container spacing={1} sx={{justifyContent: 'space-evenly'}}>
 
       <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
-        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px' }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px' }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shoplightspeed.com/shops/636957/files/24072452/terraforming-mars.jpg" alt="surface of Mars" width='100%'/>
             <Typography variant="h5" gutterBottom component="div">
@@ -49,13 +41,13 @@ export default function BasicCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+            <StyledButton size="small" href="/searchGames" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
           </CardActions>
         </Card>
       </Grid>
 
       <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
-        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254186140-51iNoyxoamL.jpg" alt="team of CDC experts" width='100%'/>
             <Typography variant="h5" gutterBottom component="div">
@@ -66,13 +58,13 @@ export default function BasicCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+            <StyledButton size="small" href="/searchGames" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
           </CardActions>
         </Card>
       </Grid>
 
       <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
-        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1541531739549" alt="stable of unstable unicorns" width='100%'/>
             <Typography variant="h5" gutterBottom component="div">
@@ -83,13 +75,13 @@ export default function BasicCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+            <StyledButton size="small" href="/searchGames" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
           </CardActions>
         </Card>
       </Grid>
 
       <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
-        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src="https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1629324738308.jpg" alt="trains and a conductor" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -100,13 +92,13 @@ export default function BasicCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+            <StyledButton size="small" href="/searchGames" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
           </CardActions>
         </Card>
       </Grid>
 
       <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
-        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254847937-51zyVWbt8aL.jpg" alt="Napoleon on horseback" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -117,13 +109,13 @@ export default function BasicCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+            <StyledButton size="small" href="/searchGames" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
           </CardActions>
         </Card>
       </Grid>
 
       <Grid item xs={12} sm={8} md={6} lg={4} xl={2} sx={{display: "flex", justifyContent:"center"}}>
-        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor, padding: '10px', }}>
+        <Card sx={{ borderRadius: 0, maxWidth: 400, minHeight: 700, margin:"30px", color: "#ffffff", background: randomColor(colors), padding: '10px', }}>
           <CardContent sx={{ textAlign: 'center'}}>
               <img src= "https://cdn.shopify.com/s/files/1/0505/8019/3473/products/NM-Azul-Box-EN-Z_540x.jpg?v=1611288614" alt="stable of unstable unicorns" width='100%'/>
             <Typography variant="h4" gutterBottom component="div">
@@ -134,7 +126,7 @@ export default function BasicCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <StyledButton size="small" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
+            <StyledButton size="small" href="/searchGames" sx={{ background: "#ffffff", margin: 'auto' }}>Learn More</StyledButton>
           </CardActions>
         </Card>
       </Grid>

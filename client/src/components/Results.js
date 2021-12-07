@@ -164,10 +164,8 @@ const Results = (props) => {
     return (
         <Stack spacing={3} 
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
-            <MyCard sx={{ p: 10}}>
                 {/* TO DO: Change Trophy Size */}
-            <Typography variant="h5">{trophy}</Typography>
-            <Typography variant="h3">{props.gameName}</Typography>
+            <EmojiEventsIcon sx={{fontSize:80, color:'gold', alignSelf:'center'}}/>
             <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
             <Autocomplete
             multiple
@@ -189,7 +187,7 @@ const Results = (props) => {
             )}
             onChange={handleWins}
 
-            style={{ width: 500 }}
+            style={{ width: 350 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
             )}
@@ -215,7 +213,7 @@ const Results = (props) => {
             )}
 
             onChange={handleLosses}
-            style={{ width: 500 }}            
+            style={{ width: 350 }}            
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
@@ -244,7 +242,6 @@ const Results = (props) => {
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
             )}
         />
-        </MyCard>
         <Stack direction= "row" sx={{justifyContent: 'center'}}>
           <SubmitBtn size='large' sx={{width: 180}} onClick={handleSubmitClick}>
             Submit
