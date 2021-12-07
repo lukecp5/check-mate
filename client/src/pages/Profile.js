@@ -52,9 +52,9 @@ export default function Profile() {
     console.log("userInfo: ", userInfo);
   
     const { firstName } = data ? data.userInfo : { firstName: "Player" };
-    const { wins } = data ? data.userInfo : { wins: "0" };
-    const { losses } = data ? data.userInfo : { losses: "0" };
-    const { ties } = data ? data.userInfo : { ties: "0" };
+    const { wins } = data ? data.userInfo : { wins: [{ wins: 0 }] };
+    const { losses } = data ? data.userInfo : { losses: [{ losses: 0 }] };
+    const { ties } = data ? data.userInfo : { ties: [{ ties: 0 }] };
     
     console.log("wins: ", ...wins);
     console.log("losses: ", ...losses);
@@ -310,7 +310,7 @@ export default function Profile() {
                             Career Stats - Total Games {totalGamesPlayed}
                         </Typography>
                         
-                        <PieChartPlayer win={countWins} lose={countLosses} tie={countTies}/>
+                       {countWins > 1 ? <PieChartPlayer win={countWins} lose={countLosses} tie={countTies}/> : null}
 
                     </Stack>
                 </CardContent>
