@@ -12,6 +12,7 @@ const funFactArray = [
     "Hannah is undefeated at the game of 'Ticket to Ride'",
     "Danny has yet to win The Game of Life",
     "Amanda acheived three Yahtzees in a single game, Chris is still mad.",
+    "O'MarSharif, in a series of unfortunate events, was robbed twice and thrown in jail by police officers.  All while simply trying to hide from monsters, in the police station, during a game of Arkham Horror.  He went on to have a successful career as deputy and win the game.",
     "The longest game of Monopoly on record lasted 70 days.",
     "The most expensive Monopoly set in the world was created by San Francisco jeweler, Sidney Mobell. It cost $2 million.",
     "At age 12, Luke played a very contentious 8 hour game of monopoly against his cousin.  The game ended in a tie and out of anger, the two have never spoken since.",
