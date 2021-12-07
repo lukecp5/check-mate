@@ -12,6 +12,19 @@ export const USER_INFO = gql`
                         _id
                         firstName
                         lastName
+                        username
+                        wins{
+                              game
+                              wins
+                        }
+                        losses{
+                              game
+                              losses
+                        }
+                        ties{
+                              game
+                              ties
+                        }
                   }
                   wins {
                         game
@@ -55,6 +68,18 @@ export const GET_FRIENDS = gql`
                               firstName
                               lastName
                               username
+                              wins{
+                                    game
+                                    wins
+                              }
+                              losses{
+                                    game
+                                    losses
+                              }
+                              ties{
+                                    game
+                                    ties
+                              }
                         }                  
             }
       }

@@ -305,7 +305,7 @@ export default function Profile() {
             </StatBox>
         </Grid>
         <Grid item xs={12} sm={7} >
-            <FriendBox/> 
+            <FriendBox faveGame={faveGame} /> 
         </Grid>
     </Grid>
 
