@@ -34,7 +34,7 @@ const Play = () => {
     ]
 
     return (
-      <Grid container sx={{justifyContent: 'center', }}>
+      <Grid container sx={{justifyContent: 'center' }}>
         <Grid item xs={12} md={8}>
           <Stack spacing={2} direction="column" align="center" sx={{marginBottom: '16px'}}>
               <MyCard sx={{ p: 5}}>

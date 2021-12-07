@@ -71,8 +71,8 @@ The wireframe and decision flow chart developed by the team prior to coding to g
 
 Desktop:
 ![Screenshot of App Homepage](./client/src/Images/homescreenshot.png)
-![Screenshot of Game Search Page](./client/src/Imagessearchscreen.png)
-![Screenshot of Game Page](./client/src/Imagesgame.png)
+![Screenshot of Game Search Page](./client/src/Images/searchscreenshot.png)
+![Screenshot of Game Page](./client/src/Images/game.png)
 
 Mobile:
 ![Screenshot of Home](./client/src/Images/mobile1.png)
