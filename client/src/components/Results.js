@@ -166,7 +166,7 @@ const Results = (props) => {
           sx={{display: 'flex', alignContent: 'center', flexWrap: 'wrap', textAlign: 'center', flexDirection: 'column'}}>
                 {/* TO DO: Change Trophy Size */}
             <EmojiEventsIcon sx={{fontSize:80, color:'gold', alignSelf:'center'}}/>
-            <Typography variant="h5" sx={{p: 2}}>Choose Your Winners</Typography>
+            <Typography variant="h5" sx={{p: 1}}>Choose Your Winners</Typography>
             <Autocomplete
             multiple
             id="checkboxes-tags-demo"
@@ -187,13 +187,13 @@ const Results = (props) => {
             )}
             onChange={handleWins}
 
-            style={{ width: 350 }}
+            style={{ maxWidth: 450, minWidth: 350}} 
             renderInput={(params) => (
                 <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
             )}
         />
 
-        <Typography variant="h5" sx={{p: 2}}>Choose Your Losers</Typography>
+        <Typography variant="h5" sx={{p: 1}}>Choose Your Losers</Typography>
             <Autocomplete
             multiple
             id="checkboxes-tags-demo"
@@ -213,12 +213,12 @@ const Results = (props) => {
             )}
 
             onChange={handleLosses}
-            style={{ width: 350 }}            
+            style={{ maxWidth: 450, minWidth: 350}}            
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
             />
-            <Typography variant="h5" sx={{p: 2}}>Choose Your Ties</Typography>
+            <Typography variant="h5" sx={{p: 1}}>Choose Your Ties</Typography>
             <Autocomplete
             multiple
             id="checkboxes-tags-demo"
@@ -237,7 +237,7 @@ const Results = (props) => {
                 </li>
             )}
             onChange={handleTies}
-            style={{ width: 350 }}
+            style={{ maxWidth: 450, minWidth: 350}} 
             renderInput={(params) => (
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
             )}
