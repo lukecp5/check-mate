@@ -26,6 +26,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
 import randomColor from "../utils/randomColor";
 // import { colors } from "@material-ui/core";
+import Auth from '../utils/auth';
 
 const MyLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
@@ -70,7 +71,6 @@ function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const isLogged = true;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -97,7 +97,7 @@ function Navbar() {
             <img src={Logo} />
           </Link>
           <Grid className={classes.right}>
-              { isLogged ? (<>
+              {Auth.loggedIn() ? (<>
                 <div className={classes.navlinks}>
                   <Link to="/searchgames" className={classes.link}>
                   Search Games
@@ -167,7 +167,7 @@ function Navbar() {
                     <ListItemIcon>
                       <Logout fontSize="small" />
                     </ListItemIcon>
-                      <MyLink to="/login" sx={{ textDecoration: 'none'}}>
+                      <MyLink to="/" onClick={Auth.logout} sx={{ textDecoration: 'none'}}>
                         Logout
                       </MyLink>
                   </MenuItem>
