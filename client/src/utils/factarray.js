@@ -14,6 +14,7 @@ const funFactArray = [
     "At age 12, Luke played a very contentious 8 hour game of monopoly against his cousin.  The game ended in a tie and out of anger, the two have never spoken since.",
     "Risk was invented in 1957 by Albert Lamorisse, a French filmmaker, and it became one of the most popular board games in history.",
     "Risk was inducted into Games magazine's Hall of Fame in 1984.",
+    "Apples to Apples is a party game originally published by Out of the Box Publishing Inc and was meant for 20 players.  No one ever had enough friends to play the game, and when Mattel acquired the game they redesigned it for four to ten players.",
     "Deep Blue was a chess-playing supercomputer developed by IBM. It was the first computer to win both a chess game and a chess match against a reigning world champion under regular time controls.",
     "After finding out that a handful of his fans had completed his card puzzle, Neil Patrick Harris released an even more difficult game 'Box One', in order to defeat them.",
     "The largest game of Catan was held at Germany's 2015 Spiel convention with 1,040 participants, including its creator Klaus Teuber",

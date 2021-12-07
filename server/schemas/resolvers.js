@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Altrules } = require('../models');
+const { User, Altrules, Win } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -61,6 +61,8 @@ const resolvers = {
       return Altrules.find({game_id: game_id});
     }
   },
+
+
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -96,74 +98,37 @@ const resolvers = {
       }
     },
     
-    addLoss: async (parent, { lossData }, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.losses;
-        const currentGame = userGames.find(loss => loss.game === lossData.game);
-        if (currentGame) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $inc: { losses: 1 } },
-            { new: true }
-          )
-          return updatedUser;
-      }else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { losses: lossData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-    }
-  },
-    addWin: async (parent, winData, context) => {
-      console.log("winData: ", winData)
-      console.log(context);
-      if (context.user) {        
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.wins;
-        const currentGame = userGames.find(wins => wins.game === winData.game);
-        if (currentGame) {
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $inc: { wins: 1 } },
-          { new: true }
-        );
-        return updatedUser;
-        } else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { wins: winData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-      }
-      throw new AuthenticationError('No winners updated');
+    addWin: async (parent, args, context) => {
+      console.log("Args from results: ", args)
+      // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 } to user.wins
+        const user = await User.findOneAndUpdate({
+          firstName: args.firstName,
+        }, { $push: { wins: {game: args.game, wins: 1} }}, {
+          new: true,
+        });
+        return user;
     },
-    addTie: async (parent, { tieData }, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id });
-        const userGames = user.ties;
-        const currentGame = userGames.find(tie => tie.game === tieData.game);
-        if(currentGame) {
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $inc: { ties: 1 } },
-          { new: true }
-        );
-        return updatedUser;
-        }else{
-          const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { ties: tieData } },
-          { new: true }
-        );
-        return updatedUser;
-        }
-      }
+
+    addLoss: async (parent, args, context) => {
+      console.log("Args from results: ", args)
+      // > Every time somone loses monopoly give object { game: "monopoly", wins: 1 } to user.losses
+        const user = await User.findOneAndUpdate({
+          firstName: args.firstName,
+        }, { $push: { losses: {game: args.game, losses: 1} }}, {
+          new: true,
+        });
+        return user;
+    },
+
+    addTie: async (parent, args, context) => {
+      console.log("Args from results: ", args)
+      // > Every time somone wins monopoly give object { game: "monopoly", wins: 1 } to user.wins
+        const user = await User.findOneAndUpdate({
+          firstName: args.firstName,
+        }, { $push: { ties: {game: args.game, ties: 1} }}, {
+          new: true,
+        });
+        return user;
     },
 
     addRules: async (parent, args) => {
