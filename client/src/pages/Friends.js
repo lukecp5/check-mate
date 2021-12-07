@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { useQuery, useLazyQuery, useMutation} from '@apollo/client';
 import { ADD_FRIEND } from '../utils/mutations';
 import { FIND_FRIENDS } from '../utils/queries';
+import randomColor from '../utils/randomColor';
 
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
@@ -33,10 +34,10 @@ const MyHeader = styled(Typography)(({ theme }) => ({
   })); 
 
 const MyCard = styled(Card)(({ theme }) => ({
-    color: 'white', 
+    color: '#616161', 
     borderRadius: 0, 
     padding: 20, 
-    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
+    // background: randomColor, 
 })); 
 
 // const myFriends = [
@@ -79,10 +80,6 @@ export default function Friends() {
     const [searchResults, setSearchResults] = useState([]);
 
     const [selectedFriendData, setSelectedFriendData] = useState('');
-
-
-
-
 
     // > useLazyQuery definition that sets up the query to use the 'search' state variable as input. It gives us the results of the query as well as a function to call the query whenever needed
     const [initiateSearchQuery, { loading, error, data, refetch }] = useLazyQuery(FIND_FRIENDS, {
@@ -195,24 +192,24 @@ export default function Friends() {
                 </Grid>  
             </Grid>       
         </Grid>
-
+    <Grid container spacing={2} align="center" sx={{ p:2, justifyContent: 'center', display: 'flex'}}>
         {searchResults ? (
             searchResults.map((friend, index) => (
-
-            <Grid container align="center" sx={{justifyContent:'center'}}>
-            <Grid item xs={12} md={8}>
-                <MyCard>
-                    <CardContent>
-                        <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
-                        <Typography variant="h5">{friend.username}</Typography>
-                        <CardActions sx={{justifyContent:'center'}}>
-                            <StyledButton key={friend._id} onMouseUp={handleAddFriend} id={friend._id}>Add Friend</StyledButton>
-                        </CardActions>
-                    </CardContent>
-                </MyCard>
-            </Grid>
-        </Grid>
+        // <Grid>
+            // <Grid container spacing={2} align="center" sx={{ p:2, justifyContent: 'center', display: 'flex'}}>
+                <Grid item xs={12} sm={8} md={6} lg={4} xl={2}>
+                    <MyCard>
+                        <CardContent>
+                            <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
+                            <Typography variant="h5">{friend.username}</Typography>
+                            <CardActions sx={{justifyContent:'center'}}>
+                                <StyledButton key={friend._id} onMouseUp={handleAddFriend} id={friend._id}>Add Friend</StyledButton>
+                            </CardActions>
+                        </CardContent>
+                    </MyCard>
+                </Grid>
             ))) : null }
+    </Grid>
         <Grid container align="center" sx={{display:"flex", justifyContent:"center"}}>
             <Grid item>
                 <FriendBox /> 
