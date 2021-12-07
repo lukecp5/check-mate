@@ -294,7 +294,7 @@ const SearchGames = () => {
       </Grid>
       <Grid item xs={10} md={7}>
         <Box>
-          <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
+          <Typography variant="h2" gutterBottom sx={{marginTop: 5}}>
             {selectedGameData[0].gameName}
           </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -366,11 +366,11 @@ const SearchGames = () => {
 
           <TabPanel value={value} index={3}>
             
-            <Stack direction= "row" sx={{justifyContent: 'center'}}>
+            <Grid item sx={{justifyContent: 'center', alignItems: 'center'}}>
 
             <Results gameName={selectedGameData[0].gameName} gameId={selectedGameData[0].gameId}/>  
 
-            </Stack>
+            </Grid>
           </TabPanel>
 
         </Box>

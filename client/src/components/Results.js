@@ -187,7 +187,7 @@ const Results = (props) => {
             )}
             onChange={handleWins}
 
-            style={{ maxwidth: 500 }}
+            style={{ width: 350 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Winners" placeholder="Select Winners" />
             )}
@@ -213,7 +213,7 @@ const Results = (props) => {
             )}
 
             onChange={handleLosses}
-            style={{ maxwidth: 500 }}            
+            style={{ width: 350 }}            
             renderInput={(params) => (
                 <TextField {...params} label="Choose Losers" placeholder="Select Losers" />
                 )}
@@ -237,7 +237,7 @@ const Results = (props) => {
                 </li>
             )}
             onChange={handleTies}
-            style={{ maxWidth: 500 }}
+            style={{ width: 350 }}
             renderInput={(params) => (
                 <TextField {...params} label="Choose Ties" placeholder="Select Ties" />
             )}
