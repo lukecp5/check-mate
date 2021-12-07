@@ -52,7 +52,7 @@ export default function Profile() {
     console.log("userInfo: ", userInfo);
   
     const { firstName } = data ? data.userInfo : { firstName: "Player" };
-    const { wins } = data ? data.userInfo : { wins: "0" };
+    const { wins } = data ? data.userInfo : { wins: [{ wins: 0 }]  };
     const { losses } = data ? data.userInfo : { losses: "0" };
     const { ties } = data ? data.userInfo : { ties: "0" };
     
