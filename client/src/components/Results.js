@@ -56,30 +56,31 @@ const RulesBtn = styled(Button)(({ theme }) => ({
 // ]
 
 const Results = (props) => {
-    // > State variable to hold a user's friends, and the Query to get all friends of the logged in user
+    // + State variable to hold a user's friends, and the Query to get all friends of the logged in user
     const [friends, setFriends] = useState([]);
     const { loading, error, data, refetch } = useQuery(GET_FRIENDS);
     useEffect(() => {
         if(data != null) {
             if(data.getFriends != null) {
-            console.log(data.getFriends); 
-            setFriendsList([...data.getFriends[0].friends]);
+            console.log(data.getFriends[0].firstName); 
+            setFriendsList(data.getFriends[0]);
+            setFriendsList([...data.getFriends, ...data.getFriends[0].friends]);
             console.log("Friend List State Variable: " + friends);
         }else{
-            setFriendsList(['No Friends']);
+            setFriendsList(...data.getFriends, ['No Friends']);
             console.log("No friends found");
         }
         }
         }, [data]);
         
-    // > Function that sets the state variable that contains a user's friends
+    // + Function that sets the state variable that contains a user's friends
     async function setFriendsList(friends) {
         await setFriends(friends);
         console.log("Friends: ", friends);
     }
 
-    // > State variable that holds information about the winners, losses, and tires 
-    // > that the user selects, and the second array contains the actual data being sent to the server
+    // + State variable that holds information about the winners, losses, and tires 
+    // + that the user selects, and the second array contains the actual data being sent to the server
     const [winners, setWinners ] = useState([]);
     const [winArray, setWinArray] = useState([]);
 
@@ -91,12 +92,12 @@ const Results = (props) => {
 
 
 
-    // > Set up local variables based off of props passed down from searchGames component
+    // + Set up local variables based off of props passed down from searchGames component
     const gameId = props.gameId;
     const gameName = props.gameName;
     console.log("gameName: ", gameName);
 
-    // > onChange function for the wins, lose, and tie checkboxes. Updates the state variable
+    // + onChange function for the wins, lose, and tie checkboxes. Updates the state variable
     const handleWins = (event, selectedWinners) => {
         setWinners(selectedWinners);
         console.log("selectedWinners: ", selectedWinners);
@@ -110,7 +111,7 @@ const Results = (props) => {
         console.log("selectedTires: ", selectedTires);    
     }
 
-    // > Mutations to add a win, loss, or tie to the database
+    // + Mutations to add a win, loss, or tie to the database
     const [addWin] = useMutation(ADD_WIN, {
         variables: {...winArray[0]},
         onCompleted: () => console.log('Wins have been submitted to the database!') 
@@ -134,21 +135,21 @@ const Results = (props) => {
     const handleSubmitClick = async (event) => {
         try {
         event.preventDefault();
-        // > Submit wins
+        // + Submit wins
         const winnersArray = winners.map(v => ({...v, game: gameName, wins: 1}));
         await setWinArray(winnersArray);
         for (let i = 0; i < winnersArray.length; i++) {
             await addWin({variables: {...winnersArray[i]}});
             console.log("winnersArray[i]: ", winnersArray[i]);
         }
-        // > Submit losses
+        // + Submit losses
         const losersArray = losers.map(v => ({...v, game: gameName, losses: 1}));
         await setLoseArray(losersArray);
         for (let i = 0; i < losersArray.length; i++) {
             await addLoss({variables: {...losersArray[i]}});
             console.log("losersArray[i]: ", losersArray[i]);
         }
-        // > Submit ties
+        // + Submit ties
         const tiresArray = tires.map(v => ({...v, game: gameName, ties: 1}));
         await setTieArray(tiresArray);
         for (let i = 0; i < tiresArray.length; i++) {

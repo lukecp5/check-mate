@@ -48,7 +48,7 @@ const FriendBox = () => {
     useEffect(() => {
         if(data) {
             if(data.getFriends != null) {
-            console.log(data.getFriends); 
+            console.log("Currently Logged in user",data.getFriends); 
             setFriendList([...data.getFriends[0].friends]);
             console.log("Friend List State Variable: " + friendList);
             }else{
@@ -80,11 +80,11 @@ const FriendBox = () => {
                 <Typography variant="h4">My Friends</Typography>    
                 <Grid container spacing={2} sx={{justifyContent: 'space-evenly'}}> 
                 {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
-                {friendList.map((friend, i) => (
+                {friendList? friendList.map((friend, i) => (
                     <Grid item xs={6} md={4} lg={3} key={i} sx={{display: 'flex', justifyContent: 'center'}}
                     >
                         <Tooltip title="See Stats">
-                            <MyAvatar aria-describedby={id} onClick={handleClick}>{friend.firstName.charAt(0)}</MyAvatar> 
+                            <MyAvatar aria-describedby={id} onClick={handleClick}>{friend? friend.firstName.charAt(0): null}</MyAvatar> 
                         </Tooltip>
                             <Typography 
                                 varient="h6" 
@@ -155,7 +155,7 @@ const FriendBox = () => {
                             </Grid>
                         </Popover>
                   </Grid>
-                ))}
+                )): null}
                 </Grid>
             </CardContent>
         </StyledFriendBox>
