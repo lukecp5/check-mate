@@ -53,6 +53,11 @@ Technologies and Skills
 * React-Minimal-Pie-Chart
 * HTML, CSS
 
+npm Modules
+* [React Minimal Pie Chart](https://www.npmjs.com/package/react-minimal-pie-chart)
+* [React Share](https://www.npmjs.com/package/react-share)
+* [Faker](https://www.npmjs.com/package/faker)
+
 ## <a id="wireframe"></a>Wireframe
 
 The wireframe and decision flow chart developed by the team prior to coding to guide the overall process.
@@ -104,4 +109,4 @@ npm install
 
 ## <a id="sample"></a>Link to Heroku Deployment
 
-- [Experience Check Mate for Yourself](https://something-random-heroku)
+- [Experience Check Mate for Yourself](https://check-mate-game-app.herokuapp.com/)
