@@ -17,6 +17,7 @@ import Results from '../components/Results';
 import randomColor from '../utils/randomColor';
 import AltRulesComp from '../components/AltRulesComp';
 // import SubmitBtn from '../components/SubmitBtn';
+import Auth from '../utils/auth';
 
 var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
 
@@ -302,7 +303,7 @@ const SearchGames = () => {
               <Tab label="About" {...a11yProps(0)} />
               <Tab label="Links" {...a11yProps(1)} />
               <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
-              <Tab label="Play" {...a11yProps(3)} />
+              <Tab label="Play" {...a11yProps(3)} />              
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -363,7 +364,7 @@ const SearchGames = () => {
 
             </Stack>
           </TabPanel>
-
+          {Auth.loggedIn() ? (<>
           <TabPanel value={value} index={3}>
             
             <Grid item sx={{justifyContent: 'center', alignItems: 'center'}}>
@@ -372,7 +373,9 @@ const SearchGames = () => {
 
             </Grid>
           </TabPanel>
-
+          </>
+              )
+              : null}
         </Box>
       </Grid>
   </Grid>      
