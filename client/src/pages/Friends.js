@@ -39,33 +39,33 @@ const MyCard = styled(Card)(({ theme }) => ({
     background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.light})`, 
 })); 
 
-const myFriends = [
-    {
-        name: "Amanda", 
-        initial: "A", 
-    }, 
-    {
-        name: "Chris", 
-        initial: "C", 
-    }, 
-    {
-        name: "Hannah", 
-        initial: "H", 
-    }, 
-    {
-        name: "Ben", 
-        initial: "B", 
-    }, 
-    {
-        name: "Luke", 
-        initial: "L", 
-    }, 
-    {
-        name: "Daniel", 
-        initial: "D", 
-    }, 
+// const myFriends = [
+//     {
+//         name: "Amanda", 
+//         initial: "A", 
+//     }, 
+//     {
+//         name: "Chris", 
+//         initial: "C", 
+//     }, 
+//     {
+//         name: "Hannah", 
+//         initial: "H", 
+//     }, 
+//     {
+//         name: "Ben", 
+//         initial: "B", 
+//     }, 
+//     {
+//         name: "Luke", 
+//         initial: "L", 
+//     }, 
+//     {
+//         name: "Daniel", 
+//         initial: "D", 
+//     }, 
 
-]
+// ]
 
 
 export default function Friends() {
@@ -148,20 +148,20 @@ export default function Friends() {
         <Grid container 
             sx={{ 
                 justifyContent:'center', 
-                padding: '20px', 
+                // padding: '20px', 
                 color: '#ffffff', 
                 borderRadius: 0 
             }}>      
-            <Grid item xs={12} 
+            <Grid item xs={12} align="center"
                 sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    textAlign: 'center',  
+                    // display: 'flex', 
+                    // justifyContent: 'center', 
+                    // textAlign: 'center',  
                     backgroundImage: `url(${Image})`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundSize: 'cover', 
-                    padding: '10px', 
-                    borderRadius: 3, 
+                    padding: "10px", 
+                    // borderRadius: 3, 
                     minHeight: 360
                 }}>
                 <Grid container>
