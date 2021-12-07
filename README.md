@@ -17,7 +17,7 @@ Board games provide the opportunity for nearly endless entertainment, able to br
 
 1. [Wireframe](#wireframe)
 
-1. [Screenshot](#screenshot)
+1. [Screenshots](#screenshots)
 
 1. [Installation](#installation)
 
@@ -50,22 +50,35 @@ Technologies and Skills
 * GraphQL
 * Board Game Atlas API
 * Material UI
-* React-Minimal-Pie-Chart
 * HTML, CSS
+
+npm Modules
+* [React Minimal Pie Chart](https://www.npmjs.com/package/react-minimal-pie-chart)
+* [React Share](https://www.npmjs.com/package/react-share)
+* [Faker](https://www.npmjs.com/package/faker)
 
 ## <a id="wireframe"></a>Wireframe
 
 The wireframe and decision flow chart developed by the team prior to coding to guide the overall process.
 
-![Wireframe Home Page]()
+[Wireframe Google Slides](https://docs.google.com/presentation/d/1JgKm855sQCqV2e1933rVzCwUySc2Q4pyw-93iVzt-zY/edit#slide=id.g103454a0f88_0_0)
 
 [Lucid Flow Chart](https://lucid.app/lucidchart/de7946a0-8639-4d26-8d44-f184f338f276/edit?invitationId=inv_3960a10b-fd03-4360-b988-9731fd16fd70&page=0_0#)
 
-## <a id="screenshot"></a>Screenshot
+[Project Presentation](https://docs.google.com/presentation/d/1kVhAbRWVcFoBLmkUuZtMDWdt1OfFgnHGfkaltbFOfvE/edit#slide=id.g10621f4ff8c_0_8)
 
-![Screenshot of App Homepage](/public/images/screenshothome.png)
-![Screenshot of ](/public/images/screenshot2)
-![Screenshot of ](/public/images/screenshot3)
+## <a id="screenshot"></a>Screenshots
+
+Desktop:
+![Screenshot of App Homepage](./client/src/Images/homescreenshot.png)
+![Screenshot of Game Search Page](./client/src/Imagessearchscreen.png)
+![Screenshot of Game Page](./client/src/Imagesgame.png)
+
+Mobile:
+![Screenshot of Home](./client/src/Images/mobile1.png)
+![Screenshot of Login Page](./client/src/Images/mobile2.png)
+![Screenshot of Profile Page](./client/src/Images/mobile3.png)
+
 
 ## <a id="installation"></a>Installation
 
@@ -89,19 +102,19 @@ npm install
 
 ## <a id="contact"></a>Contact
 
-- If you would like, you can connect with any of the creators through their github profiles
+If you would like, you can connect with any of the creators through their github profiles
 
-  [Amanda Morgan](https://github.com/AmandaC0022) 
+🎲[Amanda Morgan](https://github.com/AmandaC0022) 
 
-  [Ben Slinde](https://github.com/stevenslade)
+🎲[Ben Slinde](https://github.com/stevenslade)
 
-  [Daniel Quigley](https://github.com/d4nnyq88)
+🎲[Daniel Quigley](https://github.com/d4nnyq88)
 
-  [Hannah McDonald](https://github.com/hannahnmcdonald)
+🎲[Hannah McDonald](https://github.com/hannahnmcdonald)
 
-  [Luke Poirrier](https://github.com/lukecp5)
+🎲[Luke Poirrier](https://github.com/lukecp5)
 
 
 ## <a id="sample"></a>Link to Heroku Deployment
 
-- [Experience Check Mate for Yourself](https://something-random-heroku)
+- [Experience Check Mate for Yourself](https://check-mate-game-app.herokuapp.com/)
