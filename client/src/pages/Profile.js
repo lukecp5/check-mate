@@ -161,6 +161,7 @@ export default function Profile() {
         //make variables to store the highest values, initial Them with the first value in the array
         let highestKey = keyArray[0];
         let highestKeyValue = favoriteGameObj[keyArray[0]];
+        let faveGameReturnArray = [];
 
         // console.log('highestKey', highestKey);
         // console.log('highestKeyValue', highestKeyValue);
@@ -180,7 +181,8 @@ export default function Profile() {
         }
 
         //return the highest value key
-        return highestKey;
+        faveGameReturnArray.push(highestKey, highestKeyValue);
+        return faveGameReturnArray;
     }
     // The JSX didn't like using favoriteGame() so I had to add this seemingly extra useless variable so the JSX could use it
     const faveGame = favoriteGame();
@@ -275,6 +277,7 @@ export default function Profile() {
 
     const totalGamesPlayed = (winsArray.length + lossesArray.length + tiesArray.length);
 
+    const careerPercentWins = (Math.trunc((winsArray.length/ totalGamesPlayed) * 100));
 
     ///////////////////End of Ben messing around in here?//////////////////////////
 
@@ -302,7 +305,10 @@ export default function Profile() {
                         </Typography>
                         {/* TODO: Replace with game user has played the most times */}
                         <Typography variant="body1" component="div">
-                            Favorite Game: {faveGame}
+                            Favorite Game: {faveGame[0]} - You have played this game {faveGame[1]} times!
+                        </Typography>
+                        <Typography variant="body1" component="div">
+                            Career Percent Wins: {careerPercentWins}%
                         </Typography>
                     </Stack>
                     <Stack>
