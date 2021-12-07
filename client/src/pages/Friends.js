@@ -206,7 +206,7 @@ export default function Friends() {
                         <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
                         <Typography variant="h5">{friend.username}</Typography>
                         <CardActions sx={{justifyContent:'center'}}>
-                            <StyledButton key={friend._id} onClick={handleAddFriend} id={friend._id}>Add Friend</StyledButton>
+                            <StyledButton key={friend._id} onMouseUp={handleAddFriend} id={friend._id}>Add Friend</StyledButton>
                         </CardActions>
                     </CardContent>
                 </MyCard>
