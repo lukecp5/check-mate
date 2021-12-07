@@ -10,6 +10,16 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import Auth from '../utils/auth';
+import { styled } from '@mui/system';
+
+const MyLink = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: '#424242',
+  fontSize: '20px',
+  fontFamily: 'Quicksand',
+  fontWeight: 500
+}));
 
 const useStyles = makeStyles(()=>({
     link:{
@@ -46,13 +56,18 @@ function DrawerComponent() {
               <Link to="/startmatch" className={classes.link}>Start a Match</Link>
             </ListItemText>
           </ListItem> */}
-          <Divider/>
+          {/* <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/login" className={classes.link}>Login/Sign Up</Link>
+            </ListItemText>
+          </ListItem> */}
+          {/* <Divider/> */}
+          {Auth.loggedIn() ? (<>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
               <Link to="/searchgames" className={classes.link}>Search Games</Link>
             </ListItemText>
           </ListItem>
-          <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
               <Link to="/friends" className={classes.link}>Add Friends</Link>
@@ -60,15 +75,33 @@ function DrawerComponent() {
           </ListItem>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/login" className={classes.link}>Login/Sign Up</Link>
+              <Link to="/profile" className={classes.link}>Profile</Link>
             </ListItemText>
           </ListItem>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
+              <MyLink to="/" onClick={Auth.logout}>Logout</MyLink>
+            </ListItemText>
+          </ListItem>
+          </>
+              )
+              : <ListItem onClick={() => setOpenDrawer(false)}>
+                  <ListItemText>
+                    <Link to="/login" className={classes.link}>Login/Sign Up</Link>
+                  </ListItemText>
+                </ListItem>
+                }
+          {/* <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/login" className={classes.link}>Login/Sign Up</Link>
+            </ListItemText>
+          </ListItem> */}
+          {/* <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
               <Link to="/profile" className={classes.link}>Profile</Link>
             </ListItemText>
           </ListItem>
-          <Divider/>
+          <Divider/> */}
         </List>
       </Drawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)}className={classes.icon}>
