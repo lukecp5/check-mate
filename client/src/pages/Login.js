@@ -60,7 +60,7 @@ function Login(props) {
         noValidate 
         autoComplete="off" 
         onSubmit={handleFormSubmit} 
-        sx={{'& .MuiTextField-root': { m: 1, width: '50ch' }, display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap'}}
+        sx={{'& .MuiTextField-root': { m: 1, width: '40ch' }, display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap'}}
       >
         <div>
           <TextField 
