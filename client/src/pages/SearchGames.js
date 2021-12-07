@@ -278,7 +278,7 @@ const SearchGames = () => {
   {/* THIS NOW LIVES IN GAMEDETAILS PAGE!!! */}
   {selectedGameData ? ( 
     <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
-      <Grid item xs={10} md={5}>
+      <Grid item xs={12} md={5}>
         <MyCard sx={{width: '85%', p: 3}}>
           <CardContent>
             <CardMedia 
@@ -298,7 +298,7 @@ const SearchGames = () => {
             {selectedGameData[0].gameName}
           </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
+            <Tabs value={value} variant="scrollable" onChange={handleChange} scrollButtons="auto" aria-label="basic tabs example" centered>
               <Tab label="About" {...a11yProps(0)} />
               <Tab label="Links" {...a11yProps(1)} />
               <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
