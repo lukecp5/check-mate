@@ -69,13 +69,11 @@ The wireframe and decision flow chart developed by the team prior to coding to g
 
 ## <a id="screenshot"></a>Screenshots
 
-Desktop:
+
 ![Screenshot of App Homepage](./client/src/Images/homescreenshot.png)
 ![Screenshot of Game Search Page](./client/src/Images/searchscreenshot.png)
 ![Screenshot of Game Page](./client/src/Images/game.png)
 
-Mobile:
-![Screenshot of Home](./client/src/Images/mobile1.png)
 ![Screenshot of Login Page](./client/src/Images/mobile2.png)
 ![Screenshot of Profile Page](./client/src/Images/mobile3.png)
 
