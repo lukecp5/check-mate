@@ -47,7 +47,7 @@ export default function Footer() {
                 <Stack direction="column">
                     <NavBtn color='inherit' sx={{'&:hover': {color: '#D70060'}}} href="https://github.com/AmandaC0022" target="_blank">Amanda Morgan</NavBtn>
                     <NavBtn color="inherit" sx={{'&:hover': {color: '#D0D102'}}} href="https://github.com/stevenslade" target="_blank">Ben Slinde</NavBtn>
-                    <NavBtn color="inherit" sx={{'&:hover': {color: '#61AE24'}}} href="https://github.com/d4nnyq88" target="_blank">Danny Quigley</NavBtn>
+                    <NavBtn color="inherit" sx={{'&:hover': {color: '#61AE24'}}} href="https://github.com/d4nnyq88" target="_blank">Daniel Quigley</NavBtn>
                     <NavBtn color="inherit" sx={{'&:hover': {color: '#00A1CB'}}} href="https://github.com/hannahnmcdonald" target="_blank">Hannah McDonald</NavBtn>
                     <NavBtn color="inherit" sx={{'&:hover': {color: '#F18D05'}}} href="https://github.com/lukecp5" target="_blank">Luke Poirrier</NavBtn>
                 </Stack>

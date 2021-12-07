@@ -188,9 +188,22 @@ const SearchGames = () => {
 
   return (
     <>
-    <Grid container sx={{ justifyContent:'center', padding: '20px', color: '#ffffff', borderRadius: 0 }}>
+    <Grid container sx={{ 
+      justifyContent:'center', 
+      // padding: '20px', 
+      color: '#ffffff', 
+      marginBottom: "10px" }}>
          
-      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center',  backgroundImage: `url(${Image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', padding: '10px', borderRadius: 3, minHeight: 360}}>
+      <Grid item xs={12} align="center" sx={{ 
+        // display: 'flex', 
+        // justifyContent: 'center', 
+        textAlign: 'center',  
+        backgroundImage: `url(${Image})`, 
+        backgroundRepeat: 'no-repeat', 
+        backgroundSize: 'cover', 
+        padding: '10px', 
+        // borderRadius: 3, 
+        minHeight: 360}}>
         
         <Grid container>
           <Grid item xs={12} sx={{ m:3, ml:4, mr:4, }}>
@@ -265,7 +278,7 @@ const SearchGames = () => {
   {/* THIS NOW LIVES IN GAMEDETAILS PAGE!!! */}
   {selectedGameData ? ( 
     <Grid container align="center" justifyContent="center" sx={{mb:5, mt: 5}}>
-      <Grid item xs={10} md={5}>
+      <Grid item xs={12} md={5}>
         <MyCard sx={{width: '85%', p: 3}}>
           <CardContent>
             <CardMedia 
@@ -281,11 +294,11 @@ const SearchGames = () => {
       </Grid>
       <Grid item xs={10} md={7}>
         <Box>
-          <Typography variant="h4" gutterBottom sx={{marginTop: 5}}>
+          <Typography variant="h2" gutterBottom sx={{marginTop: 5}}>
             {selectedGameData[0].gameName}
           </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
+            <Tabs value={value} variant="scrollable" onChange={handleChange} scrollButtons="auto" aria-label="basic tabs example" centered>
               <Tab label="About" {...a11yProps(0)} />
               <Tab label="Links" {...a11yProps(1)} />
               <Tab label="Alternate Rules" {...a11yProps(2)} wrapped />
@@ -353,11 +366,11 @@ const SearchGames = () => {
 
           <TabPanel value={value} index={3}>
             
-            <Stack direction= "row" sx={{justifyContent: 'center'}}>
+            <Grid item sx={{justifyContent: 'center', alignItems: 'center'}}>
 
             <Results gameName={selectedGameData[0].gameName} gameId={selectedGameData[0].gameId}/>  
 
-            </Stack>
+            </Grid>
           </TabPanel>
 
         </Box>

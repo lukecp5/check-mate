@@ -297,11 +297,11 @@ export default function Profile() {
                     </Stack>
                     <Stack direction="column" spacing={2} sx={{marginTop: 4}}>
                         <Typography variant="body1" component="div">
-                            Winningest Game: {winningestGame}
+                            Most Won Game: {winningestGame}
                         </Typography>
                         {/* TODO: replace with friend who has beaten user the most */}
                         <Typography variant="body1" component="div">
-                            Losingest Game: {losingestGame} 
+                            Most Lost Game: {losingestGame} 
                         </Typography>
                         {/* TODO: Replace with game user has played the most times */}
                         <Typography variant="body1" component="div">
