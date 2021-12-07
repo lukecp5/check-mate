@@ -50,7 +50,6 @@ Technologies and Skills
 * GraphQL
 * Board Game Atlas API
 * Material UI
-* React-Minimal-Pie-Chart
 * HTML, CSS
 
 npm Modules
@@ -74,9 +73,6 @@ Desktop:
 ![Screenshot of App Homepage](./client/src/Images/homescreenshot.png)
 ![Screenshot of Game Search Page](./client/src/Imagessearchscreen.png)
 ![Screenshot of Game Page](./client/src/Imagesgame.png)
-![Screenshot of Profile Page](./client/src/Images/profile.png)
-![Screenshot of Play Page](./client/src/Images/play.png)
-
 
 Mobile:
 ![Screenshot of Home](./client/src/Images/mobile1.png)
