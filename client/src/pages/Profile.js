@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -7,7 +7,7 @@ import  { Grid }  from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 // Import the useQuery and useMutation hooks
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 // // Import the USER_INFO query
 import { USER_INFO } from '../utils/queries'
 import FriendBox from '../components/FriendBox';
@@ -49,31 +49,31 @@ export default function Profile() {
     }
 
 	const userInfo = data ? data.userInfo : { };
-    console.log("userInfo: ", userInfo);
+    //console.log("userInfo: ", userInfo);
   
     const { firstName } = data ? data.userInfo : { firstName: "Player" };
     const { wins } = data ? data.userInfo : { wins: [{ wins: 0 }] };
     const { losses } = data ? data.userInfo : { losses: [{ losses: 0 }] };
     const { ties } = data ? data.userInfo : { ties: [{ ties: 0 }] };
     
-    console.log("wins: ", ...wins);
-    console.log("losses: ", ...losses);
-    console.log("ties: ", ...ties);
+    // console.log("wins: ", ...wins);
+    // console.log("losses: ", ...losses);
+    // console.log("ties: ", ...ties);
 
     let winsArray = [...wins]
-    console.log("winsArray: ", winsArray);
+    //console.log("winsArray: ", winsArray);
     const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
-    console.log("countWins:", countWins);
+    //console.log("countWins:", countWins);
 
     let lossesArray = [...losses]
-    console.log("lossesArray: ", lossesArray);
+    //console.log("lossesArray: ", lossesArray);
     const countLosses = lossesArray.map(item => item.losses).reduce((prev, curr) => prev + curr, 0);
-    console.log(countLosses);
+    //console.log(countLosses);
     
     let tiesArray = [...ties]
-    console.log("tiesArray: ", tiesArray);
+    //console.log("tiesArray: ", tiesArray);
     const countTies = tiesArray.map(item => item.ties).reduce((prev, curr) => prev + curr, 0);
-    console.log(countTies);
+    //console.log(countTies);
     
     // setWins(countWins);
     // console.log("userInfo: ", userInfo);
@@ -82,7 +82,7 @@ export default function Profile() {
         // console.log("gameWins: ", gameWins);
         let winsArray = [...wins];
         const countWins = winsArray.map(item => item.wins).reduce((prev, curr) => prev + curr, 0);
-        console.log(countWins);
+        //console.log(countWins);
         setWins(countWins);
     }
     // console.log("gameWins Length: ", gameWins.length);
@@ -106,7 +106,7 @@ export default function Profile() {
     //     // setWins(userInfo.wins[0].wins);
     // }
 
-    console.log(userInfo);
+    //console.log(userInfo);
 
     // const handlePageChange = (event, newPage) => {
     //     setPage(newPage); 
@@ -163,20 +163,12 @@ export default function Profile() {
         let highestKeyValue = favoriteGameObj[keyArray[0]];
         let faveGameReturnArray = [];
 
-        // console.log('highestKey', highestKey);
-        // console.log('highestKeyValue', highestKeyValue);
-
-        // Iterate across the key array taking the obj value from favoriteGaemObj at the key and comparing to the current value, replace if higher.  Start with the second index position.
-        
+        // Iterate across the key array taking the obj value from favoriteGaemObj at the key and comparing to the current value, replace if higher.  Start with the second index position.       
         for (let j=1; j <keyArray.length; j++){
-            // console.log('keyArray:',keyArray[j]);
-            // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
+            
             if(favoriteGameObj[keyArray[j]] > highestKeyValue){
                 highestKeyValue = favoriteGameObj[keyArray[j]];
                 highestKey = keyArray[j];
-                console.log('j: ', j);
-                console.log('highestKey', highestKey);
-                console.log('highestKeyValue', highestKeyValue);
             }
         }
 
@@ -212,21 +204,16 @@ export default function Profile() {
             //make variables to store the highest values, initial Them with the first value in the array
             let highestKey = keyArray[0];
             let highestKeyValue = winningestGameObj[keyArray[0]];
+            let winningestGameReturnArray = [];
 
             for (let j=1; j <keyArray.length; j++){
-                // console.log('keyArray:',keyArray[j]);
-                // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
                 if(winningestGameObj[keyArray[j]] > highestKeyValue){
                     highestKeyValue = winningestGameObj[keyArray[j]];
                     highestKey = keyArray[j];
-                    console.log('j: ', j);
-                    console.log('highestKey', highestKey);
-                    console.log('highestKeyValue', highestKeyValue);
                 }
             }
-    
-            //return the highest value key
-            return highestKey;
+        winningestGameReturnArray.push(highestKey, highestKeyValue);
+        return winningestGameReturnArray;
     }
 
     const winningestGame = WinningestGame();
@@ -243,7 +230,6 @@ export default function Profile() {
             //Win array iteration
             for (let i=0; i <lossesArray.length; i++) {
                 currentKey = lossesArray[i].game;
-                // console.log("currentKey: ", currentKey);
                 if (losingestGameObj[currentKey] === undefined){
                     losingestGameObj[currentKey] = 1;
                 } else {
@@ -256,21 +242,17 @@ export default function Profile() {
             //make variables to store the highest values, initial Them with the first value in the array
             let highestKey = keyArray[0];
             let highestKeyValue = losingestGameObj[keyArray[0]];
+            let losingestGameReturnArray = [];
 
             for (let j=1; j <keyArray.length; j++){
-                // console.log('keyArray:',keyArray[j]);
-                // console.log('favoriteGameObj: ', favoriteGameObj[keyArray[j]]);
                 if(losingestGameObj[keyArray[j]] > highestKeyValue){
                     highestKeyValue = losingestGameObj[keyArray[j]];
                     highestKey = keyArray[j];
-                    console.log('j: ', j);
-                    console.log('highestKey', highestKey);
-                    console.log('highestKeyValue', highestKeyValue);
                 }
-            }
-    
-            //return the highest value key
-            return highestKey;
+            }       
+
+        losingestGameReturnArray.push(highestKey, highestKeyValue);
+        return losingestGameReturnArray;
     }
 
     const losingestGame = LosingestGame();
@@ -297,15 +279,15 @@ export default function Profile() {
                     </Stack>
                     <Stack direction="column" spacing={2} sx={{marginTop: 4}}>
                         <Typography variant="body1" component="div">
-                            Most Won Game: {winningestGame}
+                            Most Won Game: {winningestGame[0]} - You have won this game {winningestGame[1]} times!
                         </Typography>
                         {/* TODO: replace with friend who has beaten user the most */}
                         <Typography variant="body1" component="div">
-                            Most Lost Game: {losingestGame} 
+                            Most Lost Game: {losingestGame[0]} - Lost a total of {losingestGame[1]} times.
                         </Typography>
                         {/* TODO: Replace with game user has played the most times */}
                         <Typography variant="body1" component="div">
-                            Favorite Game: {faveGame[0]} - You have played this game {faveGame[1]} times!
+                            Favorite Game: {faveGame[0]} - Played this game {faveGame[1]} times!
                         </Typography>
                         <Typography variant="body1" component="div">
                             Career Percent Wins: {careerPercentWins}%
