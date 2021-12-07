@@ -14,6 +14,8 @@ import { ADD_FRIEND } from '../utils/mutations';
 import { FIND_FRIENDS } from '../utils/queries';
 import randomColor from '../utils/randomColor';
 
+var colors = ['#00A1CB','#01A4A4','#113F8C','#61AE24','#D0D102','#32742C','#E54028','#F18D05','#D70060'];
+
 
 const StyledButton = styled(Button)(({ theme }) => ({ 
     color: '#616161',
@@ -34,10 +36,10 @@ const MyHeader = styled(Typography)(({ theme }) => ({
   })); 
 
 const MyCard = styled(Card)(({ theme }) => ({
-    color: '#616161', 
+    color: '#ffffff', 
     borderRadius: 0, 
     padding: 20, 
-    // background: randomColor, 
+    background: randomColor(colors), 
 })); 
 
 // const myFriends = [
