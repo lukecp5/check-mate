@@ -273,7 +273,7 @@ export default function Profile() {
                     <UserAvatar>{initial()}</UserAvatar>
                         {/* <UserAvatar aria-describedby={id} alt="User" /> */}
                         {/* TODO: Replace User with Username from DB */}
-                        <Typography variant="h5" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
+                        <Typography variant="h4" sx={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
                             Welcome back, {firstName}!
                         </Typography>
                     </Stack>
@@ -294,7 +294,7 @@ export default function Profile() {
                         </Typography>
                     </Stack>
                     <Stack>
-                        <Typography variant="h4" sx={{ mt:2, textAlign: "center"  }}>
+                        <Typography variant="h5" sx={{ mt:2, pt:1.5, textAlign: "center"  }}>
                             Career Stats - Total Games {totalGamesPlayed}
                         </Typography>
                         
