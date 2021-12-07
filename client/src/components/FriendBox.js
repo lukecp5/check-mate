@@ -10,6 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import randomColor from '../utils/randomColor';
 import { useQuery } from '@apollo/client';
 import { GET_FRIENDS } from '../utils/queries';
+import { Stack } from '@mui/material';
 
 var colors = ['#00A1CB','#01A4A4','#113F8C','#E54028','#F18D05','#D70060'];
 //this styles the Friend's box, the green box 
@@ -77,12 +78,12 @@ const FriendBox = () => {
     return (
         <StyledFriendBox>
             <CardContent>
-                <Typography variant="h4">My Friends</Typography>    
+                <Typography variant="h4" sx={{marginBottom: 4}}>My Friends</Typography>    
                 <Grid container spacing={2} sx={{justifyContent: 'space-evenly'}}> 
                 {/* TODO: I have already set this up to pull from an array of objects. Would need to replace with our friend db  */}
                 {friendList? friendList.map((friend, i) => (
-                    <Grid item xs={6} md={4} lg={3} key={i} sx={{display: 'flex', justifyContent: 'center'}}
-                    >
+                    <>
+                    <Stack direction="column">
                         <Tooltip title="See Stats">
                             <MyAvatar aria-describedby={id} onClick={handleClick}>{friend? friend.firstName.charAt(0): null}</MyAvatar> 
                         </Tooltip>
@@ -91,70 +92,71 @@ const FriendBox = () => {
                                 sx={{alignSelf: 'center'}}
                             >{friend.firstName}
                             </Typography>
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onClose={handleClose}
-                            sx={{width: '100%'}}
-                            anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                            }}
-                        >
-                            {/* TODO: Replace with friend's name */}
-                            <Typography variant="h6">{friend.firstName}</Typography>
-                            {/* TODO: Replace with how many times they have played together */}
-                            <Typography variant="body2">Teamup Times: 20</Typography>
-                            {/* TODO: Replace with friend's game they have played the most */}
-                            <Typography variant="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
-                            <Grid container spacing={2} sx={{marginBottom: 2}}> 
-                                <Grid item>
-                                    <Typography variant="div">.</Typography>
-                                    <Typography variant="body1">Wins:</Typography>
-                                    <Typography variant="body1">Loses:</Typography>
-                                </Grid>
-                                <Grid item>
-                                    {/* TODO: Replace with Friend's name */}
-                                    <Typography variant="body1">{friendList[0].firstName}</Typography>
-                                    {/* TODO: Replace with Friends Total Wins */}
-                                    <Typography variant="body2">12</Typography>
-                                    {/* TODO: Replace with Friends Total Losses */}
-                                    <Typography variant="body2">3</Typography>
-                                    
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant="body1">Me</Typography>
-                                    {/* TODO: Replace with Users Total Wins */}
-                                    <Typography variant="body2">18</Typography>
-                                    {/* TODO: Replace with Users Total Losses */}
-                                    <Typography variant="body2">0</Typography>
-                                </Grid>
+                    </Stack>
+                    <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        sx={{width: '100%', padding: "10px"}}
+                        anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                        }}
+                    >
+                        {/* TODO: Replace with friend's name */}
+                        <Typography variant="h6">{friend.firstName}</Typography>
+                        {/* TODO: Replace with how many times they have played together */}
+                        <Typography variant="body2">Teamup Times: 3</Typography>
+                        {/* TODO: Replace with friend's game they have played the most */}
+                        <Typography variant="body2" sx={{marginBottom: 2}}>Favorite Game: Monopoly</Typography>
+                        <Grid container spacing={2} sx={{marginBottom: 2}}> 
+                            <Grid item>
+                                <Typography variant="div">.</Typography>
+                                <Typography variant="body1">Wins:</Typography>
+                                <Typography variant="body1">Loses:</Typography>
                             </Grid>
-                            <Typography variant="h6" sx={{textAlign: 'center'}}>Total Wins</Typography>
-                            {/* TODO: Replace this with a .map for our user's common games. Shows the wins from each game the user and friend have played together */}
-                            <Grid container spacing={2}> 
-                                <Grid item>
-                                    <Typography variant="div">.</Typography>
-                                    <Typography variant="body1">Monopoly:</Typography>
-                                    <Typography variant="body1">Yahtzee:</Typography>
-                                    <Typography variant="body1">Life:</Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant="body1">{friendList[0].firstName}</Typography>
-                                    <Typography variant="body2">5</Typography>
-                                    <Typography variant="body2">1</Typography>  
-                                    <Typography variant="body2">3</Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant="body1">Me</Typography>
-                                    <Typography variant="body2">4</Typography>
-                                    <Typography variant="body2">10</Typography>
-                                    <Typography variant="body2">1</Typography>
-                                </Grid>
+                            <Grid item>
+                                {/* TODO: Replace with Friend's name */}
+                                <Typography variant="body1">{friend.firstName}</Typography>
+                                {/* TODO: Replace with Friends Total Wins */}
+                                <Typography variant="body2">12</Typography>
+                                {/* TODO: Replace with Friends Total Losses */}
+                                <Typography variant="body2">3</Typography>
+                                
                             </Grid>
-                        </Popover>
-                  </Grid>
+                            <Grid item>
+                                <Typography variant="body1">Me</Typography>
+                                {/* TODO: Replace with Users Total Wins */}
+                                <Typography variant="body2">18</Typography>
+                                {/* TODO: Replace with Users Total Losses */}
+                                <Typography variant="body2">0</Typography>
+                            </Grid>
+                        </Grid>
+                        <Typography variant="h6" sx={{textAlign: 'center'}}>Total Wins</Typography>
+                        {/* TODO: Replace this with a .map for our user's common games. Shows the wins from each game the user and friend have played together */}
+                        <Grid container spacing={2}> 
+                            <Grid item>
+                                <Typography variant="div">.</Typography>
+                                <Typography variant="body1">Monopoly:</Typography>
+                                <Typography variant="body1">Yahtzee:</Typography>
+                                <Typography variant="body1">Life:</Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="body1">{friend.firstName}</Typography>
+                                <Typography variant="body2">5</Typography>
+                                <Typography variant="body2">1</Typography>  
+                                <Typography variant="body2">3</Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="body1">Me</Typography>
+                                <Typography variant="body2">4</Typography>
+                                <Typography variant="body2">10</Typography>
+                                <Typography variant="body2">1</Typography>
+                            </Grid>
+                        </Grid>
+                    </Popover>
+                </>
                 )): null}
                 </Grid>
             </CardContent>
