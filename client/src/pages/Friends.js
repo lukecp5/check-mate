@@ -197,7 +197,7 @@ export default function Friends() {
             searchResults.map((friend, index) => (
         // <Grid>
             // <Grid container spacing={2} align="center" sx={{ p:2, justifyContent: 'center', display: 'flex'}}>
-                <Grid item xs={12} sm={8} md={6} lg={4} xl={2}>
+                <Grid item xs={12} sm={8} md={6} lg={4} xl={2} ket={index}>
                     <MyCard>
                         <CardContent>
                             <Avatar sx={{width: '72px', height: '72px'}}>A</Avatar>
