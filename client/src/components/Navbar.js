@@ -110,7 +110,7 @@ function Navbar() {
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                   <Tooltip title="Account settings">
                     <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                      <Avatar sx={{ width: 56, height: 56, background: randomColor(colors) }}>M</Avatar>
+                      <Avatar sx={{ width: 56, height: 56, background: randomColor(colors) }}>CM</Avatar>
                     </IconButton>
                   </Tooltip>
                 </Box>
